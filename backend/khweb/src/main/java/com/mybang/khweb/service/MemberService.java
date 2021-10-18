@@ -15,7 +15,7 @@ public interface MemberService {
     void modify(Member member, MemberDto memberDto) throws Exception;
 
 
-    public void register(MemberRequest memberRequest) throws Exception;
+    public void register(MemberDto memberDto) throws Exception;
 
     public boolean checkUserIdValidation(String UserId) throws Exception;
 

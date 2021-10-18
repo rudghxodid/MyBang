@@ -66,21 +66,21 @@ public class MemberController {
 
     @PostMapping("/register")
     public Object jpaRegister(
-            @Validated @RequestBody MemberRequest memberRequest) throws Exception {
-        log.info("jpaRegister(): " + memberRequest.getUserId() + ", " + memberRequest.getPassword() + ", " +
-                (memberRequest.getAuth().equals("사업자") ? "ROLE_BUSINESS" : "ROLE_INDIVIDUAL"));
+            @Validated @RequestBody MemberDto memberDto) throws Exception {
+        log.info("jpaRegister(): " + memberDto.getUserId() + ", " + memberDto.getPassword() + ", " +
+                (memberDto.getAuth().equals("사업자") ? "ROLE_BUSINESS" : "ROLE_INDIVIDUAL"));
 
         boolean checkId = false;
-        checkId = service.checkDuplicateId(memberRequest.getUserId());
+        checkId = service.checkDuplicateId(memberDto.getUserId());
 
         if(checkId == true) {
             log.info("success");
-            log.info(memberRequest.getUserId());
-            service.register(memberRequest);
+            log.info(memberDto.getUserId());
+            service.register(memberDto);
             return new ResponseEntity<Boolean>(HttpStatus.OK);
         }else {
             log.info("duuplicate");
-            log.info(memberRequest.getUserId());
+            log.info(memberDto.getUserId());
             return false;
         }
 

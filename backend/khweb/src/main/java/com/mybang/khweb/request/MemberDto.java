@@ -18,6 +18,7 @@ public class MemberDto {
     private int age;
     private String sex;
     private String phone;
+    private String auth;
 
     public Member toEntity() {
         return Member.builder()
@@ -29,5 +30,11 @@ public class MemberDto {
                 .sex(sex)
                 .phone(phone)
                 .build();
+    }
+
+    public MemberDto(String userId, String password, String auth) {
+        this.userId = userId;
+        this.password = password;
+        this.auth = auth;
     }
 }

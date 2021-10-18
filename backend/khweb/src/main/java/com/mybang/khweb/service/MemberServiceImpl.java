@@ -30,20 +30,20 @@ public class MemberServiceImpl implements MemberService{
     private PasswordEncoder encoder;
 
     @Override
-    public void register(MemberRequest memberRequest) throws Exception {
-        String encodedPassword = passwordEncoder.encode(memberRequest.getPassword());
-        memberRequest.setPassword(encodedPassword);
+    public void register(MemberDto memberDto) throws Exception {
+        String encodedPassword = encoder.encode(memberDto.getPassword());
+        memberDto.setPassword(encodedPassword);
 
-        MemberAuth authEntity = new MemberAuth(memberRequest.getAuth());
-        Member memberEntity = new Member(memberRequest.getUserId(), memberRequest.getPassword());
+        MemberAuth authEntity = new MemberAuth(memberDto.getAuth());
+        Member memberEntity = new Member(memberDto.getUserId(), memberDto.getPassword());
         memberEntity.addAuth(authEntity);
 
-        memberRepository.save(memberEntity);
+        repository.save(memberEntity);
     }
 
     @Override
     public boolean checkUserIdValidation(String UserId) throws Exception {
-        Optional<Member> maybeMember = memberRepository.findByUserId(userId);
+        Optional<Member> maybeMember = repository.findById(userId);
 
         if (maybeMember == null)
         {
@@ -57,7 +57,7 @@ public class MemberServiceImpl implements MemberService{
 
     @Override
     public boolean checkDuplicateId(String UserId) throws Exception {
-        Optional<Member> checkmember = memberRepository.findByUserId(userId);
+        Optional<Member> checkmember = repository.findById(userId);
         if (checkmember == null) {
             log.info("가입가능한 아이디입니다");
 
