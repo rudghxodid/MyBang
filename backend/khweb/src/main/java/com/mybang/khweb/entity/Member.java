@@ -16,7 +16,7 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-
+@Table(name="member")
 public class Member extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -46,6 +46,22 @@ public class Member extends BaseTimeEntity {
     @Column(nullable = false)
     private String phone;
 
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "member_no")
+    private List<MemberAuth> authList = new ArrayList<MemberAuth>();
+
+    public Member(String userId, String password) {
+        this.userId = userId;
+        this.password = password;
+    }
+
+    public void addAuth(MemberAuth auth) {
+        authList.add(auth);
+    }
+
+    public void clearAuthList () {
+        authList.clear();
+    }
 
 
 
