@@ -13,17 +13,23 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
+
 @Controller
 @RequestMapping("/member")
 @CrossOrigin(origins = "http://localhost:8080", allowedHeaders = "*")
 @Slf4j
-public class MemberController {
 
-//    @Autowired
-//    private MemberService service;
-//
-//    private UserInfo info;
-//
-//    private HttpSession session;
+
+public class MemberController {
+/*
+    @Autowired
+    private MemberService service;
+
+    private UserInfo info;
+
+    private HttpSession session;
+
+
+ */
 
 }

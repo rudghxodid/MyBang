@@ -6,13 +6,20 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
 
+
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+
 
 @Entity
 //@Data
 @NoArgsConstructor
 @AllArgsConstructor
+
+
+
 public class Member extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,10 +32,26 @@ public class Member extends BaseTimeEntity {
     @Column(nullable = false)
     private String password;
 
-    @Column
-    private String nickname;
 
-    @Column
+
+
+    @Column(nullable = false)
     private String email;
 
+    @Column(nullable = false)
+    private String name;
+
+    @Column(nullable = false)
+    private int age;
+
+    @Column(nullable = false)
+    private String sex;
+
+    @Column(nullable = false)
+    private String phone;
+
+
+
+
 }
+

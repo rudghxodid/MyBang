@@ -12,13 +12,18 @@ import org.springframework.stereotype.Service;
 @Lazy
 @Slf4j
 public class MemberServiceImpl implements MemberService{
-//
-//    @Autowired
-//    private MemberRepository repository;
-//
-//    @Autowired
-//    private MemberAuthRepository authRepository;
-//
-//    @Autowired
-//    private PasswordEncoder encoder;
+
+/*
+    @Autowired
+    private MemberRepository repository;
+
+    @Autowired
+    private MemberAuthRepository authRepository;
+
+    @Autowired
+    private PasswordEncoder encoder;
+
+
+ */
+
 }
