@@ -11,5 +11,5 @@ public interface MemberRepository extends JpaRepository<Member, Long> {
     Optional<Member> findByAuth(Long memberNo);
 
     @Query("select m from Member m where m.userId = :userId")
-    Optional<Member> findByUserId(String userId);
+    Optional<Member> findById(String userId);
 }

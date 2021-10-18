@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
+import Mypage from '@/components/member/Mypage'
 import MemberRegisterPage from '@/views/MemberRegisterPage.vue'
 
 
@@ -13,13 +14,18 @@ const routes = [
     component: Home
   },
   {
+    path: '/mypage',
+    name: 'Mypage',
+    component: Mypage
+  },
+  {
     path: '/member/create',
     name: 'MemberRegisterPage',
     components: {
       default: MemberRegisterPage
     },
     props: {
-      
+
       default: true
     }
   }
