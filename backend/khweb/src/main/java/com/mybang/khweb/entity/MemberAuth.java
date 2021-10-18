@@ -1,4 +1,3 @@
-
 package com.mybang.khweb.entity;
 
 import lombok.AllArgsConstructor;
@@ -25,4 +24,3 @@ public class MemberAuth {
     @Column(length = 64, nullable = false)
     private String auth;
 }
-

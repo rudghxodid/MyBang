@@ -1,4 +1,3 @@
-
 package com.mybang.khweb.repository;
 /*
 import com.mybang.khweb.entity.Member;
@@ -13,4 +12,3 @@ public interface MemberAuthRepository extends JpaRepository {
 
 }
 */
-

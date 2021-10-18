@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 @Lazy
 @Slf4j
 public class MemberServiceImpl implements MemberService{
-
 /*
     @Autowired
     private MemberRepository repository;
@@ -25,5 +24,4 @@ public class MemberServiceImpl implements MemberService{
 
 
  */
-
 }

@@ -1,4 +1,3 @@
-
 package com.mybang.khweb.request;
 /*
 import lombok.AllArgsConstructor;
@@ -13,4 +12,3 @@ import lombok.Setter;
 public class MemberDto {
 }
 */
-
