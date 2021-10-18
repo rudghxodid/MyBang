@@ -1,22 +1,19 @@
 package com.mybang.khweb.entity;
 
+import com.mybang.khweb.request.MemberDto;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
-
-
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 
+@Builder
 @Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-
 public class Member extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,8 +25,6 @@ public class Member extends BaseTimeEntity {
 
     @Column(nullable = false)
     private String password;
-
-
 
     @Column(nullable = false)
     private String email;
@@ -46,7 +41,11 @@ public class Member extends BaseTimeEntity {
     @Column(nullable = false)
     private String phone;
 
-
+    public void modifyMember(MemberDto memberDto) {
+        this.password = memberDto.getPassword();
+        this.email = memberDto.getEmail();
+        this.phone = memberDto.getPhone();
+    }
 
 
 }
