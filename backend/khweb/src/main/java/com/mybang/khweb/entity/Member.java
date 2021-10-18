@@ -7,13 +7,19 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
+
+
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 @Builder
 @Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+
 public class Member extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,6 +31,8 @@ public class Member extends BaseTimeEntity {
 
     @Column(nullable = false)
     private String password;
+
+
 
     @Column(nullable = false)
     private String email;
@@ -46,6 +54,23 @@ public class Member extends BaseTimeEntity {
         this.email = memberDto.getEmail();
         this.phone = memberDto.getPhone();
     }
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "member_no")
+    private List<MemberAuth> authList = new ArrayList<MemberAuth>();
+
+    public Member(String userId, String password) {
+        this.userId = userId;
+        this.password = password;
+    }
+
+    public void addAuth(MemberAuth auth) {
+        authList.add(auth);
+    }
+
+    public void clearAuthList () {
+        authList.clear();
+    }
+
 
 
 }
