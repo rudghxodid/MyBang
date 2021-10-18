@@ -1,8 +1,6 @@
 package com.mybang.khweb.entity;
 
-import com.mybang.khweb.request.MemberDto;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -14,17 +12,10 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-
-
-
-@Builder
-
 @Entity
-//@Data
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
-
-
 
 public class Member extends BaseTimeEntity {
     @Id
@@ -37,7 +28,6 @@ public class Member extends BaseTimeEntity {
 
     @Column(nullable = false)
     private String password;
-
 
 
 
@@ -56,29 +46,7 @@ public class Member extends BaseTimeEntity {
     @Column(nullable = false)
     private String phone;
 
-    public void modifyMember(MemberDto memberDto) {
-        this.password = memberDto.getPassword();
-        this.email = memberDto.getEmail();
-        this.phone = memberDto.getPhone();
-    }
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "member_no")
-    private List<MemberAuth> authList = new ArrayList<MemberAuth>();
-
-    public Member(String userId, String password) {
-        this.userId = userId;
-        this.password = password;
-    }
-
-    public void addAuth(MemberAuth auth) {
-        authList.add(auth);
-    }
-
-    public void clearAuthList () {
-        authList.clear();
-    }
 
 
 
 }
-
