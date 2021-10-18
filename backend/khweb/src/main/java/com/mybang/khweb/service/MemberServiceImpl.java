@@ -1,6 +1,6 @@
 package com.mybang.khweb.service;
 
-import com.mybang.khweb.repository.MemberAuthRepository;
+//import com.mybang.khweb.repository.MemberAuthRepository;
 import com.mybang.khweb.repository.MemberRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,13 +12,13 @@ import org.springframework.stereotype.Service;
 @Lazy
 @Slf4j
 public class MemberServiceImpl implements MemberService{
-
-    @Autowired
-    private MemberRepository repository;
-
-    @Autowired
-    private MemberAuthRepository authRepository;
-
-    @Autowired
-    private PasswordEncoder encoder;
+//
+//    @Autowired
+//    private MemberRepository repository;
+//
+//    @Autowired
+//    private MemberAuthRepository authRepository;
+//
+//    @Autowired
+//    private PasswordEncoder encoder;
 }

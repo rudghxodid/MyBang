@@ -6,9 +6,29 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
 
+import javax.persistence.*;
+import java.util.Date;
+
 @Entity
-@Data
+//@Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Member {
+public class Member extends BaseTimeEntity {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "member_no")
+    private Long memberNo;
+
+    @Column(nullable = false)
+    private String userId;
+
+    @Column(nullable = false)
+    private String password;
+
+    @Column
+    private String nickname;
+
+    @Column
+    private String email;
+
 }
