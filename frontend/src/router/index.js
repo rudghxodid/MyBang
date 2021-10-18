@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
+import MemberRegisterPage from '@/views/MemberRegisterPage.vue'
+
 
 Vue.use(VueRouter)
 
@@ -10,6 +12,17 @@ const routes = [
     name: 'Home',
     component: Home
   },
+  {
+    path: '/member/create',
+    name: 'MemberRegisterPage',
+    components: {
+      default: MemberRegisterPage
+    },
+    props: {
+      
+      default: true
+    }
+  }
 
 ]
 

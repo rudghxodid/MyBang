@@ -1,15 +1,17 @@
 <template>
-  <test/>
+  <router-link :to="{ name: 'MemberRegisterPage' }"
+                    class="nav-link"
+                    active-class="active">
+                회원가입 테스트
+            </router-link>
 </template>
 
 <script>
-import Test from '@/components/Test'
+
 
   export default {
     name: 'Home',
 
-    components: {
-      Test,
-    },
+    
   }
 </script>
