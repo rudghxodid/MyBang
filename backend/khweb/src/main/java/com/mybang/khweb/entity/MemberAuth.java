@@ -1,14 +1,9 @@
 
 package com.mybang.khweb.entity;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
-
 import javax.persistence.*;
-import java.util.Date;
 
 @Entity
 @Data
@@ -24,5 +19,3 @@ public class MemberAuth {
 
     @Column(length = 64, nullable = false)
     private String auth;
-}
-
