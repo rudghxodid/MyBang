@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)
 public class BaseTimeEntity {
-
+test
     @CreatedDate
     @Column(updatable = false)
     private LocalDateTime createdDate;

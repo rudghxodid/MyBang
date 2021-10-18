@@ -11,7 +11,7 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
+test
 
 @Entity
 //@Data
@@ -32,7 +32,7 @@ public class Member extends BaseTimeEntity {
     @Column(nullable = false)
     private String password;
 
-
+    test
 
 
     @Column(nullable = false)
