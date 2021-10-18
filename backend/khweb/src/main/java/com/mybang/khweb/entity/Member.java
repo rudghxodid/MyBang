@@ -14,11 +14,17 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+
+
+
 @Builder
+
 @Entity
-@Data
+//@Data
 @NoArgsConstructor
 @AllArgsConstructor
+
+
 
 public class Member extends BaseTimeEntity {
     @Id
@@ -31,6 +37,7 @@ public class Member extends BaseTimeEntity {
 
     @Column(nullable = false)
     private String password;
+
 
 
 
@@ -74,3 +81,4 @@ public class Member extends BaseTimeEntity {
 
 
 }
+

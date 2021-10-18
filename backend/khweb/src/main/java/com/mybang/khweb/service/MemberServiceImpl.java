@@ -20,6 +20,7 @@ import java.util.Optional;
 @Slf4j
 public class MemberServiceImpl implements MemberService{
 
+
     @Autowired
     private MemberRepository repository;
 
@@ -119,6 +120,8 @@ public class MemberServiceImpl implements MemberService{
 
         member.modifyMember(memberDto);
 
+
         repository.save(member);
     }
+
 }

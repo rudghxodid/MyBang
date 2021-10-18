@@ -1,3 +1,4 @@
+
 package com.mybang.khweb.entity;
 
 import lombok.Data;
@@ -18,8 +19,3 @@ public class MemberAuth {
 
     @Column(length = 64, nullable = false)
     private String auth;
-
-    public MemberAuth(String auth) {
-        this.auth = auth;
-    }
-}
