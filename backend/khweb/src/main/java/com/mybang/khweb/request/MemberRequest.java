@@ -5,7 +5,6 @@ import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 @Data
-@Slf4j
 @NoArgsConstructor
 public class MemberRequest {
     private String userId;
@@ -22,9 +21,5 @@ public class MemberRequest {
         this.userId = userId;
         this.password = password;
         this.auth = auth;
-
-
     }
-
-
 }

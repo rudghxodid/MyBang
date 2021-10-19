@@ -5,6 +5,7 @@ import com.mybang.khweb.entity.Member;
 import com.mybang.khweb.entity.MemberAuth;
 import com.mybang.khweb.repository.MemberAuthRepository;
 import com.mybang.khweb.repository.MemberRepository;
+import com.mybang.khweb.request.MemberDto;
 import com.mybang.khweb.request.MemberRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,18 +19,20 @@ import java.util.Optional;
 @Lazy
 @Slf4j
 public class MemberServiceImpl implements MemberService{
-    @Autowired
-    private MemberRepository memberRepository;
 
     @Autowired
-    private MemberAuthRepository memberAuthRepository;
+    private MemberRepository repository;
 
     @Autowired
-    private PasswordEncoder passwordEncoder;
+    private MemberAuthRepository authRepository;
+
+    @Autowired
+    private PasswordEncoder encoder;
+
 
     @Override
     public void register(MemberRequest memberRequest) throws Exception {
-        String encodedPassword = passwordEncoder.encode(memberRequest.getPassword());
+        String encodedPassword = encoder.encode(memberRequest.getPassword());
         memberRequest.setPassword(encodedPassword);
 
         MemberAuth authEntity = new MemberAuth(memberRequest.getAuth());
@@ -37,12 +40,12 @@ public class MemberServiceImpl implements MemberService{
                 memberRequest.getName(),memberRequest.getAge(), memberRequest.getSex(), memberRequest.getPhone());
         memberEntity.addAuth(authEntity);
 
-        memberRepository.save(memberEntity);
+        repository.save(memberEntity);
     }
 
     @Override
     public MemberRequest login(MemberRequest memberRequest) throws Exception {
-        Optional<Member> maybeMember = memberRepository.findByUserId(memberRequest.getUserId());
+        Optional<Member> maybeMember = repository.findByUserId(memberRequest.getUserId());
 
         if (maybeMember == null) {
             log.info("login(): 그런 사람 없다.");
@@ -51,13 +54,13 @@ public class MemberServiceImpl implements MemberService{
 
         Member loginMember = maybeMember.get();
 
-        if (!passwordEncoder.matches(memberRequest.getPassword(), loginMember.getPassword())) {
+        if (!encoder.matches(memberRequest.getPassword(), loginMember.getPassword())) {
             log.info("login(): 비밀번호 잘못 입력하였습니다.");
             return null;
         }
 
         Optional<MemberAuth> maybeMemberAuth =
-                memberAuthRepository.findByMemberNo(loginMember.getMemberNo());
+                authRepository.findByMemberNo(loginMember.getMemberNo());
 
         if (maybeMemberAuth == null) {
             log.info("auth 없음");
@@ -75,7 +78,7 @@ public class MemberServiceImpl implements MemberService{
 
     @Override
     public boolean checkUserIdValidation(String userId) throws Exception {
-        Optional<Member> maybeMember = memberRepository.findByUserId(userId);
+        Optional<Member> maybeMember = repository.findByUserId(userId);
 
         if (maybeMember == null)
         {
@@ -88,7 +91,7 @@ public class MemberServiceImpl implements MemberService{
 
     @Override
     public boolean checkDuplicateId(String userId) throws Exception {
-        Optional<Member> checkmember = memberRepository.findByUserId(userId);
+        Optional<Member> checkmember = repository.findByUserId(userId);
         if (checkmember == null) {
             log.info("가입가능한 아이디입니다");
 
@@ -97,12 +100,98 @@ public class MemberServiceImpl implements MemberService{
         return true;
 
     }
-
-
-
     @Override
     public Optional<Member> findByAuth(Long memberNo) {
-        return memberRepository.findByAuth(memberNo);
+        return repository.findByAuth(memberNo);
     }
 
+
+    // -- 회원정보 확인, 수정, 탈퇴, 아이디찾기, 비밀번호찾기(변경) --
+    @Override
+    public Boolean checkPassword(MemberDto memberDto) throws Exception {
+        Optional<Member> checkMember = repository.findByUserId(memberDto.getUserId());
+
+        String memberPassword = checkMember.get().getPassword();
+
+        if(!encoder.matches(memberDto.getPassword(), memberPassword)) {
+            log.info("fail pw");
+            return false;
+        }
+
+        log.info("success pw");
+        return true;
+    }
+
+    @Override
+    public Optional<Member> userInfo(String userId) throws Exception {
+        return repository.findByUserId(userId);
+    }
+
+    @Override
+    public Member findById(String userId) throws Exception {
+        Member member = repository.findByUserId(userId).orElse(null);
+
+        return member;
+    }
+
+    @Override
+    public void modify(Member member, MemberDto memberDto) throws Exception {
+        String encodedPassword = encoder.encode(memberDto.getPassword());
+        memberDto.setPassword(encodedPassword);
+
+        member.modifyMember(memberDto);
+
+        repository.save(member);
+    }
+
+    @Override
+    public void remove(Member member) throws Exception {
+        repository.delete(member);
+    }
+
+    @Override
+    public Member findByEmail(String email) throws Exception {
+        Member member = repository.findByEmail(email).orElse(null);
+
+        return member;
+    }
+
+    @Override
+    public String findingUserId(MemberDto memberDto) throws Exception {
+        Optional<Member> maybeUser = repository.findByEmail(memberDto.getEmail());
+
+        String userId = maybeUser.get().getUserId();
+
+        log.info(userId);
+
+        return userId;
+    }
+
+    @Override
+    public Boolean findingUser(MemberDto memberDto) throws Exception {
+        Optional<Member> maybeUser = repository.findByEmail(memberDto.getEmail());
+
+        String userId = maybeUser.get().getUserId();
+
+        if (!maybeUser.isPresent()) {
+            log.info("not find user");
+            return false;
+        } else if (!userId.equals(memberDto.getUserId())) {
+            log.info("not match id");
+            return false;
+        }
+
+        log.info("success find user");
+        return true;
+    }
+
+    @Override
+    public void modifyPw(Member member, MemberDto memberDto) throws Exception {
+        String encodedPassword = encoder.encode(memberDto.getPassword());
+        memberDto.setPassword(encodedPassword);
+
+        member.modifyPassword(memberDto);
+
+        repository.save(member);
+    }
 }
