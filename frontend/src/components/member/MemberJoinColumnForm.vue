@@ -88,7 +88,7 @@
 <script>
 
 export default {
-    name: 'MemberJoinColumnTestForm',
+    name: 'MemberJoinColumnForm',
     data () {
         return {
             radioGroup: 1,
