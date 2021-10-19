@@ -3,7 +3,7 @@
     <template v-slot:activator="{ on }">
       <v-btn v-on="on">탈퇴</v-btn>
     </template>
-    <v-card>
+    <v-card class="pa-2">
       <v-card-title>정말 탈퇴하시겠습니까?</v-card-title>
       <v-card-actions>
         <v-btn @click="cancle">취소</v-btn>
@@ -17,25 +17,31 @@
 
 <script>
 import axios from 'axios'
+import { mapActions } from 'vuex'
 
 export default {
   data () {
     return {
-      userId: 'test',
+      userId: 'zzzz',
       dialog: false,
 
     }
   },
   methods: {
+    ...mapActions(['fetchSession']),
     cancle () {
       this.dialog = false
     },
     deleteUserInfo () {
       axios.delete(`http://localhost:7777/member/mypage/remove/${this.userId}`).then(() => {
 
-        this.$store.commit('FETCH_USER_INFO', [])
-        
         this.dialog = false
+
+        this.$store.commit('USER_LOGIN', false)
+        
+        this.fetchSession(this.$cookies.remove('session'))
+
+        this.$store.commit('FETCH_USER_INFO', [])
 
         alert('탈퇴가 완료되었습니다.')
 

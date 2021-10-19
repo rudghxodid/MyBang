@@ -1,24 +1,17 @@
 <template>
   <v-container>
-    <v-card>
-      <v-card-title>가입한 이메일을 입력하세요.</v-card-title>
-      <v-text-field label="email" v-model="email"></v-text-field>
-      <v-card-actions>
-        <v-btn @click="findId">찾기</v-btn>
-      </v-card-actions>
-    </v-card>
-
-    <v-card>
-      <v-card-title>가입한 아이디와 이메일을 입력하세요.</v-card-title>
+    <v-card class="pa-5">
+      <v-card-title>비밀번호 재설정</v-card-title>
+      <v-card-text>가입한 아이디와 이메일을 입력하세요.</v-card-text>
       <v-text-field label="id" v-model="userId"></v-text-field>
       <v-text-field label="email" v-model="email"></v-text-field>
       <v-card-actions>
+        <v-spacer></v-spacer>
         <v-btn @click="findPw">찾기</v-btn>
       </v-card-actions>
     </v-card>
   </v-container>
 </template>
-
 
 <script>
 import axios from 'axios'
@@ -31,17 +24,6 @@ export default {
     }
   },
   methods: {
-    findId () {
-      const email = this.email
-
-      axios.post('http://localhost:7777/member/findingUserId', { email }).then(res => {
-        alert('당신의 아이디는 ' + res.data + ' 입니다.')
-
-        this.$router.push( { name: 'Home' } )
-      }).catch(() => {
-        alert('일치하는 회원정보가 없습니다.')
-      })
-    },
     findPw () {
       const email = this.email
       const userId = this.userId

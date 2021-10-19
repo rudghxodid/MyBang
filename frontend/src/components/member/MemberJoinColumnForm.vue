@@ -31,7 +31,7 @@
                 <v-icon color="black" size="30px">mail</v-icon>
                  E-mail
                 <div class="mx-1">
-                    <v-text-field placeholder="name" v-model="email" required 
+                    <v-text-field placeholder="e-mail" v-model="email" required 
                         ></v-text-field>
                         </div> 
                         </div> 
@@ -51,7 +51,7 @@
                 <v-icon color="black" size="30px">hourglass_empty</v-icon>
                  Age
                 <div class="mx-1">
-                    <v-text-field placeholder="name" v-model="age" required 
+                    <v-text-field placeholder="age" v-model="age" required 
                         ></v-text-field>
                         </div> 
                         </div>
@@ -60,7 +60,7 @@
                 <v-icon color="black" size="30px">wc</v-icon>
                  Sex
                 <div class="mx-1">
-                    <v-text-field placeholder="name" v-model="sex" required 
+                    <v-text-field placeholder="sex" v-model="sex" required 
                         ></v-text-field>
                         </div> 
                         </div>  
@@ -69,7 +69,7 @@
                 <v-icon color="black" size="30px">phone</v-icon>
                  Phone
                 <div class="mx-1">
-                    <v-text-field placeholder="name" v-model="phone" required 
+                    <v-text-field placeholder="phone" v-model="phone" required 
                         ></v-text-field>
                         </div> 
                         </div> 
@@ -88,7 +88,7 @@
 <script>
 
 export default {
-    name: 'MemberJoinColumnTestForm',
+    name: 'MemberJoinColumnForm',
     data () {
         return {
             radioGroup: 1,
@@ -110,7 +110,7 @@ export default {
         onSubmit () {
             const { userId, password, email, name, age, sex, phone, radioGroup } = this
             const auth = radioGroup == 0 ? '개인' : '사업자'
-            this.$emit('submit', { userId, name,password, email, name, age, sex, phone, auth })
+            this.$emit('submit', { userId, password, email, name, age, sex, phone, auth })
         },
         
         

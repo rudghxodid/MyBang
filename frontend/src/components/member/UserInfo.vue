@@ -29,29 +29,31 @@
         <v-list-item three-line>
           <v-list-item-content>
             <v-list-item-title>비밀번호</v-list-item-title>
+            <!--
             <v-text-field v-model="password" type="password"></v-text-field>
-            <v-text-field v-model="checkPassword" type="password"></v-text-field>
+            -->
+            <v-text-field v-model="checkPassword" type="password" :rules="pwRules"></v-text-field>
           </v-list-item-content>
         </v-list-item>
         <v-list-item two-line>
           <v-list-item-content>
             <v-list-item-title>전화번호</v-list-item-title>
-            <v-text-field v-model="userInfo.phone"></v-text-field>
+            <v-text-field v-model="userInfo.phone" :rules="phoneRules"></v-text-field>
           </v-list-item-content>
         </v-list-item>
         <v-list-item two-line>
           <v-list-item-content>
             <v-list-item-title>이메일</v-list-item-title>
-            <v-text-field v-model="userInfo.email"></v-text-field>
+            <v-text-field v-model="userInfo.email" :rules="emailRules"></v-text-field>
           </v-list-item-content>
         </v-list-item>
      
       <v-card-actions>
         <check-delete-user-info></check-delete-user-info>
         <v-spacer></v-spacer>
-        <v-btn @click="modifyUserInfo">
-          수정
-        </v-btn>
+        <v-btn @click="goHome">메인으로</v-btn>
+        <v-spacer></v-spacer>
+        <v-btn @click="modifyUserInfo">수정</v-btn>
       </v-card-actions>
     </v-card>
   </v-container>
@@ -69,16 +71,16 @@ export default {
   },
   data () {
     return {
-      userId: 'test',
+      userId: null,
       password: null,
-      checkPassword: null,
+      checkPassword: null
     }
   },
   computed: {
-    ...mapState(['userInfo'])
+    ...mapState(['userInfo','pwRules', 'emailRules', 'phoneRules'])
   },
   mounted() {
-    this.fetchUserInfo(this.userId)
+    this.userId = this.userInfo.userId
   },
   methods: {
     ...mapActions(['fetchUserInfo']),
@@ -93,6 +95,9 @@ export default {
         this.fetchUserInfo(this.userId)
       })
     },
+    goHome () {
+      this.$router.push({ name: 'Home' })
+    }
   }
 }
 </script>

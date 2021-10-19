@@ -2,25 +2,10 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Mypage from '@/views/member/Mypage'
-import MemberRegisterPage from '@/views/MemberRegisterPage.vue'
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-import TestSignup from '@/components/member/TestSignup'
-import FindUserIdPw from '@/components/member/FindUserIdPw'
+import MemberRegisterPage from '@/views/member/MemberRegisterPage'
+import MemberLoginPage from '@/views/member/MemberLoginPage'
+import FindUserId from '@/components/member/FindUserId'
+import FindUserPw from '@/components/member/FindUserPw'
 import ModifyPassword from '@/components/member/ModifyPassword'
 
 
@@ -44,57 +29,32 @@ const routes = [
       default: MemberRegisterPage
     },
     props: {
-
       default: true
     }
   },
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   {
-    path: '/testSignup',
-    name: 'TestSignup',
-    component: TestSignup
+    path: '/login',
+    name: 'MemberLoginPage',
+    components: {
+      default: MemberLoginPage
+    }
   },
   {
-    path: '/findUserIdPw',
-    name: 'FindUserIdPw',
-    component: FindUserIdPw
+    path: '/findUserId',
+    name: 'FindUserId',
+    component: FindUserId
+  },
+  {
+    path: '/findUserPw',
+    name: 'FindUserPw',
+    component: FindUserPw
   },
   {
     path: '/modifyPassword/:userId',
     name: 'ModifyPassword',
     component: ModifyPassword
   },
+
 
 ]
 

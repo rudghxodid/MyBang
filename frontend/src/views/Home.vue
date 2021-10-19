@@ -1,62 +1,60 @@
 <template>
-  <div>
-
-    <router-link :to="{ name: 'Mypage' }"
-      class="nav-link"
-      active-class="active">Mypage
-    </router-link>
-
-    <router-link :to="{ name: 'MemberRegisterPage' }"
-      class="nav-link"
-      active-class="active">
-        회원가입 테스트
-    </router-link>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <router-link :to="{ name: 'TestSignup' }"
-      class="nav-link"
-      active-class="active">회원가입
-    </router-link>
-    <router-link :to="{ name: 'FindUserIdPw' }"
-      class="nav-link"
-      active-class="active">아디비번찾기
-    </router-link>
-  </div>
-
-
+  <v-container>
+    <div v-if="isLogin">
+      <v-btn @click="logout">로그아웃</v-btn>
+      <v-btn @click="gotoMypage">마이페이지</v-btn>
+    </div>
+    
+    <div style="float:left" v-else>
+      <v-btn @click="gotoJoin">회원가입</v-btn>
+      <v-btn @click="gotoLogin">로그인</v-btn>
+    </div>
+  </v-container>
 </template>
 
 <script>
-
-
+import { mapActions, mapState } from 'vuex'
   export default {
     name: 'Home',
+    data() {
+      return {
+        userInfo: {
+          userId: '',
+          password: ''
+        },
+    }
+  },
+  computed: {
+    ...mapState(['session', 'isLogin'])
+  },
+  mounted() {
+    this.fetchSession(this.$cookies.get('session'))
+        if (this.session != null) {
+          this.$store.state.isLogin = true
+          this.$store.state.userInfo = this.fetchUserInfo(this.$cookies.get('session')) 
+        }
+  },
+  methods: {
+    ...mapActions(['fetchSession', 'fetchUserInfo']),
+    gotoJoin() {
+      this.$router.push('/member/create')
+    },
+    gotoLogin() {
+      this.$router.push('/login')
+    },
+    logout () {
+      this.$store.commit('USER_LOGIN', false)
+      this.fetchSession(this.$cookies.remove('session'))
+      this.$store.commit('FETCH_USER_INFO', [])
+      alert("로그아웃 되었습니다!")
+      this.$router.go()
+    },
+    gotoMypage () {
+      this.$router.push({ name: 'Mypage' })
+    }
+  }
 
+  
+  
   }
 </script>
