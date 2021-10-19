@@ -1,8 +1,27 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
-import Mypage from '@/components/member/Mypage'
+import Mypage from '@/views/member/Mypage'
 import MemberRegisterPage from '@/views/MemberRegisterPage.vue'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+import TestSignup from '@/components/member/TestSignup'
+import FindUserIdPw from '@/components/member/FindUserIdPw'
+import ModifyPassword from '@/components/member/ModifyPassword'
 
 
 Vue.use(VueRouter)
@@ -28,7 +47,54 @@ const routes = [
 
       default: true
     }
-  }
+  },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  {
+    path: '/testSignup',
+    name: 'TestSignup',
+    component: TestSignup
+  },
+  {
+    path: '/findUserIdPw',
+    name: 'FindUserIdPw',
+    component: FindUserIdPw
+  },
+  {
+    path: '/modifyPassword/:userId',
+    name: 'ModifyPassword',
+    component: ModifyPassword
+  },
 
 ]
 
