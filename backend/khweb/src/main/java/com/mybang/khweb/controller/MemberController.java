@@ -22,6 +22,7 @@ import java.util.List;
 @RequestMapping("/member")
 @CrossOrigin(origins = "http://localhost:8080", allowedHeaders = "*")
 
+
 public class MemberController {
 
 
@@ -33,7 +34,7 @@ public class MemberController {
         private HttpSession session;
 
         @PostMapping("/register")
-        public Object jpaRegister(
+        public Object Register(
                 @Validated @RequestBody MemberRequest memberRequest) throws Exception {
             log.info("jpaRegister(): " + memberRequest.getUserId() + ", " + memberRequest.getPassword() + ", " +
                     (memberRequest.getAuth().equals("사업자") ? "ROLE_BUSINESS" : "ROLE_INDIVIDUAL"));

@@ -31,30 +31,33 @@ public class Member extends BaseTimeEntity {
     @Column(length = 64, nullable = false)
     private String password;
 
-
-
-    @Column(length = 64, nullable = false)
+    @Column
     private String email;
 
-    @Column(length = 64, nullable = false)
+    @Column
     private String name;
 
-    @Column(nullable = false)
+    @Column
     private int age;
 
-    @Column(nullable = false)
+    @Column
     private String sex;
 
-    @Column(nullable = false)
+    @Column
     private String phone;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "member_no")
     private List<MemberAuth> authList = new ArrayList<MemberAuth>();
 
-    public Member(String userId, String password) {
+    public Member(String userId, String password, String email, String name, int age, String sex, String phone) {
         this.userId = userId;
         this.password = password;
+        this.email = email;
+        this.name = name;
+        this.age = age;
+        this.sex = sex;
+        this.phone = phone;
     }
 
     public void addAuth(MemberAuth auth) {

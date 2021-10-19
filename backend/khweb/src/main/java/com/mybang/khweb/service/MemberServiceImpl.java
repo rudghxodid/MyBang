@@ -33,7 +33,8 @@ public class MemberServiceImpl implements MemberService{
         memberRequest.setPassword(encodedPassword);
 
         MemberAuth authEntity = new MemberAuth(memberRequest.getAuth());
-        Member memberEntity = new Member(memberRequest.getUserId(), memberRequest.getPassword());
+        Member memberEntity = new Member(memberRequest.getUserId(), memberRequest.getPassword(), memberRequest.getEmail(),
+                memberRequest.getName(),memberRequest.getAge(), memberRequest.getSex(), memberRequest.getPhone());
         memberEntity.addAuth(authEntity);
 
         memberRepository.save(memberEntity);
