@@ -1,7 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ad9ba898-1beb-4b13-aef3-5d6318a0884d" name="Default Changelist" comment="" />
+    <list default="true" id="ad9ba898-1beb-4b13-aef3-5d6318a0884d" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/khweb/src/main/java/com/mybang/khweb/request/MemberRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/khweb/src/main/java/com/mybang/khweb/controller/MemberController.java" beforeDir="false" afterPath="$PROJECT_DIR$/khweb/src/main/java/com/mybang/khweb/controller/MemberController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/khweb/src/main/java/com/mybang/khweb/controller/session/UserInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/khweb/src/main/java/com/mybang/khweb/controller/session/UserInfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/khweb/src/main/java/com/mybang/khweb/entity/Member.java" beforeDir="false" afterPath="$PROJECT_DIR$/khweb/src/main/java/com/mybang/khweb/entity/Member.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/khweb/src/main/java/com/mybang/khweb/entity/MemberAuth.java" beforeDir="false" afterPath="$PROJECT_DIR$/khweb/src/main/java/com/mybang/khweb/entity/MemberAuth.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/khweb/src/main/java/com/mybang/khweb/repository/MemberAuthRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/khweb/src/main/java/com/mybang/khweb/repository/MemberAuthRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/khweb/src/main/java/com/mybang/khweb/repository/MemberRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/khweb/src/main/java/com/mybang/khweb/repository/MemberRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/khweb/src/main/java/com/mybang/khweb/service/MemberService.java" beforeDir="false" afterPath="$PROJECT_DIR$/khweb/src/main/java/com/mybang/khweb/service/MemberService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/khweb/src/main/java/com/mybang/khweb/service/MemberServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/khweb/src/main/java/com/mybang/khweb/service/MemberServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/components/member/MemberJoinColumnTestForm.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/member/MemberJoinColumnTestForm.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/store/actions.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/store/actions.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/views/MemberRegisterPage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/views/MemberRegisterPage.vue" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -19,7 +33,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/khweb" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />

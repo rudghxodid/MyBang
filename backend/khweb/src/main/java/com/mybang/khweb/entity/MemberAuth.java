@@ -13,7 +13,7 @@ import java.util.Date;
 @Data
 @NoArgsConstructor
 @Table(name = "member_auth")
-public class MemberAuth {
+public class MemberAuth extends BaseTimeEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long memberAuthNo;
@@ -23,4 +23,8 @@ public class MemberAuth {
 
     @Column(length = 64, nullable = false)
     private String auth;
+
+    public MemberAuth(String auth) {
+        this.auth = auth;
+    }
 }
