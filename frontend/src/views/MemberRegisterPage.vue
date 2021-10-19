@@ -3,7 +3,7 @@
         <div align="center">
             <h2>회원 가입</h2>
         </div>
-        <member-join-column-test-form @submit="onSubmit"/>
+        <member-join-column-form @submit="onSubmit"/>
         
         <v-spacer></v-spacer>
        
@@ -13,18 +13,18 @@
 </template>
 
 <script>
-import MemberJoinColumnTestForm from '@/components/member/MemberJoinColumnTestForm.vue'
+import MemberJoinColumnForm from '@/components/member/MemberJoinColumnForm.vue'
 import axios from 'axios'
 export default {
     name: 'MemberRegisterPage',
     components: {
-        MemberJoinColumnTestForm
+        MemberJoinColumnForm
     },
     methods: {
         onSubmit (payload) {
             const { userId, password, email, name, age, sex, phone, auth } = payload
-            axios.post('http://localhost:7777/jpamember/register', {
-                        userId, name, password,email, name, age, sex, phone, auth
+            axios.post('http://localhost:7777/member/register', {
+                        userId, password, email, name, age, sex, phone, auth
                     })
                     .then(res => {
                         alert('회원가입이 완료되었습니다' + res)

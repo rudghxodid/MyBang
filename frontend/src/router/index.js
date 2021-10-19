@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Mypage from '@/components/member/Mypage'
 import MemberRegisterPage from '@/views/MemberRegisterPage.vue'
+import MemberLoginPage from '@/views/MemberLoginPage.vue'
 
 
 Vue.use(VueRouter)
@@ -28,7 +29,19 @@ const routes = [
 
       default: true
     }
-  }
+  },
+  {
+    path: '/login',
+    name: 'MemberLoginPage',
+    components: {
+      default: MemberLoginPage
+    }
+  },
+
+
+
+
+ 
 
 ]
 

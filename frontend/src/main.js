@@ -10,11 +10,12 @@ import 'material-design-icons/iconfont/material-icons.css'
 Vue.config.productionTip = false
 
 Vue.use(cooikes)
-Vue.$cookies.config('2h')
+
 
 new Vue({
   router,
   store,
   vuetify,
+  el:"#app",
   render: h => h(App)
 }).$mount('#app')
