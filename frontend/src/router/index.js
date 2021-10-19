@@ -1,9 +1,12 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
-import Mypage from '@/components/member/Mypage'
-import MemberRegisterPage from '@/views/MemberRegisterPage.vue'
-import MemberLoginPage from '@/views/MemberLoginPage.vue'
+import Mypage from '@/views/member/Mypage'
+import MemberRegisterPage from '@/views/member/MemberRegisterPage'
+import MemberLoginPage from '@/views/member/MemberLoginPage'
+import FindUserId from '@/components/member/FindUserId'
+import FindUserPw from '@/components/member/FindUserPw'
+import ModifyPassword from '@/components/member/ModifyPassword'
 
 
 Vue.use(VueRouter)
@@ -26,7 +29,6 @@ const routes = [
       default: MemberRegisterPage
     },
     props: {
-
       default: true
     }
   },
@@ -37,11 +39,22 @@ const routes = [
       default: MemberLoginPage
     }
   },
+  {
+    path: '/findUserId',
+    name: 'FindUserId',
+    component: FindUserId
+  },
+  {
+    path: '/findUserPw',
+    name: 'FindUserPw',
+    component: FindUserPw
+  },
+  {
+    path: '/modifyPassword/:userId',
+    name: 'ModifyPassword',
+    component: ModifyPassword
+  },
 
-
-
-
- 
 
 ]
 

@@ -1,49 +1,47 @@
 package com.mybang.khweb.entity;
 
+import com.mybang.khweb.request.MemberDto;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-
-import javax.persistence.Entity;
-
 
 import javax.persistence.*;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 
-@Data
 @Entity
+@Data
+@Builder
 @NoArgsConstructor
-@EqualsAndHashCode(callSuper=false)
-@Table(name="member")
+@AllArgsConstructor
 public class Member extends BaseTimeEntity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "member_no")
     private Long memberNo;
 
-    @Column(length = 64, nullable = false)
+    @Column(nullable = false)
     private String userId;
 
-    @Column(length = 64, nullable = false)
+    @Column(nullable = false)
     private String password;
 
-    @Column
+    @Column(nullable = false)
     private String email;
 
-    @Column
+    @Column(nullable = false)
     private String name;
 
-    @Column
+    @Column(nullable = false)
     private int age;
 
-    @Column
+    @Column(nullable = false)
     private String sex;
 
-    @Column
+    @Column(nullable = false)
     private String phone;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
@@ -68,5 +66,15 @@ public class Member extends BaseTimeEntity {
         authList.clear();
     }
 
+    // 회원정보 변경
+    public void modifyMember(MemberDto memberDto) {
+        this.password = memberDto.getPassword();
+        this.email = memberDto.getEmail();
+        this.phone = memberDto.getPhone();
+    }
 
+    // 비밀번호 재설정
+    public void modifyPassword(MemberDto memberDto) {
+        this.password = memberDto.getPassword();
+    }
 }
