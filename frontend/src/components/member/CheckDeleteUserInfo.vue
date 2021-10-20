@@ -17,15 +17,21 @@
 
 <script>
 import axios from 'axios'
-import { mapActions } from 'vuex'
+import { mapActions, mapState } from 'vuex'
 
 export default {
   data () {
     return {
-      userId: 'zzzz',
+      userId: null,
       dialog: false,
 
     }
+  },
+  computed: {
+    ...mapState(['userInfo'])
+  },
+  mounted() {
+    this.userId = this.userInfo.userId
   },
   methods: {
     ...mapActions(['fetchSession']),
