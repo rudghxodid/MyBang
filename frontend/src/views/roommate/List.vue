@@ -50,10 +50,18 @@
       onClickWriteBtn() {
         this.$router.push({name: 'RoomMateCreate'});
       },
-      testbtn() {
-        this.$router.push({name: 'test'});
-      }
-    }
+    },
+    data() {
+          return {
+            currentPage: 1, // 현재 페이지
+            perPage: 10, // 페이지당 보여줄 갯수
+            totalPage: '',
+            totalItems: '',
+            // bootstrap 'b-table' 필드 설정
+            boardList: [],
+            // items: items
+          };
+    },
   }
   // import api from "../../api/api";
   // import dayjs from "dayjs";

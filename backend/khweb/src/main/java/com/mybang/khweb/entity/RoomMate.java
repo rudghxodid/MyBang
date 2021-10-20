@@ -18,18 +18,18 @@ public class RoomMate extends BaseTimeEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", columnDefinition = "번호")
     private Long id;
+//
+//    @Column(nullable = false)
+//    private String title;
+//
+//    @Column(nullable = false, columnDefinition = "TEXT")
+//    private String content;
+//
+//    @Column(columnDefinition = "회원번호")
+//    private Long writer;
+//
+//    @Column
+//    private int count;
 
-    @Column(nullable = false)
-    private String title;
-
-    @Column(nullable = false, columnDefinition = "TEXT")
-    private String content;
-
-    @Column(columnDefinition = "회원번호")
-    private Long writer;
-
-    @Column
-    private int count;
-
-    private String writerName;
+//    private String writerName;
 }

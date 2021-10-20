@@ -7,5 +7,5 @@ import java.util.List;
 
 
 public interface RoomMateRepository extends JpaRepository<RoomMate, Long> {
-    List<RoomMate> findAllByOrderByIdDesc();
+//    List<RoomMate> findAllByOrderByIdDesc();
 }

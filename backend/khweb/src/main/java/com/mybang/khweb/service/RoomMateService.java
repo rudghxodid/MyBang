@@ -21,11 +21,11 @@ public class RoomMateService {
         Member member = memberRepository.findById(roomMateDto.writer).orElse(null);
 
         RoomMate roomMate = RoomMate.builder()
-                                .title(roomMateDto.title)
-                                .content(roomMateDto.content)
-                                .writer(roomMateDto.writer)
-                                .writerName(member.getName())
-                                .count(1)
+//                                .title(roomMateDto.title)
+//                                .content(roomMateDto.content)
+//                                .writer(roomMateDto.writer)
+//                                .writerName(member.getName())
+//                                .count(1)
                                 .build();
 
         roomMateRepository.save(roomMate);
