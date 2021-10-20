@@ -36,7 +36,7 @@ public class Member extends BaseTimeEntity {
     private String name;
 
     @Column(nullable = false)
-    private int age;
+    private String birth;
 
     @Column(nullable = false)
     private String sex;
@@ -48,12 +48,12 @@ public class Member extends BaseTimeEntity {
     @JoinColumn(name = "member_no")
     private List<MemberAuth> authList = new ArrayList<MemberAuth>();
 
-    public Member(String userId, String password, String email, String name, int age, String sex, String phone) {
+    public Member(String userId, String password, String email, String name, String birth, String sex, String phone) {
         this.userId = userId;
         this.password = password;
         this.email = email;
         this.name = name;
-        this.age = age;
+        this.birth = birth;
         this.sex = sex;
         this.phone = phone;
     }

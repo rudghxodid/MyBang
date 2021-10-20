@@ -16,8 +16,8 @@
         </v-list-item>
         <v-list-item two-line>
           <v-list-item-content>
-            <v-list-item-title>나이</v-list-item-title>
-            <v-list-item-subtitle>{{ userInfo.age }}</v-list-item-subtitle>
+            <v-list-item-title>생일</v-list-item-title>
+            <v-list-item-subtitle>{{ userInfo.birth }}</v-list-item-subtitle>
           </v-list-item-content>
         </v-list-item>
         <v-list-item two-line>

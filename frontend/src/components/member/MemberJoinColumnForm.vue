@@ -47,22 +47,39 @@
                         </div> 
                         </div> 
 
-            <div class="mx-3"> 
-                <v-icon color="black" size="30px">hourglass_empty</v-icon>
-                 Age
-                <div class="mx-1">
-                    <v-text-field placeholder="age" v-model="age" required 
-                        ></v-text-field>
-                        </div> 
-                        </div>
+
+            
 
             <div class="mx-3"> 
-                <v-icon color="black" size="30px">wc</v-icon>
-                 Sex
+                <v-icon color="black" size="30px">hourglass_empty</v-icon>
+                 Birth
                 <div class="mx-1">
-                    <v-text-field placeholder="sex" v-model="sex" required 
-                        ></v-text-field>
-                        </div> 
+                    <v-menu ref="menu" v-model="menu" :close-on-content-click="false"
+                        :return-value.sync="date" transition="scale-transition" offset-y min-width="auto">
+                        <template v-slot:activator="{ on }">
+                        <v-text-field placeholder="birth" v-model="birth"
+                            v-on="on" append-icon="mdi-calendar" required></v-text-field>
+                        </template>
+                        <v-date-picker color="secondary" v-model="birth" no-title scrollable>
+                        
+                        <v-btn text @click="menu = false">
+                            Cancel
+                        </v-btn>
+                        <v-spacer></v-spacer>
+                        <v-btn text @click="$refs.menu.save(date)">
+                            OK
+                        </v-btn>
+                        </v-date-picker>
+                    </v-menu>
+                 
+                </div> 
+            </div>
+
+            <div class="row"> 
+                <v-radio-group v-model="radioGroup2" row>
+                    <v-radio v-for="gender in kindsOfGender" :key="gender" :label="`${gender}`"> 
+                    </v-radio>
+                </v-radio-group>
                         </div>  
 
             <div class="mx-3"> 
@@ -91,26 +108,34 @@ export default {
     name: 'MemberJoinColumnForm',
     data () {
         return {
-            radioGroup: 1,
+            radioGroup: null,
+            radioGroup2: null,
             kindsOfMember: [
                 '개인',
                 '사업자'
+            ],
+            kindsOfGender: [
+                '남자',
+                '여자'
             ],
             userId: '',
             password: '',
             email: '',
             name: '',
-            age: '',
+            birth: '',
             sex: '',
-            phone: ''
+            phone: '',
+            menu: false,
+            date: null
             
         }
     },
     methods: {
         onSubmit () {
-            const { userId, password, email, name, age, sex, phone, radioGroup } = this
+            const { userId, password, email, name, birth, radioGroup2, phone, radioGroup } = this
             const auth = radioGroup == 0 ? '개인' : '사업자'
-            this.$emit('submit', { userId, password, email, name, age, sex, phone, auth })
+            const sex = radioGroup2 == 0 ? '남자' : '여자'
+            this.$emit('submit', { userId, password, email, name, birth, sex, phone, auth })
         },
         
         
