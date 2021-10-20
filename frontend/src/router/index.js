@@ -7,7 +7,8 @@ import MemberLoginPage from '@/views/member/MemberLoginPage'
 import FindUserId from '@/components/member/FindUserId'
 import FindUserPw from '@/components/member/FindUserPw'
 import ModifyPassword from '@/components/member/ModifyPassword'
-
+import RoomMateList from '../views/roommate/List';
+import RoomMateModify from '../views/roommate/Modify';
 
 Vue.use(VueRouter)
 
@@ -53,6 +54,21 @@ const routes = [
     path: '/modifyPassword/:userId',
     name: 'ModifyPassword',
     component: ModifyPassword
+  },
+  {
+    path: '/roommate',
+    name: 'RoomMateList',
+    component: RoomMateList
+  },
+  {
+    path: '/roommate/create',
+    name: 'RoomMateCreate',
+    component: RoomMateModify
+  },
+  {
+    path: '/roommate/modify/:id',
+    name: 'RoomMateModify',
+    component: RoomMateModify
   },
 
 

@@ -12,6 +12,7 @@ import javax.persistence.*;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@Table(name = "roomMate")
 public class RoomMate extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,4 +30,6 @@ public class RoomMate extends BaseTimeEntity {
 
     @Column
     private int count;
+
+    private String writerName;
 }
