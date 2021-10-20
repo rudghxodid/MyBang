@@ -1,6 +1,5 @@
 <template>
 	<div>
-		<Header />
 		<div id=background-box  :style="{backgroundImage: 'url('+item+')'}">
 			<div id=main-text>어떤 집을 찾고 있나요?</div>
 			<div id=tabHouse>
@@ -68,16 +67,14 @@
          	</article>
       	</div>
       <!--   소개할게요, 뉴스, 공지사항 영역 끝   -->
-	<Footer />
 	</div>
 </template>
 
 <script>
-import Header from '../layouts/Header'
-import Footer from '../layouts/Footer'
+
 
 export default {
-    components: { Header, Footer },
+    
     name: 'MainPage',
     data() {
       return {

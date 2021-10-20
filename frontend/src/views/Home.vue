@@ -9,6 +9,11 @@
       <v-btn @click="gotoJoin">회원가입</v-btn>
       <v-btn @click="gotoLogin">로그인</v-btn>
     </div>
+    <router-link :to="{ name: 'MainPage' }"
+              class="nav-link"
+              active-class="active">
+          메인페이지로 이동
+    </router-link>
   </v-container>
 </template>
 
