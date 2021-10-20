@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
+import MainPage from '../views/MainPage.vue'
 import Mypage from '@/views/member/Mypage'
 import MemberRegisterPage from '@/views/member/MemberRegisterPage'
 import MemberLoginPage from '@/views/member/MemberLoginPage'
@@ -16,6 +17,11 @@ const routes = [
     path: '/',
     name: 'Home',
     component: Home
+  },
+  {
+    path: '/main',
+    name: 'MainPage',
+    component: MainPage
   },
   {
     path: '/mypage',
