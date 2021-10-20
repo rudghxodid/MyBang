@@ -32,6 +32,7 @@ import { mapActions, mapState } from 'vuex'
   computed: {
     ...mapState(['session', 'isLogin'])
   },
+
   mounted() {
     this.fetchSession(this.$cookies.get('session'))
         if (this.session != null) {
@@ -39,6 +40,7 @@ import { mapActions, mapState } from 'vuex'
           this.$store.state.userInfo = this.fetchUserInfo(this.$cookies.get('session')) 
         }
   },
+ 
   methods: {
     ...mapActions(['fetchSession', 'fetchUserInfo']),
     gotoJoin() {
