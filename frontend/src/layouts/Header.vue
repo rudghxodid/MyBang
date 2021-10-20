@@ -48,6 +48,7 @@
 					<v-btn @click="gotoJoin">회원가입</v-btn>
 					<v-btn @click="gotoLogin">로그인</v-btn>
 				</div>
+				<v-btn text>중개사무소 가입</v-btn>
 			</v-container>
 		</div>
 	</header>
@@ -119,7 +120,7 @@ import { mapActions, mapState } from 'vuex'
 	}
 
 	.right-header {
-		width: 300px;
+		width: 330px;
 		margin-right: 0px;
 	}
 
