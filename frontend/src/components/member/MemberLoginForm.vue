@@ -21,7 +21,7 @@
                 </div> 
                 </div> 
                 <v-card-actions> 
-            <v-btn color="#B5B2FF" dark large block @click="onSubmit" >Login</v-btn>
+            <v-btn color="#B5B2FF" dark large block @click="onSubmit" @keydown.enter="onSubmit">Login</v-btn>
                 </v-card-actions>
             </v-form>
                 </v-col> 

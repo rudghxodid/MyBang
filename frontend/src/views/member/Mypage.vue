@@ -7,7 +7,7 @@
       <v-text-field label="pw" v-model="password" type="password" :rules="pwRules"></v-text-field>
       <v-card-actions>
         <v-spacer>
-          <v-btn @click="checkPw">확인</v-btn>
+          <v-btn @click="checkPw" @keydown.enter="checkPw">확인</v-btn>
         </v-spacer>
       </v-card-actions>
     </v-card>

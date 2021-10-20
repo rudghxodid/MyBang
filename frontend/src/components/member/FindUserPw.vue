@@ -7,7 +7,7 @@
       <v-text-field label="email" v-model="email"></v-text-field>
       <v-card-actions>
         <v-spacer></v-spacer>
-        <v-btn @click="findPw">찾기</v-btn>
+        <v-btn @click="findPw" @keydown.enter="findPw">찾기</v-btn>
       </v-card-actions>
     </v-card>
   </v-container>

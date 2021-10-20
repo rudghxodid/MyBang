@@ -93,7 +93,7 @@
                  
 
             <div>
-                <button type="submit">등록</button>
+                <button type="submit" @keydown.enter="onSubmit">등록</button>
                 <router-link :to="{ name: 'Home' }">
                     취소
                 </router-link>

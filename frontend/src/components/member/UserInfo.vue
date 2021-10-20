@@ -53,7 +53,7 @@
         <v-spacer></v-spacer>
         <v-btn @click="goHome">메인으로</v-btn>
         <v-spacer></v-spacer>
-        <v-btn @click="modifyUserInfo">수정</v-btn>
+        <v-btn @click="modifyUserInfo" @keydown.enter="modifyUserInfo">수정</v-btn>
       </v-card-actions>
     </v-card>
   </v-container>
