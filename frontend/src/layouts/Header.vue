@@ -2,7 +2,7 @@
 	<header>
 		<div class="inner">
 			<h1 class="logo">
-				<img src="@/assets/img/Interior.jpg">
+				<img src="@/assets/img/mybang.png" height="80px" style="margin-top:-6px">
 			</h1>
 
 			<ul class="navbar">
