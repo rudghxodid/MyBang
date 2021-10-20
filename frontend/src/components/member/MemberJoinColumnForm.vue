@@ -56,13 +56,11 @@
                         </div> 
                         </div>
 
-            <div class="mx-3"> 
-                <v-icon color="black" size="30px">wc</v-icon>
-                 Sex
-                <div class="mx-1">
-                    <v-text-field placeholder="sex" v-model="sex" required 
-                        ></v-text-field>
-                        </div> 
+            <div class="row"> 
+                <v-radio-group v-model="radioGroup2" row>
+                    <v-radio v-for="gender in kindsOfGender" :key="gender" :label="`${gender}`"> 
+                    </v-radio>
+                </v-radio-group>
                         </div>  
 
             <div class="mx-3"> 
@@ -91,10 +89,14 @@ export default {
     name: 'MemberJoinColumnForm',
     data () {
         return {
-            radioGroup: 1,
+            radioGroup: 2,
             kindsOfMember: [
                 '개인',
                 '사업자'
+            ],
+            kindsOfGender: [
+                '남자',
+                '여자'
             ],
             userId: '',
             password: '',
@@ -108,8 +110,9 @@ export default {
     },
     methods: {
         onSubmit () {
-            const { userId, password, email, name, age, sex, phone, radioGroup } = this
+            const { userId, password, email, name, age, radioGroup2, phone, radioGroup } = this
             const auth = radioGroup == 0 ? '개인' : '사업자'
+            const sex = radioGroup2 == 0 ? '남자' : '여자'
             this.$emit('submit', { userId, password, email, name, age, sex, phone, auth })
         },
         
