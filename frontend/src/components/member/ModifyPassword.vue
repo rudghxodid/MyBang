@@ -6,7 +6,7 @@
       <v-text-field label="pw" v-model="checkPassword" type="password" :rules="matchPwRules"></v-text-field>
       <v-card-actions>
         <v-spacer></v-spacer>
-        <v-btn @click="modifyPw">확인</v-btn>
+        <v-btn @click="modifyPw" @keydown.enter="modifyPw">확인</v-btn>
       </v-card-actions>
     </v-card>
   </v-container>
@@ -15,6 +15,7 @@
 
 <script>
 import axios from 'axios'
+import { mapState } from 'vuex'
 
 export default {
   data () {
@@ -22,14 +23,14 @@ export default {
       password: null,
       checkPassword: null,
       userId: null,
-      pwRules: [
-        pw => !!pw || '비밀번호를 입력해주세요!',
-      ],
       matchPwRules: [
         pw => !!pw || '비밀번호를 입력해주세요!',
         pw => pw === this.password || '비밀번호가 일치하지 않습니다!'
       ],
     }
+  },
+  computed: {
+    ...mapState(['pwRules'])
   },
   created() {
     this.userId = this.$route.query.userId
