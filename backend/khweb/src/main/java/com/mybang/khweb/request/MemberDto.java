@@ -13,7 +13,7 @@ public class MemberDto {
     private String password;
     private String email;
     private String name;
-    private int age;
+    private String birth;
     private String sex;
     private String phone;
 
@@ -23,7 +23,7 @@ public class MemberDto {
                 .password(password)
                 .email(email)
                 .name(name)
-                .age(age)
+                .birth(birth)
                 .sex(sex)
                 .phone(phone)
                 .build();
