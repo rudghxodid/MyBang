@@ -14,7 +14,6 @@ public interface MemberService {
     public Optional<Member> findByAuth(Long memberNo);
 
     // -- 회원정보 확인, 수정, 탈퇴, 아이디찾기, 비밀번호찾기(변경) --
-    Boolean checkId(String userId) throws Exception;
     Boolean checkPassword(MemberDto memberDto) throws Exception;
     Optional<Member> userInfo(String userId) throws Exception;
     Member findById(String userId) throws Exception;
