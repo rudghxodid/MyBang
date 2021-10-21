@@ -107,6 +107,19 @@ public class MemberServiceImpl implements MemberService{
 
 
     // -- 회원정보 확인, 수정, 탈퇴, 아이디찾기, 비밀번호찾기(변경) --
+
+    @Override
+    public Boolean checkId(String userId) throws Exception {
+        Optional<Member> maybeUser = repository.findByUserId(userId);
+
+        if (maybeUser.isPresent()) {
+            log.info("already user");
+            return false;
+        }
+
+        return true;
+    }
+
     @Override
     public Boolean checkPassword(MemberDto memberDto) throws Exception {
         Optional<Member> checkMember = repository.findByUserId(memberDto.getUserId());

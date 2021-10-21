@@ -12,10 +12,10 @@
             <div class="mx-3">
                 <v-icon color="black" size="30px">person</v-icon>
                     ID
-                <div class="mx-1">
-                    <v-text-field placeholder="아이디" v-model="userId" :rules="idRules" required >
-                    </v-text-field>
-                </div>
+                <v-list-item class="mx-1">
+                    <v-text-field placeholder="아이디" v-model="userId" :rules="idRules" required></v-text-field>
+                    <v-btn @click="checkId">아이디 확인</v-btn>
+                </v-list-item>
             </div> 
 
 
@@ -33,9 +33,10 @@
             <div class="mx-3"> 
                 <v-icon color="black" size="30px">mail</v-icon>
                  E-mail
-                <div class="mx-1">
+                <v-list-item class="mx-1">
                     <v-text-field placeholder="e-mail" v-model="email" :rules="emailRules" required></v-text-field>
-                </div> 
+                    <v-btn @click="checkEmail">이메일 인증</v-btn>
+                </v-list-item> 
             </div> 
 
 
@@ -97,11 +98,32 @@
                 </router-link>
             </div>
         </form>
+
+        <v-dialog v-model="dialog" max-width="400">
+            <v-card v-if="!canUseId" class="pa-3">
+                <v-card-title>사용할 수 없는 아이디입니다.</v-card-title>
+                <v-card-text>다른 아이디를 사용해주세요.</v-card-text>
+                <v-list-item>
+                    <v-text-field placeholder="아이디" v-model="userId" :rules="idRules" required></v-text-field>
+                    <v-btn class="ml-5" @click="checkId">아이디 확인</v-btn>
+                </v-list-item>
+            </v-card>
+
+            <v-card v-else class="pa-3">
+                <v-card-title>사용 가능한 아이디입니다.</v-card-title>
+                <v-card-actions>
+                    <v-spacer></v-spacer>
+                    <v-btn @click="closeDialog">사용하기</v-btn>
+                </v-card-actions>
+            </v-card>
+
+        </v-dialog>
     </v-container>
 </template>
 
 <script>
 import { mapState } from 'vuex'
+import axios from 'axios'
 
 export default {
     name: 'MemberJoinColumnForm',
@@ -131,6 +153,8 @@ export default {
                 pw => !!pw || '비밀번호를 입력해주세요!',
                 pw => pw === this.password || '비밀번호가 일치하지 않습니다!'
             ],
+            canUseId: false,
+            dialog: false
             
         }
     },
@@ -144,6 +168,20 @@ export default {
             const sex = radioGroup2 == 0 ? '남자' : '여자'
             this.$emit('submit', { userId, password, email, name, birth, sex, phone, auth })
         },
+        checkId () {
+            const userId = this.userId
+
+            axios.post(`http://localhost:7777/member/checkId/${userId}`).then(res => {
+                this.canUseId = res.data
+                this.dialog = true
+            })
+        },
+        closeDialog () {
+            this.dialog = false
+        },
+        checkEmail () {
+            alert('이메일인증')
+        }
         
     }
 }
