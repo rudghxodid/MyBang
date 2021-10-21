@@ -8,6 +8,7 @@ import MemberLoginPage from '@/views/member/MemberLoginPage'
 import FindUserId from '@/components/member/FindUserId'
 import FindUserPw from '@/components/member/FindUserPw'
 import ModifyPassword from '@/components/member/ModifyPassword'
+import BrokerRegister from '@/views/BrokerRegister'
 
 
 Vue.use(VueRouter)
@@ -59,6 +60,11 @@ const routes = [
     path: '/modifyPassword/:userId',
     name: 'ModifyPassword',
     component: ModifyPassword
+  },
+  {
+    path: '/RegisterInfo',
+    name: 'BrokerRegister',
+    component: BrokerRegister
   },
 
 
