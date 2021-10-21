@@ -57,7 +57,7 @@ const routes = [
     component: FindUserPw
   },
   {
-    path: '/modifyPassword/:userId',
+    path: '/modifyPassword',
     name: 'ModifyPassword',
     component: ModifyPassword
   },

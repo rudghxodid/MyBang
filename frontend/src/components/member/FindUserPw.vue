@@ -34,13 +34,21 @@ export default {
 
       axios.post('http://localhost:7777/member/findingUser', { email, userId }).then(res => {
         if (res.data) {
-          this.$router.push(
-            { name: 'ModifyPassword', query: { userId: userId } } 
-          )
+
+          axios.post('http://localhost:5000/sendEmail', { userId, email }).then(res => {
+       
+            if (res.data.toString() == 'success') {
+              alert('이메일을 확인해 주세요.')
+              this.$router.push(
+                { name: 'Home' } 
+              )
+            } else {
+              alert('이메일 전송이 불가능 합니다.')
+            }
+          })
         } else {
           alert('회원정보를 바르게 입력하세요.')
         }
-
       }).catch(() => {
         alert('일치하는 회원정보가 없습니다.')
       })
