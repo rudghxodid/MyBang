@@ -10,9 +10,8 @@
       <v-btn @click="gotoLogin">로그인</v-btn>
     </div>
     <router-link :to="{ name: 'MainPage' }"
-              class="nav-link"
-              active-class="active">
-          메인페이지로 이동
+      class="nav-link"
+      active-class="active">메인페이지로 이동
     </router-link>
   </v-container>
 </template>
@@ -23,26 +22,14 @@ import { mapActions, mapState } from 'vuex'
     name: 'Home',
     data() {
       return {
-        userInfo: {
-          userId: '',
-          password: ''
-        },
+        
     }
   },
   computed: {
     ...mapState(['session', 'isLogin'])
   },
-
-  mounted() {
-    this.fetchSession(this.$cookies.get('session'))
-        if (this.session != null) {
-          this.$store.state.isLogin = true
-          this.$store.state.userInfo = this.fetchUserInfo(this.$cookies.get('session')) 
-        }
-  },
- 
   methods: {
-    ...mapActions(['fetchSession', 'fetchUserInfo']),
+    ...mapActions(['fetchSession']),
     gotoJoin() {
       this.$router.push('/member/create')
     },

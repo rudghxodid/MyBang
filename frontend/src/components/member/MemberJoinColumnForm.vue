@@ -7,34 +7,36 @@
                     <v-radio v-for="kinds in kindsOfMember" :key="kinds" :label="`${kinds}`"> 
                     </v-radio>
                 </v-radio-group>
-                
             </div>
-           <div class="mx-3"> <v-icon color="black" size="30px">person</v-icon>
-                 ID
+
+            <div class="mx-3">
+                <v-icon color="black" size="30px">person</v-icon>
+                    ID
                 <div class="mx-1">
-                 <v-text-field placeholder="ID" v-model="userId" required >
-                </v-text-field>
-                 </div>
-                  </div> 
+                    <v-text-field placeholder="아이디" v-model="userId" :rules="idRules" required >
+                    </v-text-field>
+                </div>
+            </div> 
 
 
             <div class="mx-3"> 
                 <v-icon color="black" size="30px">lock</v-icon>
                     Password
-                    <div class="mx-1">
-                     <v-text-field placeholder="Password" type="password" v-model="password" required 
-                     ></v-text-field>
-                     </div> 
-                     </div>
+                <div class="mx-1">
+                    <v-text-field placeholder="비밀번호" type="password" v-model="password" 
+                        :rules="pwRules" required ></v-text-field>
+                    <v-text-field placeholder="비밀번호 확인" type="password" v-model="checkPassword"
+                        :rules="matchPwRules" required ></v-text-field>
+                </div> 
+            </div>
 
             <div class="mx-3"> 
                 <v-icon color="black" size="30px">mail</v-icon>
                  E-mail
                 <div class="mx-1">
-                    <v-text-field placeholder="e-mail" v-model="email" required 
-                        ></v-text-field>
-                        </div> 
-                        </div> 
+                    <v-text-field placeholder="e-mail" v-model="email" :rules="emailRules" required></v-text-field>
+                </div> 
+            </div> 
 
 
 
@@ -42,10 +44,9 @@
                 <v-icon color="black" size="30px">label</v-icon>
                  Name
                 <div class="mx-1">
-                    <v-text-field placeholder="name" v-model="name" required 
-                        ></v-text-field>
-                        </div> 
-                        </div> 
+                    <v-text-field placeholder="name" v-model="name" :rules="nameRules" required></v-text-field>
+                </div> 
+            </div> 
 
 
             
@@ -57,7 +58,7 @@
                     <v-menu ref="menu" v-model="menu" :close-on-content-click="false"
                         :return-value.sync="date" transition="scale-transition" offset-y min-width="auto">
                         <template v-slot:activator="{ on }">
-                        <v-text-field placeholder="birth" v-model="birth"
+                        <v-text-field placeholder="birth" v-model="birth" :rules="birthRules"
                             v-on="on" append-icon="mdi-calendar" required></v-text-field>
                         </template>
                         <v-date-picker color="secondary" v-model="birth" no-title scrollable>
@@ -77,20 +78,17 @@
 
             <div class="row"> 
                 <v-radio-group v-model="radioGroup2" row>
-                    <v-radio v-for="gender in kindsOfGender" :key="gender" :label="`${gender}`"> 
-                    </v-radio>
+                    <v-radio v-for="gender in kindsOfGender" :key="gender" :label="`${gender}`"></v-radio>
                 </v-radio-group>
-                        </div>  
+            </div>  
 
             <div class="mx-3"> 
                 <v-icon color="black" size="30px">phone</v-icon>
                  Phone
                 <div class="mx-1">
-                    <v-text-field placeholder="phone" v-model="phone" required 
-                        ></v-text-field>
-                        </div> 
-                        </div> 
-                 
+                    <v-text-field placeholder="phone" v-model="phone" :rules="phoneRules" required></v-text-field>
+                </div> 
+            </div>   
 
             <div>
                 <button type="submit" @keydown.enter="onSubmit">등록</button>
@@ -103,6 +101,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 
 export default {
     name: 'MemberJoinColumnForm',
@@ -126,9 +125,17 @@ export default {
             sex: '',
             phone: '',
             menu: false,
-            date: null
+            date: null,
+            checkPassword: null,
+            matchPwRules: [
+                pw => !!pw || '비밀번호를 입력해주세요!',
+                pw => pw === this.password || '비밀번호가 일치하지 않습니다!'
+            ],
             
         }
+    },
+    computed: {
+        ...mapState(['idRules', 'pwRules', 'emailRules', 'nameRules', 'birthRules', 'phoneRules'])
     },
     methods: {
         onSubmit () {
@@ -138,8 +145,6 @@ export default {
             this.$emit('submit', { userId, password, email, name, birth, sex, phone, auth })
         },
         
-        
-       
     }
 }
 </script>

@@ -8,7 +8,7 @@
         <div class="mx-3"> <v-icon color="black" size="30px">person</v-icon>
             ID
         <div class="mx-1">
-            <v-text-field placeholder="ID" v-model="id" required >
+            <v-text-field placeholder="ID" v-model="id" :rules="idRules" required >
         </v-text-field>
             </div>
             </div> 
@@ -16,7 +16,7 @@
             <v-icon color="black" size="30px">lock</v-icon>
                 Password
             <div class="mx-1">
-                <v-text-field placeholder="Password" type="password" v-model="pw" required 
+                <v-text-field placeholder="Password" type="password" v-model="pw" :rules="pwRules" required 
                 ></v-text-field> 
                 </div> 
                 </div> 
@@ -34,6 +34,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 export default {
     name: 'VuetifyMemberLoginForm',
     data () {
@@ -41,6 +42,9 @@ export default {
             id: '',
             pw: ''
         }
+    },
+    computed: {
+        ...mapState(['idRules', 'pwRules'])
     },
     methods: {
         onSubmit () {

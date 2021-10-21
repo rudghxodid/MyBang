@@ -3,7 +3,7 @@
     <v-card class="pa-5">
       <v-card-title>아이디 찾기</v-card-title>
       <v-card-text>가입한 이메일을 입력하세요.</v-card-text>
-      <v-text-field label="email" v-model="email"></v-text-field>
+      <v-text-field label="email" v-model="email" :rules="emailRules"></v-text-field>
       <v-card-actions>
         <v-spacer></v-spacer>
         <v-btn @click="findId" @keydown.enter="findId">찾기</v-btn>
@@ -15,12 +15,16 @@
 
 <script>
 import axios from 'axios'
+import { mapState } from 'vuex'
 
 export default {
   data () {
     return {
       email: null
     }
+  },
+  computed: {
+    ...mapState(['emailRules'])
   },
   methods: {
     findId () {

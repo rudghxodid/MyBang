@@ -3,8 +3,8 @@
     <v-card class="pa-5">
       <v-card-title>비밀번호 재설정</v-card-title>
       <v-card-text>가입한 아이디와 이메일을 입력하세요.</v-card-text>
-      <v-text-field label="id" v-model="userId"></v-text-field>
-      <v-text-field label="email" v-model="email"></v-text-field>
+      <v-text-field label="id" v-model="userId" :rules="idRules"></v-text-field>
+      <v-text-field label="email" v-model="email" :rules="emailRules"></v-text-field>
       <v-card-actions>
         <v-spacer></v-spacer>
         <v-btn @click="findPw" @keydown.enter="findPw">찾기</v-btn>
@@ -15,6 +15,7 @@
 
 <script>
 import axios from 'axios'
+import { mapState } from 'vuex'
 
 export default {
   data () {
@@ -22,6 +23,9 @@ export default {
       email: null,
       userId: null
     }
+  },
+  computed: {
+    ...mapState(['idRules', 'emailRules'])
   },
   methods: {
     findPw () {

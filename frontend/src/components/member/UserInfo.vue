@@ -26,13 +26,11 @@
             <v-list-item-subtitle>{{ userInfo.sex }}</v-list-item-subtitle>
           </v-list-item-content>
         </v-list-item>
-        <v-list-item three-line>
+        <v-list-item two-line>
           <v-list-item-content>
             <v-list-item-title>비밀번호</v-list-item-title>
-            <!--
-            <v-text-field v-model="password" type="password"></v-text-field>
-            -->
-            <v-text-field v-model="checkPassword" type="password" :rules="pwRules"></v-text-field>
+            <v-text-field v-model="password" type="password" :rules="pwRules" class="mr-3"></v-text-field>
+            <v-text-field v-model="checkPassword" type="password" :rules="matchPwRules" class="ml-3"></v-text-field>
           </v-list-item-content>
         </v-list-item>
         <v-list-item two-line>
@@ -73,7 +71,11 @@ export default {
     return {
       userId: null,
       password: null,
-      checkPassword: null
+      checkPassword: null,
+      matchPwRules: [
+        pw => !!pw || '비밀번호를 입력해주세요!',
+        pw => pw === this.password || '비밀번호가 일치하지 않습니다!'
+      ],
     }
   },
   computed: {
