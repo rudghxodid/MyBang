@@ -11,7 +11,7 @@ public class MemberRequest {
     private String password;
     private String email;
     private String name;
-    private int age;
+    private String birth;
     private String sex;
     private String phone;
 
