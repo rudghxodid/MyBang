@@ -89,7 +89,7 @@ public class MemberController {
     public ResponseEntity<Boolean> checkId(@PathVariable("userId") String userId) throws Exception {
         log.info("Check Id");
 
-        Boolean isSuccess = service.checkId(userId);
+        Boolean isSuccess = service.checkDuplicateId(userId);
 
         return new ResponseEntity<>(isSuccess, HttpStatus.OK);
     }
