@@ -52,14 +52,16 @@ export default {
                 .then(res => {
                     
                     if (res.data != "") {
-                        alert('환영합니다! ' + res.data)
+                        alert('환영합니다! ' + res.data.auth)
                         
                         this.$store.commit('USER_LOGIN', true)
                         
                         this.fetchUserInfo(id)
-                        
+                        if (res.data.auth == '관리자'){
+                           this.$router.push({name: 'HostPage'})
+                       }else{
                         this.$router.push({name: 'Home'})
-                        
+                       }
                        
                     }else {
                         

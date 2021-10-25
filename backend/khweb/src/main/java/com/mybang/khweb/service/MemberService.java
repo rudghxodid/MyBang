@@ -12,6 +12,7 @@ public interface MemberService {
     public boolean checkUserIdValidation(String UserId) throws Exception;
     public boolean checkDuplicateId(String UserId) throws Exception;
     public Optional<Member> findByAuth(Long memberNo);
+    public MemberRequest list(MemberRequest memberRequest) throws Exception;
 
     // -- 회원정보 확인, 수정, 탈퇴, 아이디찾기, 비밀번호찾기(변경) --
     Boolean checkPassword(MemberDto memberDto) throws Exception;

@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.List;
 import java.util.Optional;
 
 
@@ -157,5 +158,13 @@ public class MemberController {
         service.modifyPw(member, memberDto);
 
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    //회원리스트
+    @GetMapping("/lists")
+    public ResponseEntity<List<Member>> getListMember () throws Exception {
+        log.info("getLists(): " + service.list());
+
+        return new ResponseEntity<>(service.list(), HttpStatus.OK);
     }
 }

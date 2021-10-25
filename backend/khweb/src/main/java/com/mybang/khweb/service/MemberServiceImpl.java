@@ -13,6 +13,7 @@ import org.springframework.context.annotation.Lazy;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -194,5 +195,12 @@ public class MemberServiceImpl implements MemberService{
         member.modifyPassword(memberDto);
 
         repository.save(member);
+    }
+
+    @Override
+    public MemberRequest list(MemberRequest memberRequest) throws Exception {
+
+        List<Member>list = repository.findAll();
+
     }
 }
