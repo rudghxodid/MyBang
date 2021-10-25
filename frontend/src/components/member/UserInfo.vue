@@ -43,6 +43,7 @@
           <v-list-item-content>
             <v-list-item-title>이메일</v-list-item-title>
             <v-text-field v-model="userInfo.email" :rules="emailRules"></v-text-field>
+            <v-btn @click="checkEmail">이메일 인증</v-btn>
           </v-list-item-content>
         </v-list-item>
      
@@ -54,6 +55,18 @@
         <v-btn @click="modifyUserInfo" @keydown.enter="modifyUserInfo">수정</v-btn>
       </v-card-actions>
     </v-card>
+
+    <v-dialog v-model="emailDialog" max-width="400">
+      <v-card>
+        <v-card-title>메일함을 확인해주세요.</v-card-title>
+        <v-card-text>인증번호 6자리를 입력해주세요.</v-card-text>
+        <v-text-field v-model="code" class="mx-5" label="인증번호"></v-text-field>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn @click="ckeckCode">확인</v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
   </v-container>
 </template>
 
@@ -76,6 +89,10 @@ export default {
         pw => !!pw || '비밀번호를 입력해주세요!',
         pw => pw === this.password || '비밀번호가 일치하지 않습니다!'
       ],
+      emailDialog: false,
+      code: null,
+      randomCode: null,
+      completeEmail: false
     }
   },
   computed: {
@@ -91,14 +108,46 @@ export default {
       const phone = this.userInfo.phone
       const email = this.userInfo.email
 
-      axios.patch(`http://localhost:7777/member/mypage/modify/${this.userId}`, { password, email, phone }).then(() => {
-        alert('회원정보가 수정되었습니다.')
+      if (this.completeEmail) {
+        axios.patch(`http://localhost:7777/member/mypage/modify/${this.userId}`, { password, email, phone }).then(() => {
+          alert('회원정보가 수정되었습니다.')
 
-        this.fetchUserInfo(this.userId)
-      })
+          this.fetchUserInfo(this.userId)
+        })
+      } else {
+        alert('이메일 인증을 완료해주세요.')
+      }
+      
     },
     goHome () {
       this.$router.push({ name: 'Home' })
+    },
+    checkEmail () {
+      const email = this.userInfo.email
+
+      if (email) {
+        axios.post(`http://localhost:7777/member/checkEmail/${email}`).then(res => {
+          if (res.data == 'AlreadyUser') {
+            alert('이미 사용중인 회원입니다.')
+          } else {
+            this.emailDialog = true
+            this.randomCode = res.data
+          }
+        })
+      } else {
+        alert('이메일을 입력해주세요.')
+      }    
+    },
+    ckeckCode () {
+      if (this.code == this.randomCode) {
+        alert('이메일 인증이 완료되었습니다.')
+
+        this.emailDialog = false
+        this.code = null
+        this.completeEmail = true
+      } else {
+        alert('인증번호가 일치하지 않습니다.')
+      }
     }
   }
 }

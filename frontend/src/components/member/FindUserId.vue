@@ -31,9 +31,17 @@ export default {
       const email = this.email
 
       axios.post('http://localhost:7777/member/findingUserId', { email }).then(res => {
-        alert('당신의 아이디는 ' + res.data + ' 입니다.')
 
-        this.$router.push( { name: 'MemberLoginPage' } )
+        axios.post('http://localhost:5000/findIdByEmail', { userId: res.data, email }).then(res => {
+      
+          if (res.data.toString() == 'success') {
+            alert('메일함을 확인해 주세요.')
+
+            this.$router.push( { name: 'MemberLoginPage' } )
+          } else {
+            alert('이메일 전송이 불가능 합니다.')
+          }
+        })
       }).catch(() => {
         alert('일치하는 회원정보가 없습니다.')
       })
