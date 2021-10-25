@@ -94,6 +94,16 @@ public class MemberController {
         return new ResponseEntity<>(isSuccess, HttpStatus.OK);
     }
 
+    // 이메일 인증하기
+    @PostMapping("/checkEmail/{email}")
+    public ResponseEntity<String> checkEmail(@PathVariable("email") String email) throws Exception {
+        log.info("Check Email");
+
+        String result = service.checkEmail(email);
+
+        return new ResponseEntity<>(result, HttpStatus.OK);
+    }
+
     // 마이페이지 회원정보 확인 전 비밀번호 확인하기
     @PostMapping("/checkPw")
     public ResponseEntity<Boolean> checkPassword(@RequestBody MemberDto memberDto) throws Exception {
