@@ -15,6 +15,7 @@ public interface MemberService {
     public MemberRequest list(MemberRequest memberRequest) throws Exception;
 
     // -- 회원정보 확인, 수정, 탈퇴, 아이디찾기, 비밀번호찾기(변경) --
+    String checkEmail(String email) throws Exception;
     Boolean checkPassword(MemberDto memberDto) throws Exception;
     Optional<Member> userInfo(String userId) throws Exception;
     Member findById(String userId) throws Exception;

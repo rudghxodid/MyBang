@@ -35,10 +35,10 @@ export default {
       axios.post('http://localhost:7777/member/findingUser', { email, userId }).then(res => {
         if (res.data) {
 
-          axios.post('http://localhost:5000/sendEmail', { userId, email }).then(res => {
+          axios.post('http://localhost:5000/findPwByEmail', { userId, email }).then(res => {
        
             if (res.data.toString() == 'success') {
-              alert('이메일을 확인해 주세요.')
+              alert('메일함을 확인해 주세요.')
               this.$router.push(
                 { name: 'Home' } 
               )

@@ -7,6 +7,7 @@ import com.mybang.khweb.repository.MemberAuthRepository;
 import com.mybang.khweb.repository.MemberRepository;
 import com.mybang.khweb.request.MemberDto;
 import com.mybang.khweb.request.MemberRequest;
+import com.mybang.khweb.utility.PythonRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
@@ -15,6 +16,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Random;
 
 @Service
 @Lazy
@@ -108,6 +110,34 @@ public class MemberServiceImpl implements MemberService{
 
 
     // -- 회원정보 확인, 수정, 탈퇴, 아이디찾기, 비밀번호찾기(변경) --
+
+    @Override
+    public String checkEmail(String email) throws Exception {
+        Optional<Member> maybeUser = repository.findByEmail(email);
+
+        if (!maybeUser.isPresent()) {
+            String code = randomCode();
+
+            String result = new PythonRequest().checkEmail(email, code);
+            log.info(result);
+
+            return code;
+        }
+
+        return "AlreadyUser";
+    }
+
+    private String randomCode() {
+        Random random = new Random();
+        String code = "";
+
+        for (int i = 0; i < 6; i++) {
+            String randNum = Integer.toString(random.nextInt(10));
+            code += randNum;
+        }
+
+        return code;
+    }
 
     @Override
     public Boolean checkPassword(MemberDto memberDto) throws Exception {
