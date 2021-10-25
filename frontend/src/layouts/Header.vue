@@ -2,13 +2,15 @@
 	<header>
 		<div class="inner">
 			<h1 class="logo">
-				<img src="@/assets/img/mybang.png" height="80px" style="margin-top:-6px">
+				<a href='main'>
+				<img src="@/assets/img/mybang.png" height="80px" style="margin-top:-6px" >
+				</a>
 			</h1>
 
 			<ul class="navbar">
 				<li>
 					<a href="">
-						<span>아파트</span>
+						<span>아파트<br></span>
 						<span>매매/전월세/신축분양</span>
 					</a>
 				</li>
@@ -48,7 +50,7 @@
 					<v-btn @click="gotoJoin">회원가입</v-btn>
 					<v-btn @click="gotoLogin">로그인</v-btn>
 				</div>
-				<v-btn text><a href="RegisterInfo">중개사무소 가입</a></v-btn>
+				<v-btn text><a href="RegisterInfo">중개사무소<br>가입안내</a></v-btn>
 			</v-container>
 		</div>
 	</header>
@@ -168,79 +170,8 @@ import { mapActions, mapState } from 'vuex'
 		color: black;
 	}
 
-
-	/*#logo{*/
-	/*	width: 122px;*/
-	/*	height: 60px;*/
-	/*	margin: 12px;*/
-	/*	object-fit: cover;*/
-	/*	background-clip: border-box;*/
-	/*}*/
-
-	/*#house-list{*/
-	/*	!* Font & Text *!*/
-	/*	font-size: 16px;*/
-	/*	font-style: normal;*/
-	/*	font-variant: normal;*/
-	/*	font-weight: 400;*/
-	/*	letter-spacing: normal;*/
-
-
-	/*	!* Color & Background *!*/
-	/*	background-attachment: scroll;*/
-	/*	background-color: rgba(0, 0, 0, 0);*/
-	/*	background-image: none;*/
-	/*	background-position: 0% 0%;*/
-	/*	background-repeat: repeat;*/
-	/*	color: rgb(0, 0, 0);*/
-
-	/*	!* Box *!*/
-	/*	height: 79px;*/
-	/*	width: 660.594px;*/
-	/*	margin: 0px;*/
-	/*	padding: 0px;*/
-	/*	max-height: none;*/
-	/*	min-height: 0px;*/
-	/*	max-width: none;*/
-	/*	min-width: 0px;*/
-
-	/*}*/
-
-	/*.navMenu {*/
-	/*	!* Font & Text *!*/
-	/*	font-size: 16px;*/
-	/*	font-style: normal;*/
-	/*	font-variant: normal;*/
-	/*	font-weight: 400;*/
-	/*	letter-spacing: normal;*/
-	/*	line-height: 18px;*/
-	/*	text-decoration: none solid rgb(0, 0, 0);*/
-	/*	text-align: left;*/
-	/*	text-indent: 0px;*/
-	/*	text-transform: none;*/
-	/*	white-space: normal;*/
-	/*	word-spacing: 0px;*/
-
-	/*	!* Color & Background *!*/
-	/*	background-attachment: scroll;*/
-	/*	background-color: rgba(0, 0, 0, 0);*/
-	/*	background-image: none;*/
-	/*	background-position: 0% 0%;*/
-	/*	background-repeat: repeat;*/
-	/*	color: rgb(0, 0, 0);*/
-
-	/*	!* Box *!*/
-	/*	height: 43px;*/
-	/*	width: 84.7969px;*/
-	/*	margin: 0px;*/
-	/*	padding: 19px 15px 17px;*/
-	/*	max-height: none;*/
-	/*	min-height: 0px;*/
-	/*	max-width: none;*/
-	/*	min-width: 0px;*/
-
-
-
-
-	/*}*/
+	.navbar > li > a >span:hover{
+		background:white; color: blue;
+	}
+	
 </style>
