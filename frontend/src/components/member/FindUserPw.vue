@@ -33,24 +33,16 @@ export default {
       const userId = this.userId
 
       axios.post('http://localhost:7777/member/findingUser', { email, userId }).then(res => {
-        if (res.data) {
-
-          axios.post('http://localhost:5000/findPwByEmail', { userId, email }).then(res => {
-       
-            if (res.data.toString() == 'success') {
-              alert('메일함을 확인해 주세요.')
-              this.$router.push(
-                { name: 'Home' } 
-              )
-            } else {
-              alert('이메일 전송이 불가능 합니다.')
-            }
-          })
+        if (res.data == 'success') {
+          alert('메일함을 확인해 주세요.')
+          this.$router.push( { name: 'Home' } )
+        } else if (res.data == 'NotFindUser' || res.data == 'NotMatchId') {
+          alert('일치하는 회원정보가 없습니다.')
         } else {
-          alert('회원정보를 바르게 입력하세요.')
+          alert('이메일 전송이 불가능 합니다.')
         }
       }).catch(() => {
-        alert('일치하는 회원정보가 없습니다.')
+        alert('회원정보를 찾을 수 없습니다.')
       })
     }
   }
