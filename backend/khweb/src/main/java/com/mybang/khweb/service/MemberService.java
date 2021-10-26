@@ -4,6 +4,7 @@ import com.mybang.khweb.entity.Member;
 import com.mybang.khweb.request.MemberDto;
 import com.mybang.khweb.request.MemberRequest;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface MemberService {
@@ -24,4 +25,5 @@ public interface MemberService {
     String findingUserId(MemberDto memberDto) throws Exception;
     String findingUser(MemberDto memberDto) throws Exception;
     void modifyPw(Member member, MemberDto memberDto) throws Exception;
+    List<Member> list() throws Exception;
 }
