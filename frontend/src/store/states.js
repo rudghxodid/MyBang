@@ -4,6 +4,8 @@ export default {
     isLogin: false,
     userInfo: [],
     session: [],
+    members: [],
+    member: null,
 
     idRules: [
         id => !!id || '아이디를 입력해주세요.',

@@ -3,6 +3,11 @@ import {
   USER_LOGIN,
   FETCH_USER_INFO,
   FETCH_SESSION,
+  FETCH_MEMBER_LIST,
+  FETCH_MEMBER
+
+
+
 } from './mutation-types'
 
 export default {
@@ -17,4 +22,11 @@ export default {
   [FETCH_SESSION] (state, session) {
     state.session = session
   },
+  [FETCH_MEMBER_LIST] (state, members) {
+    state.members = members;
+  },
+  [FETCH_MEMBER] (state, member) {
+    state.member = member
+  },
+
 }

@@ -228,9 +228,8 @@ public class MemberServiceImpl implements MemberService{
     }
 
     @Override
-    public MemberRequest list(MemberRequest memberRequest) throws Exception {
-
-        List<Member>list = repository.findAll();
-
+    public List<Member> list() throws Exception {
+        List<Member> members = repository.findAll();
+        return members;
     }
 }

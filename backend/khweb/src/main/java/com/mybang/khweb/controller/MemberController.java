@@ -41,12 +41,12 @@ public class MemberController {
         boolean checkId = false;
         checkId = service.checkDuplicateId(memberRequest.getUserId());
 
-        if(checkId == true) {
+        if (checkId == true) {
             log.info("success");
             log.info(memberRequest.getUserId());
             service.register(memberRequest);
             return new ResponseEntity<Boolean>(HttpStatus.OK);
-        }else {
+        } else {
             log.info("duuplicate");
             log.info(memberRequest.getUserId());
             return false;
@@ -170,11 +170,13 @@ public class MemberController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    //회원리스트
-    @GetMapping("/lists")
-    public ResponseEntity<List<Member>> getListMember () throws Exception {
-        log.info("getLists(): " + service.list());
+    @GetMapping("/memberlists")
+    public ResponseEntity lists() throws Exception {
+        log.info("Recommend Lists");
 
-        return new ResponseEntity<>(service.list(), HttpStatus.OK);
+        List<Member> members = service.list();
+
+        return new ResponseEntity<>(members, HttpStatus.OK);
     }
 }
+
