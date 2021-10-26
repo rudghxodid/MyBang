@@ -8,7 +8,7 @@
 				<div class="i_call_info"><p >문의전화 5959-1818 (05:09~18:18)</p></div>
 			</strong>
         </div>
-
+		<!--<div class='second_area' :style="{backgroundImage: 'url('+item+')'}"></div>-->
 
 
         <div class="bmj bmj_ct01" style="">
@@ -41,6 +41,11 @@ export default {
     name: 'BrokerRegister',
     data() {
       return {
+		  	/*
+		    item: [
+           		require('@/assets/img/promotion_01.png'),
+        ],
+		*/
       }
     },
 }
@@ -108,40 +113,13 @@ export default {
 	
 
 /* ---------------- 2번째 구역 시작 ---------------*/
-	.fbxgVu {
-		display: flex;
-		-webkit-box-align: center;
-		align-items: center;
-		-webkit-box-pack: center;
-		justify-content: center;
-		margin-top: 121px;
-		margin-bottom: 48px;
+	.second_area{
+		text-align: center;
+		height: 900px;
+		margin: 0 0px 0px 477px;
+		
+		
 	}
-
-	.ibXCjF {
-    	width: 356px;
-		height: 322px;
-		display: flex;
-		flex-direction: column;
-		-webkit-box-align: center;
-		align-items: center;
-		-webkit-box-pack: center;
-		justify-content: center;
-		background-color: white;
-		box-shadow: rgb(0 0 0 / 5%) 0px 10px 40px 0px;
-		transition: all 0.2s ease 0s;
-	}
-
-	a {
-		color: inherit;
-		text-decoration: none;
-		cursor: pointer;
-	}
-
-	.styled__Card-nkuo6x-2 + .styled__Card-nkuo6x-2 {
-		margin-left: 40px;
-	}
-
 
 /* ---------------- 2번째 구역 끝 ---------------*/
 
