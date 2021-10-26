@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.List;
 import java.util.Optional;
 
 
@@ -40,12 +41,12 @@ public class MemberController {
         boolean checkId = false;
         checkId = service.checkDuplicateId(memberRequest.getUserId());
 
-        if(checkId == true) {
+        if (checkId == true) {
             log.info("success");
             log.info(memberRequest.getUserId());
             service.register(memberRequest);
             return new ResponseEntity<Boolean>(HttpStatus.OK);
-        }else {
+        } else {
             log.info("duuplicate");
             log.info(memberRequest.getUserId());
             return false;
@@ -89,9 +90,19 @@ public class MemberController {
     public ResponseEntity<Boolean> checkId(@PathVariable("userId") String userId) throws Exception {
         log.info("Check Id");
 
-        Boolean isSuccess = service.checkId(userId);
+        Boolean isSuccess = service.checkDuplicateId(userId);
 
         return new ResponseEntity<>(isSuccess, HttpStatus.OK);
+    }
+
+    // 이메일 인증하기
+    @PostMapping("/checkEmail/{email}")
+    public ResponseEntity<String> checkEmail(@PathVariable("email") String email) throws Exception {
+        log.info("Check Email");
+
+        String result = service.checkEmail(email);
+
+        return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
     // 마이페이지 회원정보 확인 전 비밀번호 확인하기
@@ -158,4 +169,14 @@ public class MemberController {
 
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
+    @GetMapping("/memberlists")
+    public ResponseEntity lists() throws Exception {
+        log.info("Recommend Lists");
+
+        List<Member> members = service.list();
+
+        return new ResponseEntity<>(members, HttpStatus.OK);
+    }
 }
+
