@@ -110,6 +110,7 @@ public class MemberServiceImpl implements MemberService{
 
     // -- 회원정보 확인, 수정, 탈퇴, 아이디찾기, 비밀번호찾기(변경) --
 
+    // 가입 시 이메일 인증하기(이미 사용중인지 확인 후 없는 이메일이면 인증 진행)
     @Override
     public String checkEmail(String email) throws Exception {
         Optional<Member> maybeUser = repository.findByEmail(email);
@@ -126,11 +127,13 @@ public class MemberServiceImpl implements MemberService{
         return "AlreadyUser";
     }
 
+    // 이메일 인증하기 위한 6자리 랜덤 코드 생성
     private String randomCode() {
         Random random = new Random();
         String code = "";
 
         for (int i = 0; i < 6; i++) {
+            // 0 ~ 9까지의 랜덤 숫자를 String으로
             String randNum = Integer.toString(random.nextInt(10));
             code += randNum;
         }
@@ -138,6 +141,7 @@ public class MemberServiceImpl implements MemberService{
         return code;
     }
 
+    // 마이페이지에서 회원정보 확인, 변경 전 비밀번호 확인하기
     @Override
     public Boolean checkPassword(MemberDto memberDto) throws Exception {
         Optional<Member> checkMember = repository.findByUserId(memberDto.getUserId());
@@ -153,11 +157,13 @@ public class MemberServiceImpl implements MemberService{
         return true;
     }
 
+    // 회원정보 불러오기
     @Override
     public Optional<Member> userInfo(String userId) throws Exception {
         return repository.findByUserId(userId);
     }
 
+    // 아이디로 회원 검색하고 없을 시 null 반환
     @Override
     public Member findById(String userId) throws Exception {
         Member member = repository.findByUserId(userId).orElse(null);
@@ -165,6 +171,7 @@ public class MemberServiceImpl implements MemberService{
         return member;
     }
 
+    // 회원정보 변경하기(비밀번호는 암호화 해서 저장)
     @Override
     public void modify(Member member, MemberDto memberDto) throws Exception {
         String encodedPassword = encoder.encode(memberDto.getPassword());
@@ -175,11 +182,13 @@ public class MemberServiceImpl implements MemberService{
         repository.save(member);
     }
 
+    // 회원 탈퇴하기
     @Override
     public void remove(Member member) throws Exception {
         repository.delete(member);
     }
 
+    // 이메일로 회원 검색하고 없을 시 null 반환
     @Override
     public Member findByEmail(String email) throws Exception {
         Member member = repository.findByEmail(email).orElse(null);
@@ -187,35 +196,52 @@ public class MemberServiceImpl implements MemberService{
         return member;
     }
 
+    // 회원 아이디 찾기
     @Override
     public String findingUserId(MemberDto memberDto) throws Exception {
-        Optional<Member> maybeUser = repository.findByEmail(memberDto.getEmail());
+        String email = memberDto.getEmail();
+
+        Optional<Member> maybeUser = repository.findByEmail(email);
+
+        if (!maybeUser.isPresent()) return "NotFindUser";
 
         String userId = maybeUser.get().getUserId();
 
-        log.info(userId);
+        String result = new PythonRequest().findUserId(userId, email);
 
-        return userId;
+        log.info(result);
+
+        return result;
     }
 
+    // 회원 비밀번호 찾기(재설정)
     @Override
-    public Boolean findingUser(MemberDto memberDto) throws Exception {
-        Optional<Member> maybeUser = repository.findByEmail(memberDto.getEmail());
+    public String findingUser(MemberDto memberDto) throws Exception {
+        String email = memberDto.getEmail();
 
-        String userId = maybeUser.get().getUserId();
+        Optional<Member> maybeUser = repository.findByEmail(email);
+
+        String userId;
 
         if (!maybeUser.isPresent()) {
             log.info("not find user");
-            return false;
-        } else if (!userId.equals(memberDto.getUserId())) {
-            log.info("not match id");
-            return false;
+            return "NotFindUser";
+        } else {
+            userId = maybeUser.get().getUserId();
+
+            if (!userId.equals(memberDto.getUserId())) {
+                log.info("not match id");
+                return "NotMatchId";
+            }
         }
 
-        log.info("success find user");
-        return true;
+        String result = new PythonRequest().findUserPw(userId, email);
+
+        log.info(result);
+        return result;
     }
 
+    // 비밀번호 재설정
     @Override
     public void modifyPw(Member member, MemberDto memberDto) throws Exception {
         String encodedPassword = encoder.encode(memberDto.getPassword());

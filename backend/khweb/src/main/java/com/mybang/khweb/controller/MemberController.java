@@ -153,8 +153,8 @@ public class MemberController {
 
     // 회원인지 확인하기(비밀번호 재설정 전)
     @PostMapping("/findingUser")
-    public ResponseEntity<Boolean> findUser(@RequestBody MemberDto memberDto) throws Exception {
-        Boolean findUser = service.findingUser(memberDto);
+    public ResponseEntity<String> findUser(@RequestBody MemberDto memberDto) throws Exception {
+        String findUser = service.findingUser(memberDto);
 
         return new ResponseEntity<>(findUser, HttpStatus.OK);
     }
