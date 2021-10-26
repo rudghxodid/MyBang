@@ -1,13 +1,58 @@
 <template>
     <div>
-        <v-data-table
-                    :headers="headerTitle"
-                    :items="members"
-                    :items-per-page="10"
-                    class="elevation-1"
-                      @click:row="readItem" >
-                    
-            </v-data-table>
+       <v-simple-table>
+                <template v-slot:default>
+                    <thead>
+                        <tr>
+                            
+                            
+                            <th class="text-left">체크</th>
+                            <th class="text-left">회원번호</th>
+                            <th class="text-left">아이디</th>
+                            <th class="text-left">이메일</th>
+                            <th class="text-left">이름</th>
+                            <th class="text-left">생일</th>
+                            <th class="text-left">성별</th>
+                            <th class="text-left">전화번호</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="member of members" :key="member.userId">
+                            <p>{{ selected }}</p>
+                            <v-checkbox
+                            v-model="selected"
+                            label=""
+                            :value="member.userId" 
+
+                            ></v-checkbox>
+                            <td style="color: gray">{{ member.memberNo }}</td>
+                            <!-- <td><a @click="clickNews(list.newsNo)">{{ list.title }}</a></td> -->
+                            <td>{{ member.userId }}</td>
+                            <td>{{ member.email }}</td>
+                            <td>{{ member.name }}</td>
+                            <td>{{ member.birth }}</td>
+                            <td>{{ member.sex }}</td>
+                            <td>{{ member.phone }}</td>
+                            
+
+                        </tr>
+                    </tbody>
+                    <v-dialog v-model="dialog" max-width="400">
+                    <template v-slot:activator="{ on }">
+                    <v-btn v-on="on">삭제</v-btn>
+                    </template>
+                    <v-card class="pa-2">
+                    <v-card-title>정말 회원을 삭제하시겠습니까??</v-card-title>
+                    <v-card-actions>
+                        <v-btn @click="cancel">취소</v-btn>
+                        <v-spacer></v-spacer>
+                        <v-btn @click="deleteUser">확인</v-btn>
+                    </v-card-actions>
+                    </v-card>
+                </v-dialog>
+                </template>
+            </v-simple-table>
+            
             
 
 
@@ -17,6 +62,7 @@
 
 <script>
 
+import axios from 'axios'
 
 import { mapState, mapActions } from 'vuex'
 
@@ -36,6 +82,9 @@ export default {
                 
                 
             ],
+            selected: [],
+            userId: null,
+            dialog: false,
             
             
         }
@@ -50,17 +99,35 @@ export default {
  
     methods: {
         ...mapActions(['fetchMember']),
-        readItem(member) {
-            
-            
-            
-            this.$router.push({ name: 'GongziReadPage',
-                                    params: { memberNo: member.memberNo} } )
-        }
+        ...mapActions(['fetchSession']),
+    cancel () {
+      this.dialog = false
+    },
+      deleteUser () {
+      axios.delete(`http://localhost:7777/member/remove/${this.selected}`).then(() => {
+
+        this.dialog = false
+
+        this.$store.commit('USER_LOGIN', false)
+        
+        this.fetchSession(this.$cookies.remove('session'))
+
+        this.$store.commit('FETCH_USER_INFO', [])
+
+        alert('탈퇴가 완료되었습니다.')
+
+        this.$router.push( { name: 'HostPage' } )
+      })
+    }
+       
     },
     computed: {
-         ...mapState(['member'])
-    }
+         ...mapState(['member']),
+         ...mapState(['userInfo'])
+    },
+    mounted() {
+    this.userId = this.userInfo.userId
+    },
     
     
 }
