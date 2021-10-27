@@ -18,7 +18,7 @@
                     </thead>
                     <tbody>
                         <tr v-for="member of members" :key="member.userId">
-                            <p>{{ selected }}</p>
+                            
                             <v-checkbox
                             v-model="selected"
                             label=""
@@ -117,7 +117,7 @@ export default {
 
         alert('탈퇴가 완료되었습니다.')
 
-        this.$router.push( { name: 'HostPage' } )
+        this.$router.go();
       })
       }
       if(this.selected.length > 1){
@@ -134,7 +134,7 @@ export default {
 
         
 
-        this.$router.push( { name: 'HostPage' } )
+        this.$router.go();
       })
       }
       alert('탈퇴가 완료되었습니다.')
