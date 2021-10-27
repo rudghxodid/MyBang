@@ -25,8 +25,8 @@
     name: "RoomMateModify",
     data() {
       return {
-        userId: this.$store.state.userInfo.id,
-        id: this.$route.params.id,
+        // userId: this.$store.state.userInfo.id,
+        // id: this.$route.params.id,
         detail: {
           title: '',
           content: '',
@@ -42,15 +42,11 @@
           api.post(`/roomMate/create`, {
             title: this.detail.title,
             content: this.detail.content,
-            // writer: this.userId,
+            writer: this.userId,
           })
             .then((res) => {
-              if (res.data.resultCode === "SUCCESS") {
-                this.$router.push({name: "RoomMateList", params: {id: res.data.id }});
-                alert("등록 성공");
-              } else {
-                alert("등록 실패");
-              }
+              this.$router.push({name: "RoomMateList", params: {id: res.data.id }});
+              alert("등록 성공");
             }).catch((err) => {
             console.log(err);
             alert("등록 실패");

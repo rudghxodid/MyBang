@@ -16,20 +16,20 @@ import javax.persistence.*;
 public class RoomMate extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", columnDefinition = "번호")
+    @Column(name = "id")
     private Long id;
-//
-//    @Column(nullable = false)
-//    private String title;
-//
-//    @Column(nullable = false, columnDefinition = "TEXT")
-//    private String content;
-//
-//    @Column(columnDefinition = "회원번호")
-//    private Long writer;
-//
-//    @Column
-//    private int count;
 
-//    private String writerName;
+    @Column(nullable = false)
+    private String title;
+
+    @Column(nullable = false, columnDefinition = "TEXT")
+    private String content;
+
+    @Column
+    private Long writer;
+
+    @Column
+    private int count;
+
+    private String writerName;
 }

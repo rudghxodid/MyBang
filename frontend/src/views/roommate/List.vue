@@ -34,9 +34,9 @@
 			<b-button @click="onClickWriteBtn">글쓰기</b-button>
 		</div>
 		<b-pagination aria-controls="my-table" align="center" first-class="first" prev-class="prev" next-class="next"
-            last-class="last"
-            v-model="currentPage" :total-rows="totalItems" :per-page="perPage"
-            @change="handlerPagenation">
+          last-class="last"
+          v-model="currentPage" :total-rows="totalItems" :per-page="perPage"
+          @change="handlerPagenation">
 		</b-pagination>
 
 	</div>
@@ -52,20 +52,30 @@
       },
     },
     data() {
-          return {
-            currentPage: 1, // 현재 페이지
-            perPage: 10, // 페이지당 보여줄 갯수
-            totalPage: '',
-            totalItems: '',
-            // bootstrap 'b-table' 필드 설정
-            boardList: [],
-            // items: items
-          };
+      return {
+        currentPage: 1, // 현재 페이지
+        perPage: 10, // 페이지당 보여줄 갯수
+        totalPage: '',
+        totalItems: '',
+        // bootstrap 'b-table' 필드 설정
+        boardList: [],
+        // items: items
+      };
     },
+    // methods : {
+    //   async fetchRoomMateList() {
+    //     return await axios.get('http://localhost:7777/roommate/list/')
+    //       .then((res) => {
+    //         this
+    //         }
+    //
+    //       )
+    //   }
+    // },
   }
   // import api from "../../api/api";
   // import dayjs from "dayjs";
-	//
+  //
   // export default {
   //   name: "RoomMateList",
   //   async mounted() {

@@ -1,7 +1,7 @@
 <template>
 	<div>
-		<Header />
-		<div id=background-box  :style="{backgroundImage: 'url('+item+')'}">
+		<Header/>
+		<div id=background-box :style="{backgroundImage: 'url('+item+')'}">
 			<div id=main-text>어떤 집을 찾고 있나요?</div>
 			<div id=tabHouse>
 				<v-tabs center-active>
@@ -10,88 +10,89 @@
 					<v-tab>원룸</v-tab>
 					<v-tab>오피스텔</v-tab>
 					<v-tab>셰어하우스</v-tab>
-				</v-tabs><br>
+				</v-tabs>
+				<br>
 				<div id=search>
 					<input type="text" class="form-control" placeholder="검색 키워드를 입력하세요!" flat none>
 					<div id=search-icon>
-						<v-btn class="ma-2" color="white"><v-icon>mdi-magnify</v-icon></v-btn>
+						<v-btn class="ma-2" color="white">
+							<v-icon>mdi-magnify</v-icon>
+						</v-btn>
 					</div>
 				</div>
 			</div>
 		</div>
-			<!--   소개할게요, 뉴스, 공지사항 영역 시작   -->
-    <div class="board_content">
-         <article>
-            <h2>소개할게요</h2>
-            <hr>
-            <ul>
-               <li>리스트1</li>
-               <li>리스트2</li>
-               <li>리스트3</li>
-               <li>리스트4</li>
-               <li>리스트5</li>
-            </ul>
-         </article>
+		<!--   소개할게요, 뉴스, 공지사항 영역 시작   -->
+		<div class="board_content">
+			<article>
+				<h2>소개할게요</h2>
+				<hr>
+				<ul>
+					<li>리스트1</li>
+					<li>리스트2</li>
+					<li>리스트3</li>
+					<li>리스트4</li>
+					<li>리스트5</li>
+				</ul>
+			</article>
 
-         <article>
-            <div class="more_btn">
-               <h2>뉴스</h2>
-               <v-btn depressed>
-                  더보기
-               </v-btn>
-            </div>
-            <hr>
-            <ul>
-               <li>리스트1</li>
-               <li>리스트2</li>
-               <li>리스트3</li>
-               <li>리스트4</li>
-               <li>리스트5</li>
-            </ul>
-         </article>
+			<article>
+				<div class="more_btn">
+					<h2>뉴스</h2>
+					<v-btn depressed>
+						더보기
+					</v-btn>
+				</div>
+				<hr>
+				<ul>
+					<li>리스트1</li>
+					<li>리스트2</li>
+					<li>리스트3</li>
+					<li>리스트4</li>
+					<li>리스트5</li>
+				</ul>
+			</article>
 
-         <article>
-            <div class="more_btn">
-               <h2>공지사항</h2>
-               <v-btn depressed>
-                  더보기
-               </v-btn>
-            </div>
-            <hr>
-            <ul>
-               <li>리스트1</li>
-               <li>리스트2</li>
-               <li>리스트3</li>
-               <li>리스트4</li>
-               <li>리스트5</li>
-            </ul>
-         	</article>
-      	</div>
-      <!--   소개할게요, 뉴스, 공지사항 영역 끝   -->
-	<Footer />
+			<article>
+				<div class="more_btn">
+					<h2>공지사항</h2>
+					<v-btn depressed>
+						더보기
+					</v-btn>
+				</div>
+				<hr>
+				<ul>
+					<li>리스트1</li>
+					<li>리스트2</li>
+					<li>리스트3</li>
+					<li>리스트4</li>
+					<li>리스트5</li>
+				</ul>
+			</article>
+		</div>
+		<!--   소개할게요, 뉴스, 공지사항 영역 끝   -->
+		<Footer/>
 	</div>
 </template>
 
 <script>
-import Header from '../layouts/Header'
-import Footer from '../layouts/Footer'
+  import Header from '../layouts/Header'
+  import Footer from '../layouts/Footer'
 
-export default {
-    components: { Header, Footer },
+  export default {
+    components: {Header, Footer},
     name: 'MainPage',
     data() {
       return {
         item: [
-           require('@/assets/img/Interior.jpg'),
+          require('@/assets/img/Interior.jpg'),
         ],
       }
     },
-    mounted () {
+    mounted() {
     },
-    computed: {
-    },
-    methods: {
-    }
+    computed: {},
+    methods: {}
   }
 </script>
 
@@ -103,18 +104,17 @@ export default {
 	}
 
 
-
-	#background-box{
+	#background-box {
 		/*width: 1900px;*/
 		height: 450px;
 		background-size: contain;
 		background-repeat: no-repeat;
-		background-color:#ffffff;
+		background-color: #ffffff;
 		border: 0px solid #000000;
 
 	}
 
-	#crawl-box{
+	#crawl-box {
 		/*width: 1900px;*/
 		height: 270px;
 		border: 0px solid #000000;
@@ -122,12 +122,12 @@ export default {
 		display: block;
 	}
 
-	.pages{
+	.pages {
 		text-align: center;
 		display: block;
 	}
 
-	#search-icon{
+	#search-icon {
 		/* Box */
 		height: 60px;
 		width: 66px;
@@ -146,7 +146,7 @@ export default {
 		clear: none;
 	}
 
-	#tabHouse{
+	#tabHouse {
 		align-content: center;
 		background: 0% 0%;
 		background-color: #ffffff;
@@ -163,7 +163,7 @@ export default {
 
 	}
 
-	#search{
+	#search {
 		/* Font & Text */
 		font-size: 16px;
 		font-style: normal;
@@ -210,7 +210,7 @@ export default {
 		border-bottom-right-radius: 8px;
 	}
 
-	#main-text{
+	#main-text {
 		text-align: center;
 		line-height: 426px;
 		font-size: 40px;
@@ -223,56 +223,57 @@ export default {
 		height: 276px;
 	}
 
-/* 소개할게요, 뉴스, 공지사항 영역 시작 */
-    .board_content {
-      padding: 15px 0;
-      width: 1200px;
-      margin: 0 auto;
-   }
+	/* 소개할게요, 뉴스, 공지사항 영역 시작 */
+	.board_content {
+		padding: 15px 0;
+		width: 1200px;
+		margin: 0 auto;
+	}
 
-    .board_content:after, .board_content .more_btn:after{
-      display: block;
-      content: '';
-      clear: both;
-   }
+	.board_content:after, .board_content .more_btn:after {
+		display: block;
+		content: '';
+		clear: both;
+	}
 
-    .board_content article{
-      float: left;
-      width: calc(92%/3);
-      margin-right: 4%;
-   }
+	.board_content article {
+		float: left;
+		width: calc(92% / 3);
+		margin-right: 4%;
+	}
 
-    .board_content article:nth-child(3) {
-      margin-right: 0;
-   }
+	.board_content article:nth-child(3) {
+		margin-right: 0;
+	}
 
-    .board_content article h2 {
-      font-size: 19px;
-      padding-bottom: 14px;
-   }
+	.board_content article h2 {
+		font-size: 19px;
+		padding-bottom: 14px;
+	}
 
-    .board_content article .more_btn > h2 {
-      float: left;
-   }
+	.board_content article .more_btn > h2 {
+		float: left;
+	}
 
-    .board_content article .more_btn .v-btn {
-      float: right;
-      font-size: 12px;
-      padding: 0;
-   }
+	.board_content article .more_btn .v-btn {
+		float: right;
+		font-size: 12px;
+		padding: 0;
+	}
 
-    .board_content hr {
-      height: 1px;
-      border: none;
-      background-color: #ccc;
-   }
+	.board_content hr {
+		height: 1px;
+		border: none;
+		background-color: #ccc;
+	}
 
-    .board_content article ul {
-      margin-top: 14px;
-   }
+	.board_content article ul {
+		margin-top: 14px;
+	}
 
-    .board_content article ul li {
-      padding: 3px 0;
-   }
-   /* 소개할게요, 뉴스, 공지사항 영역 끝 */
+	.board_content article ul li {
+		padding: 3px 0;
+	}
+
+	/* 소개할게요, 뉴스, 공지사항 영역 끝 */
 </style>
