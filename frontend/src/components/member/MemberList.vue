@@ -104,6 +104,7 @@ export default {
       this.dialog = false
     },
       deleteUser () {
+      if(this.selected.length == 1){
       axios.delete(`http://localhost:7777/member/remove/${this.selected}`).then(() => {
 
         this.dialog = false
@@ -118,6 +119,26 @@ export default {
 
         this.$router.push( { name: 'HostPage' } )
       })
+      }
+      if(this.selected.length > 1){
+        for(let i = 0; i < this.selected.length; i++){
+      axios.delete(`http://localhost:7777/member/remove/${this.selected[i]}`).then(() => {
+
+        this.dialog = false
+        
+        this.$store.commit('USER_LOGIN', false)
+        
+        this.fetchSession(this.$cookies.remove('session'))
+
+        this.$store.commit('FETCH_USER_INFO', [])
+
+        
+
+        this.$router.push( { name: 'HostPage' } )
+      })
+      }
+      alert('탈퇴가 완료되었습니다.')
+      }
     }
        
     },

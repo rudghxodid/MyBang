@@ -179,8 +179,8 @@ public class MemberController {
         return new ResponseEntity<>(members, HttpStatus.OK);
     }
 
-    @DeleteMapping("/remove/{userId}")
-    public ResponseEntity<Void> removeMember(@PathVariable("userId") String userId) throws Exception {
+    @DeleteMapping("/remove/{selected}")
+    public ResponseEntity<Void> removeMember(@PathVariable("selected") String userId) throws Exception {
         Member member = service.findById(userId);
 
         service.remove(member);
