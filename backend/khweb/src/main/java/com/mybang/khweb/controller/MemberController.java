@@ -169,7 +169,7 @@ public class MemberController {
 
         return new ResponseEntity<>(HttpStatus.OK);
     }
-
+    //회원 목록 출력하기
     @GetMapping("/memberlists")
     public ResponseEntity lists() throws Exception {
         log.info("Recommend Lists");
@@ -177,6 +177,15 @@ public class MemberController {
         List<Member> members = service.list();
 
         return new ResponseEntity<>(members, HttpStatus.OK);
+    }
+
+    @DeleteMapping("/remove/{selected}")
+    public ResponseEntity<Void> removeMember(@PathVariable("selected") String userId) throws Exception {
+        Member member = service.findById(userId);
+
+        service.remove(member);
+
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }
 
