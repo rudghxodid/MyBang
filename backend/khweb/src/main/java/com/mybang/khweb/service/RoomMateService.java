@@ -41,6 +41,33 @@ public class RoomMateService {
     }
 
 
+    // 게시글 수정
+    public RoomMate update(long boardNo, RoomMateDto roomMateDto) {
+        RoomMate roomMate = roomMateRepository.findById(boardNo).orElse(null);
+        roomMate.setTitle(roomMateDto.title);
+        roomMate.setContent(roomMateDto.content);
+        roomMateRepository.save(roomMate);
+        return roomMate;
+    }
+
     // 게시글 목록
+    public RoomMate get(long boardNo) {
+        RoomMate roomMate = roomMateRepository.findById(boardNo).orElse(null);
+        Member member = memberRepository.findById(roomMate.getWriter()).orElse(null);
+        roomMate.setWriterName(member.getName());
+
+        if (roomMate != null) {
+            roomMate.setCount(roomMate.getCount() + 1);
+            roomMateRepository.save(roomMate);
+        }
+        return roomMate;
+    }
+
+    // 게시글 삭제
+   public Boolean delete(long boardNo) {
+        RoomMate roomMate = roomMateRepository.findById(boardNo).orElse(null);
+        roomMateRepository.delete(roomMate);
+        return true;
+    }
 
 }

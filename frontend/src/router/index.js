@@ -1,12 +1,15 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
+import MainPage from '../views/MainPage.vue'
 import Mypage from '@/views/member/Mypage'
 import MemberRegisterPage from '@/views/member/MemberRegisterPage'
 import MemberLoginPage from '@/views/member/MemberLoginPage'
 import FindUserId from '@/components/member/FindUserId'
 import FindUserPw from '@/components/member/FindUserPw'
 import ModifyPassword from '@/components/member/ModifyPassword'
+import BrokerRegister from '@/views/BrokerRegister'
+import HostPage from '@/views/HostPage'
 import RoomMateList from '../views/roommate/List';
 import RoomMateModify from '../views/roommate/Modify';
 
@@ -17,6 +20,11 @@ const routes = [
     path: '/',
     name: 'Home',
     component: Home
+  },
+  {
+    path: '/main',
+    name: 'MainPage',
+    component: MainPage
   },
   {
     path: '/mypage',
@@ -51,9 +59,19 @@ const routes = [
     component: FindUserPw
   },
   {
-    path: '/modifyPassword/:userId',
+    path: '/modifyPassword',
     name: 'ModifyPassword',
     component: ModifyPassword
+  },
+  {
+    path: '/RegisterInfo',
+    name: 'BrokerRegister',
+    component: BrokerRegister
+  },
+  {
+    path: '/HostPage',
+    name: 'HostPage',
+    component: HostPage
   },
   {
     path: '/roommate',
