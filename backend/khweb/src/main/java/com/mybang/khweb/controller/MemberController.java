@@ -178,7 +178,7 @@ public class MemberController {
 
         return new ResponseEntity<>(members, HttpStatus.OK);
     }
-
+    //관리자 회원삭제, 다중삭제
     @DeleteMapping("/remove/{selected}")
     public ResponseEntity<Void> removeMember(@PathVariable("selected") String userId) throws Exception {
         Member member = service.findById(userId);
