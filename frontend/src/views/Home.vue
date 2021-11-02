@@ -1,5 +1,9 @@
 <template>
   <v-sheet>
+     <router-link :to="{ name: 'Villa' }" 
+      class="nav-link" 
+      active-class="active">Villa(test)
+    </router-link>
     <main-page></main-page>
   </v-sheet>
 </template>
