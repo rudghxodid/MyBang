@@ -1,7 +1,7 @@
 <template>
 	<div>
-		<div id=background-box  :style="{backgroundImage: 'url('+item+')'}">
-			<div id=main-text>어떤 집을 찾고 있나요?</div>
+		<div id=background-box :style="{backgroundImage: 'url('+item+')'}">
+			<div id=main_text>어떤 집을 찾고 있나요?</div>
 			<div id=tabHouse>
 				<v-tabs center-active>
 					<v-tab>아파트</v-tab>
@@ -11,7 +11,7 @@
 					<v-tab>셰어하우스</v-tab>
 				</v-tabs><br>
 				<div id=search>
-					<input type="text" class="form-control" placeholder="검색 키워드를 입력하세요!" flat none>
+					<input type="text" class="form_control" placeholder="검색 키워드를 입력하세요!" flat none>
 					<div id=search-icon>
 						<v-btn class="ma-2" color="white"><v-icon>mdi-magnify</v-icon></v-btn>
 					</div>
@@ -207,7 +207,7 @@ export default {
 		border-bottom-right-radius: 8px;
 	}
 
-	#main-text{
+	#main_text{
 		text-align: center;
 		line-height: 426px;
 		font-size: 40px;
@@ -272,4 +272,9 @@ export default {
       padding: 3px 0;
    }
    /* 소개할게요, 뉴스, 공지사항 영역 끝 */
+
+   .form_control{
+	   width: 500px;
+	   text-decoration:  none;
+   }
 </style>
