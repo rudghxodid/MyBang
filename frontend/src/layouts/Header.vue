@@ -46,12 +46,13 @@
 				<div v-if="isLogin">
 					<v-btn @click="logout">로그아웃</v-btn>
 					<v-btn @click="gotoMypage">마이페이지</v-btn>
+					<v-btn text><a href="registerInfo">중개사무소<br>가입안내</a></v-btn>
 				</div>
 				<div style="float:left" v-else>
 					<v-btn @click="gotoJoin">회원가입</v-btn>
 					<v-btn @click="gotoLogin">로그인</v-btn>
+					<v-btn text><a href="registerInfo">중개사무소<br>가입안내</a></v-btn>
 				</div>
-				<v-btn text><a href="RegisterInfo">중개사무소<br>가입안내</a></v-btn>
 			</v-container>
 		</div>
 	</header>
