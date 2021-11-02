@@ -13,6 +13,14 @@
       class="nav-link"
       active-class="active">메인페이지로 이동
     </router-link>
+    <router-link :to="{ name: 'ProductRegisterPage' }"
+      class="nav-link"
+      active-class="active">매물등록 테스트
+    </router-link>
+    <router-link :to="{ name: 'ProductListPage' }"
+      class="nav-link"
+      active-class="active">매물리스트 테스트
+    </router-link>
   </v-container>
 </template>
 

@@ -11,6 +11,10 @@ import ModifyPassword from '@/components/member/ModifyPassword'
 import BrokerRegister from '@/views/BrokerRegister'
 import HostPage from '@/views/HostPage'
 
+import ProductRegisterPage from '@/views/product/ProductRegisterPage'
+import ProductListPage from '@/views/product/ProductListPage'
+import ProductReadPage from '@/views/product/ProductReadPage'
+import ProductModifyPage from '@/views/product/ProductModifyPage'
 
 Vue.use(VueRouter)
 
@@ -63,7 +67,7 @@ const routes = [
     component: ModifyPassword
   },
   {
-    path: '/RegisterInfo',
+    path: '/registerInfo',
     name: 'BrokerRegister',
     component: BrokerRegister
   },
@@ -71,6 +75,38 @@ const routes = [
     path: '/HostPage',
     name: 'HostPage',
     component: HostPage
+  },
+  {
+    path: '/product/register',
+    name: 'ProductRegisterPage',
+    components: {
+      default: ProductRegisterPage
+    }
+  },
+  {
+    path: '/product/list',
+    name: 'ProductListPage',
+    component: ProductListPage
+  },
+  {
+    path: '/product/:productNo',
+    name: 'ProductReadPage',
+    components: {
+      default: ProductReadPage
+    },
+    props: {
+      default: true
+    }
+  },
+  {
+    path: '/product/:productNo/edit',
+    name: 'ProductModifyPage',
+    components: {
+      default: ProductModifyPage
+    },
+    props: {
+      default: true
+    }
   },
 
   
