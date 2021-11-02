@@ -172,7 +172,7 @@ public class MemberController {
     //회원 목록 출력하기
     @GetMapping("/memberlists")
     public ResponseEntity lists() throws Exception {
-        log.info("Recommend Lists");
+        log.info("Member Lists");
 
         List<Member> members = service.list();
 
