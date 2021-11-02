@@ -155,8 +155,8 @@ public class MemberController {
 
     // 회원인지 확인하기(비밀번호 재설정 전)
     @PostMapping("/findingUser")
-    public ResponseEntity<Boolean> findUser(@RequestBody MemberDto memberDto) throws Exception {
-        Boolean findUser = service.findingUser(memberDto);
+    public ResponseEntity<String> findUser(@RequestBody MemberDto memberDto) throws Exception {
+        String findUser = service.findingUser(memberDto);
 
         return new ResponseEntity<>(findUser, HttpStatus.OK);
     }
@@ -170,14 +170,23 @@ public class MemberController {
 
         return new ResponseEntity<>(HttpStatus.OK);
     }
-
+    //회원 목록 출력하기
     @GetMapping("/memberlists")
     public ResponseEntity lists() throws Exception {
-        log.info("Recommend Lists");
+        log.info("Member Lists");
 
         List<Member> members = service.list();
 
         return new ResponseEntity<>(members, HttpStatus.OK);
+    }
+
+    @DeleteMapping("/remove/{selected}")
+    public ResponseEntity<Void> removeMember(@PathVariable("selected") String userId) throws Exception {
+        Member member = service.findById(userId);
+
+        service.remove(member);
+
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     // 찜하기

@@ -11,10 +11,15 @@ import ModifyPassword from '@/components/member/ModifyPassword'
 import BrokerRegister from '@/views/BrokerRegister'
 import HostPage from '@/views/HostPage'
 
+
 import ProductRegisterPage from '@/views/product/ProductRegisterPage'
 import ProductListPage from '@/views/product/ProductListPage'
 import ProductReadPage from '@/views/product/ProductReadPage'
 import ProductModifyPage from '@/views/product/ProductModifyPage'
+
+// Map
+import Villa from '@/views/house/Villa'
+
 
 Vue.use(VueRouter)
 
@@ -106,10 +111,13 @@ const routes = [
     },
     props: {
       default: true
-    }
+    },
   },
-
-  
+  {
+    path: '/villa',
+    name: 'Villa',
+    component: Villa
+  },
 ]
 
 const router = new VueRouter({

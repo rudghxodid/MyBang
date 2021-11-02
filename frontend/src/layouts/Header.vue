@@ -44,14 +44,13 @@
 		<div class="right-header">	
 			<v-container>
 				<div v-if="isLogin">
-					<v-btn @click="logout">로그아웃</v-btn>
-					<v-btn @click="gotoMypage">마이페이지</v-btn>
-					<v-btn text><a href="registerInfo">중개사무소<br>가입안내</a></v-btn>
+					<v-btn @click="gotoMypage" text>마이페이지</v-btn>|
+					<v-btn @click="logout" text>로그아웃</v-btn>
+					<!--<v-btn text><a href="registerInfo">중개사무소<br>가입안내</a></v-btn>-->
 				</div>
 				<div style="float:left" v-else>
-					<v-btn @click="gotoJoin">회원가입</v-btn>
-					<v-btn @click="gotoLogin">로그인</v-btn>
-					<v-btn text><a href="registerInfo">중개사무소<br>가입안내</a></v-btn>
+					<v-btn @click="gotoJoin" text>회원가입</v-btn>|
+					<v-btn @click="gotoLogin" text>로그인</v-btn>
 				</div>
 			</v-container>
 		</div>
@@ -64,10 +63,7 @@ import { mapActions, mapState } from 'vuex'
     name: 'Header',
     data() {
       return {
-        userInfo: {
-          userId: '',
-          password: ''
-        },
+ 
     }
   },
   computed: {
@@ -75,10 +71,10 @@ import { mapActions, mapState } from 'vuex'
   },
   mounted() {
     this.fetchSession(this.$cookies.get('session'))
-        if (this.session != null) {
-          this.$store.state.isLogin = true
-          this.$store.state.userInfo = this.fetchUserInfo(this.$cookies.get('session')) 
-        }
+		if (this.session != null) {
+			this.$store.state.isLogin = true
+			this.$store.state.userInfo = this.fetchUserInfo(this.$cookies.get('session')) 
+		}
   },
   methods: {
     ...mapActions(['fetchSession', 'fetchUserInfo']),

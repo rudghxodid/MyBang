@@ -185,12 +185,13 @@ export default {
             const { userId, password, email, name, birth, radioGroup2, phone, radioGroup } = this
             const auth = radioGroup == 0 ? '개인' : '사업자'
             const sex = radioGroup2 == 0 ? '남자' : '여자'
-
-            if (this.completeId && this.completeEmail) {
+        
+         /*   if (this.completeId && this.completeEmail) { */
                 this.$emit('submit', { userId, password, email, name, birth, sex, phone, auth })
-            } else {
+           /*} else {
                 alert("아이디 또는 이메일 인증을 완료해주세요.")
-            }
+            }*/
+            
             
         },
         checkId () {
