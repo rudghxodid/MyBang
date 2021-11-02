@@ -4,7 +4,11 @@ import {
   FETCH_USER_INFO,
   FETCH_SESSION,
   FETCH_MEMBER_LIST,
-  FETCH_MEMBER
+  FETCH_MEMBER,
+
+  // 매물게시판
+  FETCH_PRODUCT_LIST,
+  FETCH_PRODUCT
 
 
 
@@ -27,6 +31,12 @@ export default {
   },
   [FETCH_MEMBER] (state, member) {
     state.member = member
+  },
+  [FETCH_PRODUCT_LIST] (state, products) {
+    state.products = products;
+  },
+  [FETCH_PRODUCT] (state, product) {
+    state.product = product
   },
 
 }

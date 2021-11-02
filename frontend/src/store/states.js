@@ -36,5 +36,10 @@ export default {
         phone => !!phone || '전화번호를 입력해주세요.'
     ],
 
+    // 매물게시판
+    products: [],
+    product: null,
 
+    // 찜하기
+    likedProductList: []
 }

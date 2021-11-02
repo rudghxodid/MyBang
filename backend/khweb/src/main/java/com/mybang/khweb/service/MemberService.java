@@ -1,6 +1,7 @@
 package com.mybang.khweb.service;
 
 import com.mybang.khweb.entity.Member;
+import com.mybang.khweb.entity.memberRelated.LikedProduct;
 import com.mybang.khweb.request.MemberDto;
 import com.mybang.khweb.request.MemberRequest;
 
@@ -26,4 +27,9 @@ public interface MemberService {
     String findingUser(MemberDto memberDto) throws Exception;
     void modifyPw(Member member, MemberDto memberDto) throws Exception;
     List<Member> list() throws Exception;
+
+    // 찜하기 기능들
+    public void addLikedProduct(LikedProduct likedProduct);
+    public List<LikedProduct> getLikedProductList(Integer memberNo);
+    public void deleteLikedProduct(LikedProduct likedProduct);
 }

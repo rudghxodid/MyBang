@@ -1,10 +1,8 @@
 package com.mybang.khweb.entity;
 
 import com.mybang.khweb.request.MemberDto;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -16,6 +14,7 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+//@EqualsAndHashCode(callSuper = true) 찜하기 기능때문에 적어놓음
 public class Member extends BaseTimeEntity {
 
     @Id
@@ -77,4 +76,13 @@ public class Member extends BaseTimeEntity {
     public void modifyPassword(MemberDto memberDto) {
         this.password = memberDto.getPassword();
     }
+
+    /*
+    짬하기 기능을 추가하기 위한 코드였는데 위에 있는 onetomany로 인해 오류나지만 실행은 됨
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
+    @JoinColumn(name = "member_no")
+    @Builder.Default
+    private Set<LikedProduct> memberIdentityList = new HashSet<LikedProduct>();
+
+     */
 }
