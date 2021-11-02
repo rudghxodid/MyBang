@@ -11,6 +11,9 @@ import ModifyPassword from '@/components/member/ModifyPassword'
 import BrokerRegister from '@/views/BrokerRegister'
 import HostPage from '@/views/HostPage'
 
+// Map
+import Villa from '@/views/house/Villa'
+
 
 Vue.use(VueRouter)
 
@@ -71,6 +74,11 @@ const routes = [
     path: '/HostPage',
     name: 'HostPage',
     component: HostPage
+  },
+  {
+    path: '/villa',
+    name: 'Villa',
+    component: Villa
   },
 
   
