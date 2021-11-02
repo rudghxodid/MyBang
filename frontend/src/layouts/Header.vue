@@ -1,6 +1,6 @@
 <template>
 	<header>
-		<div class="inner">
+		<div id="header" class="inner">
 			<h1 class="logo">
 				<img src="@/assets/img/mybang.png" height="80px" style="margin-top:-6px">
 			</h1>
@@ -37,7 +37,7 @@
 					</a>
 				</li>
 			</ul>
-		</div>
+		
 		<div class="right-header">	
 			<v-container>
 				<div v-if="isLogin">
@@ -48,8 +48,9 @@
 					<v-btn @click="gotoJoin" text>회원가입</v-btn>|
 					<v-btn @click="gotoLogin" text>로그인</v-btn>
 				</div>
-				<v-btn text><a href="RegisterInfo">중개사무소 가입</a></v-btn>
+		<!--	<v-btn text><a href="RegisterInfo">중개사무소 가입</a></v-btn>  -->
 			</v-container>
+			</div>
 		</div>
 	</header>
 </template>
@@ -240,4 +241,6 @@ import { mapActions, mapState } from 'vuex'
 
 
 	/*}*/
+
+
 </style>
