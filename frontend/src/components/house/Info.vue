@@ -173,7 +173,8 @@
             <v-list-item>
               <v-list-item-content>
                 <v-list-item-title>소개</v-list-item-title>
-                <v-list-item-subtitle class="text-wrap">{{info.userIntro}}</v-list-item-subtitle>
+                <v-list-item-subtitle v-if="info.userIntro" class="text-wrap">{{info.userIntro}}</v-list-item-subtitle>
+                <v-list-item-subtitle v-else>-</v-list-item-subtitle>
               </v-list-item-content>
             </v-list-item>
             <v-list-item>

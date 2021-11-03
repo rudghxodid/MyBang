@@ -1,5 +1,6 @@
 <template>
   <v-sheet class="fill-height" max-height="700">
+    <Search @searchStation="searchStation" style="position: fixed; z-index: 1;"></Search>
 
     <naver-map
       ref="maps"
@@ -37,17 +38,18 @@
 
 <script>
 import Info from '@/components/house/Info'
-import seoul_station from '@/assets/data/seoul_station'
+import Search from '@/components/house/Search'
 import axios from 'axios'
 
 export default {
   components: {
-    Info
+    Info,
+    Search
   },
   data() {
     return {
       villaList: [],
-      stationList: seoul_station.items,
+      stationList: null,
       center: { lat: 37.5285549, lng: 127.0370612 },
       cluster: {
         options: {
@@ -72,6 +74,10 @@ export default {
       console.log(this.villaList)
       this.houseInfo = this.villaList[0]
     })
+    axios.get('http://localhost:7777/station/lists').then(res => {
+      this.stationList = res.data
+      console.log(this.stationList)
+    })
   },
   methods: {
     viewInfo(info) {
@@ -81,6 +87,7 @@ export default {
     showCircle (lat, lng) {
       const coords = new window.naver.maps.LatLng(lat, lng)
       this.$refs.maps.map.setCenter(coords)
+      this.$refs.maps.map.setZoom(17)
 
       const mapCircle = new window.naver.maps.Circle({
         map: this.$refs.maps.map,
@@ -97,8 +104,11 @@ export default {
     },
     idle () {
       this.zoomLevel = this.$refs.maps.map.getZoom()
-      // console.log(this.zoomLevel)
+      console.log(this.zoomLevel)
       // console.log(this.$refs.maps.map.getCenter())
+    },
+    searchStation (lat, lng) {
+      this.showCircle(lat,lng)
     }
   }
 }
