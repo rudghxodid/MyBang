@@ -1,5 +1,5 @@
 <template>
-  <v-sheet class="fill-height" max-height="800">
+  <v-sheet class="fill-height" max-height="700">
 
     <naver-map
       ref="maps"
@@ -51,7 +51,7 @@ export default {
       center: { lat: 37.5285549, lng: 127.0370612 },
       cluster: {
         options: {
-          maxZoom: 18,
+          maxZoom: 17,
           averageCenter: true,
           icons: [
             {content: `<div class="cluster lv1"></div>`},
@@ -85,7 +85,7 @@ export default {
       const mapCircle = new window.naver.maps.Circle({
         map: this.$refs.maps.map,
         center: new window.naver.maps.LatLng(lat, lng),
-        radius: 300,
+        radius: 400,
         fillColor: 'gray',
         fillOpacity: 0.2,
         visible: this.circle
