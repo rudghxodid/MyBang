@@ -31,7 +31,7 @@ public class StationController {
     }
 
     @GetMapping("/{name}")
-    public ResponseEntity<List<Station>> selectLists(@PathVariable("name") String name) throws Exception {
+    public ResponseEntity<List<Station>> searchLists(@PathVariable("name") String name) throws Exception {
         log.info("Search Station");
 
         List<Station> stations = service.searchLists(name);
