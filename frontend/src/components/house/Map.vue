@@ -1,6 +1,6 @@
 <template>
   <v-sheet class="fill-height" max-height="700">
-    <Search @searchStation="searchStation" style="position: fixed; z-index: 1;"></Search>
+    <Search @selectStation="selectStation" style="position: fixed; z-index: 1;"></Search>
 
     <naver-map
       ref="maps"
@@ -11,7 +11,7 @@
 
       <naver-map-marker-cluster :options="cluster.options">
         <naver-map-marker v-for="list in villaList" :key="list.index"
-          :options="{ position: {lat: list.lat, lng: list.lng }}"
+          :options="{ position: { lat: list.lat, lng: list.lng }}"
           @click="viewInfo(list)"/>
       </naver-map-marker-cluster>
 
@@ -65,7 +65,8 @@ export default {
         }
       },
       houseInfo: null,
-      zoomLevel: null
+      zoomLevel: null,
+      icon: { content: `<div class="marker-html" v-html=list.deposit"></div>` }
     }
   },
   mounted () {
@@ -104,10 +105,8 @@ export default {
     },
     idle () {
       this.zoomLevel = this.$refs.maps.map.getZoom()
-      console.log(this.zoomLevel)
-      // console.log(this.$refs.maps.map.getCenter())
     },
-    searchStation (lat, lng) {
+    selectStation (lat, lng) {
       this.showCircle(lat,lng)
     }
   }
@@ -116,6 +115,25 @@ export default {
 
 
 <style lang="scss">
+.marker-html {
+    position: relative;
+    background: white;
+    line-height: 30px;
+    text-align: center;
+    font-weight: bold;
+    border-radius: 15px;
+    transition: 0.5s;
+    padding: 0 8px;
+    box-shadow: rgba(0, 0, 0, 0.08) 0px 0px 0px 1px,
+      rgba(0, 0, 0, 0.18) 0px 1px 2px;
+    overflow-y: auto;
+    transform: translate(-40%, -60%);
+    &:hover {
+      background: #77ACF1;
+      color: white;
+      border-color: white;
+    }
+  }
   .cluster {
     cursor:pointer;
     width:40px;

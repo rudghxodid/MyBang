@@ -1,10 +1,22 @@
 <template>
+  <v-card>
     <v-toolbar>
-      <v-text-field v-model="search" @keyup.enter="searchStation" label="역" solo hide-details></v-text-field>
-      <v-btn @click="searchStation" icon>
-        <v-icon>mdi-magnify</v-icon>
-      </v-btn>
+      <v-text-field v-model="search" @keyup="searchStation" label="역" append-icon="mdi-magnify" solo hide-details></v-text-field>
     </v-toolbar>
+    <v-card v-if="searchList" flat>
+      <v-list>
+        <v-list-item-group v-for="list in searchList" :key="list.index">
+            <v-list-item @click="selectStation(list.name, list.lat, list.lng)">
+              <v-list-item-content>
+              <v-list-item-subtitle>
+                {{list.name}}
+              </v-list-item-subtitle>
+            </v-list-item-content>   
+            </v-list-item>
+          </v-list-item-group>
+      </v-list>
+    </v-card>
+  </v-card>
 </template>
 
 
@@ -14,32 +26,23 @@ import axios from 'axios'
 export default {
   data () {
     return {
-      search: null
+      search: null,
+      searchList: null
     }
   },
   methods: {
     searchStation () {
-      const search = this.stationName(this.search)
-
-      axios.get(`http://localhost:7777/station/${search}`).then(res => {
-        console.log(res.data)
-        this.$emit('searchStation', res.data.lat, res.data.lng)
-      }) 
-      
+      if (this.search) {
+        axios.get(`http://localhost:7777/station/${this.search}`).then(res => {
+          console.log(res.data)
+          this.searchList = res.data
+        }) 
+      }   
     },
-    stationName (name) {
-      if (name.indexOf('역') == -1) {
-        return name
-      } else if (name.indexOf('역') == 0) {
-        if (name.indexOf('역', 1) == -1) {
-          return name
-        } else {
-          return name.slice(0, -1)
-        }
-      }
-      else {
-        return name.slice(0, -1)
-      }
+    selectStation (name, lat, lng) {
+      this.search = name
+      this.$emit('selectStation', lat, lng)
+      this.searchList = null
     }
   }
 }

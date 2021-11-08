@@ -8,5 +8,5 @@ import java.util.Optional;
 
 public interface StationService {
     List<Station> lists() throws Exception;
-    Optional<Station> findStation(String name) throws Exception;
+    List<Station> searchLists(String name) throws Exception;
 }

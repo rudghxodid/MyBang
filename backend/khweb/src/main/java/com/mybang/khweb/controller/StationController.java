@@ -31,10 +31,11 @@ public class StationController {
     }
 
     @GetMapping("/{name}")
-    public ResponseEntity<Optional<Station>> stationInfo(@PathVariable("name") @RequestBody String name) throws Exception {
+    public ResponseEntity<List<Station>> selectLists(@PathVariable("name") String name) throws Exception {
+        log.info("Search Station");
 
-        Optional<Station> result = service.findStation(name);
+        List<Station> stations = service.searchLists(name);
 
-        return new ResponseEntity<>(result, HttpStatus.OK);
+        return new ResponseEntity<>(stations, HttpStatus.OK);
     }
 }

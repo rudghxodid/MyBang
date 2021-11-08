@@ -26,7 +26,9 @@ public class StationServiceImpl implements StationService{
     }
 
     @Override
-    public Optional<Station> findStation(String name) throws Exception {
-        return repository.findByNameContaining(name);
+    public List<Station> searchLists(String name) throws Exception {
+        List<Station> stations = repository.findByNameContaining(name);
+
+        return stations;
     }
 }
