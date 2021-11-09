@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -34,6 +35,29 @@ public class RoomMateController {
         return response;
     }
 
+    // 게시글 목록
+    @GetMapping("/list")
+    public RoomMateResponse<RoomMate> findAllRoomMate() {
+        RoomMateResponse<RoomMate> response = new RoomMateResponse<>();
+        List<RoomMate> roomMateList = roomMateService.findAllRoomMate();
+        return response;
+    }
+
+//
+//    public List<RoomMate> findAllRoomMate() {
+//        List<RoomMate> roomMateList = roomMateService.findAllRoomMate();
+//        return roomMateList;
+//    }
+
+
+
+//    @GetMapping("/list")
+//    public String list(Model model) {
+//        List<RoomMateDto> roomMateDtoList = roomMateService.getRoomMateList();
+//        model.addAttribute("roomMateDtoList", roomMateDtoList);
+//        return
+//    }
+
     // 목록
 //    @GetMapping("/list")
 //    public List<RoomMateResponse> findAll() {
@@ -49,45 +73,45 @@ public class RoomMateController {
 //        return response;
 //    }
 
-    /**
-     * 게시글 수정
-     * @param boardNo
-     * @param roomMateDto
-     * @return
-     */
-    @PostMapping("/update/{boardNo}")
-    public RoomMateResponse<RoomMate> update(@PathVariable long boardNo, @RequestBody RoomMateDto roomMateDto) {
-        RoomMateResponse<RoomMate> response = new RoomMateResponse<>();
-        RoomMate roomMate = roomMateService.update(boardNo, roomMateDto);
-        response.setData(roomMate);
-        return response;
-    }
-
-    /**
-     * 게시글 조회
-     * @param boardNo
-     * @return
-     */
-    @GetMapping("/{boardNo}")
-    public RoomMateResponse<Map<String, Object>> getBoard(@PathVariable long boardNo) {
-        RoomMateResponse<Map<String, Object>> response = new RoomMateResponse<>();
-        RoomMate roomMate = roomMateService.get(boardNo);
-        Map<String, Object> map = new HashMap<>();
-        map.put("roomMate", roomMate);
-        response.setData(map);
-        return response;
-    }
-
-    /**
-     * 게시글 삭제
-     * @param boardNo
-     * @return
-     */
-    @DeleteMapping("/delete/{boardNo}")
-    public RoomMateResponse<Boolean> delete(@PathVariable long boardNo) {
-        RoomMateResponse<Boolean> response = new RoomMateResponse<>();
-        Boolean boo = roomMateService.delete(boardNo);
-        response.setData(boo);
-        return response;
-
+//    /**
+//     * 게시글 수정
+//     * @param boardNo
+//     * @param roomMateDto
+//     * @return
+//     */
+//    @PostMapping("/update/{boardNo}")
+//    public RoomMateResponse<RoomMate> update(@PathVariable long boardNo, @RequestBody RoomMateDto roomMateDto) {
+//        RoomMateResponse<RoomMate> response = new RoomMateResponse<>();
+//        RoomMate roomMate = roomMateService.update(boardNo, roomMateDto);
+//        response.setData(roomMate);
+//        return response;
+//    }
+//
+//    /**
+//     * 게시글 조회
+//     * @param boardNo
+//     * @return
+//     */
+//    @GetMapping("/{boardNo}")
+//    public RoomMateResponse<Map<String, Object>> getBoard(@PathVariable long boardNo) {
+//        RoomMateResponse<Map<String, Object>> response = new RoomMateResponse<>();
+//        RoomMate roomMate = roomMateService.get(boardNo);
+//        Map<String, Object> map = new HashMap<>();
+//        map.put("roomMate", roomMate);
+//        response.setData(map);
+//        return response;
+//    }
+//
+//    /**
+//     * 게시글 삭제
+//     * @param boardNo
+//     * @return
+//     */
+//    @DeleteMapping("/delete/{boardNo}")
+//    public RoomMateResponse<Boolean> delete(@PathVariable long boardNo) {
+//        RoomMateResponse<Boolean> response = new RoomMateResponse<>();
+//        Boolean boo = roomMateService.delete(boardNo);
+//        response.setData(boo);
+//        return response;
+//    }
 }
