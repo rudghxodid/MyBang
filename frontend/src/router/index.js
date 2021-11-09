@@ -12,6 +12,13 @@ import BrokerRegister from '@/views/BrokerRegister'
 import HostPage from '@/views/HostPage'
 import RoomMateList from '../views/roommate/List';
 import RoomMateModify from '../views/roommate/Modify';
+import ProductRegisterPage from '@/views/product/ProductRegisterPage'
+import ProductListPage from '@/views/product/ProductListPage'
+import ProductReadPage from '@/views/product/ProductReadPage'
+import ProductModifyPage from '@/views/product/ProductModifyPage'
+
+// Map
+import Villa from '@/views/house/Villa'
 
 Vue.use(VueRouter)
 
@@ -64,7 +71,7 @@ const routes = [
     component: ModifyPassword
   },
   {
-    path: '/RegisterInfo',
+    path: '/registerInfo',
     name: 'BrokerRegister',
     component: BrokerRegister
   },
@@ -88,8 +95,43 @@ const routes = [
     name: 'RoomMateModify',
     component: RoomMateModify
   },
-
-
+  {
+    path: '/product/register',
+    name: 'ProductRegisterPage',
+    components: {
+      default: ProductRegisterPage
+    }
+  },
+  {
+    path: '/product/list',
+    name: 'ProductListPage',
+    component: ProductListPage
+  },
+  {
+    path: '/product/:productNo',
+    name: 'ProductReadPage',
+    components: {
+      default: ProductReadPage
+    },
+    props: {
+      default: true
+    }
+  },
+  {
+    path: '/product/:productNo/edit',
+    name: 'ProductModifyPage',
+    components: {
+      default: ProductModifyPage
+    },
+    props: {
+      default: true
+    },
+  },
+  {
+    path: '/villa',
+    name: 'Villa',
+    component: Villa
+  },
 ]
 
 const router = new VueRouter({

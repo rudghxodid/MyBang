@@ -2,6 +2,7 @@ package com.mybang.khweb.controller;
 
 import com.mybang.khweb.controller.session.UserInfo;
 import com.mybang.khweb.entity.Member;
+import com.mybang.khweb.entity.memberRelated.LikedProduct;
 import com.mybang.khweb.request.MemberDto;
 import com.mybang.khweb.request.MemberRequest;
 import com.mybang.khweb.service.MemberService;
@@ -172,7 +173,7 @@ public class MemberController {
     //회원 목록 출력하기
     @GetMapping("/memberlists")
     public ResponseEntity lists() throws Exception {
-        log.info("Recommend Lists");
+        log.info("Member Lists");
 
         List<Member> members = service.list();
 
@@ -186,6 +187,36 @@ public class MemberController {
         service.remove(member);
 
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    // 찜하기
+    @PostMapping("/addLikedProduct")
+    public ResponseEntity<Void> addLikedProduct(@Validated @RequestBody LikedProduct likedProduct) {
+        log.info("addLikedProduct(): " + likedProduct);
+
+        service.addLikedProduct(likedProduct);
+
+        return new ResponseEntity<Void>(HttpStatus.OK);
+    }
+
+    // 찜목록
+    @GetMapping("/likedProductList/{memberNo}")
+    public ResponseEntity<List<LikedProduct>> getLikedProductList(@PathVariable("memberNo") Integer memberNo) {
+        log.info("getLikedProductList(): " + memberNo);
+
+        List<LikedProduct> likedProductList = service.getLikedProductList(memberNo);
+
+        return new ResponseEntity<List<LikedProduct>>(likedProductList, HttpStatus.OK);
+    }
+
+    // 찜삭제
+    @PutMapping("/deleteLikedProduct")
+    public ResponseEntity<Void> deleteLikedProduct(@Validated @RequestBody LikedProduct likedProduct) {
+        log.info("deleteLikedProduct(): " + likedProduct);
+
+        service.deleteLikedProduct(likedProduct);
+
+        return new ResponseEntity<Void>(HttpStatus.OK);
     }
 }
 
