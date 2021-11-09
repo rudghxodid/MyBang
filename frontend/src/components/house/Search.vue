@@ -1,10 +1,21 @@
 <template>
-  <v-card>
-    <v-toolbar>
-      <v-text-field v-model="search" @keyup="searchStation" label="역" append-icon="mdi-magnify" solo hide-details></v-text-field>
-    </v-toolbar>
-    <v-card v-if="searchList" flat>
-      <v-list>
+  <v-card max-width="250">
+    <v-row class="mt-1 mx-1">
+      <v-col>
+        <v-autocomplete v-model="gu" label="구" solo></v-autocomplete>
+      </v-col>
+      <v-col>
+        <v-autocomplete v-model="dong" label="동" solo></v-autocomplete>
+      </v-col>
+    </v-row>
+    
+    <v-menu offset-y>
+      <template v-slot:activator="{on}">
+        <v-text-field v-model="search" v-on="on" @keyup="searchStation" label="역" 
+          class="mx-3 mb-3" append-icon="mdi-magnify" solo hide-details></v-text-field>
+      </template>
+      <v-list v-if="searchList" id="scrolling-techniques-7" class="overflow-y-auto" 
+        max-height="350">
         <v-list-item-group v-for="list in searchList" :key="list.index">
             <v-list-item @click="selectStation(list.name, list.lat, list.lng)">
               <v-list-item-content>
@@ -15,7 +26,7 @@
             </v-list-item>
           </v-list-item-group>
       </v-list>
-    </v-card>
+    </v-menu>
   </v-card>
 </template>
 
@@ -27,15 +38,20 @@ export default {
   data () {
     return {
       search: null,
-      searchList: null
+      searchList: null,
+      gu: null,
+      dong: null
     }
   },
   methods: {
     searchStation () {
       if (this.search) {
         axios.get(`http://localhost:7777/station/${this.search}`).then(res => {
-          console.log(res.data)
-          this.searchList = res.data
+          if (res.data.length != 0) {
+            this.searchList = res.data
+          } else {
+            this.searchList = null
+          }
         }) 
       }   
     },

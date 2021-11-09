@@ -8,9 +8,10 @@ import {
 
   // 매물게시판
   FETCH_PRODUCT_LIST,
-  FETCH_PRODUCT
+  FETCH_PRODUCT,
 
-
+  // Villa
+  FETCH_VILLA_LIST
 
 } from './mutation-types'
 
@@ -38,5 +39,7 @@ export default {
   [FETCH_PRODUCT] (state, product) {
     state.product = product
   },
-
+  [FETCH_VILLA_LIST] (state, villaList) {
+    state.villaList = villaList
+  }
 }

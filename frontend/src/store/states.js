@@ -41,5 +41,8 @@ export default {
     product: null,
 
     // 찜하기
-    likedProductList: []
+    likedProductList: [],
+
+    // Villa
+    villaList: []
 }

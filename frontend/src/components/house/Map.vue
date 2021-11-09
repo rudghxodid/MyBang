@@ -9,10 +9,11 @@
       style="width: 70%; height: 100%; float: left;"
       @idle="idle">
 
-      <div v-if="zoomLevel >= 14">
+      <div v-if="zoomLevel >= 12">
         <naver-map-marker-cluster :options="cluster.options">
           <naver-map-marker v-for="list in villaList" :key="list.index"
-            :options="{ position: { lat: list.lat, lng: list.lng } }"
+            :options="{ position: { lat: list.lat, lng: list.lng },
+                        icon: iconContent(list.deposit)}"
             @click="viewInfo(list)"/>
         </naver-map-marker-cluster>
       </div>
@@ -29,23 +30,21 @@
           @click="showCircle(list.lat, list.lng)">
         </naver-map-marker>  
       </div>
-      
-
     </naver-map>
     
-    <Info :info="houseInfo"></Info>
+    <InfoDetail :info="houseInfo"></InfoDetail>
   </v-sheet>
 </template>
 
 <script>
-import Info from '@/components/house/Info'
+import InfoDetail from '@/components/house/InfoDetail'
 import Search from '@/components/house/Search'
 import axios from 'axios'
 import seoulGu from '@/assets/data/seoul_gu'
 
 export default {
   components: {
-    Info,
+    InfoDetail,
     Search
   },
   data() {
@@ -55,8 +54,7 @@ export default {
       center: { lat: 37.5285549, lng: 127.0370612 },
       cluster: {
         options: {
-          maxZoom: 17,
-          averageCenter: true,
+          maxZoom: 16,
           icons: [
             {content: `<div class="cluster lv1"></div>`},
             {content: `<div class="cluster lv2"></div>`},
@@ -102,6 +100,11 @@ export default {
     viewInfo(info) {
       this.houseInfo = info
       console.log(this.houseInfo)
+    },
+    iconContent (deposit) {
+      let cost = deposit / 10000
+      let strCost = cost.toString() + '억'
+      return { content: `<div class="marker-html">${strCost}</div>` }
     },
     showCircle (lat, lng) {
       const coords = new window.naver.maps.LatLng(lat, lng)
@@ -173,6 +176,7 @@ export default {
       this.$refs.maps.map.data.removeGeoJson(geojson)
       this.infoWindow.close()
     },
+    
   }
 }
 </script>
@@ -196,6 +200,7 @@ export default {
       background: #77ACF1;
       color: white;
       border-color: white;
+      z-index: 1;
     }
   }
   .cluster {
