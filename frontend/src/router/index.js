@@ -17,6 +17,9 @@ import ProductListPage from '@/views/product/ProductListPage'
 import ProductReadPage from '@/views/product/ProductReadPage'
 import ProductModifyPage from '@/views/product/ProductModifyPage'
 
+import VillaRegisterPage from '@/views/villa/VillaRegisterPage'
+import VillaReadPage from '@/views/villa/VillaReadPage'
+
 // Map
 import Villa from '@/views/house/Villa'
 
@@ -117,6 +120,21 @@ const routes = [
     path: '/villa',
     name: 'Villa',
     component: Villa
+  },
+  {
+    path: '/villa/register',
+    name: 'VillaRegisterPage',
+    component: VillaRegisterPage
+  },
+  {
+    path: '/villa/:villaNo',
+    name: 'VillaReadPage',
+    components: {
+      default: VillaReadPage
+    },
+    props: {
+      default: true
+    }
   },
 ]
 

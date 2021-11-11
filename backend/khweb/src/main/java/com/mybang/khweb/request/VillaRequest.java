@@ -5,7 +5,7 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-public class ProductRequest {
+public class VillaRequest {
     private String address;
     private String agentAddress;
     private String agentEmail;
@@ -44,5 +44,4 @@ public class ProductRequest {
     private String userIntro;
     private String userName;
     private String url;
-    private String monthlyRent;
 }

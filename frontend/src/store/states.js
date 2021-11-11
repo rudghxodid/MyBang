@@ -39,7 +39,9 @@ export default {
     // 매물게시판
     products: [],
     product: null,
+    villas: [],
+    villa: null,
 
     // 찜하기
-    likedProductList: []
+    likedProductList: [],
 }
