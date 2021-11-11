@@ -4,12 +4,12 @@
 
     <naver-map
       ref="maps"
-      :center="{ lat: center.lat, lng: center.lng }"
+      :center="center"
       :zoom="zoomLevel"
       style="width: 70%; height: 100%; float: left;"
       @idle="idle">
 
-      <div v-if="zoomLevel >= 12">
+      <div>
         <naver-map-marker-cluster :options="cluster.options">
           <naver-map-marker v-for="list in villaList" :key="list.index"
             :options="{ position: { lat: list.lat, lng: list.lng },
@@ -31,16 +31,37 @@
         </naver-map-marker>  
       </div>
     </naver-map>
+
+    <v-card v-if="selectLength" width="400" style="float:right;" class="overflow-y-auto"
+      id="scrolling-techniques-7" max-height="700"> 
+      <v-card-title>{{selectLength}}개의 매물</v-card-title>
+      <v-divider></v-divider>
+      <v-list v-for="list in selectVillaList" :key="list.index">
+        
+        <v-list-item-group>
+          <v-list-item three-line @click="viewInfo(list)">
+            <img :src="imageList(list.image)" class="mr-3" width="40%">
+            <v-list-item-content>
+              <v-list-item-subtitle class="caption">{{list.roomType}} · {{list.sizeM2}}㎡</v-list-item-subtitle>
+              <v-list-item-title class="title my-2">{{list.salesType}} {{list.deposit}}</v-list-item-title>
+              <v-list-item-subtitle>{{list.title}}</v-list-item-subtitle>
+            </v-list-item-content> 
+          </v-list-item>
+        </v-list-item-group>
+      </v-list>
+    </v-card>
     
-    <InfoDetail :info="houseInfo"></InfoDetail>
+    <v-dialog v-model="dialog" max-width="400">
+      <InfoDetail :info="houseInfo"></InfoDetail>
+    </v-dialog>
   </v-sheet>
 </template>
 
 <script>
+import seoulGu from '@/assets/data/seoul_gu'
 import InfoDetail from '@/components/house/InfoDetail'
 import Search from '@/components/house/Search'
 import axios from 'axios'
-import seoulGu from '@/assets/data/seoul_gu'
 
 export default {
   components: {
@@ -66,7 +87,10 @@ export default {
       },
       houseInfo: null,
       zoomLevel: 11,
-      infoWindow: null
+      infoWindow: null,
+      dialog: false,
+      selectVillaList: [],
+      selectLength: null
     }
   },
   watch: {
@@ -88,18 +112,35 @@ export default {
     axios.get('http://localhost:7777/villa/lists').then(res => {
       this.villaList = res.data
       console.log(this.villaList)
-      this.houseInfo = this.villaList[0]
     })
 
     axios.get('http://localhost:7777/station/lists').then(res => {
       this.stationList = res.data
-      console.log(this.stationList)
     })
   },
   methods: {
+    idle () {
+      this.zoomLevel = this.$refs.maps.map.getZoom()
+
+      let bounds = { max: { x: this.$refs.maps.map.getBounds()._max.x, y: this.$refs.maps.map.getBounds()._max.y},
+                     min: { x: this.$refs.maps.map.getBounds()._min.x, y: this.$refs.maps.map.getBounds()._min.y}}
+
+      this.selectVillaList = []
+
+      for (let i = 0; i < this.villaList.length; i++) {
+        if (bounds.min.y < this.villaList[i].lat && this.villaList[i].lat < bounds.max.y && 
+            bounds.min.x < this.villaList[i].lng && this.villaList[i].lng < bounds.max.x) {
+          this.selectVillaList.push(this.villaList[i])
+        }
+      }
+      this.selectLength = this.selectVillaList.length
+      console.log(this.selectLength)
+      console.log(this.selectVillaList)
+    },
     viewInfo(info) {
       this.houseInfo = info
       console.log(this.houseInfo)
+      this.dialog = true
     },
     iconContent (deposit) {
       let cost = deposit / 10000
@@ -123,9 +164,6 @@ export default {
       setTimeout(() => {
         mapCircle.setMap(null)
       }, 2000)
-    },
-    idle () {
-      this.zoomLevel = this.$refs.maps.map.getZoom()
     },
     selectStation (lat, lng) {
       this.showCircle(lat,lng)
@@ -176,7 +214,9 @@ export default {
       this.$refs.maps.map.data.removeGeoJson(geojson)
       this.infoWindow.close()
     },
-    
+    imageList (imageList) {
+      return imageList.split(',')[0]
+    },
   }
 }
 </script>

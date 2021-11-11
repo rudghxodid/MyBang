@@ -1,6 +1,5 @@
 <template>
-  <v-card width="400" style="float:right;" v-if="info" class="grey lighten-4 overflow-y-auto"
-    id="scrolling-techniques-7" max-height="700"> 
+  <v-card class="grey lighten-4"> 
     <v-card flat>
       <v-card-title>
         {{info.local1}}
