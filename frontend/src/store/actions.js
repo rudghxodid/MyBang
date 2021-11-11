@@ -12,7 +12,10 @@ import {
 
   // 찜하기 
   FETCH_LIKED_PRODUCT_LIST,
-  FETCH_PRODUCT_INFO
+  FETCH_PRODUCT_INFO,
+
+  // Villa
+  FETCH_VILLA_LIST
 
 } 
 
@@ -71,6 +74,13 @@ export default {
       .then(res => {
         commit(FETCH_PRODUCT_INFO, res.data);
       });
-    }
+    },
+
+  fetchVillaList({ commit }) {
+    return axios.get('http://localhost:7777/villa/lists').then(res => {
+      console.log(res.data)
+      commit(FETCH_VILLA_LIST, res.data)
+    })
+  }
 
 }
