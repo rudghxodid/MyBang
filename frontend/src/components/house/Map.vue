@@ -32,7 +32,7 @@
       </div>
     </naver-map>
 
-    <v-card v-if="selectLength" width="400" style="float:right;" class="overflow-y-auto"
+    <v-card width="400" style="float:right;" class="overflow-y-auto"
       id="scrolling-techniques-7" max-height="700"> 
       <v-card-title>{{selectLength}}개의 매물</v-card-title>
       <v-divider></v-divider>
@@ -120,22 +120,24 @@ export default {
   },
   methods: {
     idle () {
-      this.zoomLevel = this.$refs.maps.map.getZoom()
+      let map = this.$refs.maps.map
 
-      let bounds = { max: { x: this.$refs.maps.map.getBounds()._max.x, y: this.$refs.maps.map.getBounds()._max.y},
-                     min: { x: this.$refs.maps.map.getBounds()._min.x, y: this.$refs.maps.map.getBounds()._min.y}}
+      this.zoomLevel = map.getZoom()
 
       this.selectVillaList = []
 
-      for (let i = 0; i < this.villaList.length; i++) {
-        if (bounds.min.y < this.villaList[i].lat && this.villaList[i].lat < bounds.max.y && 
-            bounds.min.x < this.villaList[i].lng && this.villaList[i].lng < bounds.max.x) {
-          this.selectVillaList.push(this.villaList[i])
+      const list = this.villaList
+
+      for (let i = 0; i < list.length; i++) {
+        let coords = new window.naver.maps.LatLng(list[i].lat, list[i].lng)
+
+        if (map.getBounds().hasLatLng(coords)) {
+          this.selectVillaList.push(list[i])
         }
       }
       this.selectLength = this.selectVillaList.length
       console.log(this.selectLength)
-      console.log(this.selectVillaList)
+      //console.log(this.selectVillaList)
     },
     viewInfo(info) {
       this.houseInfo = info
