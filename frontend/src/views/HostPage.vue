@@ -1,7 +1,13 @@
 <template>
 <div id="member">
     <h3>관리자 페이지</h3>
-     <member-list :members="members"/>
+    <select v-model="selected" multiple @click="SelectPage">
+    <option disabled value="">골라주세요</option>
+    <option>회원</option>
+    <option>공지사항</option>
+    <option>매물</option>
+</select>
+    <member-list :members="members"/>  
 </div>
 </template>
 
@@ -17,6 +23,11 @@ export default {
     components: {
         MemberList
     },
+    data() {
+        return {
+            selected: ''
+        }
+    },
     
     computed: {
         ...mapState(['members'])
@@ -26,7 +37,15 @@ export default {
     },
     
     methods: {
-        ...mapActions(['fetchMemberList'])
+        ...mapActions(['fetchMemberList']),
+        SelectPage() {
+            if(this.selected == '회원') {
+                this.$router.push({name: 'MemberList'})
+            }
+            else if(this.selected == '매물') {
+                this.$router.push({name: 'BrokerRegister'})
+            }
+        }
     }
 }
 </script>
