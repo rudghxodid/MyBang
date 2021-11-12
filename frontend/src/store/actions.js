@@ -15,7 +15,11 @@ import {
   FETCH_PRODUCT_INFO,
 
   // Villa
-  FETCH_VILLA_LIST
+  FETCH_VILLA_LIST,
+
+  //뉴스 크롤링
+  CRAWL_START,
+
 
 } 
 
@@ -81,6 +85,18 @@ export default {
       console.log(res.data)
       commit(FETCH_VILLA_LIST, res.data)
     })
-  }
+  },
+
+  // 뉴스 크롤링
+  async crawlFind ({ commit }, category) {
+    axios.get('http://localhost:7777/' + `${category}`)
+            .then(({ data }) => {
+                commit(CRAWL_START, data)
+
+                // if (window.location.pathname !== '/daumNewsCrawler') {
+                //     router.push('/daumNewsCrawler')
+                // }
+            })
+},
 
 }
