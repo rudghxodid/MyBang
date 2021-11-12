@@ -8,7 +8,11 @@
     <option>매물</option>
 </select>
     <member-list :members="members"/>  
+<v-btn @click="GongziRegister">공지작성</v-btn>
+<v-btn @click="GongziList">공지목록</v-btn>
+    
 </div>
+
 </template>
 
 
@@ -45,6 +49,12 @@ export default {
             else if(this.selected == '매물') {
                 this.$router.push({name: 'BrokerRegister'})
             }
+        },
+        GongziRegister() {
+            this.$router.push('/gongzi/create')
+        },
+        GongziList() {
+            this.$router.push('/gongzi')
         }
     }
 }

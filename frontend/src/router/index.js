@@ -20,6 +20,10 @@ import ProductModifyPage from '@/views/product/ProductModifyPage'
 // Map
 import Villa from '@/views/house/Villa'
 
+import GongziListPage from '@/views/GongziListPage.vue'
+import GongziRegisterPage from '@/views/GongziRegisterPage.vue'
+import GongziReadPage from '@/views/GongziReadPage.vue'
+
 
 Vue.use(VueRouter)
 
@@ -113,11 +117,35 @@ const routes = [
       default: true
     },
   },
+  
   {
     path: '/villa',
     name: 'Villa',
     component: Villa
   },
+  {
+    path: '/gongzi/create',
+    name: 'GongziRegisterPage',
+    components: {
+      default: GongziRegisterPage
+    }
+  },
+  {
+    path: '/gongzi/:gongziNo',
+    name: 'GongziReadPage',
+    components: {
+      default: GongziReadPage
+    }
+  },
+  {
+      path: '/gongzi',
+      name: 'GongziListPage',
+      components: {
+        default: GongziListPage
+      }
+    }
+
+
 ]
 
 const router = new VueRouter({

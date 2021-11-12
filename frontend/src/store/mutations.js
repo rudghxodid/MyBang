@@ -8,7 +8,11 @@ import {
 
   // 매물게시판
   FETCH_PRODUCT_LIST,
-  FETCH_PRODUCT
+  FETCH_PRODUCT,
+
+
+  FETCH_GONGZI,
+  FETCH_GONGZI_LIST,
 
 
 
@@ -38,5 +42,11 @@ export default {
   [FETCH_PRODUCT] (state, product) {
     state.product = product
   },
+  [FETCH_GONGZI_LIST] (state, gongzis) {
+    state.gongzis = gongzis;
+},
+[FETCH_GONGZI] (state, gongzi) {
+    state.gongzi = gongzi
+},
 
 }

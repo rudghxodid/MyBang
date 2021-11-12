@@ -12,7 +12,10 @@ import {
 
   // 찜하기 
   FETCH_LIKED_PRODUCT_LIST,
-  FETCH_PRODUCT_INFO
+  FETCH_PRODUCT_INFO,
+
+  FETCH_GONGZI_LIST,
+    FETCH_GONGZI,
 
 } 
 
@@ -71,6 +74,18 @@ export default {
       .then(res => {
         commit(FETCH_PRODUCT_INFO, res.data);
       });
-    }
+    },
+    fetchGongziList ({ commit }) {
+      return axios.get('http://localhost:7777/gongzi/list')
+              .then((res) => {
+                  commit(FETCH_GONGZI_LIST, res.data)
+              })
+  },
+  fetchGongzi ({ commit }, gongziNo) {
+      return axios.get(`http://localhost:7777/gongzi/${gongziNo}`)
+              .then((res) => {
+                  commit(FETCH_GONGZI, res.data)
+              })
+  }
 
 }
