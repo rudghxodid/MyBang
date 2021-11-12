@@ -16,3 +16,6 @@ export const FETCH_PRODUCT_INFO = 'FETCH_PRODUCT_INFO'
 
 // Villa
 export const FETCH_VILLA_LIST = 'FETCH_VILLA_LIST'
+
+//크롤링
+export const CRAWL_START = 'CRAWL_START'

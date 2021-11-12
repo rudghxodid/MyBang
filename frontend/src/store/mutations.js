@@ -17,7 +17,10 @@ import {
 
 
   // Villa
-  FETCH_VILLA_LIST
+  FETCH_VILLA_LIST,
+
+  // 뉴스 크롤링
+  CRAWL_START,
 
 } from './mutation-types'
 
@@ -56,6 +59,14 @@ export default {
 
   [FETCH_VILLA_LIST] (state, villaList) {
     state.villaList = villaList
+
   }
+
+
+  },
+
+  [CRAWL_START] (state, payload) {
+    state.lists = payload
+},
 
 }
