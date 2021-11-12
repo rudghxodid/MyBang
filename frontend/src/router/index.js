@@ -20,6 +20,11 @@ import ProductModifyPage from '@/views/product/ProductModifyPage'
 // Map
 import Villa from '@/views/house/Villa'
 
+// 부동산 뉴스
+import News from '@/views/News'
+
+
+
 
 Vue.use(VueRouter)
 
@@ -118,6 +123,17 @@ const routes = [
     name: 'Villa',
     component: Villa
   },
+  
+  // 부동산 뉴스
+  {
+    path: '/news',
+    name: 'News',
+    component: News
+  },
+
+
+  
+  
 ]
 
 const router = new VueRouter({
