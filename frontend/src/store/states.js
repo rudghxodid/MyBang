@@ -43,7 +43,13 @@ export default {
 
     // 찜하기
     likedProductList: [],
+
     gongzis: [],
     gongzi: null,
     lists: [],
+
+
+    // Villa
+    villaList: []
+
 }

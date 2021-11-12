@@ -14,8 +14,12 @@ import {
   FETCH_LIKED_PRODUCT_LIST,
   FETCH_PRODUCT_INFO,
 
+
   FETCH_GONGZI_LIST,
     FETCH_GONGZI,
+
+  // Villa
+  FETCH_VILLA_LIST
 
 } 
 
@@ -75,6 +79,7 @@ export default {
         commit(FETCH_PRODUCT_INFO, res.data);
       });
     },
+
     fetchGongziList ({ commit }) {
       return axios.get('http://localhost:7777/gongzi/list')
               .then((res) => {
@@ -86,6 +91,14 @@ export default {
               .then((res) => {
                   commit(FETCH_GONGZI, res.data)
               })
+
+            },
+  fetchVillaList({ commit }) {
+    return axios.get('http://localhost:7777/villa/lists').then(res => {
+      console.log(res.data)
+      commit(FETCH_VILLA_LIST, res.data)
+    })
+
   }
 
 }

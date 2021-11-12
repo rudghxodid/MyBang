@@ -1,5 +1,5 @@
 <template>
-  <v-sheet class="fill-height pa-0 align-start">
+  <v-sheet class="fill-height">
     <Map></Map>
   </v-sheet>
 
@@ -14,7 +14,15 @@ import Map from '@/components/house/Map'
 export default {
   components: {
     Map,
-  }
+  },
+  data () {
+    return {
+      
+    }
+  },
+  mounted () {
+
+  },
   
 }
 </script>
