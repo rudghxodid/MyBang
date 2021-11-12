@@ -1,92 +1,103 @@
 <template>
     <v-container>
-
             <div class="mx-3"> 
                 <v-icon color="black" size="30px"></v-icon>
-                    이미지
+                    사진 등록
                 <div class="mx-1">
-                    <v-img max-height="400" max-width="350">
-                    <img :src="require(`@/assets/productUploadImage/${this.product.image}`)"></v-img>
-                </div> 
+                    대표사진
+                    <input type="file" id="files" ref="files" height="100%" width="100%" multiple v-on:change="handleFileUpload()">
+                </div>
+                <!--
+                <div class="mx-1">
+                    화장실
+                    <input type="file" id="files" ref="files" height="100%" width="100%" multiple v-on:change="handleFileUpload()">
+                </div>
+                <div class="mx-1">
+                    주방
+                    <input type="file" id="files" ref="files" height="100%" width="100%" multiple v-on:change="handleFileUpload()">
+                </div>
+                <div class="mx-1">
+                    방사진
+                    <input type="file" id="files" ref="files" height="100%" width="100%" multiple v-on:change="handleFileUpload()">
+                </div>
+                <div class="mx-1">
+                    방사진
+                    <input type="file" id="files" ref="files" height="100%" width="100%" multiple v-on:change="handleFileUpload()">
+                </div>
+                <div class="mx-1">
+                    방사진
+                    <input type="file" id="files" ref="files" height="100%" width="100%" multiple v-on:change="handleFileUpload()">
+                </div>
+                -->
             </div>
 
             <div class="mx-3">
-                <v-icon color="black" size="30px">home</v-icon>
-                    특징
+                <v-icon color="black" size="30px"></v-icon>
+                    보증금
                 <v-list-item class="mx-1">
-                    <v-text-field placeholder="건물의 특징을 40자 이내로 적어주세요." :value="product.title"  disabled></v-text-field>
+                    <v-text-field placeholder="건물의 특징을 40자 이내로 적어주세요." :value="deposit" required></v-text-field>
                 </v-list-item>
             </div> 
 
             <div class="mx-3"> 
                 <v-icon color="black" size="30px">label</v-icon>
-                상세설명
+                    월세 (전세일경우 0을 입력하세요)
                 <v-list-item class="mx-1">
-                    <v-text-field placeholder="자세한 정보를 적어주세요." :value="product.description"  disabled></v-text-field>
+                    <v-text-field placeholder="(전세일경우 0을 입력하세요)" :value="monthyRent" required></v-text-field>
                 </v-list-item> 
             </div> 
 
             <div class="mx-3"> 
                 <v-icon color="black" size="30px">label</v-icon>
-                보증금
+                방구조
                 <div class="mx-1">
-                    <v-text-field placeholder="보증금의 가격을 입력해주세요."  :value="product.deposit"  disabled></v-text-field>
+                    <v-text-field placeholder="방구조"  :value="roomType" required></v-text-field>
                 </div> 
             </div>
 
             <div class="mx-3"> 
                 <v-icon color="black" size="30px">label</v-icon>
-                가격
+                관리비
                 <div class="mx-1">
-                    <v-text-field placeholder="가격을 입력해주세요." :value="product.price"  disabled></v-text-field>
+                    <v-text-field placeholder="관리비" :value="manageCost" required></v-text-field>
+                </div> 
+            </div> 
+
+            <div class="mx-3"> 
+                <v-icon color="black" size="30px">label</v-icon>
+                관리비 포함 항목
+                <div class="mx-1">
+                    <v-text-field placeholder="관리비 포함 항목" :value="manageCostInc" required></v-text-field>
                 </div> 
             </div>
 
             <div class="mx-3"> 
                 <v-icon color="black" size="30px">label</v-icon>
-                층 위치
+                크기
                 <div class="mx-1">
-                    <v-text-field placeholder="몇 층에 위치해 있나요?" :value="product.floor"  disabled></v-text-field>
+                    <v-text-field placeholder="제곱미터단위로 입력해주세요" :value="sizeM2" required></v-text-field>
+                </div> 
+                <div class="mx-1">
+                    <v-text-field placeholder="방의 평수를 입력해주세요." :value="size" required></v-text-field>
                 </div> 
             </div>
 
             <div class="mx-3"> 
                 <v-icon color="black" size="30px">label</v-icon>
-                주소
+                층수
                 <div class="mx-1">
-                    <v-text-field placeholder="주소를 입력해주세요." :value="product.address"  disabled></v-text-field>
-                </div> 
+                    <v-text-field placeholder="건물 총 층수" :value="floorAll" required></v-text-field>
+                </div>
+                <div class="mx-1">
+                    <v-text-field placeholder="해당 층" :value="floor" required></v-text-field>
+                </div>  
             </div>
 
             <div class="mx-3"> 
                 <v-icon color="black" size="30px">label</v-icon>
-                면적(평 수)
+                방향
                 <div class="mx-1">
-                    <v-text-field placeholder="방의 평수를 입력해주세요." :value="product.size"  disabled></v-text-field>
-                </div> 
-            </div>
-
-            <div class="mx-3"> 
-                <v-icon color="black" size="30px">label</v-icon>
-                면적(제곱미터)
-                <div class="mx-1">
-                    <v-text-field placeholder="방의 면적을 제곱미터 단위로 입력해주세요." :value="product.size_m2"  disabled></v-text-field>
-                </div> 
-            </div>
-
-            <div class="mx-3"> 
-                <v-icon color="black" size="30px">label</v-icon>
-                광고 상태
-                <div class="mx-1">
-                    <v-text-field placeholder="광고여부의 상태 변환을 어케해야하지" :value="product.status"  disabled></v-text-field>
-                </div> 
-            </div>
-
-            <div class="mx-3"> 
-                <v-icon color="black" size="30px">label</v-icon>
-                건물 유형
-                <div class="mx-1">
-                    <v-text-field placeholder="건물 유형 빌라? 아파트? 원룸? 투룸? 아래에 메뉴바 나오게하기" :value="product.room_type"  disabled></v-text-field>
+                    <v-text-field placeholder="남향? 북향?" :value="roomDirection" required></v-text-field>
                 </div> 
             </div>
 
@@ -94,26 +105,65 @@
                 <v-icon color="black" size="30px">label</v-icon>
                 옵션
                 <div class="mx-1">
-                    <v-text-field placeholder="옵션의 여부를 입력해주세요." :value="product.manage_cost_inc"  disabled></v-text-field>
+                    <v-text-field placeholder="옵션" :value="options" required></v-text-field>
+                </div> 
+            </div>
+           
+            <div class="mx-3"> 
+                <v-icon color="black" size="30px">label</v-icon>
+                반려동물
+                <div class="mx-1">
+                    <v-text-field placeholder="반려동물" :value="pets" required></v-text-field>
+                </div> 
+            </div> 
+
+            <div class="mx-3"> 
+                <v-icon color="black" size="30px">label</v-icon>
+                주차
+                <div class="mx-1">
+                    <v-text-field placeholder="주차" :value="parking" required></v-text-field>
+                </div> 
+            </div>
+            
+            <div class="mx-3"> 
+                <v-icon color="black" size="30px">label</v-icon>
+                엘리베이터
+                <div class="mx-1">
+                    <v-text-field :items='option' placeholder="엘리베이터" :value="elevator" required></v-text-field>
                 </div> 
             </div>
 
             <div class="mx-3"> 
                 <v-icon color="black" size="30px">label</v-icon>
-                중개사무소
+                입주가능일
                 <div class="mx-1">
-                    <v-text-field placeholder="사무소의 이름을 입력해주세요." :value="product.agent_name"  disabled></v-text-field>
+                    <v-text-field :items='option' placeholder="입주가능일" :value="moveinDate" required></v-text-field>
                 </div> 
-            </div> 
+            </div>
 
             <div class="mx-3"> 
                 <v-icon color="black" size="30px">label</v-icon>
-                전화번호
+                제목
                 <div class="mx-1">
-                    <v-text-field placeholder="사업자의 전화번호를 입력해주세요." :value="product.agent_mobile"  disabled></v-text-field>
+                    <v-text-field placeholder="제목" :value="title" required></v-text-field>
                 </div> 
-            </div> 
+            </div>
 
+            <div class="mx-3"> 
+                <v-icon color="black" size="30px">label</v-icon>
+                상세설명
+                <div class="mx-1">
+                    <v-text-field placeholder="상세설명" :value="description" required></v-text-field>
+                </div> 
+            </div>
+
+            <div class="mx-3"> 
+                <v-icon color="black" size="30px">label</v-icon>
+                중개인 연락처
+                <div class="mx-1">
+                    <v-text-field placeholder="상세설명" :value="agentMobile" required></v-text-field>
+                </div> 
+            </div>
     </v-container>
 </template>
 

@@ -9,6 +9,8 @@ import {
   // 매물 게시판
   FETCH_PRODUCT_LIST,
   FETCH_PRODUCT,
+  FETCH_VILLA_LIST,
+  FETCH_VILLA,
 
   // 찜하기 
   FETCH_LIKED_PRODUCT_LIST,
@@ -65,16 +67,28 @@ export default {
           commit(FETCH_PRODUCT, res.data)
       })
   },
+  fetchVillaList ({commit}) {
+      return axios.get('http://localhost:7777/villa/lists')
+          .then((res) =>{
+              commit(FETCH_VILLA_LIST, res.data)
+          })
+  },
+  fetchVilla({ commit }, villaNo) {
+      return axios.get(`http://localhost:7777/villa/${villaNo}`)
+      .then((res) => {
+          commit(FETCH_VILLA, res.data)
+      })
+  },
   // 찜하기
   fetchLikedProductList ({ commit }, payload) {
-    return axios.get(`http://localhost:8888/product/likedProductList/${payload}`)
+    return axios.get(`http://localhost:7777/product/likedProductList/${payload}`)
             .then((res) => {
                 //alert(JSON.stringify(res.data))
                 commit(FETCH_LIKED_PRODUCT_LIST, res.data)
       })
   },
   fetchProductInfo({ commit }, payload) {
-    return axios.get(`http://localhost:8888/product/getProductInfo/${payload}`)
+    return axios.get(`http://localhost:7777/product/getProductInfo/${payload}`)
       .then(res => {
         commit(FETCH_PRODUCT_INFO, res.data);
       });
