@@ -8,6 +8,8 @@ export const FETCH_MEMBER = 'FETCH_MEMBER'
 
 export const FETCH_PRODUCT_LIST = 'FETCH_PRODUCT_LIST'
 export const FETCH_PRODUCT = 'FETCH_PRODUCT'
+export const FETCH_VILLA_LIST = 'FETCH_VILLA_LIST'
+export const FETCH_VILLA = 'FETCH_VILLA'
 
 export const FETCH_LIKED_PRODUCT_LIST = 'FETCH_LIKED_PRODUCT_LIST'
 export const FETCH_PRODUCT_INFO = 'FETCH_PRODUCT_INFO'
@@ -18,4 +20,9 @@ export const FETCH_GONGZI = 'FETCH_GONGZI'
 
 // Villa
 export const FETCH_VILLA_LIST = 'FETCH_VILLA_LIST'
+
+
+
+//크롤링
+export const CRAWL_START = 'CRAWL_START'
 

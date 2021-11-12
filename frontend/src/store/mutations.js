@@ -12,14 +12,22 @@ import {
 
 
 
+
   FETCH_GONGZI,
   FETCH_GONGZI_LIST,
+
+  FETCH_VILLA_LIST,
+  FETCH_VILLA,
+
 
 
 
 
   // Villa
-  FETCH_VILLA_LIST
+  FETCH_VILLA_LIST,
+
+  // 뉴스 크롤링
+  CRAWL_START,
 
 } from './mutation-types'
 
@@ -48,6 +56,7 @@ export default {
     state.product = product
   },
 
+
   [FETCH_GONGZI_LIST] (state, gongzis) {
     state.gongzis = gongzis;
 },
@@ -55,9 +64,27 @@ export default {
     state.gongzi = gongzi
 },
 
+  [FETCH_VILLA_LIST] (state, villas) {
+    state.villas = villas;
+  },
+  [FETCH_VILLA] (state, villa) {
+    state.villa = villa
+  },
+
+
 
   [FETCH_VILLA_LIST] (state, villaList) {
     state.villaList = villaList
-  }
+
+  },
+
+
+
+
+ 
+  [CRAWL_START] (state, payload) {
+    state.lists = payload
+},
+
 
 }

@@ -1,6 +1,5 @@
 package com.mybang.khweb.controller;
 
-import com.mybang.khweb.entity.Member;
 import com.mybang.khweb.entity.Product;
 import com.mybang.khweb.repository.ProductRepository;
 import com.mybang.khweb.request.ProductRequest;
@@ -31,7 +30,7 @@ public class ProductController {
     @PostMapping("/register")
     public ResponseEntity<Void> register(
             @Validated @RequestBody ProductRequest request) throws Exception {
-        log.info("register():" + request.getTitle() + request.getAgent_name());
+        log.info("register():");
 
         service.register(request);
 

@@ -17,12 +17,22 @@ import ProductListPage from '@/views/product/ProductListPage'
 import ProductReadPage from '@/views/product/ProductReadPage'
 import ProductModifyPage from '@/views/product/ProductModifyPage'
 
+import VillaRegisterPage from '@/views/villa/VillaRegisterPage'
+import VillaReadPage from '@/views/villa/VillaReadPage'
+
 // Map
 import Villa from '@/views/house/Villa'
+
 
 import GongziListPage from '@/views/GongziListPage.vue'
 import GongziRegisterPage from '@/views/GongziRegisterPage.vue'
 import GongziReadPage from '@/views/GongziReadPage.vue'
+
+// 부동산 뉴스
+import News from '@/views/News'
+
+
+
 
 
 Vue.use(VueRouter)
@@ -123,6 +133,7 @@ const routes = [
     name: 'Villa',
     component: Villa
   },
+
   {
     path: '/gongzi/create',
     name: 'GongziRegisterPage',
@@ -144,6 +155,36 @@ const routes = [
         default: GongziListPage
       }
     }
+
+
+
+  {
+    path: '/villa/register',
+    name: 'VillaRegisterPage',
+    component: VillaRegisterPage
+  },
+  {
+    path: '/villa/:villaNo',
+    name: 'VillaReadPage',
+    components: {
+      default: VillaReadPage
+    },
+    props: {
+      default: true
+    }
+  },
+
+  
+  // 부동산 뉴스
+  {
+    path: '/news',
+    name: 'News',
+    component: News
+  },
+
+
+  
+  
 
 
 ]
