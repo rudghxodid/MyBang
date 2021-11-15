@@ -35,43 +35,31 @@ public class RoomMateController {
         return response;
     }
 
-    // 게시글 목록
+    /**
+     * 게시글 목록
+     * @return
+     */
     @GetMapping("/list")
-    public RoomMateResponse<RoomMate> findAllRoomMate() {
-        RoomMateResponse<RoomMate> response = new RoomMateResponse<>();
+    public RoomMateResponse<List<RoomMate>> findAllRoomMate() {
+        RoomMateResponse<List<RoomMate>> response = new RoomMateResponse<>();
         List<RoomMate> roomMateList = roomMateService.findAllRoomMate();
+        response.setData(roomMateList);
         return response;
     }
 
-//
-//    public List<RoomMate> findAllRoomMate() {
-//        List<RoomMate> roomMateList = roomMateService.findAllRoomMate();
-//        return roomMateList;
-//    }
+    /**
+     * 게시글 읽기
+     * @return
+     */
+    @GetMapping("/{id}")
+    public RoomMateResponse<RoomMate> findById(@PathVariable("id") Long id) {
+        RoomMateResponse<RoomMate> response = new RoomMateResponse<>();
+//        RoomMate roomMate = roomMateService.findById();
+        RoomMate roomMate = roomMateService.findById(id);
+        response.setData(roomMate);
+        return response;
+    }
 
-
-
-//    @GetMapping("/list")
-//    public String list(Model model) {
-//        List<RoomMateDto> roomMateDtoList = roomMateService.getRoomMateList();
-//        model.addAttribute("roomMateDtoList", roomMateDtoList);
-//        return
-//    }
-
-    // 목록
-//    @GetMapping("/list")
-//    public List<RoomMateResponse> findAll() {
-//        return roomMateService.findAll();
-//    }
-
-    // 게시글 목록
-//    @GetMapping("/list")
-//    public RoomMateResponse<Page<Object[]>> getRoomMateList(@RequestBody Integer page, @PathVariable Integer size) {
-//        RoomMateResponse<Page<Object[]>> response = new RoomMateResponse<>();
-//        Page<Object[]> roomMateList = roomMateService.getRoomMateList(PageRequest.of(page - 1, size, Sort.Direction.DESC, "id"));
-//        response.setData(roomMateList);
-//        return response;
-//    }
 
 //    /**
 //     * 게시글 수정

@@ -18,13 +18,13 @@
 
 			<tbody>
 			<tr v-for="(b, index) in boardList" :key="index">
-				<td>{{b[0].id}}</td>
+				<td>{{b.id}}</td>
 				<td>
-					<router-link :to="`/community/detail/${b[0].id}`">{{b[0].title}}</router-link>
+					<router-link :to="`/roomMate/detail/${b.id}`">{{b.title}}</router-link>
 				</td>
-				<td>{{b[0].writerName}}</td>
-				<td>{{b[0].createdAt}}</td>
-				<td>{{b[0].count}}</td>
+				<td>{{b.writerName}}</td>
+				<td>{{b.createdAt}}</td>
+				<td>{{b.count}}</td>
 			</tr>
 			</tbody>
 
@@ -44,12 +44,12 @@
 </template>
 
 <script>
+  import api from "../../api";
+  // import dayjs from "dayjs";
   export default {
     name: "RoomMateList",
-    methods: {
-      onClickWriteBtn() {
-        this.$router.push({name: 'RoomMateCreate'});
-      },
+    async mounted() {
+      await this.fetchRoomMateList();
     },
     data() {
       return {
@@ -62,71 +62,26 @@
         // items: items
       };
     },
-    // methods : {
-    //   async fetchRoomMateList() {
-    //     return await axios.get('http://localhost:7777/roommate/list/')
-    //       .then((res) => {
-    //         this
-    //         }
-    //
-    //       )
-    //   }
-    // },
+    methods : {
+      async fetchRoomMateList() {
+        return await api.get('/roomMate/list')
+          .then((res) => {
+            this.boardList = res.data.data.reverse();
+          }).catch((err) => {
+	            console.log(err);
+	            alert("게시글 목록 조회 오류");
+		        });
+      },
+
+      onClickWriteBtn() {
+        this.$router.push({name: 'RoomMateCreate'});
+      },
+      async handlerPagenation(v) {
+        this.currentPage = v;
+        await this.fetchRoomMateList();
+      }
+    },
   }
-  // import api from "../../api/api";
-  // import dayjs from "dayjs";
-  //
-  // export default {
-  //   name: "RoomMateList",
-  //   async mounted() {
-  //     await this.fetchBoardList();
-  //   },
-  //   data() {
-  //     return {
-  //       currentPage: 1, // 현재 페이지
-  //       perPage: 10, // 페이지당 보여줄 갯수
-  //       totalPage: '',
-  //       totalItems: '',
-  //       // bootstrap 'b-table' 필드 설정
-  //       boardList: [],
-  //       // items: items
-  //     };
-  //   },
-  //   methods: {
-  //     async fetchBoardList() {
-  //       return await api.get(`/list/${this.currentPage}/${this.perPage}`)
-  //         .then((res) => {
-  //           this.boardList = res.data.data.content;
-  //           this.boardList.map((v) => {
-  //             v[0].createdAt = dayjs(v[0].createdAt).format("YYYY-MM-DD HH:mm");
-  //           })
-  //           this.totalPage = res.data.data.totalPages;
-  //           this.totalItems = res.data.data.totalElements;
-  //           console.log(this.boardList);
-  //         }).catch((err) => {
-  //           console.log(err);
-  //           alert("게시글 목록 조회 오류");
-  //         });
-  //     },
-  //     rowClick(item) {
-  //       this.$router.push({
-  //         path: `/community/detail/${item.id}`
-  //       });
-  //     },
-  //     onClickWriteBtn() {
-  //       this.$router.push({name: 'BoardCreate'});
-  //     },
-  //     async handlerPagenation(v) {
-  //       this.currentPage = v;
-  //       await this.fetchBoardList();
-  //     }
-  //   },
-  //   computed: {
-  //     rows() {
-  //       return this.items.length;
-  //     }
-  //   },
-  // }
 </script>
 
 <style scoped>
@@ -144,7 +99,6 @@
 
 	.v-application a {
 		text-decoration: none;
-		background-color: #000;
 		color: yellow;
 		padding: 5px;
 	}

@@ -12,6 +12,7 @@ import BrokerRegister from '@/views/BrokerRegister'
 import HostPage from '@/views/HostPage'
 import RoomMateList from '../views/roommate/List';
 import RoomMateModify from '../views/roommate/Modify';
+import RoomMateDetail from '../views/roommate/Detail';
 import ProductRegisterPage from '@/views/product/ProductRegisterPage'
 import ProductListPage from '@/views/product/ProductListPage'
 import ProductReadPage from '@/views/product/ProductReadPage'
@@ -94,6 +95,11 @@ const routes = [
     path: '/roommate/modify/:id',
     name: 'RoomMateModify',
     component: RoomMateModify
+  },
+  {
+    path: '/roomMate/detail/:id',
+    name: 'RoomMateDetail',
+    component: RoomMateDetail
   },
   {
     path: '/product/register',

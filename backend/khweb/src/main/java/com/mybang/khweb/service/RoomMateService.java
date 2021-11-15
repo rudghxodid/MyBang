@@ -12,6 +12,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -39,7 +40,25 @@ public class RoomMateService {
         roomMateRepository.save(roomMate);
         return roomMate;
     }
+    // 게시글 목록
+    public List<RoomMate> findAllRoomMate() {
+        return roomMateRepository.findAll();
+    }
 
+
+
+    // 게시글 읽기
+    public RoomMate findById(Long id) {
+        RoomMate roomMate = roomMateRepository.findById(id).orElse(null);
+        Member member = memberRepository.findById(roomMate.getWriter()).orElse(null);
+        roomMate.setWriterName(member.getUserId());
+
+        if (roomMate != null) {
+            roomMate.setCount(roomMate.getCount() + 1);
+            roomMateRepository.save(roomMate);
+        }
+        return findById(id);
+    }
 
     // 게시글 수정
     public RoomMate update(long boardNo, RoomMateDto roomMateDto) {
@@ -51,17 +70,17 @@ public class RoomMateService {
     }
 
     // 게시글 목록
-    public RoomMate get(long boardNo) {
-        RoomMate roomMate = roomMateRepository.findById(boardNo).orElse(null);
-        Member member = memberRepository.findById(roomMate.getWriter()).orElse(null);
-        roomMate.setWriterName(member.getName());
-
-        if (roomMate != null) {
-            roomMate.setCount(roomMate.getCount() + 1);
-            roomMateRepository.save(roomMate);
-        }
-        return roomMate;
-    }
+//    public RoomMate get(long boardNo) {
+//        RoomMate roomMate = roomMateRepository.findById(boardNo).orElse(null);
+//        Member member = memberRepository.findById(roomMate.getWriter()).orElse(null);
+//        roomMate.setWriterName(member.getName());
+//
+//        if (roomMate != null) {
+//            roomMate.setCount(roomMate.getCount() + 1);
+//            roomMateRepository.save(roomMate);
+//        }
+//        return roomMate;
+//    }
 
     // 게시글 삭제
    public Boolean delete(long boardNo) {

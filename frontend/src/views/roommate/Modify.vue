@@ -3,8 +3,9 @@
 		<a href="/">간다 홈으로</a>
 		<div class="form_wrap">
 			<h2>쓴다 글</h2>
-			<b-input placeholder="제목을 입력해주세요."></b-input>
+			<b-input v-model="detail.title" placeholder="제목을 입력해주세요."></b-input>
 			<b-form-textarea
+							v-model="detail.content"
 							placeholder="내용을 입력해 주세요"
 							rows="13"
 							max-rows="6"

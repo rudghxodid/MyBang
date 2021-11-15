@@ -35,13 +35,19 @@
 				</li>
 				<li>
 					<a href="">
-						<span>셰어하우스</span>
+						<span><router-link to="/roommate">셰어하우스</router-link></span>
 						<span>함께 사는 주거공간</span>
 					</a>
 				</li>
+<!--				<li>-->
+<!--					<a href="">-->
+<!--						<router-link to="/roommate">룸메구하기</router-link>-->
+<!--						<span>함께 사는 주거공간</span>-->
+<!--					</a>-->
+<!--				</li>-->
 			</ul>
 		</div>
-		<div class="right-header">	
+		<div class="right-header">
 			<v-container>
 				<div v-if="isLogin">
 					<v-btn @click="gotoMypage" text>마이페이지</v-btn>|
@@ -63,7 +69,7 @@ import { mapActions, mapState } from 'vuex'
     name: 'Header',
     data() {
       return {
- 
+
     }
   },
   computed: {
@@ -73,7 +79,7 @@ import { mapActions, mapState } from 'vuex'
     this.fetchSession(this.$cookies.get('session'))
 		if (this.session != null) {
 			this.$store.state.isLogin = true
-			this.$store.state.userInfo = this.fetchUserInfo(this.$cookies.get('session')) 
+			this.$store.state.userInfo = this.fetchUserInfo(this.$cookies.get('session'))
 		}
   },
   methods: {
@@ -96,8 +102,8 @@ import { mapActions, mapState } from 'vuex'
     }
   }
 
-  
-  
+
+
   }
 </script>
 
@@ -107,7 +113,7 @@ import { mapActions, mapState } from 'vuex'
 	* {
 		font-family: 'Noto Sans KR', sans-serif;
 		margin: 0 auto;
-		
+
 	}
 
 	ol, ul {
@@ -126,9 +132,10 @@ import { mapActions, mapState } from 'vuex'
 
 	header {
 		max-height:100px;
-		/*max-width:112px;*/
-		padding: 15px 20px;
-		
+		width: 1400px;
+		padding: 15px 0px;
+		/*margin: auto;*/
+
 	}
 
 	header:after {
@@ -146,6 +153,11 @@ import { mapActions, mapState } from 'vuex'
 		width: 100px;
 	}
 
+	ul.navbar {
+		float: left;
+		margin-left: 10px;
+	}
+
 	ul.navbar li {
 		float: left;
 		margin-right: 50px;
@@ -153,6 +165,11 @@ import { mapActions, mapState } from 'vuex'
 	}
 
 	ul.navbar li span {
+		display: block;
+		color: black;
+	}
+
+	ul.navbar li span a{
 		display: block;
 		color: black;
 	}
@@ -171,5 +188,5 @@ import { mapActions, mapState } from 'vuex'
 	.navbar > li > a >span:hover{
 		background:white; color: blue;
 	}
-	
+
 </style>

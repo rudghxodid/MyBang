@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<div class="main_wrap">
 		<div id=background-box :style="{backgroundImage: 'url('+item+')'}">
 			<div id=main_text>어떤 집을 찾고 있나요?</div>
 			<div id=tabHouse>
@@ -79,7 +79,7 @@ export default {
     data() {
       return {
         item: [
-           require('@/assets/img/Interior.jpg'),
+           require('@/assets/img/banner4.jpg'),
         ],
       }
     },
@@ -96,15 +96,24 @@ export default {
 	@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
 
 	* {
+		/*width: 100%;*/
 		font-family: 'Noto Sans KR', sans-serif;
 	}
 
+	/*.main_wrap {*/
+	/*	width: 1200px;*/
+	/*	margin: 0 auto;*/
+	/*}*/
 
 
 	#background-box{
 		/*width: 1900px;*/
-		height: 450px;
-		background-size: contain;
+		/*width: 100%;*/
+		/*height: 500px;*/
+		background-size: 2550px 1500px;
+		/*background-size: cover;*/
+
+		background-position: center center;
 		background-repeat: no-repeat;
 		background-color:#ffffff;
 		border: 0px solid #000000;
