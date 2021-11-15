@@ -14,7 +14,15 @@ import Map from '@/components/house/Map'
 export default {
   components: {
     Map,
-  }
+  },
+  data () {
+    return {
+      
+    }
+  },
+  mounted () {
+
+  },
   
 }
 </script>

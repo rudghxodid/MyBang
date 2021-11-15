@@ -38,15 +38,27 @@
                <v-btn depressed>
                   더보기
                </v-btn>
+			   
             </div>
             <hr>
-            <ul>
-               <li>리스트1</li>
-               <li>리스트2</li>
-               <li>리스트3</li>
-               <li>리스트4</li>
-               <li>리스트5</li>
-            </ul>
+            <div class="tablemargin">
+                 <v-card elevation="0">
+                     <ul>
+						 <li>
+							 <v-simple-table>
+                                    <tbody>
+                                        <tr v-for="(list,idx) in lists" :key="idx" width="50px">
+                                            <div v-show="(idx<5)">
+                                                <td style="color: gray" class="tdmargin">{{ list.newsNo }}</td>
+                                                <td @click="clickNews(list.address)">{{ list.title }}</td>
+                                            </div>
+                                        </tr> 
+                                    </tbody>
+                             </v-simple-table>
+						 </li>
+                     </ul>  
+                 </v-card>
+            </div>
          </article>
 
          <article>
@@ -71,7 +83,7 @@
 </template>
 
 <script>
-
+import { mapState } from 'vuex'
 
 export default {
 
@@ -86,9 +98,19 @@ export default {
     mounted () {
     },
     computed: {
+        ...mapState ({
+            lists: state => state.lists
+        })
     },
     methods: {
-    }
+		clickNews(address){
+            window.open(address, 'newslink', 'width: 200px, height: 200px')
+        },
+        newsLink(){
+            this.$router.push({name:'InfoNews'})    
+        }
+    },
+	
   }
 </script>
 
@@ -286,4 +308,6 @@ export default {
 	   width: 500px;
 	   text-decoration:  none;
    }
+   
+
 </style>

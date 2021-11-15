@@ -22,10 +22,15 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public void register(ProductRequest request) throws Exception {
 
-        Product productEntity = new Product(request.getTitle(), request.getImage(), request.getDescription(),
-                request.getDeposit(), request.getPrice(), request.getAgent_name(), request.getAgent_mobile(),
-                request.getFloor(), request.getAddress(), request.getSize(),
-                request.getSize_m2(), request.getStatus(), request.getRoom_type(), request.getManage_cost_inc());
+        Product productEntity = new Product(request.getAddress(), request.getAgentAddress(), request.getAgentEmail(),
+                request.getAgentLat(), request.getAgentLng(), request.getAgentMobile(), request.getAgentName(),
+                request.getAgentPhone(), request.getBuildingType(), request.getDeposit(), request.getDescription(),
+                request.getElevator(), request.getFloor(), request.getFloorAll(), request.getImage(), request.getLat(),
+                request.getLng(), request.getLocal1(), request.getLocal2(), request.getLocal3(), request.getManageCost(),
+                request.getManageCostInc(), request.getMoveinDate(), request.getNearSubways(), request.getOptions(),
+                request.getParking(), request.getPets(), request.getRoomDirection(), request.getRoomType(), request.getSalesType(),
+                request.getServiceType(), request.getSize(), request.getSizeM2(), request.getTitle(), request.getUpdatedAt(),
+                request.getUserIntro(), request.getUserName(), request.getUrl(), request.getMonthlyRent());
 
         repository.save(productEntity);
 
@@ -39,9 +44,9 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public Product read(Long productNo) throws Exception {
 
-        Optional<Product> fundingRead = repository.findByProduct(productNo);
+        Optional<Product> productRead = repository.findByProduct(productNo);
 
-        return fundingRead.get();
+        return productRead.get();
     }
 
     @Override

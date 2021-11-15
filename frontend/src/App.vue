@@ -29,8 +29,11 @@ export default {
         if (this.$store.state.session != null) {
             this.isLogin = true
         
-    }
-    
+        }
+    },
+    created(){
+        this.$store.dispatch('crawlFind', 'daumnews')
+
     },
 
   data: () => ({

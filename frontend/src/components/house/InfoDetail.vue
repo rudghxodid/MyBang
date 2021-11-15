@@ -43,8 +43,7 @@
       <v-card-text>{{info.title}}</v-card-text>
     </v-card>
 
-    
-    <v-card class="mt-5" flat>
+    <v-card class="mt-3" flat>
       <v-list-item>
         <v-list-item-title>매물 정보</v-list-item-title>
         <v-btn icon @click="show = !show">
@@ -98,7 +97,7 @@
       </v-expand-transition>
     </v-card>
 
-    <v-card class="mt-5" flat>
+    <v-card class="mt-3" flat>
       <v-list-item>
         <v-list-item-title>옵션 정보</v-list-item-title>
         <v-btn icon @click="show1 = !show1">
@@ -112,7 +111,7 @@
       </v-expand-transition>
     </v-card>
 
-    <v-card class="mt-5" flat>
+    <v-card class="mt-3" flat>
       <v-list-item>
         <v-list-item-title>관리비 포함 항목</v-list-item-title>
         <v-btn icon @click="show2 = !show2">
@@ -126,7 +125,7 @@
       </v-expand-transition>
     </v-card>
 
-    <v-card class="mt-5" flat>
+    <v-card class="mt-3" flat>
       <v-list-item>
         <v-list-item-title>인근 전철역</v-list-item-title>
         <v-btn icon @click="show3 = !show3">
@@ -140,7 +139,7 @@
       </v-expand-transition>
     </v-card>
 
-    <v-card class="mt-5" flat>
+    <v-card class="mt-3" flat>
       <v-list-item>
         <v-list-item-title>상세 설명</v-list-item-title>
         <v-btn icon @click="show4 = !show4">
@@ -154,7 +153,7 @@
       </v-expand-transition>
     </v-card>
 
-    <v-card class="mt-5" flat>
+    <v-card class="mt-3" flat>
       <v-list-item>
         <v-list-item-title>중개사 정보</v-list-item-title>
         <v-btn icon @click="show5 = !show5">
@@ -173,7 +172,8 @@
             <v-list-item>
               <v-list-item-content>
                 <v-list-item-title>소개</v-list-item-title>
-                <v-list-item-subtitle class="text-wrap">{{info.userIntro}}</v-list-item-subtitle>
+                <v-list-item-subtitle v-if="info.userIntro" class="text-wrap">{{info.userIntro}}</v-list-item-subtitle>
+                <v-list-item-subtitle v-else>-</v-list-item-subtitle>
               </v-list-item-content>
             </v-list-item>
             <v-list-item>
@@ -199,9 +199,6 @@
         </div>
       </v-expand-transition>
     </v-card>
-
-
-    
   </v-card>
 </template>
 
@@ -249,7 +246,10 @@ export default {
     },
     description () {
       return this.info.description.replace(/(?:\r\n|\r|\n)/g, '<br />')
-    },
+    }
+  },
+  methods: {
+
   }
 }
 </script>

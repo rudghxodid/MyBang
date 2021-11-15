@@ -6,18 +6,43 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 public class ProductRequest {
-    private String title; //간단한 설명
+    private String address;
+    private String agentAddress;
+    private String agentEmail;
+    private double agentLat;
+    private double agentLng;
+    private String agentMobile;
+    private String agentName;
+    private String agentPhone;
+    private String buildingType;
+    private Long deposit;
+    private String description;
+    private String elevator;
+    private String floor;
+    private String floorAll;
     private String image;
-    private String description; // 상세설명
-    private String deposit; //보증금
-    private String price; // 가격
-    private String agent_name; //중개사무소+중개인이름
-    private String agent_mobile; // 중개인 휴대폰 번호
-    private String floor; // 층
-    private String address; // 주소
-    private String size; // 면적(평수)
-    private String size_m2; // 면적(제곱미터)
-    private String status; // 광고 여부
-    private String room_type; // 건물 유형(투룸, 원룸 등등..)
-    private String manage_cost_inc; // 옵션 여부
+    private double lat;
+    private double lng;
+    private String local1;
+    private String local2;
+    private String local3;
+    private String manageCost;
+    private String manageCostInc;
+    private String moveinDate;
+    private String nearSubways;
+    private String options;
+    private String parking;
+    private String pets;
+    private String roomDirection;
+    private String roomType;
+    private String salesType;
+    private String serviceType;
+    private String size;
+    private String sizeM2;
+    private String title;
+    private String updatedAt;
+    private String userIntro;
+    private String userName;
+    private String url;
+    private String monthlyRent;
 }
