@@ -18,10 +18,8 @@
         </swiper>
       </v-container>
 
-      <v-card-title class="ml-3">
-        {{info.salesType}}
-        {{info.deposit}}
-      </v-card-title> 
+      <v-card-title v-if="info.salesType == '월세'" class="ml-3">{{info.salesType}} {{info.deposit}}/{{info.rent}}</v-card-title> 
+      <v-card-title v-else class="ml-3">{{info.salesType}} {{info.deposit}}</v-card-title> 
       <v-divider/>
 
       <div class="d-flex justify-space-between my-2 mx-7">

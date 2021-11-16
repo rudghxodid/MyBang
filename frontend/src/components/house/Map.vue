@@ -13,7 +13,7 @@
         <naver-map-marker-cluster :options="cluster.options">
           <naver-map-marker v-for="list in villaList" :key="list.index"
             :options="{ position: { lat: list.lat, lng: list.lng },
-                        icon: iconContent(list.salesType,list.deposit)}"
+                        icon: iconContent(list.salesType,list.deposit, list.rent)}"
             @click="viewInfo(list)"/>
         </naver-map-marker-cluster>
       </div>
@@ -46,7 +46,8 @@
               <img :src="imageList(item.image)" class="mr-3" width="40%">
               <v-list-item-content>
                 <v-list-item-subtitle class="caption">{{item.roomType}} · {{item.sizeM2}}㎡</v-list-item-subtitle>
-                <v-list-item-title class="title my-2">{{item.salesType}} {{item.deposit}}</v-list-item-title>
+                <v-list-item-title v-if="item.salesType == '월세'" class="title my-2">{{item.salesType}} {{item.deposit}}/{{item.rent}}</v-list-item-title>
+                <v-list-item-title v-else class="title my-2">{{item.salesType}} {{item.deposit}}</v-list-item-title>
                 <v-list-item-subtitle>{{item.title}}</v-list-item-subtitle>
               </v-list-item-content> 
             </v-list-item>
@@ -149,7 +150,7 @@ export default {
       console.log(this.houseInfo)
       this.dialog = true
     },
-    iconContent (salesType, deposit) {
+    iconContent (salesType, deposit, rent) {
       let cost = deposit / 10000
       let strCost = cost.toString() + '억'
       
@@ -158,7 +159,7 @@ export default {
       } else if (salesType == '매매') {
         return { content: `<div class="marker-html" style="background: #F3F0D7;">${strCost}</div>` }
       } else {
-        return { content: `<div class="marker-html" style="background: #FED2AA;">${deposit}</div>` }
+        return { content: `<div class="marker-html" style="background: #FED2AA;">${deposit}/${rent}</div>` }
       }
     },
     showCircle (lat, lng) {
