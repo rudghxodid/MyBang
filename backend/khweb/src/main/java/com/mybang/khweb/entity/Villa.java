@@ -8,6 +8,7 @@ import javax.persistence.*;
 @Entity
 @Data
 @NoArgsConstructor
+@Table(name = "villa")
 public class Villa {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -126,4 +127,50 @@ public class Villa {
     @Column
     private String url;
 
+    public Villa(String address, String agentAddress, String agentEmail, double agentLat, double agentLng,
+                   String agentMobile, String agentName,  String agentPhone, String buildingType, Long deposit,
+                   String description, String elevator, String floor, String floorAll, String image, double lat,
+                   double lng, String local1, String local2, String local3, String manageCost, String manageCostInc,
+                   String moveinDate, String nearSubways, String options, String parking, String pets, String roomDirection,
+                   String roomType, String salesType, String serviceType, String size, String sizeM2,
+                   String title, String updatedAt, String userIntro, String userName, String url) {
+        this.address = address;
+        this.agentAddress = agentAddress;
+        this.agentEmail = agentEmail;
+        this.agentLat = agentLat;
+        this.agentLng = agentLng;
+        this.agentMobile = agentMobile;
+        this.agentName = agentName;
+        this.agentPhone = agentPhone;
+        this.buildingType = buildingType;
+        this.deposit = deposit;
+        this.description = description;
+        this.elevator = elevator;
+        this.floor = floor;
+        this.floorAll = floorAll;
+        this.image = image;
+        this.lat = lat;
+        this.lng = lng;
+        this.local1 = local1;
+        this.local2 = local2;
+        this.local3 = local3;
+        this.manageCost = manageCost;
+        this.manageCostInc = manageCostInc;
+        this.moveinDate = moveinDate;
+        this.nearSubways = nearSubways;
+        this.options = options;
+        this.parking = parking;
+        this.pets = pets;
+        this.roomDirection = roomDirection;
+        this.roomType = roomType;
+        this.salesType = salesType;
+        this.serviceType = serviceType;
+        this.size = size;
+        this.sizeM2 = sizeM2;
+        this.title = title;
+        this.updatedAt = updatedAt;
+        this.userIntro = userIntro;
+        this.userName = userName;
+        this.url = url;
+    }
 }

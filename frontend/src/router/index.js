@@ -17,8 +17,16 @@ import ProductListPage from '@/views/product/ProductListPage'
 import ProductReadPage from '@/views/product/ProductReadPage'
 import ProductModifyPage from '@/views/product/ProductModifyPage'
 
+import VillaRegisterPage from '@/views/villa/VillaRegisterPage'
+import VillaReadPage from '@/views/villa/VillaReadPage'
+
 // Map
 import Villa from '@/views/house/Villa'
+
+// 부동산 뉴스
+import News from '@/views/News'
+
+
 
 
 Vue.use(VueRouter)
@@ -118,6 +126,35 @@ const routes = [
     name: 'Villa',
     component: Villa
   },
+
+  {
+    path: '/villa/register',
+    name: 'VillaRegisterPage',
+    component: VillaRegisterPage
+  },
+  {
+    path: '/villa/:villaNo',
+    name: 'VillaReadPage',
+    components: {
+      default: VillaReadPage
+    },
+    props: {
+      default: true
+    }
+  },
+
+  
+  // 부동산 뉴스
+  {
+    path: '/news',
+    name: 'News',
+    component: News
+  },
+
+
+  
+  
+
 ]
 
 const router = new VueRouter({
