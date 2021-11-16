@@ -13,7 +13,7 @@
         <naver-map-marker-cluster :options="cluster.options">
           <naver-map-marker v-for="list in villaList" :key="list.index"
             :options="{ position: { lat: list.lat, lng: list.lng },
-                        icon: iconContent(list.deposit)}"
+                        icon: iconContent(list.salesType,list.deposit)}"
             @click="viewInfo(list)"/>
         </naver-map-marker-cluster>
       </div>
@@ -37,8 +37,7 @@
       <v-card-title>{{selectLength}}개의 매물</v-card-title>
       <v-divider></v-divider>
       <v-list v-for="list in selectVillaList" :key="list.index">
-        <v-card-subtitle v-if="!selectLength">해당 지역에 매물이 없습니다.</v-card-subtitle>
-        <v-card-subtitle v-if="!selectLength">지도를 이동&축소해 주세요.</v-card-subtitle>
+        <v-card-subtitle v-if="!selectLength">해당 지역에 매물이 없습니다.<br>지도를 이동&축소해 주세요.</v-card-subtitle>
         
         <v-virtual-scroll :bench="10" :items="selectVillaList" :item-height="120" height="700">
           <template v-slot:default="{ item }">
@@ -79,7 +78,7 @@ export default {
       center: { lat: 37.5285549, lng: 127.0370612 },
       cluster: {
         options: {
-          maxZoom: 16,
+          maxZoom: 18,
           icons: [
             {content: `<div class="cluster lv1"></div>`},
             {content: `<div class="cluster lv2"></div>`},
@@ -87,6 +86,8 @@ export default {
             {content: `<div class="cluster lv4"></div>`},
             {content: `<div class="cluster lv5"></div>`}
           ],
+          gridSize: 200,
+          averageCenter: true,
         }
       },
       houseInfo: null,
@@ -148,10 +149,17 @@ export default {
       console.log(this.houseInfo)
       this.dialog = true
     },
-    iconContent (deposit) {
+    iconContent (salesType, deposit) {
       let cost = deposit / 10000
       let strCost = cost.toString() + '억'
-      return { content: `<div class="marker-html">${strCost}</div>` }
+      
+      if (salesType == '전세') {
+        return { content: `<div class="marker-html" style="background: #CEE5D0;">${strCost}</div>` }
+      } else if (salesType == '매매') {
+        return { content: `<div class="marker-html" style="background: #F3F0D7;">${strCost}</div>` }
+      } else {
+        return { content: `<div class="marker-html" style="background: #FED2AA;">${deposit}</div>` }
+      }
     },
     showCircle (lat, lng) {
       const coords = new window.naver.maps.LatLng(lat, lng)
@@ -231,7 +239,6 @@ export default {
 <style lang="scss">
   .marker-html {
     position: relative;
-    background: white;
     line-height: 30px;
     text-align: center;
     font-weight: bold;
@@ -243,7 +250,6 @@ export default {
     overflow-y: auto;
     transform: translate(-40%, -60%);
     &:hover {
-      background: #77ACF1;
       color: white;
       border-color: white;
       z-index: 1;
