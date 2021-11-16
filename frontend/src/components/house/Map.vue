@@ -37,18 +37,22 @@
       <v-card-title>{{selectLength}}개의 매물</v-card-title>
       <v-divider></v-divider>
       <v-list v-for="list in selectVillaList" :key="list.index">
+        <v-card-subtitle v-if="!selectLength">해당 지역에 매물이 없습니다.</v-card-subtitle>
+        <v-card-subtitle v-if="!selectLength">지도를 이동&축소해 주세요.</v-card-subtitle>
         
-        <v-list-item-group>
-          <v-list-item three-line @click="viewInfo(list)">
-            <img :src="imageList(list.image)" class="mr-3" width="40%">
-            <v-list-item-content>
-              <v-list-item-subtitle class="caption">{{list.roomType}} · {{list.sizeM2}}㎡</v-list-item-subtitle>
-              <v-list-item-title class="title my-2">{{list.salesType}} {{list.deposit}}</v-list-item-title>
-              <v-list-item-subtitle>{{list.title}}</v-list-item-subtitle>
-            </v-list-item-content> 
-          </v-list-item>
-        </v-list-item-group>
-      </v-list>
+        <v-virtual-scroll :bench="10" :items="selectVillaList" :item-height="120" height="700">
+          <template v-slot:default="{ item }">
+            <v-list-item three-line @click="viewInfo(item)" @mouseover="openPosition(item.lat, item.lng)"
+              @mouseout="closePosition">
+              <img :src="imageList(item.image)" class="mr-3" width="40%">
+              <v-list-item-content>
+                <v-list-item-subtitle class="caption">{{item.roomType}} · {{item.sizeM2}}㎡</v-list-item-subtitle>
+                <v-list-item-title class="title my-2">{{item.salesType}} {{item.deposit}}</v-list-item-title>
+                <v-list-item-subtitle>{{item.title}}</v-list-item-subtitle>
+              </v-list-item-content> 
+            </v-list-item>
+          </template>
+        </v-virtual-scroll>
     </v-card>
     
     <v-dialog v-model="dialog" max-width="400">
@@ -58,7 +62,7 @@
 </template>
 
 <script>
-import seoulGu from '@/assets/data/seoul_gu'
+//import seoulGu from '@/assets/data/seoul_gu'
 import InfoDetail from '@/components/house/InfoDetail'
 import Search from '@/components/house/Search'
 import axios from 'axios'
@@ -94,20 +98,20 @@ export default {
     }
   },
   watch: {
-    zoomLevel: function () {
-      if (this.zoomLevel <= 12) {
-        if (this.$refs.maps.map.data._features.length == 0) {
-          this.startDataLayer(seoulGu)
-        }
-      } else {
-        this.removeDataLayer(seoulGu)
-      }
-    }
+    // zoomLevel: function () {
+    //   if (this.zoomLevel <= 12) {
+    //     if (this.$refs.maps.map.data._features.length == 0) {
+    //       this.startDataLayer(seoulGu)
+    //     }
+    //   } else {
+    //     this.removeDataLayer(seoulGu)
+    //   }
+    // }
   },
   mounted () {
-    setTimeout(() => {
-      this.startDataLayer(seoulGu)
-    }, 300)
+    // setTimeout(() => {
+    //   this.startDataLayer(seoulGu)
+    // }, 300)
 
     axios.get('http://localhost:7777/villa/lists').then(res => {
       this.villaList = res.data
@@ -175,9 +179,9 @@ export default {
 
       this.$refs.maps.map.data.setStyle(function() {
         return {
-          fillColor: 'white',
+          fillColor: 'transparent',
           fillOpacity: 0.5,
-          strokeColor: 'blue',
+          strokeColor: 'transparent',
           strokeWeight: 2,
           icon: null
         }
@@ -197,8 +201,8 @@ export default {
 
       this.$refs.maps.map.data.addListener('mouseover', (e) => {
         this.$refs.maps.map.data.overrideStyle(e.feature, {
-          fillColor: 'blue',
-          fillOpacity: 0.5,
+          strokeColor: 'blue',
+          strokeWeight: 2,
         })
 
         let infoContent = `<div class="tooltip">${e.feature.getProperty('SGG_NM')}</div>`
