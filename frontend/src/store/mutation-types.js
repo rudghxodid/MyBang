@@ -18,8 +18,7 @@ export const FETCH_PRODUCT_INFO = 'FETCH_PRODUCT_INFO'
 export const FETCH_GONGZI_LIST = 'FETCH_GONGZI_LIST'
 export const FETCH_GONGZI = 'FETCH_GONGZI'
 
-// Villa
-export const FETCH_VILLA_LIST = 'FETCH_VILLA_LIST'
+
 
 
 

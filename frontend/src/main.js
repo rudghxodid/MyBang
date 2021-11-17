@@ -26,7 +26,7 @@ Vue.$cookies.config('1h')
 // key에 발급받은 clientID 넣으시면 됩니다(https://www.ncloud.com/)
 Vue.use(VueNaverMap, {
 
-  key: '',
+  
 
   key: '',
 

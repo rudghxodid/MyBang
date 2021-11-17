@@ -20,8 +20,7 @@ import {
   FETCH_GONGZI_LIST,
     FETCH_GONGZI,
 
-  // Villa
-  FETCH_VILLA_LIST,
+
 
   //뉴스 크롤링
   CRAWL_START,
@@ -98,7 +97,7 @@ export default {
       });
     },
 
-    fetchGongziList ({ commit }) {
+  fetchGongziList ({ commit }) {
       return axios.get('http://localhost:7777/gongzi/list')
               .then((res) => {
                   commit(FETCH_GONGZI_LIST, res.data)
@@ -111,13 +110,7 @@ export default {
               })
 
             },
-  fetchVillaList({ commit }) {
-    return axios.get('http://localhost:7777/villa/lists').then(res => {
-      console.log(res.data)
-      commit(FETCH_VILLA_LIST, res.data)
-    })
-
-  },
+ 
 
   
 

@@ -29,11 +29,7 @@ export default {
             required: true
         },
     },
-    data() {
-        return {
-            isAuth: false
-        }
-    },
+   
     components: {
         GongziRead
     },
@@ -65,5 +61,6 @@ export default {
         }
     
     }
+    
 }
 </script>

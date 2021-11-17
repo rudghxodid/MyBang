@@ -2,13 +2,13 @@ package com.mybang.khweb.controller.gongzi;
 
 
 import com.mybang.khweb.entity.Gongzi;
-import com.mybang.khweb.entity.Product;
+
 import com.mybang.khweb.repository.GongziRepository;
-import com.mybang.khweb.repository.ProductRepository;
+
 import com.mybang.khweb.request.GongziRequest;
-import com.mybang.khweb.request.ProductRequest;
+
 import com.mybang.khweb.service.GongziService;
-import com.mybang.khweb.service.ProductService;
+
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

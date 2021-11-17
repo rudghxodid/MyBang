@@ -154,7 +154,7 @@ const routes = [
       components: {
         default: GongziListPage
       }
-    }
+    },
 
 
 
