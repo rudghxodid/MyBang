@@ -4,16 +4,16 @@
 
     <naver-map
       ref="maps"
-      :center="{ lat: center.lat, lng: center.lng }"
+      :center="center"
       :zoom="zoomLevel"
       style="width: 70%; height: 100%; float: left;"
       @idle="idle">
 
-      <div v-if="zoomLevel >= 12">
+      <div>
         <naver-map-marker-cluster :options="cluster.options">
           <naver-map-marker v-for="list in villaList" :key="list.index"
             :options="{ position: { lat: list.lat, lng: list.lng },
-                        icon: iconContent(list.deposit)}"
+                        icon: iconContent(list.salesType,list.deposit, list.rent)}"
             @click="viewInfo(list)"/>
         </naver-map-marker-cluster>
       </div>
@@ -31,16 +31,41 @@
         </naver-map-marker>  
       </div>
     </naver-map>
+
+    <v-card width="400" style="float:right;" class="overflow-y-auto"
+      id="scrolling-techniques-7" max-height="700"> 
+      <v-card-title>{{selectLength}}개의 매물</v-card-title>
+      <v-divider></v-divider>
+      <v-list v-for="list in selectVillaList" :key="list.index">
+        <v-card-subtitle v-if="!selectLength">해당 지역에 매물이 없습니다.<br>지도를 이동&축소해 주세요.</v-card-subtitle>
+        
+        <v-virtual-scroll :bench="10" :items="selectVillaList" :item-height="120" height="700">
+          <template v-slot:default="{ item }">
+            <v-list-item three-line @click="viewInfo(item)" @mouseover="openPosition(item.lat, item.lng)"
+              @mouseout="closePosition">
+              <img :src="imageList(item.image)" class="mr-3" width="40%">
+              <v-list-item-content>
+                <v-list-item-subtitle class="caption">{{item.roomType}} · {{item.sizeM2}}㎡</v-list-item-subtitle>
+                <v-list-item-title v-if="item.salesType == '월세'" class="title my-2">{{item.salesType}} {{item.deposit}}/{{item.rent}}</v-list-item-title>
+                <v-list-item-title v-else class="title my-2">{{item.salesType}} {{item.deposit}}</v-list-item-title>
+                <v-list-item-subtitle>{{item.title}}</v-list-item-subtitle>
+              </v-list-item-content> 
+            </v-list-item>
+          </template>
+        </v-virtual-scroll>
+    </v-card>
     
-    <InfoDetail :info="houseInfo"></InfoDetail>
+    <v-dialog v-model="dialog" max-width="400">
+      <InfoDetail :info="houseInfo"></InfoDetail>
+    </v-dialog>
   </v-sheet>
 </template>
 
 <script>
+//import seoulGu from '@/assets/data/seoul_gu'
 import InfoDetail from '@/components/house/InfoDetail'
 import Search from '@/components/house/Search'
 import axios from 'axios'
-import seoulGu from '@/assets/data/seoul_gu'
 
 export default {
   components: {
@@ -54,7 +79,7 @@ export default {
       center: { lat: 37.5285549, lng: 127.0370612 },
       cluster: {
         options: {
-          maxZoom: 16,
+          maxZoom: 18,
           icons: [
             {content: `<div class="cluster lv1"></div>`},
             {content: `<div class="cluster lv2"></div>`},
@@ -62,49 +87,80 @@ export default {
             {content: `<div class="cluster lv4"></div>`},
             {content: `<div class="cluster lv5"></div>`}
           ],
+          gridSize: 200,
+          averageCenter: true,
         }
       },
       houseInfo: null,
       zoomLevel: 11,
-      infoWindow: null
+      infoWindow: null,
+      dialog: false,
+      selectVillaList: [],
+      selectLength: null
     }
   },
   watch: {
-    zoomLevel: function () {
-      if (this.zoomLevel <= 12) {
-        if (this.$refs.maps.map.data._features.length == 0) {
-          this.startDataLayer(seoulGu)
-        }
-      } else {
-        this.removeDataLayer(seoulGu)
-      }
-    }
+    // zoomLevel: function () {
+    //   if (this.zoomLevel <= 12) {
+    //     if (this.$refs.maps.map.data._features.length == 0) {
+    //       this.startDataLayer(seoulGu)
+    //     }
+    //   } else {
+    //     this.removeDataLayer(seoulGu)
+    //   }
+    // }
   },
   mounted () {
-    setTimeout(() => {
-      this.startDataLayer(seoulGu)
-    }, 300)
+    // setTimeout(() => {
+    //   this.startDataLayer(seoulGu)
+    // }, 300)
 
     axios.get('http://localhost:7777/villa/lists').then(res => {
       this.villaList = res.data
       console.log(this.villaList)
-      this.houseInfo = this.villaList[0]
     })
 
     axios.get('http://localhost:7777/station/lists').then(res => {
       this.stationList = res.data
-      console.log(this.stationList)
     })
   },
   methods: {
+    idle () {
+      let map = this.$refs.maps.map
+
+      this.zoomLevel = map.getZoom()
+
+      this.selectVillaList = []
+
+      const list = this.villaList
+
+      for (let i = 0; i < list.length; i++) {
+        let coords = new window.naver.maps.LatLng(list[i].lat, list[i].lng)
+
+        if (map.getBounds().hasLatLng(coords)) {
+          this.selectVillaList.push(list[i])
+        }
+      }
+      this.selectLength = this.selectVillaList.length
+      console.log(this.selectLength)
+      //console.log(this.selectVillaList)
+    },
     viewInfo(info) {
       this.houseInfo = info
       console.log(this.houseInfo)
+      this.dialog = true
     },
-    iconContent (deposit) {
+    iconContent (salesType, deposit, rent) {
       let cost = deposit / 10000
       let strCost = cost.toString() + '억'
-      return { content: `<div class="marker-html">${strCost}</div>` }
+      
+      if (salesType == '전세') {
+        return { content: `<div class="marker-html" style="background: #CEE5D0;">${strCost}</div>` }
+      } else if (salesType == '매매') {
+        return { content: `<div class="marker-html" style="background: #F3F0D7;">${strCost}</div>` }
+      } else {
+        return { content: `<div class="marker-html" style="background: #FED2AA;">${deposit}/${rent}</div>` }
+      }
     },
     showCircle (lat, lng) {
       const coords = new window.naver.maps.LatLng(lat, lng)
@@ -124,9 +180,6 @@ export default {
         mapCircle.setMap(null)
       }, 2000)
     },
-    idle () {
-      this.zoomLevel = this.$refs.maps.map.getZoom()
-    },
     selectStation (lat, lng) {
       this.showCircle(lat,lng)
     },
@@ -135,9 +188,9 @@ export default {
 
       this.$refs.maps.map.data.setStyle(function() {
         return {
-          fillColor: 'white',
+          fillColor: 'transparent',
           fillOpacity: 0.5,
-          strokeColor: 'blue',
+          strokeColor: 'transparent',
           strokeWeight: 2,
           icon: null
         }
@@ -157,8 +210,8 @@ export default {
 
       this.$refs.maps.map.data.addListener('mouseover', (e) => {
         this.$refs.maps.map.data.overrideStyle(e.feature, {
-          fillColor: 'blue',
-          fillOpacity: 0.5,
+          strokeColor: 'blue',
+          strokeWeight: 2,
         })
 
         let infoContent = `<div class="tooltip">${e.feature.getProperty('SGG_NM')}</div>`
@@ -176,7 +229,9 @@ export default {
       this.$refs.maps.map.data.removeGeoJson(geojson)
       this.infoWindow.close()
     },
-    
+    imageList (imageList) {
+      return imageList.split(',')[0]
+    },
   }
 }
 </script>
@@ -185,7 +240,6 @@ export default {
 <style lang="scss">
   .marker-html {
     position: relative;
-    background: white;
     line-height: 30px;
     text-align: center;
     font-weight: bold;
@@ -197,7 +251,6 @@ export default {
     overflow-y: auto;
     transform: translate(-40%, -60%);
     &:hover {
-      background: #77ACF1;
       color: white;
       border-color: white;
       z-index: 1;
