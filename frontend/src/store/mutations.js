@@ -13,12 +13,6 @@ import {
   FETCH_VILLA_LIST,
   FETCH_VILLA,
 
-
-
-
-  // Villa
-  FETCH_VILLA_LIST,
-
   // 뉴스 크롤링
   CRAWL_START,
 
@@ -54,15 +48,6 @@ export default {
   },
   [FETCH_VILLA] (state, villa) {
     state.villa = villa
-  },
-
-
-  [FETCH_VILLA_LIST] (state, villaList) {
-    state.villaList = villaList
-
-  }
-
-
   },
 
   [CRAWL_START] (state, payload) {

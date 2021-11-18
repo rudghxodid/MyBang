@@ -1,6 +1,7 @@
 <template>
   <v-sheet class="fill-height" max-height="700">
-    <Search @selectStation="selectStation" style="position: fixed; z-index: 1;"></Search>
+    <Search @selectStation="selectStation" @selectGu="selectGu" @selectDong="selectDong"
+      style="position: fixed; z-index: 1;"></Search>
 
     <naver-map
       ref="maps"
@@ -32,27 +33,25 @@
       </div>
     </naver-map>
 
-    <v-card width="400" style="float:right;" class="overflow-y-auto"
-      id="scrolling-techniques-7" max-height="700"> 
+    <v-card width="400" style="float:right;" max-height="700"> 
       <v-card-title>{{selectLength}}개의 매물</v-card-title>
       <v-divider></v-divider>
-      <v-list v-for="list in selectVillaList" :key="list.index">
-        <v-card-subtitle v-if="!selectLength">해당 지역에 매물이 없습니다.<br>지도를 이동&축소해 주세요.</v-card-subtitle>
-        
-        <v-virtual-scroll :bench="10" :items="selectVillaList" :item-height="120" height="700">
-          <template v-slot:default="{ item }">
-            <v-list-item three-line @click="viewInfo(item)" @mouseover="openPosition(item.lat, item.lng)"
-              @mouseout="closePosition">
-              <img :src="imageList(item.image)" class="mr-3" width="40%">
-              <v-list-item-content>
-                <v-list-item-subtitle class="caption">{{item.roomType}} · {{item.sizeM2}}㎡</v-list-item-subtitle>
-                <v-list-item-title v-if="item.salesType == '월세'" class="title my-2">{{item.salesType}} {{item.deposit}}/{{item.rent}}</v-list-item-title>
-                <v-list-item-title v-else class="title my-2">{{item.salesType}} {{item.deposit}}</v-list-item-title>
-                <v-list-item-subtitle>{{item.title}}</v-list-item-subtitle>
-              </v-list-item-content> 
-            </v-list-item>
-          </template>
-        </v-virtual-scroll>
+      <v-card-subtitle v-if="!selectLength">해당 지역에 매물이 없습니다.<br>지도를 이동&축소해 주세요.</v-card-subtitle>
+      
+      <v-virtual-scroll :bench="10" :items="selectVillaList" :item-height="120" height="630">
+        <template v-slot:default="{ item }">
+          <v-list-item three-line @click="viewInfo(item)" 
+            @mouseover="openPosition(item.lat, item.lng)" @mouseout="closePosition">
+            <img :src="imageList(item.image)" class="mr-3" width="40%">
+            <v-list-item-content>
+              <v-list-item-subtitle class="caption">{{item.roomType}} · {{item.sizeM2}}㎡</v-list-item-subtitle>
+              <v-list-item-title v-if="item.salesType == '월세'" class="title my-2">{{item.salesType}} {{item.deposit}}/{{item.rent}}</v-list-item-title>
+              <v-list-item-title v-else class="title my-2">{{item.salesType}} {{item.deposit}}</v-list-item-title>
+              <v-list-item-subtitle>{{item.title}}</v-list-item-subtitle>
+            </v-list-item-content> 
+          </v-list-item>
+        </template>
+      </v-virtual-scroll>
     </v-card>
     
     <v-dialog v-model="dialog" max-width="400">
@@ -62,7 +61,7 @@
 </template>
 
 <script>
-//import seoulGu from '@/assets/data/seoul_gu'
+import seoulGu from '@/assets/data/seoul_gu'
 import InfoDetail from '@/components/house/InfoDetail'
 import Search from '@/components/house/Search'
 import axios from 'axios'
@@ -76,7 +75,7 @@ export default {
     return {
       villaList: [],
       stationList: null,
-      center: { lat: 37.5285549, lng: 127.0370612 },
+      center: { lat: 37.49664389, lng: 127.0629852 },
       cluster: {
         options: {
           maxZoom: 18,
@@ -92,43 +91,50 @@ export default {
         }
       },
       houseInfo: null,
-      zoomLevel: 11,
+      zoomLevel: 13,
       infoWindow: null,
       dialog: false,
       selectVillaList: [],
-      selectLength: null
+      selectLength: null,
+      guMarkers: [],
+      guPolygons: []
     }
   },
   watch: {
-    // zoomLevel: function () {
-    //   if (this.zoomLevel <= 12) {
-    //     if (this.$refs.maps.map.data._features.length == 0) {
-    //       this.startDataLayer(seoulGu)
-    //     }
-    //   } else {
-    //     this.removeDataLayer(seoulGu)
-    //   }
-    // }
+    zoomLevel: function () {
+      if (this.zoomLevel <= 14) {
+        if (this.guMarkers.length == 0) {
+          this.addGuMarkerPolygon()
+          this.guMarkerEvent()
+        }
+      } else {
+        this.removeGuMarkerPolygon()
+      }
+    }
   },
   mounted () {
-    // setTimeout(() => {
-    //   this.startDataLayer(seoulGu)
-    // }, 300)
+    setTimeout(() => {
+      this.villaOnMap()
+      this.addGuMarkerPolygon()
+      this.guMarkerEvent()
+    }, 1000)
 
     axios.get('http://localhost:7777/villa/lists').then(res => {
       this.villaList = res.data
-      console.log(this.villaList)
     })
 
     axios.get('http://localhost:7777/station/lists').then(res => {
       this.stationList = res.data
-    })
+    }) 
   },
   methods: {
     idle () {
-      let map = this.$refs.maps.map
+      this.zoomLevel = this.$refs.maps.map.getZoom()
 
-      this.zoomLevel = map.getZoom()
+      this.villaOnMap()
+    },
+    villaOnMap () {
+      let map = this.$refs.maps.map
 
       this.selectVillaList = []
 
@@ -142,10 +148,8 @@ export default {
         }
       }
       this.selectLength = this.selectVillaList.length
-      console.log(this.selectLength)
-      //console.log(this.selectVillaList)
     },
-    viewInfo(info) {
+    viewInfo (info) {
       this.houseInfo = info
       console.log(this.houseInfo)
       this.dialog = true
@@ -183,54 +187,95 @@ export default {
     selectStation (lat, lng) {
       this.showCircle(lat,lng)
     },
-    startDataLayer(geojson) {
-      this.$refs.maps.map.data.addGeoJson(geojson)
+    imageList (imageList) {
+      return imageList.split(',')[0]
+    },
+    selectGu (lat, lng) {
+      const coords = new window.naver.maps.LatLng(lat, lng)
+      this.$refs.maps.map.setCenter(coords)
+      this.$refs.maps.map.setZoom(14)
+    },
+    selectDong (lat, lng) {
+      const coords = new window.naver.maps.LatLng(lat, lng)
+      this.$refs.maps.map.setCenter(coords)
+      this.$refs.maps.map.setZoom(16)
+    },
+    addGuMarkerPolygon () {
+      const list = seoulGu.features
 
-      this.$refs.maps.map.data.setStyle(function() {
-        return {
-          fillColor: 'transparent',
-          fillOpacity: 0.5,
-          strokeColor: 'transparent',
-          strokeWeight: 2,
-          icon: null
+      for (let i = 0; i < list.length; i++) {
+        let position = new window.naver.maps.LatLng(list[i].properties.lat, list[i].properties.lng)
+
+        let gu = list[i].properties.SGG_NM
+
+        let marker = new window.naver.maps.Marker({
+          map: this.$refs.maps.map,
+          position: position,
+          icon: { content: `<div class="marker-html">${gu}</div>` }
+        })
+        
+        let coords = list[i].geometry.coordinates[0]
+        let coordList = []
+
+        for(let i = 0; i < coords.length; i++) {
+          coordList.push(new window.naver.maps.LatLng(coords[i][1], coords[i][0]))
         }
-      })
+        
+        let polygon = new window.naver.maps.Polygon({
+          map: this.$refs.maps.map,
+          paths: [coordList],
+          strokeColor: 'transparent'
+        })
 
-      this.$refs.maps.map.data.addListener('click', (e) => {
-        const coords = new window.naver.maps.LatLng(e.feature.getProperty('lat'), e.feature.getProperty('lng'))
-        this.$refs.maps.map.setCenter(coords)
-        this.$refs.maps.map.setZoom(14)
-      })
+        this.guPolygons.push(polygon)
+        this.guMarkers.push(marker)
+      }
+    },
+    guMarkerEvent() {
+      for (let i = 0; i < this.guMarkers.length; i++) {
+        window.naver.maps.Event.addListener(this.guMarkers[i], 'mouseover', () => {
+          let polygon = this.guPolygons[i]
 
+          polygon.setOptions({
+            strokeColor: 'blue',
+            strokeWeight: 2
+          })
+        })
+
+        window.naver.maps.Event.addListener(this.guMarkers[i], 'mouseout', () => {
+          let polygon = this.guPolygons[i]
+
+          polygon.setOptions({
+            strokeColor: 'transparent'
+          })
+        })
+
+        window.naver.maps.Event.addListener(this.guMarkers[i], 'click', (e) => {
+          this.$refs.maps.map.setCenter(e.coord)
+          this.$refs.maps.map.setZoom(14)
+        })
+      }
+    },
+    removeGuMarkerPolygon() {
+      for (let i = 0; i < this.guMarkers.length; i++) {
+        this.guMarkers[i].setMap(null)
+        this.guPolygons[i].setMap(null)
+      }
+      this.guMarkers = []
+      this.guPolygons = []
+    },
+    openPosition (lat, lng) {
       this.infoWindow = new window.naver.maps.InfoWindow({
         disableAnchor: true,
         backgroundColor: 'transparent',
-        borderWidth: 0
+        borderWidth: 0,
+        content: `<div class="infoWindow"></div>`
       })
-
-      this.$refs.maps.map.data.addListener('mouseover', (e) => {
-        this.$refs.maps.map.data.overrideStyle(e.feature, {
-          strokeColor: 'blue',
-          strokeWeight: 2,
-        })
-
-        let infoContent = `<div class="tooltip">${e.feature.getProperty('SGG_NM')}</div>`
-
-        this.infoWindow.setContent(infoContent)
-
-        this.infoWindow.open(this.$refs.maps.map, e.coord)
-      })
-      this.$refs.maps.map.data.addListener('mouseout', () => {
-        this.$refs.maps.map.data.revertStyle()
-        this.infoWindow.close()
-      })
+      const coords = new window.naver.maps.LatLng(lat, lng)
+      this.infoWindow.open(this.$refs.maps.map, coords)
     },
-    removeDataLayer (geojson) {
-      this.$refs.maps.map.data.removeGeoJson(geojson)
+    closePosition () {
       this.infoWindow.close()
-    },
-    imageList (imageList) {
-      return imageList.split(',')[0]
     },
   }
 }
@@ -240,6 +285,7 @@ export default {
 <style lang="scss">
   .marker-html {
     position: relative;
+    background: white;
     line-height: 30px;
     text-align: center;
     font-weight: bold;
@@ -251,6 +297,7 @@ export default {
     overflow-y: auto;
     transform: translate(-40%, -60%);
     &:hover {
+      background: #77ACF1;
       color: white;
       border-color: white;
       z-index: 1;
@@ -289,15 +336,16 @@ export default {
     border-color:#04009A;
     background-color:#04009A;
   }
-  .tooltip {
-    background: white;
-    line-height: 30px;
-    text-align: center;
-    font-weight: bold;
-    border-radius: 15px;
-    transition: 0.5s;
-    padding: 0 8px;
-    box-shadow: rgba(0, 0, 0, 0.08) 0px 0px 0px 1px,
-      rgba(0, 0, 0, 0.18) 0px 1px 2px;
+  .infoWindow {
+    background: #E26A2C;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    opacity: 0.6;
+    animation: scale 1s infinite alternate;
+  }
+  @keyframes scale {
+    0%  { transform: scale(1); }
+    100%  { transform: scale(2.5); opacity: 0.4; }
   }
 </style>

@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
@@ -22,11 +23,11 @@ public class SeoulDongController {
     @Autowired
     private SeoulDongService service;
 
-    @GetMapping("/lists")
-    public ResponseEntity lists() throws Exception {
+    @GetMapping("/lists/{gu}")
+    public ResponseEntity lists(@PathVariable("gu") String gu) throws Exception {
         log.info("Dong Lists");
 
-        List<SeoulDong> dongList = service.lists();
+        List<SeoulDong> dongList = service.lists(gu);
 
         return new ResponseEntity<>(dongList, HttpStatus.OK);
     }

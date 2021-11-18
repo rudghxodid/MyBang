@@ -287,5 +287,4 @@ export default {
 .swiper-button-prev {
   color: white;
 }
-
 </style>

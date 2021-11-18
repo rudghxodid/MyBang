@@ -18,7 +18,7 @@ public class SeoulDongServiceImpl implements SeoulDongService{
     private SeoulDongRepository repository;
 
     @Override
-    public List<SeoulDong> lists() throws Exception {
-        return repository.findAll();
+    public List<SeoulDong> lists(String gu) throws Exception {
+        return repository.findByGu(gu);
     }
 }
