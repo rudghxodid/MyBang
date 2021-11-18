@@ -16,9 +16,6 @@ import {
   FETCH_LIKED_PRODUCT_LIST,
   FETCH_PRODUCT_INFO,
 
-  // Villa
-  FETCH_VILLA_LIST,
-
   //뉴스 크롤링
   CRAWL_START,
 
@@ -66,12 +63,6 @@ export default {
       .then((res) => {
           commit(FETCH_PRODUCT, res.data)
       })
-  },
-  fetchVillaList ({commit}) {
-      return axios.get('http://localhost:7777/villa/lists')
-          .then((res) =>{
-              commit(FETCH_VILLA_LIST, res.data)
-          })
   },
   fetchVilla({ commit }, villaNo) {
       return axios.get(`http://localhost:7777/villa/${villaNo}`)
