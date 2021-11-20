@@ -12,7 +12,7 @@
 
       <div>
         <naver-map-marker-cluster :options="cluster.options">
-          <naver-map-marker v-for="list in villaList" :key="list.index"
+          <naver-map-marker v-for="list in houseList" :key="list.index"
             :options="{ position: { lat: list.lat, lng: list.lng },
                         icon: iconContent(list.salesType,list.deposit, list.rent)}"
             @click="viewInfo(list)"/>
@@ -28,17 +28,20 @@
                 url: require('@/assets/img/metro-station.png')
               }
             }"
-          @click="showCircle(list.lat, list.lng)">
+          @click="showCircle(list.name, list.lat, list.lng)">
         </naver-map-marker>  
       </div>
     </naver-map>
 
     <v-card width="400" style="float:right;" max-height="700"> 
-      <v-card-title>{{selectLength}}개의 매물</v-card-title>
+      <v-card-title>
+        <span>{{ selectHouseLength }}개의 매물</span> 
+        <span class="ml-2" v-if="stationName">({{ stationName }}역 5분 거리)</span>
+      </v-card-title>
       <v-divider></v-divider>
-      <v-card-subtitle v-if="!selectLength">해당 지역에 매물이 없습니다.<br>지도를 이동&축소해 주세요.</v-card-subtitle>
+      <v-card-subtitle v-if="!selectHouseLength">해당 지역에 매물이 없습니다.<br>지도를 이동&축소해 주세요.</v-card-subtitle>
       
-      <v-virtual-scroll :bench="10" :items="selectVillaList" :item-height="120" height="630">
+      <v-virtual-scroll :bench="10" :items="selectHouseList" :item-height="120" height="630">
         <template v-slot:default="{ item }">
           <v-list-item three-line @click="viewInfo(item)" 
             @mouseover="openPosition(item.lat, item.lng)" @mouseout="closePosition">
@@ -62,6 +65,7 @@
 
 <script>
 import seoulGu from '@/assets/data/seoul_gu'
+import seoulDong from '@/assets/data/seoul_dong'
 import InfoDetail from '@/components/house/InfoDetail'
 import Search from '@/components/house/Search'
 import axios from 'axios'
@@ -71,14 +75,18 @@ export default {
     InfoDetail,
     Search
   },
+  props: {
+    houseList: {
+
+    }
+  },
   data() {
     return {
-      villaList: [],
       stationList: null,
       center: { lat: 37.49664389, lng: 127.0629852 },
       cluster: {
         options: {
-          maxZoom: 18,
+          maxZoom: 17,
           icons: [
             {content: `<div class="cluster lv1"></div>`},
             {content: `<div class="cluster lv2"></div>`},
@@ -94,34 +102,40 @@ export default {
       zoomLevel: 13,
       infoWindow: null,
       dialog: false,
-      selectVillaList: [],
-      selectLength: null,
+      selectHouseList: [],
+      selectHouseLength: null,
       guMarkers: [],
-      guPolygons: []
+      guPolygons: [],
+      dongMarkers: [],
+      dongPolygons: [],
+      stationName: null
     }
   },
   watch: {
     zoomLevel: function () {
-      if (this.zoomLevel <= 14) {
+      if (this.zoomLevel <= 13) {
         if (this.guMarkers.length == 0) {
           this.addGuMarkerPolygon()
           this.guMarkerEvent()
         }
-      } else {
+        this.removeDongMarkerPolygon()
+      } else if (this.zoomLevel > 13 && this.zoomLevel <= 16) {
         this.removeGuMarkerPolygon()
+        if (this.dongMarkers.length == 0) {
+          this.addDongMarkerPolygon()
+          this.dongMarkerEvent()
+        }
+      } else {
+        this.removeDongMarkerPolygon()
       }
     }
   },
   mounted () {
     setTimeout(() => {
-      this.villaOnMap()
+      this.markersOnMap()
       this.addGuMarkerPolygon()
       this.guMarkerEvent()
     }, 1000)
-
-    axios.get('http://localhost:7777/villa/lists').then(res => {
-      this.villaList = res.data
-    })
 
     axios.get('http://localhost:7777/station/lists').then(res => {
       this.stationList = res.data
@@ -131,23 +145,24 @@ export default {
     idle () {
       this.zoomLevel = this.$refs.maps.map.getZoom()
 
-      this.villaOnMap()
+      this.markersOnMap()
+      this.stationName = null
     },
-    villaOnMap () {
+    markersOnMap () {
       let map = this.$refs.maps.map
 
-      this.selectVillaList = []
+      this.selectHouseList = []
 
-      const list = this.villaList
+      const list = this.houseList
 
       for (let i = 0; i < list.length; i++) {
         let coords = new window.naver.maps.LatLng(list[i].lat, list[i].lng)
 
         if (map.getBounds().hasLatLng(coords)) {
-          this.selectVillaList.push(list[i])
+          this.selectHouseList.push(list[i])
         }
       }
-      this.selectLength = this.selectVillaList.length
+      this.selectHouseLength = this.selectHouseList.length
     },
     viewInfo (info) {
       this.houseInfo = info
@@ -155,18 +170,24 @@ export default {
       this.dialog = true
     },
     iconContent (salesType, deposit, rent) {
-      let cost = deposit / 10000
-      let strCost = cost.toString() + '억'
+      let leaseDeposit = (deposit / 10000).toString() + '억'
       
       if (salesType == '전세') {
-        return { content: `<div class="marker-html" style="background: #CEE5D0;">${strCost}</div>` }
+        return { content: `<div class="marker-html" style="background: #CEE5D0;">${leaseDeposit}</div>` }
       } else if (salesType == '매매') {
-        return { content: `<div class="marker-html" style="background: #F3F0D7;">${strCost}</div>` }
+        return { content: `<div class="marker-html" style="background: #F3F0D7;">${leaseDeposit}</div>` }
       } else {
-        return { content: `<div class="marker-html" style="background: #FED2AA;">${deposit}/${rent}</div>` }
-      }
+        let rentDeposit
+
+        if (deposit >= 1000) {
+          rentDeposit = (deposit / 10000).toString() + '억'
+        } else {
+          rentDeposit = deposit
+        }
+        return { content: `<div class="marker-html" style="background: #FED2AA;">${rentDeposit}/${rent}</div>` }  
+      }  
     },
-    showCircle (lat, lng) {
+    showCircle (name, lat, lng) {
       const coords = new window.naver.maps.LatLng(lat, lng)
       this.$refs.maps.map.setCenter(coords)
       this.$refs.maps.map.setZoom(17)
@@ -179,13 +200,28 @@ export default {
         fillOpacity: 0.2,
         visible: this.circle
       })
+
+      this.stationName = name
+
+      this.selectHouseList = []
+
+      const list = this.houseList
+
+      for (let i = 0; i < list.length; i++) {
+        let coords = new window.naver.maps.LatLng(list[i].lat, list[i].lng)
+
+        if (mapCircle.getBounds().hasLatLng(coords)) {
+          this.selectHouseList.push(list[i])
+        }
+      }
+      this.selectHouseLength = this.selectHouseList.length
       
       setTimeout(() => {
         mapCircle.setMap(null)
       }, 2000)
     },
-    selectStation (lat, lng) {
-      this.showCircle(lat,lng)
+    selectStation (name, lat, lng) {
+      this.showCircle(name, lat,lng)
     },
     imageList (imageList) {
       return imageList.split(',')[0]
@@ -224,7 +260,9 @@ export default {
         let polygon = new window.naver.maps.Polygon({
           map: this.$refs.maps.map,
           paths: [coordList],
-          strokeColor: 'transparent'
+          strokeColor: 'blue',
+          strokeWeight: 2,
+          visible: false
         })
 
         this.guPolygons.push(polygon)
@@ -237,8 +275,7 @@ export default {
           let polygon = this.guPolygons[i]
 
           polygon.setOptions({
-            strokeColor: 'blue',
-            strokeWeight: 2
+            visible: true
           })
         })
 
@@ -246,7 +283,7 @@ export default {
           let polygon = this.guPolygons[i]
 
           polygon.setOptions({
-            strokeColor: 'transparent'
+            visible: false
           })
         })
 
@@ -276,6 +313,73 @@ export default {
     },
     closePosition () {
       this.infoWindow.close()
+    },
+    addDongMarkerPolygon () {
+      const list = seoulDong.features
+
+      for (let i = 0; i < list.length; i++) {
+        
+        let coords = list[i].geometry.coordinates[0]
+        let coordList = []
+
+        for(let i = 0; i < coords.length; i++) {
+          coordList.push(new window.naver.maps.LatLng(coords[i][1], coords[i][0]))
+        }
+        
+        let polygon = new window.naver.maps.Polygon({
+          map: this.$refs.maps.map,
+          paths: [coordList],
+          strokeColor: 'blue',
+          visible: false,
+          strokeWeight: 2,
+          strokeLineJoin: 'round'
+        })
+
+        let dong = list[i].properties.adm_nm.split(' ')[2]
+
+        let position = polygon.getBounds().getCenter()
+
+        let marker = new window.naver.maps.Marker({
+            map: this.$refs.maps.map,
+            position: position,
+            icon: { content: `<div class="marker-html">${dong}</div>` }
+        })
+
+        this.dongPolygons.push(polygon)
+        this.dongMarkers.push(marker)
+      }
+    },
+    dongMarkerEvent() {
+      for (let i = 0; i < this.dongMarkers.length; i++) {
+        window.naver.maps.Event.addListener(this.dongMarkers[i], 'mouseover', () => {
+          let polygon = this.dongPolygons[i]
+
+          polygon.setOptions({
+            visible: true
+          })
+        })
+
+        window.naver.maps.Event.addListener(this.dongMarkers[i], 'mouseout', () => {
+          let polygon = this.dongPolygons[i]
+
+          polygon.setOptions({
+            visible: false
+          })
+        })
+
+        window.naver.maps.Event.addListener(this.dongMarkers[i], 'click', (e) => {
+          this.$refs.maps.map.setCenter(e.coord)
+          this.$refs.maps.map.setZoom(17)
+        })
+      }
+    },
+    removeDongMarkerPolygon() {
+      for (let i = 0; i < this.dongMarkers.length; i++) {
+        this.dongMarkers[i].setMap(null)
+        this.dongPolygons[i].setMap(null)
+      }
+      this.dongMarkers = []
+      this.dongPolygons = []
     },
   }
 }

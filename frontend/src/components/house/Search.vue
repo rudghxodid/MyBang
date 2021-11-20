@@ -90,7 +90,7 @@ export default {
     },
     selectStation (name, lat, lng) {
       this.search = name
-      this.$emit('selectStation', lat, lng)
+      this.$emit('selectStation', name, lat, lng)
       this.searchList = null
     },
     selectGu (gu, lat, lng) {
