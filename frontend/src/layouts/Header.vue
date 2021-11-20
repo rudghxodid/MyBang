@@ -2,7 +2,7 @@
 	<header>
 		<div class="inner">
 			<h1 class="logo">
-				<a href='main'>
+				<a href='/'>
 				<img src="@/assets/img/mybang.png" height="80px" style="margin-top:-6px" >
 				</a>
 			</h1>
@@ -16,19 +16,19 @@
 					<nav class></nav>
 				</li>
 				<li>
-					<a href="">
+					<a href="/villa">
 						<span>빌라, 투룸+</span>
 						<span>신축분양/매매/전월세</span>
 					</a>
 				</li>
 				<li>
-					<a href="">
+					<a href="/oneroom">
 						<span>원룸</span>
 						<span>전월세</span>
 					</a>
 				</li>
 				<li>
-					<a href="">
+					<a href="/officetel">
 						<span>오피스텔</span>
 						<span>도시형생활주택/전월세</span>
 					</a>

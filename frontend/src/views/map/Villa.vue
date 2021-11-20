@@ -6,7 +6,7 @@
 
 
 <script>
-import Map from '@/components/house/Map'
+import Map from '@/components/map/Map'
 import axios from 'axios'
 
 export default {

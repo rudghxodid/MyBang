@@ -66,8 +66,8 @@
 <script>
 import seoulGu from '@/assets/data/seoul_gu'
 import seoulDong from '@/assets/data/seoul_dong'
-import InfoDetail from '@/components/house/InfoDetail'
-import Search from '@/components/house/Search'
+import InfoDetail from '@/components/map/InfoDetail'
+import Search from '@/components/map/Search'
 import axios from 'axios'
 
 export default {
