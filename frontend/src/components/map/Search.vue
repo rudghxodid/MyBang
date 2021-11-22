@@ -5,7 +5,7 @@
         <v-autocomplete :items="guList" label="구" item-text="gu" solo>
           <template v-slot:item="{ item }">
             <v-list-item-content>
-              <v-list-item-subtitle @click="selectGu(item.gu, item.lat, item.lng)">
+              <v-list-item-subtitle @click="selectGu(item.gu)">
                 {{ item.gu }}
               </v-list-item-subtitle>
             </v-list-item-content>
@@ -59,6 +59,12 @@
 import axios from 'axios'
 
 export default {
+  props: {
+    guPolygons: {},
+    guMarkers: {},
+    dongPolygons: {},
+    dongMarkers: {}
+  },
   data () {
     return {
       search: null,
@@ -93,9 +99,19 @@ export default {
       this.$emit('selectStation', name, lat, lng)
       this.searchList = null
     },
-    selectGu (gu, lat, lng) {
+    selectGu (gu) {
       this.gu = gu
-      this.$emit('selectGu', lat, lng)
+
+      let num
+      let coord
+
+      for (let i = 0; i < this.guMarkers.length; i++) {
+        if (this.gu == this.guMarkers[i].title) {
+          num = i
+          coord = this.guMarkers[i].position
+        }
+      }
+      this.$emit('selectArea', coord, 14, this.guPolygons[num], this.guMarkers[num])
 
       this.dong = null
       this.dongList = []
