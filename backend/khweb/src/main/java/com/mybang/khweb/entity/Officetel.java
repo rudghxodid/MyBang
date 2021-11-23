@@ -38,6 +38,9 @@ public class Officetel {
     private String buildingType;
     @Column
     private Long deposit;
+    //월세
+    @Column
+    private Long rent;
     @Column(columnDefinition = "text")
     private String description;
     @Column

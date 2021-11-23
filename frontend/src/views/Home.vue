@@ -1,8 +1,16 @@
 <template>
   <v-sheet>
-     <router-link :to="{ name: 'Villa' }" 
+    <router-link :to="{ name: 'Villa' }" 
       class="nav-link" 
       active-class="active">Villa(test)
+    </router-link>
+    <router-link :to="{ name: 'Oneroom' }" 
+      class="nav-link" 
+      active-class="active">Oneroom(test)
+    </router-link>
+    <router-link :to="{ name: 'Officetel' }" 
+      class="nav-link" 
+      active-class="active">Officetel(test)
     </router-link>
     <router-link :to="{ name: 'VillaRegisterPage' }" 
       class="nav-link" 

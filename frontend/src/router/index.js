@@ -29,7 +29,14 @@ import OneroomListPage from '@/views/oneroom/OneroomListPage'
 import OneroomReadPage from '@/views/oneroom/OneroomReadPage'
 
 // Map
-import Villa from '@/views/house/Villa'
+import Villa from '@/views/map/Villa'
+import Oneroom from '@/views/map/Oneroom'
+import Officetel from '@/views/map/Officetel'
+
+// 부동산 뉴스
+import News from '@/views/News'
+
+
 
 import BrokerHouseListPage from '@/views/broker/BrokerHouseListPage'
 
@@ -132,6 +139,17 @@ const routes = [
     component: Villa
   },
   {
+    path: '/oneroom',
+    name: 'Oneroom',
+    component: Oneroom
+  },
+  {
+    path: '/officetel',
+    name: 'Officetel',
+    component: Officetel
+  },
+
+  {
     path: '/villa/register',
     name: 'VillaRegisterPage',
     components: {
@@ -200,6 +218,19 @@ const routes = [
       default: true
     }
   },
+
+
+  // 부동산 뉴스
+  {
+    path: '/news',
+    name: 'News',
+    component: News
+  },
+
+
+
+
+
 ]
 
 const router = new VueRouter({

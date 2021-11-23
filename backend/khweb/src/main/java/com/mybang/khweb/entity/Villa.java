@@ -47,6 +47,9 @@ public class Villa {
     // 전세금(월세 보증금 or 매매금)
     @Column
     private Long deposit;
+    //월세
+    @Column
+    private Long rent;
     // 매물 설명
     @Column(columnDefinition = "text")
     private String description;

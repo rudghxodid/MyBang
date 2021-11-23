@@ -9,6 +9,7 @@ import {
   // 매물게시판
   FETCH_PRODUCT_LIST,
   FETCH_PRODUCT,
+
   FETCH_VILLA_LIST,
   FETCH_VILLA,
   FETCH_OFFICETEL_LIST,
@@ -20,7 +21,8 @@ import {
   FETCH_AGENT_ONEROOM,
   FETCH_AGENT_OFFICETEL,
 
-
+  // 뉴스 크롤링
+  CRAWL_START,
 
 } from './mutation-types'
 
@@ -48,6 +50,7 @@ export default {
   [FETCH_PRODUCT] (state, product) {
     state.product = product
   },
+
   [FETCH_VILLA_LIST] (state, villas) {
     state.villas = villas;
   },
@@ -75,5 +78,9 @@ export default {
   [FETCH_AGENT_OFFICETEL] (state, agentOfficetel) {
     state.agentOfficetel = agentOfficetel
   },
+
+  [CRAWL_START] (state, payload) {
+    state.lists = payload
+},
 
 }

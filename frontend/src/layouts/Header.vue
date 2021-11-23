@@ -2,24 +2,33 @@
 	<header>
 		<div class="inner">
 			<h1 class="logo">
-				<img @click="gotoMainPage" src="@/assets/img/mybang.png" height="80px" style="margin-top:-6px">
+				<a href='/'>
+				<img src="@/assets/img/mybang.png" height="80px" style="margin-top:-6px" >
+				</a>
 			</h1>
 
 			<ul class="navbar">
 				<li>
 					<a href="">
+						<span>아파트<br></span>
+						<span>매매/전월세/신축분양</span>
+					</a>
+					<nav class></nav>
+				</li>
+				<li>
+					<a href="/villa">
 						<span>빌라, 투룸+</span>
 						<span>신축분양/매매/전월세</span>
 					</a>
 				</li>
 				<li>
-					<a href="">
+					<a href="/oneroom">
 						<span>원룸</span>
 						<span>전월세</span>
 					</a>
 				</li>
 				<li>
-					<a href="">
+					<a href="/officetel">
 						<span>오피스텔</span>
 						<span>도시형생활주택/전월세</span>
 					</a>
@@ -50,46 +59,46 @@
 
 <script>
 import { mapActions, mapState } from 'vuex'
-	export default {
-		name: 'Header',
-		data() {
-		return {
-	
+  export default {
+    name: 'Header',
+    data() {
+      return {
+ 
+    }
+  },
+  computed: {
+    ...mapState(['session', 'isLogin'])
+  },
+  mounted() {
+    this.fetchSession(this.$cookies.get('session'))
+		if (this.session != null) {
+			this.$store.state.isLogin = true
+			this.$store.state.userInfo = this.fetchUserInfo(this.$cookies.get('session')) 
 		}
-	},
-	computed: {
-		...mapState(['session', 'isLogin'])
-	},
-	mounted() {
-		this.fetchSession(this.$cookies.get('session'))
-			if (this.session != null) {
-				this.$store.state.isLogin = true
-				this.$store.state.userInfo = this.fetchUserInfo(this.$cookies.get('session')) 
-			}
-	},
-	methods: {
-		...mapActions(['fetchSession', 'fetchUserInfo']),
-		gotoJoin() {
-		this.$router.push('/member/create')
-		},
-		gotoLogin() {
-		this.$router.push('/login')
-		},
-		logout () {
-		this.$store.commit('USER_LOGIN', false)
-		this.fetchSession(this.$cookies.remove('session'))
-		this.$store.commit('FETCH_USER_INFO', [])
-		alert("로그아웃 되었습니다!")
-		this.$router.go()
-		},
-		gotoMypage () {
-		this.$router.push({ name: 'Mypage' })
-		},
-		gotoMainPage() {
-			this.$router.push({name: 'Home'})
-		}
-	}
-}
+  },
+  methods: {
+    ...mapActions(['fetchSession', 'fetchUserInfo']),
+    gotoJoin() {
+      this.$router.push('/member/create')
+    },
+    gotoLogin() {
+      this.$router.push('/login')
+    },
+    logout () {
+      this.$store.commit('USER_LOGIN', false)
+      this.fetchSession(this.$cookies.remove('session'))
+      this.$store.commit('FETCH_USER_INFO', [])
+      alert("로그아웃 되었습니다!")
+      this.$router.go()
+    },
+    gotoMypage () {
+      this.$router.push({ name: 'Mypage' })
+    }
+  }
+
+  
+  
+  }
 </script>
 
 <style scoped>

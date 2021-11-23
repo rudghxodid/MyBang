@@ -25,6 +25,10 @@ import {
   FETCH_AGENT_OFFICETEL,
   FETCH_AGENT_ONEROOM,
 
+  //뉴스 크롤링
+  CRAWL_START,
+
+
 } 
 
 from './mutation-types'
@@ -138,4 +142,18 @@ export default {
               commit(FETCH_AGENT_ONEROOM, res.data);
           })
   },
+},
+
+  // 뉴스 크롤링
+  async crawlFind ({ commit }, category) {
+    axios.get('http://localhost:7777/' + `${category}`)
+            .then(({ data }) => {
+                commit(CRAWL_START, data)
+
+                // if (window.location.pathname !== '/daumNewsCrawler') {
+                //     router.push('/daumNewsCrawler')
+                // }
+            })
+},
+
 }

@@ -38,6 +38,8 @@ public class Oneroom {
     private String buildingType;
     @Column
     private Long deposit;
+    @Column
+    private Long rent;
     @Column(columnDefinition = "text")
     private String description;
     @Column
