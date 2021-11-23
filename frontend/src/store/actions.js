@@ -11,10 +11,19 @@ import {
   FETCH_PRODUCT,
   FETCH_VILLA_LIST,
   FETCH_VILLA,
+  FETCH_OFFICETEL_LIST,
+  FETCH_OFFICETEL,
+  FETCH_ONEROOM_LIST,
+  FETCH_ONEROOM,
 
   // 찜하기 
   FETCH_LIKED_PRODUCT_LIST,
-  FETCH_PRODUCT_INFO
+  FETCH_PRODUCT_INFO,
+
+  // 사업자별 매물등록구분
+  FETCH_AGENT_VILLA,
+  FETCH_AGENT_OFFICETEL,
+  FETCH_AGENT_ONEROOM,
 
 } 
 
@@ -72,6 +81,30 @@ export default {
           commit(FETCH_VILLA, res.data)
       })
   },
+  fetchOneroomList ({commit}) {
+      return axios.get('http://localhost:7777/oneroom/lists')
+          .then((res) =>{
+              commit(FETCH_ONEROOM_LIST, res.data)
+          })
+  },
+  fetchOneroom({ commit }, oneroomNo) {
+      return axios.get(`http://localhost:7777/oneroom/${oneroomNo}`)
+      .then((res) => {
+          commit(FETCH_ONEROOM, res.data)
+      })
+  },
+  fetchOfficetelList ({commit}) {
+      return axios.get('http://localhost:7777/officetel/lists')
+          .then((res) =>{
+              commit(FETCH_OFFICETEL_LIST, res.data)
+          })
+  },
+  fetchOfficetel({ commit }, officetelNo) {
+      return axios.get(`http://localhost:7777/officetel/${officetelNo}`)
+      .then((res) => {
+          commit(FETCH_OFFICETEL, res.data)
+      })
+  },
   // 찜하기
   fetchLikedProductList ({ commit }, payload) {
     return axios.get(`http://localhost:7777/product/likedProductList/${payload}`)
@@ -85,6 +118,24 @@ export default {
       .then(res => {
         commit(FETCH_PRODUCT_INFO, res.data);
       });
-    }
-
+  },
+  // 사업자별 매물등록구분
+  fetchAgentVilla({commit}, agentId) {
+    return axios.get(`http://localhost:7777/villa/list/${agentId}`)
+    .then((res) =>{
+              commit(FETCH_AGENT_VILLA, res.data);
+          })
+  },
+  fetchAgentOfficetel({commit}, agentId) {
+    return axios.get(`http://localhost:7777/officetel/list/${agentId}`)
+    .then((res) =>{
+              commit(FETCH_AGENT_OFFICETEL, res.data)
+          })
+  },
+  fetchAgentOneroom({commit}, agentId) {
+    return axios.get(`http://localhost:7777/oneroom/list/${agentId}`)
+    .then((res) =>{
+              commit(FETCH_AGENT_ONEROOM, res.data);
+          })
+  },
 }

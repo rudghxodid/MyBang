@@ -1,11 +1,11 @@
 <template>
     <div>
-        <villa-read-form :villa="villa"/>
-        <v-btn color="white" :to="{ name: 'VillaModifyPage', params: { villaNo } }">
+        <officetel-read-form :officetel="officetel"/>
+        <v-btn color="white" :to="{ name: 'OfficetelModifyPage', params: { officetelNo } }">
             내용 수정
         </v-btn>
         <!--
-        <v-btn color="white" v-else  @click="villaModifyFail">
+        <v-btn color="white" v-else  @click="officetelModifyFail">
             내용 수정
         </v-btn>
         -->
@@ -17,13 +17,13 @@
 
 <script>
 
-import VillaReadForm from '@/components/villa/VillaReadForm.vue'
+import OfficetelReadForm from '@/components/officetel/OfficetelReadForm.vue'
 import { mapState, mapActions } from 'vuex'
 
 export default {
-    name: 'VillaReadPage',
+    name: 'OfficetelReadPage',
     props: {
-        villaNo: {
+        officetelNo: {
             type: String,
             required: true
         }
@@ -34,15 +34,15 @@ export default {
         }
     },
     components: {
-        VillaReadForm
+        OfficetelReadForm
     },
     computed: {
-        ...mapState(['villa']),
+        ...mapState(['officetel']),
     },
     methods: {
-        ...mapActions(['fetchVilla']),
+        ...mapActions(['fetchOfficetel']),
         /*
-        villaModifyFail() {
+        officetelModifyFail() {
             this.isLogin = false
             alert('게시자만 수정가능합니다')
             this.$router.push("login")
@@ -50,14 +50,14 @@ export default {
         */
     },
     created () {
-        this.fetchVilla(this.villaNo)
+        this.fetchOfficetel(this.officetelNo)
         .catch(err => {
             alert(err.response.data.message)
             this.$router.push()
         })
     },
     mounted() {
-        console.log(JSON.stringify(this.villa))
+        console.log(JSON.stringify(this.officetel))
         /*
         this.$store.state.session = this.$cookies.get("user")
         if (this.$store.state.session != null) {

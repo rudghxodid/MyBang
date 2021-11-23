@@ -11,6 +11,14 @@ import {
   FETCH_PRODUCT,
   FETCH_VILLA_LIST,
   FETCH_VILLA,
+  FETCH_OFFICETEL_LIST,
+  FETCH_OFFICETEL,
+  FETCH_ONEROOM_LIST,
+  FETCH_ONEROOM,
+
+  FETCH_AGENT_VILLA,
+  FETCH_AGENT_ONEROOM,
+  FETCH_AGENT_OFFICETEL,
 
 
 
@@ -45,6 +53,27 @@ export default {
   },
   [FETCH_VILLA] (state, villa) {
     state.villa = villa
+  },
+  [FETCH_ONEROOM_LIST] (state, oneroomList) {
+    state.oneroomList = oneroomList;
+  },
+  [FETCH_ONEROOM] (state, oneroom) {
+    state.oneroom = oneroom
+  },
+  [FETCH_OFFICETEL_LIST] (state, officetelList) {
+    state.officetelList = officetelList;
+  },
+  [FETCH_OFFICETEL] (state, officetel) {
+    state.officetel = officetel
+  },
+  [FETCH_AGENT_VILLA] (state, agentVilla) {
+    state.agentVilla = agentVilla
+  },
+  [FETCH_AGENT_ONEROOM] (state, agentOneroom) {
+    state.agentOneroom = agentOneroom
+  },
+  [FETCH_AGENT_OFFICETEL] (state, agentOfficetel) {
+    state.agentOfficetel = agentOfficetel
   },
 
 }

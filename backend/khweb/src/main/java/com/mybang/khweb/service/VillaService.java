@@ -1,10 +1,10 @@
 package com.mybang.khweb.service;
 
-import com.mybang.khweb.entity.Product;
 import com.mybang.khweb.entity.Villa;
 import com.mybang.khweb.request.VillaRequest;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface VillaService {
 
@@ -12,5 +12,11 @@ public interface VillaService {
 
     List<Villa> lists() throws Exception;
 
-    public Villa read(Long villaNo) throws Exception;
+    Optional<Villa> read(Long villaNo) throws Exception;
+
+    public void remove(Long villaNo) throws Exception;
+
+    public void modify(Villa villa, VillaRequest request) throws Exception;
+
+    List<Villa> agentList(String agentId) throws Exception;
 }

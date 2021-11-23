@@ -1,5 +1,8 @@
 package com.mybang.khweb.entity;
 
+import com.mybang.khweb.request.VillaRequest;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -7,8 +10,9 @@ import javax.persistence.*;
 
 @Entity
 @Data
+@Builder
 @NoArgsConstructor
-@Table(name = "villa")
+@AllArgsConstructor
 public class Villa {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -37,7 +41,7 @@ public class Villa {
     // 중개사 전화
     @Column
     private String agentPhone;
-    // 건물 타입
+    // 건물 타입(대부분 작성 필요 X)
     @Column
     private String buildingType;
     // 전세금(월세 보증금 or 매매금)
@@ -126,6 +130,9 @@ public class Villa {
     // 매물 url
     @Column
     private String url;
+    // 회원 매물등록 구분
+    @Column
+    private String agentId;
 
     public Villa(String address, String agentAddress, String agentEmail, double agentLat, double agentLng,
                    String agentMobile, String agentName,  String agentPhone, String buildingType, Long deposit,
@@ -133,7 +140,7 @@ public class Villa {
                    double lng, String local1, String local2, String local3, String manageCost, String manageCostInc,
                    String moveinDate, String nearSubways, String options, String parking, String pets, String roomDirection,
                    String roomType, String salesType, String serviceType, String size, String sizeM2,
-                   String title, String updatedAt, String userIntro, String userName, String url) {
+                   String title, String updatedAt, String userIntro, String userName, String url, String agentId) {
         this.address = address;
         this.agentAddress = agentAddress;
         this.agentEmail = agentEmail;
@@ -172,5 +179,48 @@ public class Villa {
         this.userIntro = userIntro;
         this.userName = userName;
         this.url = url;
+        this.agentId = agentId;
+    }
+
+    public void updateVilla(VillaRequest request) {
+        this.address = request.getAddress();
+        this.agentAddress = request.getAgentAddress();
+        this.agentEmail = request.getAgentEmail();
+        this.agentLat = request.getAgentLat();
+        this.agentLng = request.getAgentLng();
+        this.agentMobile = request.getAgentMobile();
+        this.agentName = request.getAgentName();
+        this.agentPhone = request.getAgentPhone();
+        this.buildingType = request.getBuildingType();
+        this.deposit = request.getDeposit();
+        this.description = request.getDescription();
+        this.elevator = request.getElevator();
+        this.floor = request.getFloor();
+        this.floorAll = request.getFloorAll();
+        this.image = request.getImage();
+        this.lat = request.getLat();
+        this.lng = request.getLng();
+        this.local1 = request.getLocal1();
+        this.local2 = request.getLocal2();
+        this.local3 = request.getLocal3();
+        this.manageCost = request.getManageCost();
+        this.manageCostInc = request.getManageCostInc();
+        this.moveinDate = request.getMoveinDate();
+        this.nearSubways = request.getNearSubways();
+        this.options = request.getOptions();
+        this.parking = request.getParking();
+        this.pets = request.getPets();
+        this.roomDirection = request.getRoomDirection();
+        this.roomType = request.getRoomType();
+        this.salesType = request.getSalesType();
+        this.serviceType = request.getServiceType();
+        this.size = request.getSize();
+        this.sizeM2 = request.getSizeM2();
+        this.title = request.getTitle();
+        this.updatedAt = request.getUpdatedAt();
+        this.userIntro = request.getUserIntro();
+        this.userName = request.getUserName();
+        this.url = request.getUrl();
+        this.agentId = request.getAgentId();
     }
 }

@@ -19,9 +19,19 @@ import ProductModifyPage from '@/views/product/ProductModifyPage'
 
 import VillaRegisterPage from '@/views/villa/VillaRegisterPage'
 import VillaReadPage from '@/views/villa/VillaReadPage'
+import VillaModifyPage from '@/views/villa/VillaModifyPage'
+
+import OfficetelRegisterPage from '@/views/officetel/OfficetelRegisterPage'
+import OfficetelReadPage from '@/views/officetel/OfficetelReadPage'
+
+import OneroomRegisterPage from '@/views/oneroom/OneroomRegisterPage'
+import OneroomListPage from '@/views/oneroom/OneroomListPage'
+import OneroomReadPage from '@/views/oneroom/OneroomReadPage'
 
 // Map
 import Villa from '@/views/house/Villa'
+
+import BrokerHouseListPage from '@/views/broker/BrokerHouseListPage'
 
 
 Vue.use(VueRouter)
@@ -124,13 +134,67 @@ const routes = [
   {
     path: '/villa/register',
     name: 'VillaRegisterPage',
-    component: VillaRegisterPage
+    components: {
+      default: VillaRegisterPage
+    }
   },
   {
     path: '/villa/:villaNo',
     name: 'VillaReadPage',
     components: {
       default: VillaReadPage
+    },
+    props: {
+      default: true
+    }
+  },
+  {
+    path: '/villa/:villaNo/edit',
+    name: 'VillaModifyPage',
+    components: {
+      default: VillaModifyPage
+    },
+    props: {
+      default: true
+    },
+  },
+  {
+    path: '/broker/list',
+    name: 'BrokerHouseListPage',
+    component: BrokerHouseListPage
+  },
+  {
+    path: '/officetel/register',
+    name: 'OfficetelRegisterPage',
+    component: OfficetelRegisterPage
+  },
+  {
+    path: '/officetel/:officetelNo',
+    name: 'OfficetelReadPage',
+    components: {
+      default: OfficetelReadPage
+    },
+    props: {
+      default: true
+    }
+  },
+  {
+    path: '/oneroom/register',
+    name: 'OneroomRegisterPage',
+    components: {
+      default: OneroomRegisterPage
+    }
+  },
+  {
+    path: '/oneroom/list',
+    name: 'OneroomListPage',
+    component: OneroomListPage
+  },
+  {
+    path: '/oneroom/:oneroomNo',
+    name: 'OneroomReadPage',
+    components: {
+      default: OneroomReadPage
     },
     props: {
       default: true
