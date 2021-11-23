@@ -17,7 +17,7 @@ import {
 
 
   // Villa
-  FETCH_VILLA_LIST,
+  // FETCH_VILLA_LIST,
 
   // 뉴스 크롤링
   CRAWL_START,
@@ -31,7 +31,6 @@ export default {
   },
   [FETCH_USER_INFO] (state, userInfo) {
     state.userInfo = userInfo
-    console.log(userInfo)
   },
   [FETCH_SESSION] (state, session) {
     state.session = session
@@ -49,9 +48,9 @@ export default {
     state.product = product
   },
 
-  [FETCH_VILLA_LIST] (state, villas) {
-    state.villas = villas;
-  },
+  // [FETCH_VILLA_LIST] (state, villas) {
+  //   state.villas = villas;
+  // },
   [FETCH_VILLA] (state, villa) {
     state.villa = villa
   },
@@ -60,13 +59,12 @@ export default {
   [FETCH_VILLA_LIST] (state, villaList) {
     state.villaList = villaList
 
-  }
-
-
   },
+
+
+
 
   [CRAWL_START] (state, payload) {
     state.lists = payload
-},
-
+  }
 }

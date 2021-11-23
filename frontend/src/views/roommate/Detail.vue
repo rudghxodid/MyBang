@@ -17,8 +17,10 @@
 
 
 			<div class="detail-button">
-				<b-button @click="onClickModifyBtn" v-if="userId === board.writer" class="btn_modify">수정</b-button>
-				<b-button @click="onClickDeleteBtn" v-if="userId === board.writer" class="btn_delete">삭제</b-button>
+<!--				<b-button @click="onClickModifyBtn" v-if="userId === board.writerName" class="btn_modify">수정</b-button>-->
+<!--				<b-button @click="onClickDeleteBtn" v-if="userId === board.writerName" class="btn_delete">삭제</b-button>-->
+				<b-button @click="onClickModifyBtn" class="btn_modify">수정</b-button>
+				<b-button @click="onClickDeleteBtn" class="btn_delete">삭제</b-button>
 				<b-button @click="onClickListBtn" class="btn_list">목록</b-button>
 			</div>
 
@@ -68,12 +70,21 @@
 
 <script>
   import api from "../../api";
+  import dayjs from "dayjs";
 
   export default {
     name: "RoomMateDetail",
+    async mounted() {
+      if (!this.userId) {
+        alert("권한이 없습니다. 로그인 화면으로 이동합니다.");
+        this.$router.push({name: "MemberLoginPage"});
+      } else {
+        await this.fetchRoomMateDetail();
+      }
+    },
     data() {
       return {
-        userId: this.$store.state.userInfo.id,
+        userId: this.$store.state.userInfo.userId,
         id: this.$route.params.id,
         // commentList: [],
         board: {
@@ -85,7 +96,7 @@
           writerName: '',
           count: '',
         },
-        commentInput: '',
+        // commentInput: '',
       };
     },
     computed: {
@@ -95,14 +106,15 @@
     },
     methods: {
 			async fetchRoomMateDetail() {
-			  await api.get('/roomMate/${this.id')
+			  await api.get(`/roomMate/${this.id}`)
           .then((res) => {
             console.log(res);
-            this.board.title = res.data.board.title;
-            this.board.content = res.data.board.content;
-            this.board.writer = res.data.board.writer;
-            this.board.writerName = res.data.board.writerName;
-            this.board.count = res.data.board.count;
+            this.board.title = res.data.title;
+            this.board.content = res.data.content;
+            this.board.writer = res.data.writer;
+            this.board.writerName = res.data.writerName;
+            this.board.count = res.data.count;
+            this.board.createdAt = dayjs(res.data.createdAt).format("YYYY-MM-DD HH:mm");
           })
           .catch((err) => {
             console.log(err);
@@ -111,6 +123,23 @@
 			},
       onClickModifyBtn() {
         this.$router.push({name: "RoomMateModify", params: {id: this.id}});
+      },
+      async onClickDeleteBtn() {
+        if (confirm("삭제하시겠습니까?")) {
+          await api.delete(`/roomMate/delete/${this.id}`)
+            .then((res) => {
+              if (res.data === "") {
+                alert('글 삭제 성공');
+                this.$router.push({name: "RoomMateList"});
+              } else {
+                alert('글 삭제 실패');
+              }
+            })
+            .catch((err) => {
+              console.log(err);
+              alert("알 수 없는 오류 발생");
+            })
+        }
       },
       onClickListBtn() {
         this.$router.push({name: "RoomMateList"});

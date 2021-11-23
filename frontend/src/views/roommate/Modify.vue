@@ -24,35 +24,76 @@
   import api from "../../api";
   export default {
     name: "RoomMateModify",
+    mounted() {
+      if (this.id) {
+        console.log("==> this.id : ", this.id);
+
+        api.get(`/roomMate/${this.id}`)
+          .then((res) => {
+            this.detail.title = res.data.title;
+            this.detail.content = res.data.content;
+            this.detail.writer = res.data.writer;
+            this.detail.writerName = res.data.writerName;
+            this.detail.createdAt = res.data.createdAt;
+            console.log(res.data.board);
+          })
+          .catch((err) => {
+            console.log(err);
+            alert("게시글 조회 오류");
+          })
+      }
+    },
     data() {
       return {
-        // userId: this.$store.state.userInfo.id,
-        // id: this.$route.params.id,
+        userId: this.$store.state.userInfo.memberNo,
+        id: this.$route.params.id,
         detail: {
           title: '',
           content: '',
           writer: '',
           createdAt: '',
+          // writerName: '',
         },
       }
     },
     methods: {
       onClickSaveBtn() {
-
-          // 글작성
+        if (this.id === undefined) {
+          // console.log("==> this.id : ", this.id);
+          // 글 작성
           api.post(`/roomMate/create`, {
             title: this.detail.title,
             content: this.detail.content,
             writer: this.userId,
+            // writerName: this.userId,
           })
             .then((res) => {
+
               this.$router.push({name: "RoomMateList", params: {id: res.data.id }});
               alert("등록 성공");
             }).catch((err) => {
             console.log(err);
             alert("등록 실패");
           });
+        } else {
+          // 글 수정
+	        api.post(`/roomMate/update/${this.id}`, {
+            title: this.detail.title,
+            content: this.detail.content,
+            writer: this.userId,
+            // writerName: this.userId,
+	        })
+	          .then((res) => {
+              console.log("==> res : ", res);
 
+              console.log(res);
+	            this.$router.push({name: "RoomMateDetail", params: {id: this.$route.params.id}});
+	            alert("수정 성공");
+		          }).catch((err) => {
+		            console.log("==> err : ", err);
+		            alert("수정 실패");
+		        })
+        }
       },
       onClickCancleBtn() {
         this.$router.push({name: "RoomMateList"});

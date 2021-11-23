@@ -26,20 +26,21 @@ public class RoomMateService {
     RoomMateRepository roomMateRepository;
 
     // 게시글 등록
-    public RoomMate create(RoomMateDto roomMateDto) {
-//        Member member = memberRepository.findById(roomMateDto.writer).orElse(null);
+    public RoomMate create(RoomMateDto roomMateDto) throws Exception {
+        Member member = memberRepository.findById(roomMateDto.writer).orElse(null);
 
         RoomMate roomMate = RoomMate.builder()
                                 .title(roomMateDto.title)
                                 .content(roomMateDto.content)
                                 .writer(roomMateDto.writer)
-//                                .writerName(member.getName())
+                                .writerName(member.getUserId())
                                 .count(1)
                                 .build();
 
         roomMateRepository.save(roomMate);
         return roomMate;
     }
+
     // 게시글 목록
     public List<RoomMate> findAllRoomMate() {
         return roomMateRepository.findAll();
@@ -50,14 +51,14 @@ public class RoomMateService {
     // 게시글 읽기
     public RoomMate findById(Long id) {
         RoomMate roomMate = roomMateRepository.findById(id).orElse(null);
-        Member member = memberRepository.findById(roomMate.getWriter()).orElse(null);
-        roomMate.setWriterName(member.getUserId());
+//        Member member = memberRepository.findById(roomMate.getWriter()).orElse(null);
+//        roomMate.setWriterName(member.getUserId());
 
         if (roomMate != null) {
             roomMate.setCount(roomMate.getCount() + 1);
             roomMateRepository.save(roomMate);
         }
-        return findById(id);
+        return roomMate;
     }
 
     // 게시글 수정
@@ -69,18 +70,6 @@ public class RoomMateService {
         return roomMate;
     }
 
-    // 게시글 목록
-//    public RoomMate get(long boardNo) {
-//        RoomMate roomMate = roomMateRepository.findById(boardNo).orElse(null);
-//        Member member = memberRepository.findById(roomMate.getWriter()).orElse(null);
-//        roomMate.setWriterName(member.getName());
-//
-//        if (roomMate != null) {
-//            roomMate.setCount(roomMate.getCount() + 1);
-//            roomMateRepository.save(roomMate);
-//        }
-//        return roomMate;
-//    }
 
     // 게시글 삭제
    public Boolean delete(long boardNo) {

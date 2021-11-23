@@ -20,10 +20,10 @@
 			<tr v-for="(b, index) in boardList" :key="index">
 				<td>{{b.id}}</td>
 				<td>
-					<router-link :to="`/roomMate/detail/${b.id}`">{{b.title}}</router-link>
+					<router-link :to="`/roommate/detail/${b.id}`">{{b.title}}</router-link>
 				</td>
 				<td>{{b.writerName}}</td>
-				<td>{{b.createdAt}}</td>
+				<td>{{b.createdDate}}</td>
 				<td>{{b.count}}</td>
 			</tr>
 			</tbody>
@@ -59,18 +59,24 @@
         totalItems: '',
         // bootstrap 'b-table' 필드 설정
         boardList: [],
-        // items: items
       };
     },
     methods : {
       async fetchRoomMateList() {
         return await api.get('/roomMate/list')
           .then((res) => {
-            this.boardList = res.data.data.reverse();
+            this.boardList = res.data.reverse();
+            console.log(this.boardList);
           }).catch((err) => {
 	            console.log(err);
 	            alert("게시글 목록 조회 오류");
 		        });
+      },
+
+      rowClick(item) {
+        this.$router.push({
+	        name: `/roommate/detail/${item.id}`
+        })
       },
 
       onClickWriteBtn() {
@@ -81,6 +87,7 @@
         await this.fetchRoomMateList();
       }
     },
+
   }
 </script>
 

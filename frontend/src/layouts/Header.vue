@@ -2,9 +2,9 @@
 	<header>
 		<div class="inner">
 			<h1 class="logo">
-				<a href='main'>
-				<img src="@/assets/img/mybang.png" height="80px" style="margin-top:-6px" >
-				</a>
+				<router-link to="/">
+					<img src="@/assets/img/mybang.png" height="80px" style="margin-top:-6px" >
+				</router-link>
 			</h1>
 
 			<ul class="navbar">
@@ -50,6 +50,7 @@
 		<div class="right-header">
 			<v-container>
 				<div v-if="isLogin">
+					<div class="loginUser"><span>{{this.$store.state.userInfo.userId}}</span>님</div>
 					<v-btn @click="gotoMypage" text>마이페이지</v-btn>|
 					<v-btn @click="logout" text>로그아웃</v-btn>
 					<!--<v-btn text><a href="registerInfo">중개사무소<br>가입안내</a></v-btn>-->
@@ -69,7 +70,7 @@ import { mapActions, mapState } from 'vuex'
     name: 'Header',
     data() {
       return {
-
+        userId: null,
     }
   },
   computed: {
@@ -187,6 +188,14 @@ import { mapActions, mapState } from 'vuex'
 
 	.navbar > li > a >span:hover{
 		background:white; color: blue;
+	}
+
+	.right-header .loginUser {
+		font-size: 13px;
+	}
+
+	.right-header .loginUser > span {
+		background: linear-gradient(to top, #a3f5a8 50%, transparent 50%);
 	}
 
 </style>

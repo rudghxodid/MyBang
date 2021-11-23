@@ -106,7 +106,7 @@ const routes = [
     component: RoomMateModify
   },
   {
-    path: '/roomMate/detail/:id',
+    path: '/roommate/detail/:id',
     name: 'RoomMateDetail',
     component: RoomMateDetail
   },
