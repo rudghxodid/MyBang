@@ -25,13 +25,13 @@
 import MainPage from './MainPage.vue'
 
 export default {
-  components: { 
-    MainPage 
+  components: {
+    MainPage
   },
   name: 'Home',
   data() {
     return {
-      
+
     }
   }
 }

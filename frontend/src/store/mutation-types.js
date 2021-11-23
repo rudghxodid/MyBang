@@ -31,4 +31,3 @@ export const FETCH_GONGZI = 'FETCH_GONGZI'
 
 //크롤링
 export const CRAWL_START = 'CRAWL_START'
-
