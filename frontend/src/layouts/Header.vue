@@ -2,9 +2,9 @@
 	<header>
 		<div class="inner">
 			<h1 class="logo">
-				<a href='main'>
-				<img src="@/assets/img/mybang.png" height="80px" style="margin-top:-6px" >
-				</a>
+				
+				<img src="@/assets/img/mybang.png" @click="Gomain" height="80px" style="margin-top:-6px" >
+				
 			</h1>
 
 			<ul class="navbar">
@@ -93,7 +93,10 @@ import { mapActions, mapState } from 'vuex'
     },
     gotoMypage () {
       this.$router.push({ name: 'Mypage' })
-    }
+    },
+	Gomain () {
+		this.$router.push({ name: 'Home' })
+	}
   }
 
   

@@ -218,5 +218,14 @@ public class MemberController {
 
         return new ResponseEntity<Void>(HttpStatus.OK);
     }
+
+    @PostMapping("/pause/{selected}")
+    public ResponseEntity<Void> pauseMember(@PathVariable("selected") String userId) throws Exception {
+        Member member = service.findById(userId);
+
+        service.pause(userId);
+
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 }
 

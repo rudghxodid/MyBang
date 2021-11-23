@@ -14,6 +14,7 @@ public class MemberRequest {
     private String birth;
     private String sex;
     private String phone;
+    private String pause;
 
     private String auth;
 
