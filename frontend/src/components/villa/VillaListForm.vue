@@ -51,7 +51,10 @@
             <v-row>
                 <v-card v-for="villa in paginatedData" :key="villa.villaNo" class="list-card"> 
                     <figure class="snip1477">
-                        <img :src="villa.image" width="350" height="500"/>
+                        <router-link  :to="{ name: 'VillaReadPage', 
+                            params: { villaNo: villa.villaNo.toString() } }">
+                            <v-img><img height="500px" :src="require()" aspect-ratio="1"></v-img>
+                        </router-link>
                         <div class="title">
                             <div>
                             <h4 @click="toDetailPage(villa.villaNo)">상세보기</h4>
@@ -62,46 +65,6 @@
                             <h1>위치 : {{villa.address}}<br/></h1>
                         </figcaption>
                     </figure>
-                    <!--
-                    <div style="float: right; margin-right: 30px; margin-bottom: 10px;">
-
-                    <v-tooltip bottom>
-
-                        <template v-slot:activator="{ on, attrs }">
-                    
-                        <v-btn text v-on="on" v-bind="attrs" @click="toDetailPage(villa.id)" style="margin-bottom: 5px; margin-right: 10px;">
-
-                        <v-icon color="#42b8d4">
-                            assessment
-                        </v-icon>
-
-                        </v-btn>
-                        </template>
-
-                        <span>상세 정보 보기</span>
-
-                    </v-tooltip>
-                    
-                    <v-tooltip bottom>
-
-                        <template v-slot:activator="{ on, attrs }">
-                    
-                        <font-awesome-icon v-show="chkLikedOrNot(villa.id)" :icon="['fas','heart']" size="lg" :style="{ color: '#42b8d4' }" v-on="on" v-bind="attrs"
-                        @click="deleteLikedVilla(villa.id)"/>
-
-                        <font-awesome-icon v-show="!chkLikedOrNot(villa.id)" :icon="['far','heart']" size="lg" :style="{ color: '#42b8d4' }" v-on="on" v-bind="attrs"
-                        @click="addLikedVilla(villa.id)"/>
-
-                        </template>
-
-                        <span v-show="chkLikedOrNot(villa.id)">찜해제</span>
-
-                        <span v-show="!chkLikedOrNot(villa.id)">찜하기</span>
-
-                    </v-tooltip>
-                    </div>
-                    -->
-
                 </v-card>
             </v-row>
         </v-container>
@@ -150,6 +113,31 @@ export default {
             default: 8
         }
     },
+    computed: {
+    //...mapState(['session', 'likedVillaList']),
+
+        pageCount () {
+            let listLeng = this.villas.length,
+                listSize = this.pageSize,
+                page = Math.floor(listLeng / listSize);
+            if (listLeng % listSize > 0) page += 1;
+
+            return page;
+        },
+        paginatedData () {
+            const start = this.pageNum * this.pageSize,
+                end = start + this.pageSize;
+            return this.villas.slice(start, end);
+        }
+    },
+    mounted() {
+        /*   로그인한 상태에서 기능을 이용할 수 있게 코드를 작성 해야함 (찜 기능 같은거)
+        if(this.$cookies.get("user").id) { 
+        this.$store.state.session = this.$cookies.get("user")
+        this.fetchLikedVillaList(this.$cookies.get("user").memberNo)
+        }
+        */
+    },
     methods: {
             //...mapActions(['fetchLikedVillaList']),
         nextPage () {
@@ -167,107 +155,6 @@ export default {
             params: { "villaNo": villaNo }
         })
         },
-        /*
-        selectSearch() {
-        const { selectAddress, selectRoomType } = this
-        return axios.get('http://localhost:8888/villa/list')
-                .then((res) => {
-                var ani = []
-                if(selectAddress.length > 0 && selectRoomType.length > 0) {
-                    var len = selectRoomType.length + selectAddress.length
-                    for(var i=0; i<res.data.length; i++) {
-                    for(var j=0; j< len; j++) {
-                        for(var o=0; o< len; o++)
-                        if((res.data[i].id.includes(selectAddress[j]) && res.data[i].kind.includes(selectRoomType[o]))) {
-                        ani.push(res.data[i])
-                        this.$store.commit(FETCH_PRODUCT_LIST, ani)
-                        }
-                    }
-                    }
-                } else if(selectAddress.length > 0) {
-                    for(var k=0; k<res.data.length; k++) {
-                        for(var l=0; l< selectAddress.length; l++) {
-                        if(res.data[k].id.includes(selectAddress[l])) {
-                            ani.push(res.data[k])
-                            this.$store.commit(FETCH_PRODUCT_LIST, ani)
-                        }
-                        }
-                    }
-                } else if(selectRoomType.length > 0) {
-                    for(var m=0; m<res.data.length; m++) {
-                        for(var n=0; n< selectRoomType.length; n++) {
-                        if(res.data[m].kind.includes(selectRoomType[n])) {
-                            ani.push(res.data[m])
-                            this.$store.commit(FETCH_PRODUCT_LIST, ani)
-                        }
-                        }
-                    }
-                }
-                this.searchDialog = false
-            })
-        },
-        addLikedVilla(id) {
-      
-        const memberNo = this.$store.state.session.memberNo
-        const noticeNo = id
-        axios.post('http://localhost:8888/member/addLikedVilla', { memberNo, noticeNo })
-            .then(() => {
-            this.$store.state.likedVillaList.push({ 'memberNo': memberNo, 'noticeNo': noticeNo })
-            })
-            .catch(() => {
-            alert('잠시후에 다시 시도해주세요.')
-            })
-        },
-        chkLikedOrNot(id) {
-        for(var i=0; i<this.$store.state.likedVillaList.length; i++) {
-            if(id == this.$store.state.likedVillaList[i].noticeNo) {
-            return true
-            }
-        }
-        return false
-        },
-        deleteLikedVilla(id) {
-        
-        const memberNo = this.$store.state.session.memberNo
-        const noticeNo = id
-        axios.put('http://localhost:8888/petto/member/deleteLikedVilla', { memberNo, noticeNo }, {
-            headers: {
-            'Content-Type': 'application/json'
-            }
-        })
-            .then(() => {
-            const targetIndex = this.$store.state.likedVillaList.findIndex(v => v.noticeNo === id)
-            this.$store.state.likedVillaList.splice(targetIndex, 1)
-            })
-            .catch(() => {
-            alert('잠시후에 다시 시도해주세요.')
-            })
-        }*/
-    },
-    computed: {
-    //...mapState(['session', 'likedVillaList']),
-
-    pageCount () {
-      let listLeng = this.villas.length,
-          listSize = this.pageSize,
-          page = Math.floor(listLeng / listSize);
-      if (listLeng % listSize > 0) page += 1;
-
-      return page;
-    },
-    paginatedData () {
-        const start = this.pageNum * this.pageSize,
-            end = start + this.pageSize;
-        return this.villas.slice(start, end);
-        }
-    },
-    mounted() {
-        /*   로그인한 상태에서 기능을 이용할 수 있게 코드를 작성 해야함 (찜 기능 같은거)
-        if(this.$cookies.get("user").id) { 
-        this.$store.state.session = this.$cookies.get("user")
-        this.fetchLikedVillaList(this.$cookies.get("user").memberNo)
-        }
-        */
     }
 }
 </script>

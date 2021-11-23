@@ -3,9 +3,11 @@ package com.mybang.khweb.controller;
 import com.mybang.khweb.entity.Product;
 import com.mybang.khweb.entity.Villa;
 import com.mybang.khweb.repository.VillaRepository;
+import com.mybang.khweb.request.ProductRequest;
 import com.mybang.khweb.request.VillaRequest;
 import com.mybang.khweb.service.VillaService;
 import lombok.extern.slf4j.Slf4j;
+import org.graalvm.compiler.nodes.calc.IntegerDivRemNode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +16,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/villa")
@@ -47,13 +50,44 @@ public class VillaController {
     }
 
     @GetMapping("/{villaNo}")
-    public ResponseEntity<Villa> read(@PathVariable("villaNo") Long villaNo) throws Exception {
+    public ResponseEntity <Optional<Villa>> read(@PathVariable("villaNo") Long villaNo) throws Exception {
         log.info("read");
 
-        Villa villa = service.read(villaNo);
+        Optional<Villa> villa = service.read(villaNo);
 
         log.info("Product Read Success");
 
-        return new ResponseEntity<Villa>(villa, HttpStatus.OK);
+        return new ResponseEntity<>(villa, HttpStatus.OK);
+    }
+
+    @DeleteMapping("/{villaNo}")
+    public ResponseEntity<Void> remove(@PathVariable("villaNo") Long villaNo) throws Exception {
+
+        service.remove(villaNo);
+
+        log.info("Delete Success");
+
+        return new ResponseEntity<Void>(HttpStatus.OK);
+    }
+
+    @PutMapping("/{villaNo}")
+    public ResponseEntity<Void> update(@PathVariable("villaNo") Long villaNo,
+                                       @RequestBody VillaRequest request) throws Exception {
+
+        Optional<Villa> villa = repository.findByVillaNo(villaNo);
+        Villa update = villa.get();
+        service.modify(update, request);
+
+        log.info("Update Success");
+
+        return new ResponseEntity<Void>(HttpStatus.OK);
+    }
+
+    @GetMapping("/list/{agentId}")
+    public ResponseEntity<List<Villa>> agentList(@PathVariable("agentId") String agentId) throws Exception {
+        log.info("사업자 매물 확인");
+        List<Villa> villaLists = service.agentList(agentId);
+
+        return new ResponseEntity<>(villaLists, HttpStatus.OK);
     }
 }
