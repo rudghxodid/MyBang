@@ -19,19 +19,19 @@
 					<nav class></nav>
 				</li>
 				<li>
-					<a href="">
+					<a href="/villa">
 						<span>빌라, 투룸+</span>
 						<span>신축분양/매매/전월세</span>
 					</a>
 				</li>
 				<li>
-					<a href="">
+					<a href="/oneroom">
 						<span>원룸</span>
 						<span>전월세</span>
 					</a>
 				</li>
 				<li>
-					<a href="">
+					<a href="/officetel">
 						<span>오피스텔</span>
 						<span>도시형생활주택/전월세</span>
 					</a>
@@ -98,9 +98,9 @@ import { mapActions, mapState } from 'vuex'
     gotoMypage () {
       this.$router.push({ name: 'Mypage' })
     },
-	Gomain () {
-		this.$router.push({ name: 'Home' })
-	}
+		Gomain () {
+			this.$router.push({ name: 'Home' })
+		}
   }
 
   
