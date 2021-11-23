@@ -59,7 +59,8 @@ public class ProductController {
     public ResponseEntity<Void> remove(@PathVariable("productNo") Long productNo) throws Exception {
         service.remove(productNo);
 
-        log.info("Funding Delete Success");
+        log.info("Fun+++++++++++++++++" +
+                "0.0.ding Delete Success");
 
         return new ResponseEntity<Void>(HttpStatus.OK);
     }

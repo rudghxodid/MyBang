@@ -25,6 +25,7 @@ import java.util.Random;
 @Slf4j
 public class MemberServiceImpl implements MemberService{
 
+
     @Autowired
     private MemberRepository repository;
 
@@ -45,10 +46,16 @@ public class MemberServiceImpl implements MemberService{
 
         MemberAuth authEntity = new MemberAuth(memberRequest.getAuth());
         Member memberEntity = new Member(memberRequest.getUserId(), memberRequest.getPassword(), memberRequest.getEmail(),
-                memberRequest.getName(),memberRequest.getBirth(), memberRequest.getSex(), memberRequest.getPhone());
+                memberRequest.getName(),memberRequest.getBirth(), memberRequest.getSex(), memberRequest.getPhone(), memberRequest.getPause());
         memberEntity.addAuth(authEntity);
 
         repository.save(memberEntity);
+    }
+
+    @Override
+    public void pause(String userId) throws Exception {
+        String pause = "pause";
+        repository.pause(userId,pause);
     }
 
     @Override

@@ -10,8 +10,19 @@ import {
   FETCH_PRODUCT_LIST,
   FETCH_PRODUCT,
 
+
+
+
+  FETCH_GONGZI,
+  FETCH_GONGZI_LIST,
+
   FETCH_VILLA_LIST,
   FETCH_VILLA,
+
+
+
+
+
 
   // 뉴스 크롤링
   CRAWL_START,
@@ -43,6 +54,14 @@ export default {
     state.product = product
   },
 
+
+  [FETCH_GONGZI_LIST] (state, gongzis) {
+    state.gongzis = gongzis;
+},
+[FETCH_GONGZI] (state, gongzi) {
+    state.gongzi = gongzi
+},
+
   [FETCH_VILLA_LIST] (state, villas) {
     state.villas = villas;
   },
@@ -50,8 +69,17 @@ export default {
     state.villa = villa
   },
 
+
+
+ 
+
+
+
+
+ 
   [CRAWL_START] (state, payload) {
     state.lists = payload
 },
+
 
 }

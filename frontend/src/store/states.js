@@ -6,6 +6,7 @@ export default {
     session: [],
     members: [],
     member: null,
+    
 
     idRules: [
         id => !!id || '아이디를 입력해주세요.',
@@ -44,5 +45,15 @@ export default {
 
     // 찜하기
     likedProductList: [],
+
+
+    gongzis: [],
+    gongzi: null,
+    lists: [],
+
+
+
+    // Villa
+    villaList: []
 
 }

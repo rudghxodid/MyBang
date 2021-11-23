@@ -16,6 +16,12 @@ import {
   FETCH_LIKED_PRODUCT_LIST,
   FETCH_PRODUCT_INFO,
 
+
+  FETCH_GONGZI_LIST,
+    FETCH_GONGZI,
+
+
+
   //뉴스 크롤링
   CRAWL_START,
 
@@ -64,6 +70,12 @@ export default {
           commit(FETCH_PRODUCT, res.data)
       })
   },
+  fetchVillaList ({commit}) {
+      return axios.get('http://localhost:7777/villa/lists')
+          .then((res) =>{
+              commit(FETCH_VILLA_LIST, res.data)
+          })
+  },
   fetchVilla({ commit }, villaNo) {
       return axios.get(`http://localhost:7777/villa/${villaNo}`)
       .then((res) => {
@@ -85,12 +97,22 @@ export default {
       });
     },
 
-  fetchVillaList({ commit }) {
-    return axios.get('http://localhost:7777/villa/lists').then(res => {
-      console.log(res.data)
-      commit(FETCH_VILLA_LIST, res.data)
-    })
+  fetchGongziList ({ commit }) {
+      return axios.get('http://localhost:7777/gongzi/list')
+              .then((res) => {
+                  commit(FETCH_GONGZI_LIST, res.data)
+              })
   },
+  fetchGongzi ({ commit }, gongziNo) {
+      return axios.get(`http://localhost:7777/gongzi/${gongziNo}`)
+              .then((res) => {
+                  commit(FETCH_GONGZI, res.data)
+              })
+
+            },
+ 
+
+  
 
   // 뉴스 크롤링
   async crawlFind ({ commit }, category) {
@@ -103,5 +125,6 @@ export default {
                 // }
             })
 },
+
 
 }
