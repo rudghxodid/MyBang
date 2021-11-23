@@ -34,37 +34,37 @@ export default {
         this.fetchSession(this.$cookies.get('session'))
         if (this.session != null) {
             this.$store.state.isLogin = true
-            this.$store.state.userInfo = this.fetchUserInfo(this.$cookies.get('session')) 
+            this.$store.state.userInfo = this.fetchUserInfo(this.$cookies.get('session'))
         }
     },
     computed: {
         ...mapState(['session'])
     },
-    
-    
+
+
     methods: {
         ...mapActions(['fetchSession', 'fetchUserInfo']),
         onSubmit (payload) {
-       
+
             if (this.$store.state.session == null) {
                 const { id, pw } = payload
                 axios.post('http://localhost:7777/member/login', { userId: id, password: pw, auth: null })
                 .then(res => {
-                    
+
                     if (res.data != "") {
                         alert('환영합니다! ' + res.data.auth)
-                        
+
                         this.$store.commit('USER_LOGIN', true)
-                        
+
                         this.fetchUserInfo(id)
                         if (res.data.auth == '관리자'){
                            this.$router.push({name: 'HostPage'})
                        }else{
                         this.$router.push({name: 'Home'})
                        }
-                       
+
                     }else {
-                        
+
                         alert('로그인 실패! - ' + res.data)
                     }
                 })

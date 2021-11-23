@@ -10,7 +10,9 @@ import FindUserPw from '@/components/member/FindUserPw'
 import ModifyPassword from '@/components/member/ModifyPassword'
 import BrokerRegister from '@/views/BrokerRegister'
 import HostPage from '@/views/HostPage'
-
+import RoomMateList from '../views/roommate/List'
+import RoomMateModify from '../views/roommate/Modify'
+import RoomMateDetail from '../views/roommate/Detail'
 import ProductRegisterPage from '@/views/product/ProductRegisterPage'
 import ProductListPage from '@/views/product/ProductListPage'
 import ProductReadPage from '@/views/product/ProductReadPage'
@@ -100,6 +102,26 @@ const routes = [
     path: '/HostPage',
     name: 'HostPage',
     component: HostPage,
+  },
+  {
+    path: '/roommate',
+    name: 'RoomMateList',
+    component: RoomMateList,
+  },
+  {
+    path: '/roommate/create',
+    name: 'RoomMateCreate',
+    component: RoomMateModify,
+  },
+  {
+    path: '/roommate/modify/:id',
+    name: 'RoomMateModify',
+    component: RoomMateModify,
+  },
+  {
+    path: '/roommate/detail/:id',
+    name: 'RoomMateDetail',
+    component: RoomMateDetail,
   },
   {
     path: '/product/register',
