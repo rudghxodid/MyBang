@@ -1,6 +1,8 @@
 <template>
   <v-sheet class="fill-height" max-height="700">
-    <Search @selectStation="selectStation" @selectGu="selectGu" @selectDong="selectDong"
+    <Search @selectStation="selectStation" @selectArea="selectArea" @selectDong="selectDong"
+      :guPolygons="guPolygons" :guMarkers="guMarkers" 
+      :dongPolygons="dongPolygons" :dongMarkers="dongMarkers"
       style="position: fixed; z-index: 1;"></Search>
 
     <naver-map
@@ -37,6 +39,7 @@
       <v-card-title>
         <span>{{ selectHouseLength }}개의 매물</span> 
         <span class="ml-2" v-if="stationName">({{ stationName }}역 5분 거리)</span>
+        <span class="ml-2" v-if="areaName">({{ areaName }})</span>
       </v-card-title>
       <v-divider></v-divider>
       <v-card-subtitle v-if="!selectHouseLength">해당 지역에 매물이 없습니다.<br>지도를 이동&축소해 주세요.</v-card-subtitle>
@@ -69,6 +72,7 @@ import seoulDong from '@/assets/data/seoul_dong'
 import InfoDetail from '@/components/map/InfoDetail'
 import Search from '@/components/map/Search'
 import axios from 'axios'
+import point from 'point-in-polygon'
 
 export default {
   components: {
@@ -108,7 +112,8 @@ export default {
       guPolygons: [],
       dongMarkers: [],
       dongPolygons: [],
-      stationName: null
+      stationName: null,
+      areaName: null
     }
   },
   watch: {
@@ -147,6 +152,7 @@ export default {
 
       this.markersOnMap()
       this.stationName = null
+      this.areaName = null
     },
     markersOnMap () {
       let map = this.$refs.maps.map
@@ -247,7 +253,8 @@ export default {
         let marker = new window.naver.maps.Marker({
           map: this.$refs.maps.map,
           position: position,
-          icon: { content: `<div class="marker-html">${gu}</div>` }
+          icon: { content: `<div class="marker-html">${gu}</div>` },
+          title: `${gu}`
         })
         
         let coords = list[i].geometry.coordinates[0]
@@ -288,8 +295,7 @@ export default {
         })
 
         window.naver.maps.Event.addListener(this.guMarkers[i], 'click', (e) => {
-          this.$refs.maps.map.setCenter(e.coord)
-          this.$refs.maps.map.setZoom(14)
+          this.selectArea(e.coord, 14, this.guPolygons[i], this.guMarkers[i])
         })
       }
     },
@@ -340,9 +346,10 @@ export default {
         let position = polygon.getBounds().getCenter()
 
         let marker = new window.naver.maps.Marker({
-            map: this.$refs.maps.map,
-            position: position,
-            icon: { content: `<div class="marker-html">${dong}</div>` }
+          map: this.$refs.maps.map,
+          position: position,
+          icon: { content: `<div class="marker-html">${dong}</div>` },
+          title: `${dong}`
         })
 
         this.dongPolygons.push(polygon)
@@ -368,8 +375,7 @@ export default {
         })
 
         window.naver.maps.Event.addListener(this.dongMarkers[i], 'click', (e) => {
-          this.$refs.maps.map.setCenter(e.coord)
-          this.$refs.maps.map.setZoom(17)
+          this.selectArea(e.coord, 16, this.dongPolygons[i], this.dongMarkers[i])
         })
       }
     },
@@ -381,6 +387,31 @@ export default {
       this.dongMarkers = []
       this.dongPolygons = []
     },
+    selectArea (center, zoom, areaPolygon, areaMarker) {
+      this.$refs.maps.map.setCenter(center)
+      this.$refs.maps.map.setZoom(zoom)
+
+      let polygon = areaPolygon.getPath()._array
+      let polygons = []
+
+      for (let i = 0; i < polygon.length; i++) {
+        polygons.push([polygon[i].y, polygon[i].x])
+      }
+
+      this.areaName = areaMarker.title
+
+      this.selectHouseList = []
+
+      const list = this.houseList
+
+      for (let i = 0; i < list.length; i++) {
+        let coord = [list[i].lat, list[i].lng]
+        if (point(coord, polygons)) {
+          this.selectHouseList.push(list[i])
+        }
+      }
+      this.selectHouseLength = this.selectHouseList.length
+    },
   }
 }
 </script>
@@ -388,6 +419,7 @@ export default {
 
 <style lang="scss">
   .marker-html {
+    white-space: nowrap;
     position: relative;
     background: white;
     line-height: 30px;
