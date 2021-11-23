@@ -14,6 +14,7 @@ public interface MemberService {
     public boolean checkUserIdValidation(String UserId) throws Exception;
     public boolean checkDuplicateId(String UserId) throws Exception;
     public Optional<Member> findByAuth(Long memberNo);
+    public void pause (String userId) throws Exception;
 
     // -- 회원정보 확인, 수정, 탈퇴, 아이디찾기, 비밀번호찾기(변경), 이메일 인증 --
     String checkEmail(String email) throws Exception;
@@ -32,4 +33,6 @@ public interface MemberService {
     public void addLikedProduct(LikedProduct likedProduct);
     public List<LikedProduct> getLikedProductList(Integer memberNo);
     public void deleteLikedProduct(LikedProduct likedProduct);
+
+
 }

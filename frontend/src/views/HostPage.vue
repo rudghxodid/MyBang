@@ -1,8 +1,13 @@
 <template>
 <div id="member">
     <h3>관리자 페이지</h3>
-     <member-list :members="members"/>
+    
+    <member-list :members="members"/>  
+<v-btn @click="GongziRegister">공지작성</v-btn>
+<v-btn @click="GongziList">공지목록</v-btn>
+    
 </div>
+
 </template>
 
 
@@ -17,6 +22,11 @@ export default {
     components: {
         MemberList
     },
+    data() {
+        return {
+            selected: ''
+        }
+    },
     
     computed: {
         ...mapState(['members'])
@@ -26,7 +36,14 @@ export default {
     },
     
     methods: {
-        ...mapActions(['fetchMemberList'])
+        ...mapActions(['fetchMemberList']),
+       
+        GongziRegister() {
+            this.$router.push('/gongzi/create')
+        },
+        GongziList() {
+            this.$router.push('/gongzi')
+        }
     }
 }
 </script>

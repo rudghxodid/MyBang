@@ -16,6 +16,9 @@ public interface MemberRepository extends JpaRepository<Member, Long> {
 
     Optional<Member> findByEmail(String email);
 
+    @Query("UPDATE Member b set b.pause = :pause where b.userId = :userId")
+    void pause(String userId, String pause);
+
     List<Member> findAll();
 
 

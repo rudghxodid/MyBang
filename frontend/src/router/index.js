@@ -22,10 +22,18 @@ import VillaRegisterPage from '@/views/villa/VillaRegisterPage'
 import VillaReadPage from '@/views/villa/VillaReadPage'
 
 // Map
-import Villa from '@/views/house/Villa'
+import Villa from '@/views/map/Villa'
+import Oneroom from '@/views/map/Oneroom'
+import Officetel from '@/views/map/Officetel'
+
+
+import GongziListPage from '@/views/GongziListPage.vue'
+import GongziRegisterPage from '@/views/GongziRegisterPage.vue'
+import GongziReadPage from '@/views/GongziReadPage.vue'
 
 // 부동산 뉴스
 import News from '@/views/News'
+
 
 
 
@@ -142,11 +150,46 @@ const routes = [
       default: true
     },
   },
+  
   {
     path: '/villa',
     name: 'Villa',
     component: Villa
   },
+  {
+    path: '/oneroom',
+    name: 'Oneroom',
+    component: Oneroom
+  },
+  {
+    path: '/officetel',
+    name: 'Officetel',
+    component: Officetel
+  },
+
+  {
+    path: '/gongzi/create',
+    name: 'GongziRegisterPage',
+    components: {
+      default: GongziRegisterPage
+    }
+  },
+  {
+    path: '/gongzi/:gongziNo',
+    name: 'GongziReadPage',
+    components: {
+      default: GongziReadPage
+    }
+  },
+  {
+      path: '/gongzi',
+      name: 'GongziListPage',
+      components: {
+        default: GongziListPage
+      }
+    },
+
+
 
   {
     path: '/villa/register',
@@ -171,6 +214,7 @@ const routes = [
     name: 'News',
     component: News
   },
+
 
 
 

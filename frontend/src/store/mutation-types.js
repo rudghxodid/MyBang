@@ -14,8 +14,13 @@ export const FETCH_VILLA = 'FETCH_VILLA'
 export const FETCH_LIKED_PRODUCT_LIST = 'FETCH_LIKED_PRODUCT_LIST'
 export const FETCH_PRODUCT_INFO = 'FETCH_PRODUCT_INFO'
 
-// Villa
-// export const FETCH_VILLA_LIST = 'FETCH_VILLA_LIST'
+
+export const FETCH_GONGZI_LIST = 'FETCH_GONGZI_LIST'
+export const FETCH_GONGZI = 'FETCH_GONGZI'
+
+
+
+
 
 //크롤링
 export const CRAWL_START = 'CRAWL_START'

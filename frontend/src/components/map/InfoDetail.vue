@@ -1,6 +1,5 @@
 <template>
-  <v-card width="400" style="float:right;" v-if="info" class="grey lighten-4 overflow-y-auto"
-    id="scrolling-techniques-7" max-height="700"> 
+  <v-card class="grey lighten-4"> 
     <v-card flat>
       <v-card-title>
         {{info.local1}}
@@ -19,10 +18,8 @@
         </swiper>
       </v-container>
 
-      <v-card-title class="ml-3">
-        {{info.salesType}}
-        {{info.deposit}}
-      </v-card-title> 
+      <v-card-title v-if="info.salesType == '월세'" class="ml-3">{{info.salesType}} {{info.deposit}}/{{info.rent}}</v-card-title> 
+      <v-card-title v-else class="ml-3">{{info.salesType}} {{info.deposit}}</v-card-title> 
       <v-divider/>
 
       <div class="d-flex justify-space-between my-2 mx-7">
@@ -290,5 +287,4 @@ export default {
 .swiper-button-prev {
   color: white;
 }
-
 </style>

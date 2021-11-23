@@ -2,9 +2,12 @@
 	<header>
 		<div class="inner">
 			<h1 class="logo">
-				<router-link to="/">
-					<img src="@/assets/img/mybang.png" height="80px" style="margin-top:-6px" >
-				</router-link>
+
+				<img src="@/assets/img/mybang.png" @click="Gomain" height="80px" style="margin-top:-6px" >
+				<!--<router-link to="/">
+                    <img src="@/assets/img/mybang.png" height="80px" style="margin-top:-6px" >
+                </router-link>
+                -->
 			</h1>
 
 			<ul class="navbar">
@@ -39,12 +42,6 @@
 						<span>함께 사는 주거공간</span>
 					</a>
 				</li>
-<!--				<li>-->
-<!--					<a href="">-->
-<!--						<router-link to="/roommate">룸메구하기</router-link>-->
-<!--						<span>함께 사는 주거공간</span>-->
-<!--					</a>-->
-<!--				</li>-->
 			</ul>
 		</div>
 		<div class="right-header">
@@ -100,11 +97,14 @@ import { mapActions, mapState } from 'vuex'
     },
     gotoMypage () {
       this.$router.push({ name: 'Mypage' })
-    }
+    },
+	Gomain () {
+		this.$router.push({ name: 'Home' })
+	}
   }
 
-
-
+  
+  
   }
 </script>
 
@@ -114,7 +114,6 @@ import { mapActions, mapState } from 'vuex'
 	* {
 		font-family: 'Noto Sans KR', sans-serif;
 		margin: 0 auto;
-
 	}
 
 	ol, ul {
