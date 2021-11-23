@@ -26,10 +26,10 @@ export default {
         onSubmit (payload) {
             const { image, deposit, roomType, manageCost, manageCostInc, sizeM2, size, floorAll, floor, roomDirection, options, pets, parking, elevator, moveinDate, title, 
             description, nearSubways, address, salesType, agentAddress, agentEmail, agentLat, agentLng, agentMobile, agentName, agentPhone, buildingType,
-            lat, lng, local1, local2, local3, serviceType, userIntro, userName, url, updatedAt } = payload
+            lat, lng, local1, local2, local3, serviceType, userIntro, userName, url, updatedAt, agentId } = payload
             axios.post('http://localhost:7777/villa/register', { image, deposit, roomType, manageCost, manageCostInc, sizeM2, size, floorAll, floor, roomDirection, options, pets, parking, elevator, moveinDate, title, 
             description, nearSubways, address, salesType, agentAddress, agentEmail, agentLat, agentLng, agentMobile, agentName, agentPhone, buildingType,
-            lat, lng, local1, local2, local3, serviceType, userIntro, userName, url, updatedAt })
+            lat, lng, local1, local2, local3, serviceType, userIntro, userName, url, updatedAt, agentId })
                     .then(res => {
                          alert('저장 성공! - ' + res)
                          //this.$router.push("list");

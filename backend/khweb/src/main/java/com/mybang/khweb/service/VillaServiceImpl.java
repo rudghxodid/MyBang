@@ -3,6 +3,7 @@ package com.mybang.khweb.service;
 import com.mybang.khweb.entity.Product;
 import com.mybang.khweb.entity.Villa;
 import com.mybang.khweb.repository.VillaRepository;
+import com.mybang.khweb.request.ProductRequest;
 import com.mybang.khweb.request.VillaRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,19 +23,7 @@ public class VillaServiceImpl implements VillaService{
 
     @Override
     public void register(VillaRequest request) throws Exception {
-
-        Villa villaEntity = new Villa(request.getAddress(), request.getAgentAddress(), request.getAgentEmail(),
-                request.getAgentLat(), request.getAgentLng(), request.getAgentMobile(), request.getAgentName(),
-                request.getAgentPhone(), request.getBuildingType(), request.getDeposit(), request.getDescription(),
-                request.getElevator(), request.getFloor(), request.getFloorAll(), request.getImage(), request.getLat(),
-                request.getLng(), request.getLocal1(), request.getLocal2(), request.getLocal3(), request.getManageCost(),
-                request.getManageCostInc(), request.getMoveinDate(), request.getNearSubways(), request.getOptions(),
-                request.getParking(), request.getPets(), request.getRoomDirection(), request.getRoomType(), request.getSalesType(),
-                request.getServiceType(), request.getSize(), request.getSizeM2(), request.getTitle(), request.getUpdatedAt(),
-                request.getUserIntro(), request.getUserName(), request.getUrl());
-
-        repository.save(villaEntity);
-
+        Villa villa = repository.save(request.toEntity());
     }
 
     @Override
@@ -45,10 +34,33 @@ public class VillaServiceImpl implements VillaService{
     }
 
     @Override
-    public Villa read(Long villaNo) throws Exception {
+    public Optional<Villa> read(Long villaNo) throws Exception {
 
-        Optional<Villa> villaRead = repository.findByVilla(villaNo);
+        Optional<Villa> villaRead = repository.findByVillaNo(villaNo);
 
-        return villaRead.get();
+        return villaRead;
+    }
+
+    @Override
+    public void remove(Long villaNo) throws Exception {
+
+        repository.deleteById(villaNo);
+    }
+
+    @Override
+    public void modify(Villa villa, VillaRequest request) throws Exception {
+
+        villa.updateVilla(request);
+        repository.save(villa);
+    }
+
+    @Override
+    public List<Villa> agentList(String agentId) throws Exception {
+
+        //List<Villa> villaLists = repository.findByAgentId(agentId);
+
+        // return villaLists
+
+        return repository.findByAgentId(agentId);
     }
 }
