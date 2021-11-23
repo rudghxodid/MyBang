@@ -7,7 +7,7 @@
 
 <script>
 
-import OneroomListForm from '@/components/oneroom/OneroomListForm.vue'
+import OneroomListForm from '@/components/oneroom/OneroomListForm'
 import { mapState, mapActions } from 'vuex'
 
 export default {

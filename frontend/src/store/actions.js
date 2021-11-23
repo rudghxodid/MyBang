@@ -119,17 +119,6 @@ export default {
         commit(FETCH_PRODUCT_INFO, res.data);
       });
   },
-
-  fetchGongziList({ commit }) {
-    return axios.get("http://localhost:7777/gongzi/list").then((res) => {
-      commit(FETCH_GONGZI_LIST, res.data);
-    });
-  },
-  fetchGongzi({ commit }, gongziNo) {
-    return axios.get(`http://localhost:7777/gongzi/${gongziNo}`).then((res) => {
-      commit(FETCH_GONGZI, res.data);
-    });
-  },
   // 사업자별 매물등록구분
   fetchAgentVilla({ commit }, agentId) {
     return axios
