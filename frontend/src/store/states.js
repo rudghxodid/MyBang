@@ -6,7 +6,7 @@ export default {
     session: [],
     members: [],
     member: null,
-    
+
 
     idRules: [
         id => !!id || '아이디를 입력해주세요.',
@@ -43,6 +43,12 @@ export default {
     villas: [],
     villa: null,
 
+    officetelList: [],
+    officetel: null,
+
+    oneroomList: [],
+    oneroom: null,
+
     // 찜하기
     likedProductList: [],
 
@@ -55,5 +61,10 @@ export default {
 
     // Villa
     villaList: []
+
+    // 회원 매물등록 구분
+    agentVilla: [],
+    agentOneroom: [],
+    agentOfficetel: []
 
 }

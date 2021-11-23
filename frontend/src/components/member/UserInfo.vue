@@ -53,6 +53,8 @@
         <v-btn @click="goHome">메인으로</v-btn>
         <v-spacer></v-spacer>
         <v-btn @click="modifyUserInfo" @keydown.enter="modifyUserInfo">수정</v-btn>
+        <v-spacer></v-spacer>
+        <v-btn @click="brokerHouseList">매물 확인</v-btn>
       </v-card-actions>
     </v-card>
 
@@ -148,7 +150,15 @@ export default {
       } else {
         alert('인증번호가 일치하지 않습니다.')
       }
-    }
+    },
+    brokerHouseList () {
+      this.agentId = this.userInfo.userId
+        if (this.$store.state.session != null) {
+            this.isLogin = true
+      }
+      this.$router.push({ name: 'BrokerHouseListPage' })
+      this.$router.go()
+    },
   }
 }
 </script>
