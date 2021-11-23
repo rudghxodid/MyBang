@@ -1,12 +1,12 @@
 package com.mybang.khweb.request;
 
-import com.mybang.khweb.entity.Villa;
+import com.mybang.khweb.entity.Oneroom;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-public class VillaRequest {
+public class OneroomRequest {
     private String address;
     private String agentAddress;
     private String agentEmail;
@@ -47,8 +47,8 @@ public class VillaRequest {
     private String url;
     private String agentId;
 
-    public Villa toEntity() {
-        return Villa.builder()
+    public Oneroom toEntity() {
+        return Oneroom.builder()
                 .address(address)
                 .agentAddress(agentAddress)
                 .agentEmail(agentEmail)

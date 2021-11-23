@@ -49,54 +49,19 @@
         <!-- 게시판 리스트 나오는 부분 -->
         <v-container style="width:100%;">
             <v-row>
-                <v-card v-for="product in products" :key="product.productNo" class="list-card"> 
+                <v-card v-for="oneroom in paginatedData" :key="oneroom.oneroomNo" class="list-card"> 
                     <figure class="snip1477">
-                            <v-img><img height="500px" :src="require()" aspect-ratio="1"></v-img>
+                        <img :src="oneroom.image" width="350" height="500"/>
+                        <div class="title">
+                            <div>
+                            <h4 @click="toDetailPage(oneroom.oneroom)">상세보기</h4>
+                            </div>
+                        </div>
                         <figcaption>
-                            <h1>{{ product.title }}<br/><br/></h1>
-                            <h1>위치 : {{product.address}}<br/></h1>
-                            <p>{{ product.room_type }}<br/></p>
+                            <h1>{{ oneroom.title }}<br/><br/></h1>
+                            <h1>위치 : {{oneroom.address}}<br/></h1>
                         </figcaption>
                     </figure>
-                    <!--
-                    <div style="float: right; margin-right: 30px; margin-bottom: 10px;">
-
-                    <v-tooltip bottom>
-
-                        <template v-slot:activator="{ on, attrs }">
-                    
-                        <v-btn text v-on="on" v-bind="attrs" @click="toDetailPage(product.id)" style="margin-bottom: 5px; margin-right: 10px;">
-
-                        <v-icon color="#42b8d4">
-                            assessment
-                        </v-icon>
-
-                        </v-btn>
-                        </template>
-
-                        <span>상세 정보 보기</span>
-
-                    </v-tooltip>
-                    
-                    <v-tooltip bottom>
-
-                        <template v-slot:activator="{ on, attrs }">
-                    
-                        <font-awesome-icon v-show="chkLikedOrNot(product.id)" :icon="['fas','heart']" size="lg" :style="{ color: '#42b8d4' }" v-on="on" v-bind="attrs"
-                        @click="deleteLikedProduct(product.id)"/>
-
-                        <font-awesome-icon v-show="!chkLikedOrNot(product.id)" :icon="['far','heart']" size="lg" :style="{ color: '#42b8d4' }" v-on="on" v-bind="attrs"
-                        @click="addLikedProduct(product.id)"/>
-
-                        </template>
-
-                        <span v-show="chkLikedOrNot(product.id)">찜해제</span>
-
-                        <span v-show="!chkLikedOrNot(product.id)">찜하기</span>
-
-                    </v-tooltip>
-                    </div>
-                    -->
 
                 </v-card>
             </v-row>
@@ -124,7 +89,7 @@
 //import { mapActions, mapState } from 'vuex';
 
 export default {
-    name: 'ProductListForm',
+    name: 'OneroomListForm',
     data () {
         return {
             pageNum: 0,
@@ -136,7 +101,7 @@ export default {
         }
     },
     props: {
-        products: {
+        oneroomList: {
             type: Array,
             required: true
         },
@@ -146,105 +111,10 @@ export default {
             default: 8
         }
     },
-    methods: {
-            //...mapActions(['fetchLikedProductList']),
-        nextPage () {
-        this.pageNum += 1;
-        },
-        prevPage () {
-        this.pageNum -= 1;
-        },
-        cancle() {
-        this.searchDialog = false
-        },
-        toDetailPage(productNo) {
-        this.$router.push({
-            name: 'ProductReadPage',
-            params: { "productNo": productNo }
-        })
-        },
-        /*
-        selectSearch() {
-        const { selectAddress, selectRoomType } = this
-        return axios.get('http://localhost:8888/product/list')
-                .then((res) => {
-                var ani = []
-                if(selectAddress.length > 0 && selectRoomType.length > 0) {
-                    var len = selectRoomType.length + selectAddress.length
-                    for(var i=0; i<res.data.length; i++) {
-                    for(var j=0; j< len; j++) {
-                        for(var o=0; o< len; o++)
-                        if((res.data[i].id.includes(selectAddress[j]) && res.data[i].kind.includes(selectRoomType[o]))) {
-                        ani.push(res.data[i])
-                        this.$store.commit(FETCH_PRODUCT_LIST, ani)
-                        }
-                    }
-                    }
-                } else if(selectAddress.length > 0) {
-                    for(var k=0; k<res.data.length; k++) {
-                        for(var l=0; l< selectAddress.length; l++) {
-                        if(res.data[k].id.includes(selectAddress[l])) {
-                            ani.push(res.data[k])
-                            this.$store.commit(FETCH_PRODUCT_LIST, ani)
-                        }
-                        }
-                    }
-                } else if(selectRoomType.length > 0) {
-                    for(var m=0; m<res.data.length; m++) {
-                        for(var n=0; n< selectRoomType.length; n++) {
-                        if(res.data[m].kind.includes(selectRoomType[n])) {
-                            ani.push(res.data[m])
-                            this.$store.commit(FETCH_PRODUCT_LIST, ani)
-                        }
-                        }
-                    }
-                }
-                this.searchDialog = false
-            })
-        },
-        addLikedProduct(id) {
-      
-        const memberNo = this.$store.state.session.memberNo
-        const noticeNo = id
-        axios.post('http://localhost:8888/member/addLikedProduct', { memberNo, noticeNo })
-            .then(() => {
-            this.$store.state.likedProductList.push({ 'memberNo': memberNo, 'noticeNo': noticeNo })
-            })
-            .catch(() => {
-            alert('잠시후에 다시 시도해주세요.')
-            })
-        },
-        chkLikedOrNot(id) {
-        for(var i=0; i<this.$store.state.likedProductList.length; i++) {
-            if(id == this.$store.state.likedProductList[i].noticeNo) {
-            return true
-            }
-        }
-        return false
-        },
-        deleteLikedProduct(id) {
-        
-        const memberNo = this.$store.state.session.memberNo
-        const noticeNo = id
-        axios.put('http://localhost:8888/petto/member/deleteLikedProduct', { memberNo, noticeNo }, {
-            headers: {
-            'Content-Type': 'application/json'
-            }
-        })
-            .then(() => {
-            const targetIndex = this.$store.state.likedProductList.findIndex(v => v.noticeNo === id)
-            this.$store.state.likedProductList.splice(targetIndex, 1)
-            })
-            .catch(() => {
-            alert('잠시후에 다시 시도해주세요.')
-            })
-        }*/
-    },
-    computed: {
-    //...mapState(['session', 'likedProductList']),
+        computed: {
 
     pageCount () {
-      let listLeng = this.products.length,
+      let listLeng = this.oneroomList.length,
           listSize = this.pageSize,
           page = Math.floor(listLeng / listSize);
       if (listLeng % listSize > 0) page += 1;
@@ -254,16 +124,27 @@ export default {
     paginatedData () {
         const start = this.pageNum * this.pageSize,
             end = start + this.pageSize;
-        return this.products.slice(start, end);
+        return this.oneroomList.slice(start, end);
         }
     },
     mounted() {
-        /*   로그인한 상태에서 기능을 이용할 수 있게 코드를 작성 해야함 (찜 기능 같은거)
-        if(this.$cookies.get("user").id) { 
-        this.$store.state.session = this.$cookies.get("user")
-        this.fetchLikedProductList(this.$cookies.get("user").memberNo)
-        }
-        */
+    },
+    methods: {
+        nextPage () {
+        this.pageNum += 1;
+        },
+        prevPage () {
+        this.pageNum -= 1;
+        },
+        cancle() {
+        this.searchDialog = false
+        },
+        toDetailPage(oneroomNo) {
+        this.$router.push({
+            name: 'OneroomReadPage',
+            params: { "oneroomNo": oneroomNo }
+        })
+        },
     }
 }
 </script>
