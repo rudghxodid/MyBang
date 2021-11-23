@@ -21,7 +21,9 @@ import VillaRegisterPage from '@/views/villa/VillaRegisterPage'
 import VillaReadPage from '@/views/villa/VillaReadPage'
 
 // Map
-import Villa from '@/views/house/Villa'
+import Villa from '@/views/map/Villa'
+import Oneroom from '@/views/map/Oneroom'
+import Officetel from '@/views/map/Officetel'
 
 
 import GongziListPage from '@/views/GongziListPage.vue'
@@ -132,6 +134,16 @@ const routes = [
     path: '/villa',
     name: 'Villa',
     component: Villa
+  },
+  {
+    path: '/oneroom',
+    name: 'Oneroom',
+    component: Oneroom
+  },
+  {
+    path: '/officetel',
+    name: 'Officetel',
+    component: Officetel
   },
 
   {
