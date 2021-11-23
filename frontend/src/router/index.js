@@ -33,12 +33,18 @@ import Villa from '@/views/map/Villa'
 import Oneroom from '@/views/map/Oneroom'
 import Officetel from '@/views/map/Officetel'
 
+
+import GongziListPage from '@/views/GongziListPage.vue'
+import GongziRegisterPage from '@/views/GongziRegisterPage.vue'
+import GongziReadPage from '@/views/GongziReadPage.vue'
+
 // 부동산 뉴스
 import News from '@/views/News'
 
 
 
 import BrokerHouseListPage from '@/views/broker/BrokerHouseListPage'
+
 
 
 Vue.use(VueRouter)
@@ -133,6 +139,7 @@ const routes = [
       default: true
     },
   },
+  
   {
     path: '/villa',
     name: 'Villa',
@@ -148,6 +155,30 @@ const routes = [
     name: 'Officetel',
     component: Officetel
   },
+
+  {
+    path: '/gongzi/create',
+    name: 'GongziRegisterPage',
+    components: {
+      default: GongziRegisterPage
+    }
+  },
+  {
+    path: '/gongzi/:gongziNo',
+    name: 'GongziReadPage',
+    components: {
+      default: GongziReadPage
+    }
+  },
+  {
+      path: '/gongzi',
+      name: 'GongziListPage',
+      components: {
+        default: GongziListPage
+      }
+    },
+
+
 
   {
     path: '/villa/register',
@@ -226,6 +257,7 @@ const routes = [
     name: 'News',
     component: News
   },
+
 
 
 

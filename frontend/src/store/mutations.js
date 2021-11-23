@@ -10,6 +10,12 @@ import {
   FETCH_PRODUCT_LIST,
   FETCH_PRODUCT,
 
+
+
+
+  FETCH_GONGZI,
+  FETCH_GONGZI_LIST,
+
   FETCH_VILLA_LIST,
   FETCH_VILLA,
   FETCH_OFFICETEL_LIST,
@@ -20,6 +26,11 @@ import {
   FETCH_AGENT_VILLA,
   FETCH_AGENT_ONEROOM,
   FETCH_AGENT_OFFICETEL,
+
+
+
+
+
 
   // 뉴스 크롤링
   CRAWL_START,
@@ -51,6 +62,14 @@ export default {
     state.product = product
   },
 
+
+  [FETCH_GONGZI_LIST] (state, gongzis) {
+    state.gongzis = gongzis;
+},
+[FETCH_GONGZI] (state, gongzi) {
+    state.gongzi = gongzi
+},
+
   [FETCH_VILLA_LIST] (state, villas) {
     state.villas = villas;
   },
@@ -79,8 +98,17 @@ export default {
     state.agentOfficetel = agentOfficetel
   },
 
+
+
+ 
+
+
+
+
+ 
   [CRAWL_START] (state, payload) {
     state.lists = payload
 },
+
 
 }

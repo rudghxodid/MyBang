@@ -7,6 +7,7 @@ export default {
     members: [],
     member: null,
 
+
     idRules: [
         id => !!id || '아이디를 입력해주세요.',
         id => /^[a-zA-Z0-9]*$/.test(id) || '아이디는 영문 + 숫자만 입력 가능합니다.',
@@ -50,6 +51,16 @@ export default {
 
     // 찜하기
     likedProductList: [],
+
+
+    gongzis: [],
+    gongzi: null,
+    lists: [],
+
+
+
+    // Villa
+    villaList: []
 
     // 회원 매물등록 구분
     agentVilla: [],
