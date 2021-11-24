@@ -1,69 +1,69 @@
-import Vue from "vue";
-import VueRouter from "vue-router";
-import Home from "../views/Home.vue";
-import MainPage from "../views/MainPage.vue";
-import Mypage from "@/views/member/Mypage";
-import MemberRegisterPage from "@/views/member/MemberRegisterPage";
-import MemberLoginPage from "@/views/member/MemberLoginPage";
-import FindUserId from "@/components/member/FindUserId";
-import FindUserPw from "@/components/member/FindUserPw";
-import ModifyPassword from "@/components/member/ModifyPassword";
-import BrokerRegister from "@/views/BrokerRegister";
-import HostPage from "@/views/HostPage";
-import RoomMateList from "../views/roommate/List";
-import RoomMateModify from "../views/roommate/Modify";
-import RoomMateDetail from "../views/roommate/Detail";
-import ProductRegisterPage from "@/views/product/ProductRegisterPage";
-import ProductListPage from "@/views/product/ProductListPage";
-import ProductReadPage from "@/views/product/ProductReadPage";
-import ProductModifyPage from "@/views/product/ProductModifyPage";
+import Vue from 'vue'
+import VueRouter from 'vue-router'
+import Home from '../views/Home.vue'
+import MainPage from '../views/MainPage.vue'
+import Mypage from '@/views/member/Mypage'
+import MemberRegisterPage from '@/views/member/MemberRegisterPage'
+import MemberLoginPage from '@/views/member/MemberLoginPage'
+import FindUserId from '@/components/member/FindUserId'
+import FindUserPw from '@/components/member/FindUserPw'
+import ModifyPassword from '@/components/member/ModifyPassword'
+import BrokerRegister from '@/views/BrokerRegister'
+import HostPage from '@/views/HostPage'
+import RoomMateList from '../views/roommate/List'
+import RoomMateModify from '../views/roommate/Modify'
+import RoomMateDetail from '../views/roommate/Detail'
+import ProductRegisterPage from '@/views/product/ProductRegisterPage'
+import ProductListPage from '@/views/product/ProductListPage'
+import ProductReadPage from '@/views/product/ProductReadPage'
+import ProductModifyPage from '@/views/product/ProductModifyPage'
 
-import VillaRegisterPage from "@/views/villa/VillaRegisterPage";
-import VillaReadPage from "@/views/villa/VillaReadPage";
-import VillaModifyPage from "@/views/villa/VillaModifyPage";
+import VillaRegisterPage from '@/views/villa/VillaRegisterPage'
+import VillaReadPage from '@/views/villa/VillaReadPage'
+import VillaModifyPage from '@/views/villa/VillaModifyPage'
 
-import OfficetelRegisterPage from "@/views/officetel/OfficetelRegisterPage";
-import OfficetelReadPage from "@/views/officetel/OfficetelReadPage";
+import OfficetelRegisterPage from '@/views/officetel/OfficetelRegisterPage'
+import OfficetelReadPage from '@/views/officetel/OfficetelReadPage'
 
-import OneroomRegisterPage from "@/views/oneroom/OneRoomRegisterPage";
-import OneroomListPage from "@/views/oneroom/OneroomListPage";
-import OneroomReadPage from "@/views/oneroom/OneroomReadPage";
+import OneroomRegisterPage from '@/views/oneroom/OneroomRegisterPage'
+import OneroomListPage from '@/views/oneroom/OneroomListPage'
+import OneroomReadPage from '@/views/oneroom/OneroomReadPage'
 
 // Map
-import Villa from "@/views/map/Villa";
-import Oneroom from "@/views/map/Oneroom";
-import Officetel from "@/views/map/Officetel";
+import Villa from '@/views/map/Villa'
+import Oneroom from '@/views/map/Oneroom'
+import Officetel from '@/views/map/Officetel'
 
-import GongziListPage from "@/views/GongziListPage.vue";
-import GongziRegisterPage from "@/views/GongziRegisterPage.vue";
-import GongziReadPage from "@/views/GongziReadPage.vue";
+import GongziListPage from '@/views/GongziListPage.vue'
+import GongziRegisterPage from '@/views/GongziRegisterPage.vue'
+import GongziReadPage from '@/views/GongziReadPage.vue'
 
 // 부동산 뉴스
-import News from "@/views/News";
+import News from '@/views/News'
 
-import BrokerHouseListPage from "@/views/broker/BrokerHouseListPage";
+import BrokerHouseListPage from '@/views/broker/BrokerHouseListPage'
 
-Vue.use(VueRouter);
+Vue.use(VueRouter)
 
 const routes = [
   {
-    path: "/",
-    name: "Home",
+    path: '/',
+    name: 'Home',
     component: Home,
   },
   {
-    path: "/main",
-    name: "MainPage",
+    path: '/main',
+    name: 'MainPage',
     component: MainPage,
   },
   {
-    path: "/mypage",
-    name: "Mypage",
+    path: '/mypage',
+    name: 'Mypage',
     component: Mypage,
   },
   {
-    path: "/member/create",
-    name: "MemberRegisterPage",
+    path: '/member/create',
+    name: 'MemberRegisterPage',
     components: {
       default: MemberRegisterPage,
     },
@@ -72,72 +72,72 @@ const routes = [
     },
   },
   {
-    path: "/login",
-    name: "MemberLoginPage",
+    path: '/login',
+    name: 'MemberLoginPage',
     components: {
       default: MemberLoginPage,
     },
   },
   {
-    path: "/findUserId",
-    name: "FindUserId",
+    path: '/findUserId',
+    name: 'FindUserId',
     component: FindUserId,
   },
   {
-    path: "/findUserPw",
-    name: "FindUserPw",
+    path: '/findUserPw',
+    name: 'FindUserPw',
     component: FindUserPw,
   },
   {
-    path: "/modifyPassword",
-    name: "ModifyPassword",
+    path: '/modifyPassword',
+    name: 'ModifyPassword',
     component: ModifyPassword,
   },
   {
-    path: "/registerInfo",
-    name: "BrokerRegister",
+    path: '/registerInfo',
+    name: 'BrokerRegister',
     component: BrokerRegister,
   },
   {
-    path: "/HostPage",
-    name: "HostPage",
+    path: '/HostPage',
+    name: 'HostPage',
     component: HostPage,
   },
   {
-    path: "/roommate",
-    name: "RoomMateList",
+    path: '/roommate',
+    name: 'RoomMateList',
     component: RoomMateList,
   },
   {
-    path: "/roommate/create",
-    name: "RoomMateCreate",
+    path: '/roommate/create',
+    name: 'RoomMateCreate',
     component: RoomMateModify,
   },
   {
-    path: "/roommate/modify/:id",
-    name: "RoomMateModify",
+    path: '/roommate/modify/:id',
+    name: 'RoomMateModify',
     component: RoomMateModify,
   },
   {
-    path: "/roommate/detail/:id",
-    name: "RoomMateDetail",
+    path: '/roommate/detail/:id',
+    name: 'RoomMateDetail',
     component: RoomMateDetail,
   },
   {
-    path: "/product/register",
-    name: "ProductRegisterPage",
+    path: '/product/register',
+    name: 'ProductRegisterPage',
     components: {
       default: ProductRegisterPage,
     },
   },
   {
-    path: "/product/list",
-    name: "ProductListPage",
+    path: '/product/list',
+    name: 'ProductListPage',
     component: ProductListPage,
   },
   {
-    path: "/product/:productNo",
-    name: "ProductReadPage",
+    path: '/product/:productNo',
+    name: 'ProductReadPage',
     components: {
       default: ProductReadPage,
     },
@@ -146,8 +146,8 @@ const routes = [
     },
   },
   {
-    path: "/product/:productNo/edit",
-    name: "ProductModifyPage",
+    path: '/product/:productNo/edit',
+    name: 'ProductModifyPage',
     components: {
       default: ProductModifyPage,
     },
@@ -157,53 +157,53 @@ const routes = [
   },
 
   {
-    path: "/villa",
-    name: "Villa",
+    path: '/villa',
+    name: 'Villa',
     component: Villa,
   },
   {
-    path: "/oneroom",
-    name: "Oneroom",
+    path: '/oneroom',
+    name: 'Oneroom',
     component: Oneroom,
   },
   {
-    path: "/officetel",
-    name: "Officetel",
+    path: '/officetel',
+    name: 'Officetel',
     component: Officetel,
   },
 
   {
-    path: "/gongzi/create",
-    name: "GongziRegisterPage",
+    path: '/gongzi/create',
+    name: 'GongziRegisterPage',
     components: {
       default: GongziRegisterPage,
     },
   },
   {
-    path: "/gongzi/:gongziNo",
-    name: "GongziReadPage",
+    path: '/gongzi/:gongziNo',
+    name: 'GongziReadPage',
     components: {
       default: GongziReadPage,
     },
   },
   {
-    path: "/gongzi",
-    name: "GongziListPage",
+    path: '/gongzi',
+    name: 'GongziListPage',
     components: {
       default: GongziListPage,
     },
   },
 
   {
-    path: "/villa/register",
-    name: "VillaRegisterPage",
+    path: '/villa/register',
+    name: 'VillaRegisterPage',
     components: {
       default: VillaRegisterPage,
     },
   },
   {
-    path: "/villa/:villaNo",
-    name: "VillaReadPage",
+    path: '/villa/:villaNo',
+    name: 'VillaReadPage',
     components: {
       default: VillaReadPage,
     },
@@ -212,8 +212,8 @@ const routes = [
     },
   },
   {
-    path: "/villa/:villaNo/edit",
-    name: "VillaModifyPage",
+    path: '/villa/:villaNo/edit',
+    name: 'VillaModifyPage',
     components: {
       default: VillaModifyPage,
     },
@@ -222,18 +222,18 @@ const routes = [
     },
   },
   {
-    path: "/broker/list",
-    name: "BrokerHouseListPage",
+    path: '/broker/list',
+    name: 'BrokerHouseListPage',
     component: BrokerHouseListPage,
   },
   {
-    path: "/officetel/register",
-    name: "OfficetelRegisterPage",
+    path: '/officetel/register',
+    name: 'OfficetelRegisterPage',
     component: OfficetelRegisterPage,
   },
   {
-    path: "/officetel/:officetelNo",
-    name: "OfficetelReadPage",
+    path: '/officetel/:officetelNo',
+    name: 'OfficetelReadPage',
     components: {
       default: OfficetelReadPage,
     },
@@ -242,20 +242,20 @@ const routes = [
     },
   },
   {
-    path: "/oneroom/register",
-    name: "OneroomRegisterPage",
+    path: '/oneroom/register',
+    name: 'OneroomRegisterPage',
     components: {
       default: OneroomRegisterPage,
     },
   },
   {
-    path: "/oneroom/list",
-    name: "OneroomListPage",
+    path: '/oneroom/list',
+    name: 'OneroomListPage',
     component: OneroomListPage,
   },
   {
-    path: "/oneroom/:oneroomNo",
-    name: "OneroomReadPage",
+    path: '/oneroom/:oneroomNo',
+    name: 'OneroomReadPage',
     components: {
       default: OneroomReadPage,
     },
@@ -266,16 +266,16 @@ const routes = [
 
   // 부동산 뉴스
   {
-    path: "/news",
-    name: "News",
+    path: '/news',
+    name: 'News',
     component: News,
   },
-];
+]
 
 const router = new VueRouter({
-  mode: "history",
+  mode: 'history',
   base: process.env.BASE_URL,
   routes,
-});
+})
 
-export default router;
+export default router
