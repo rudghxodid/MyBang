@@ -6,7 +6,7 @@
         {{info.local2}}
         {{info.local3}}
       </v-card-title>
-      <v-divider></v-divider>
+      <v-divider class="my-n1"/>
       <v-container>
         <swiper class="swiper" :options="swiperOption">
           <swiper-slide v-for="list in imageList" :key="list.index">
@@ -20,7 +20,7 @@
 
       <v-card-title v-if="info.salesType == '월세'" class="ml-3">{{info.salesType}} {{info.deposit}}/{{info.rent}}</v-card-title> 
       <v-card-title v-else class="ml-3">{{info.salesType}} {{info.deposit}}</v-card-title> 
-      <v-divider/>
+      <v-divider class="my-n1"/>
 
       <div class="d-flex justify-space-between my-2 mx-7">
         <div>
@@ -36,7 +36,7 @@
           <div class="title">{{info.roomType}}</div>
         </div>
       </div>
-      <v-divider/>
+      <v-divider class="my-n1"/>
       <v-card-text>{{info.title}}</v-card-text>
     </v-card>
 

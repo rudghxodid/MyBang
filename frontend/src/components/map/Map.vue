@@ -37,16 +37,18 @@
 
     <v-card width="400" style="float:right;" max-height="700"> 
       <v-card-title>
-        <span>{{ selectHouseLength }}개의 매물</span> 
+        <span>{{ selectHouseLength }}개의 매물</span>
         <span class="ml-2" v-if="stationName">({{ stationName }}역 5분 거리)</span>
         <span class="ml-2" v-if="areaName">({{ areaName }})</span>
       </v-card-title>
-      <v-divider></v-divider>
+      <!--
+      <v-divider/>
+      -->
       <v-card-subtitle v-if="!selectHouseLength">해당 지역에 매물이 없습니다.<br>지도를 이동&축소해 주세요.</v-card-subtitle>
       
       <v-virtual-scroll :bench="10" :items="selectHouseList" :item-height="120" height="630">
         <template v-slot:default="{ item }">
-          <v-list-item three-line @click="viewInfo(item)" 
+          <v-list-item three-line @click="viewInfo(item)"
             @mouseover="openPosition(item.lat, item.lng)" @mouseout="closePosition">
             <img :src="imageList(item.image)" class="mr-3" width="40%">
             <v-list-item-content>
@@ -87,7 +89,7 @@ export default {
   data() {
     return {
       stationList: null,
-      center: { lat: 37.49664389, lng: 127.0629852 },
+      center: { lat: 37.5335, lng: 126.9896 },
       cluster: {
         options: {
           maxZoom: 17,
