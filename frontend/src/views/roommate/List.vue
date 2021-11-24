@@ -7,25 +7,25 @@
 		<table class="table table-hover">
 
 			<thead>
-			<tr>
-				<th>번호</th>
-				<th>제목</th>
-				<th>작성자</th>
-				<th>등록일</th>
-				<th>조회</th>
-			</tr>
+				<tr>
+					<th>번호</th>
+					<th>제목</th>
+					<th>작성자</th>
+					<th>등록일</th>
+					<th>조회</th>
+				</tr>
 			</thead>
 
 			<tbody>
-			<tr v-for="(b, index) in boardList" :key="index">
-				<td>{{b.id}}</td>
-				<td>
-					<router-link :to="`/roommate/detail/${b.id}`">{{b.title}}</router-link>
-				</td>
-				<td>{{b.writerName}}</td>
-				<td>{{b.createdDate}}</td>
-				<td>{{b.count}}</td>
-			</tr>
+				<tr v-for="(b, index) in boardList" :key="index">
+					<td>{{b.id}}</td>
+					<td>
+						<router-link :to="`/roommate/detail/${b.id}`">{{b.title}}</router-link>
+					</td>
+					<td>{{b.writerName}}</td>
+					<td>{{b.createdDate}}</td>
+					<td>{{b.count}}</td>
+				</tr>
 			</tbody>
 
 		</table>

@@ -25,7 +25,7 @@ import VillaModifyPage from "@/views/villa/VillaModifyPage";
 import OfficetelRegisterPage from "@/views/officetel/OfficetelRegisterPage";
 import OfficetelReadPage from "@/views/officetel/OfficetelReadPage";
 
-import OneroomRegisterPage from "@/views/oneroom/OneroomRegisterPage";
+import OneroomRegisterPage from "@/views/oneroom/OneRoomRegisterPage";
 import OneroomListPage from "@/views/oneroom/OneroomListPage";
 import OneroomReadPage from "@/views/oneroom/OneroomReadPage";
 
