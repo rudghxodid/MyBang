@@ -1,6 +1,6 @@
 <template>
   <v-sheet class="fill-height" max-height="700">
-    <Search @selectStation="selectStation" @selectArea="selectArea" @selectDong="selectDong"
+    <Search @selectStation="selectStation" @selectArea="selectArea"
       :guPolygons="guPolygons" :guMarkers="guMarkers" 
       :dongPolygons="dongPolygons" :dongMarkers="dongMarkers"
       style="position: fixed; z-index: 1;"></Search>
@@ -12,7 +12,7 @@
       style="width: 70%; height: 100%; float: left;"
       @idle="idle">
 
-      <div>
+      <div v-if="zoomLevel >=13">
         <naver-map-marker-cluster :options="cluster.options">
           <naver-map-marker v-for="list in houseList" :key="list.index"
             :options="{ position: { lat: list.lat, lng: list.lng },
@@ -103,7 +103,7 @@ export default {
         }
       },
       houseInfo: null,
-      zoomLevel: 13,
+      zoomLevel: 12,
       infoWindow: null,
       dialog: false,
       selectHouseList: [],
@@ -124,14 +124,12 @@ export default {
           this.guMarkerEvent()
         }
         this.removeDongMarkerPolygon()
-      } else if (this.zoomLevel > 13 && this.zoomLevel <= 16) {
+      } else if (this.zoomLevel > 13) {
         this.removeGuMarkerPolygon()
         if (this.dongMarkers.length == 0) {
           this.addDongMarkerPolygon()
           this.dongMarkerEvent()
         }
-      } else {
-        this.removeDongMarkerPolygon()
       }
     }
   },
@@ -232,16 +230,16 @@ export default {
     imageList (imageList) {
       return imageList.split(',')[0]
     },
-    selectGu (lat, lng) {
-      const coords = new window.naver.maps.LatLng(lat, lng)
-      this.$refs.maps.map.setCenter(coords)
-      this.$refs.maps.map.setZoom(14)
-    },
-    selectDong (lat, lng) {
-      const coords = new window.naver.maps.LatLng(lat, lng)
-      this.$refs.maps.map.setCenter(coords)
-      this.$refs.maps.map.setZoom(16)
-    },
+    // selectGu (lat, lng) {
+    //   const coords = new window.naver.maps.LatLng(lat, lng)
+    //   this.$refs.maps.map.setCenter(coords)
+    //   this.$refs.maps.map.setZoom(14)
+    // },
+    // selectDong (lat, lng) {
+    //   const coords = new window.naver.maps.LatLng(lat, lng)
+    //   this.$refs.maps.map.setCenter(coords)
+    //   this.$refs.maps.map.setZoom(16)
+    // },
     addGuMarkerPolygon () {
       const list = seoulGu.features
 
@@ -473,15 +471,15 @@ export default {
     background-color:#04009A;
   }
   .infoWindow {
-    background: #E26A2C;
+    background: #F3950D;
     width: 30px;
     height: 30px;
     border-radius: 50%;
     opacity: 0.6;
-    animation: scale 1s infinite alternate;
+    animation: scale 0.8s infinite alternate;
   }
   @keyframes scale {
-    0%  { transform: scale(1); }
+    0% { transform: scale(1); }
     100%  { transform: scale(2.5); opacity: 0.4; }
   }
 </style>
