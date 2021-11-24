@@ -5,7 +5,7 @@
             <v-layout class="search-btn">
                 <v-dialog v-model="searchDialog" persistent max-width="420px">
                     <template v-slot:activator="{ on }">
-                        <v-btn icon x-large v-on="on"><v-icon>search</v-icon></v-btn>        
+                        <v-btn icon x-large v-on="on"><v-icon>search</v-icon></v-btn>
                     </template>
                     <v-card>
                     <v-toolbar color="white darken-3" flat height="50">
@@ -28,7 +28,7 @@
                             v-model="selectRoomType"
                             :items="RoomType"
                             label="모든 건물"
-                            multiple 
+                            multiple
                             attach
                             chips
                             style="width: 400px;display: inline-block; margin-right: 40px;"
@@ -49,7 +49,7 @@
         <!-- 게시판 리스트 나오는 부분 -->
         <v-container style="width:100%;">
             <v-row>
-                <v-card v-for="oneroom in paginatedData" :key="oneroom.oneroomNo" class="list-card"> 
+                <v-card v-for="oneroom in paginatedData" :key="oneroom.oneroomNo" class="list-card">
                     <figure class="snip1477">
                         <img :src="oneroom.image" width="350" height="500"/>
                         <div class="title">
@@ -149,7 +149,11 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
+	.list_wrap {
+		border: 1px solid red;
+	}
+
 .search-btn{
   position: absolute;
   top:11em;

@@ -1,8 +1,17 @@
 <template>
 	<div class="main_wrap">
-		<div id=background-box :style="{backgroundImage: 'url('+item+')'}">
-			<div id=main_text>어떤 집을 찾고 있나요?</div>
+		<div class="banner">
+			<swiper class="swiper" :options="swiperOption">
+				<swiper-slide><img src="../assets/img/banner4.jpg"></swiper-slide>
+				<swiper-slide><img src="../assets/img/banner3.png"></swiper-slide>
+				<swiper-slide><img src="../assets/img/banner5.jpg"></swiper-slide>
+				<div class="swiper-pagination" slot="pagination"></div>
+				<div class="swiper-button-prev" slot="button-prev"></div>
+				<div class="swiper-button-next" slot="button-next"></div>
+
+			</swiper>
 			<div id=tabHouse>
+				<h1 class="main_text">어떤 집을 찾고 있나요?</h1>
 				<v-tabs center-active>
 					<v-tab>아파트</v-tab>
 					<v-tab>빌라, 투룸+</v-tab>
@@ -92,14 +101,24 @@
 
 <script>
   import {mapState} from 'vuex'
+  import { Swiper, SwiperSlide } from 'vue-awesome-swiper'
+  import 'swiper/css/swiper.css'
 
   export default {
 
     name: 'MainPage',
+	  components: {Swiper, SwiperSlide},
     data() {
       return {
+        swiperOption: {
+          slidesPerView: 1,
+          spaceBetween: 30,
+          loop: true,
+          pagination: {el: '.swiper-pagination', clickable: true},
+          navigation: {nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev'},
+          autoplay: {delay: 4000, disableOnInteraction: false}
+        },
         item: [
-          require('@/assets/img/banner4.jpg'),
         ],
       }
     },
@@ -135,20 +154,27 @@
 	/*	margin: 0 auto;*/
 	/*}*/
 
+	/*이미지 슬라이드*/
+	.swiper-container {
+		--swiper-theme-color: #fff;
+		--swiper-pagination-color: #ffffff;
+	}
 
-	#background-box {
-		/*width: 1900px;*/
-		/*width: 100%;*/
-		/*height: 500px;*/
-		background-size: 2550px 1500px;
-		/*background-size: cover;*/
-		background-attachment: fixed;
-		background-position: center bottom;
-		/*background-position: center center;*/
-		background-repeat: no-repeat;
-		background-color: #ffffff;
-		border: 0px solid #000000;
+	.swiper {
+		height: 500px;
+		position: relative;
+	}
 
+	.swiper-slide {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		text-align: center;
+		font-weight: bold;
+	}
+
+	.swiper-slide img {
+		width: 100%;
 	}
 
 	#crawl-box {
@@ -163,6 +189,8 @@
 		text-align: center;
 		display: block;
 	}
+
+	.banner {position: relative;}
 
 	#search-icon {
 		/* Box */
@@ -183,21 +211,33 @@
 		clear: none;
 	}
 
+	#tabHouse::after {
+		display: block;
+		content: "";
+		position: absolute;
+		z-index: -1;
+		top: 80%;
+		left: 50%;
+		transform: translate( -50%, 0% );
+		min-width: 700px;
+		height: 300px;
+		background: #fff;
+		opacity: 0.6;
+	}
+
 	#tabHouse {
 		align-content: center;
-		background: 0% 0%;
-		background-color: #ffffff;
 		height: 174px;
 		width: 484px;
 		font-size: 16px;
 		line-height: 16px;
 		display: block;
-		background-color: rgba(0, 0, 0, 0);
-		background-image: none;
-		background-position: 0% 0%;
-		background-repeat: repeat;
 		margin: 0 auto;
-
+		position: absolute;
+		z-index: 100000;
+		top: 10%;
+		left: 50%;
+		transform: translate( -50%, -50% );
 	}
 
 	#search {
@@ -247,7 +287,7 @@
 		border-bottom-right-radius: 8px;
 	}
 
-	#main_text {
+	.main_text {
 		text-align: center;
 		line-height: 426px;
 		font-size: 40px;
@@ -256,8 +296,9 @@
 		white-space: pre-wrap;
 		text-decoration: none solid rgb(0, 0, 0);
 		display: block;
-		margin: 0 129px 0 129px;
+		/*margin: 0 129px 0 129px;*/
 		height: 276px;
+		color: #000;
 	}
 
 	/* 소개할게요, 뉴스, 공지사항 영역 시작 */

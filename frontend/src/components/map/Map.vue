@@ -37,18 +37,18 @@
 
     <v-card width="400" style="float:right;" max-height="700"> 
       <v-card-title>
-        <span>{{ selectHouseLength }}개의 매물</span>
+        <span>{{ selectHouseLength }}개의 매물</span> 
         <span class="ml-2" v-if="stationName">({{ stationName }}역 5분 거리)</span>
         <span class="ml-2" v-if="areaName">({{ areaName }})</span>
       </v-card-title>
       <!--
-      <v-divider/>
+      <v-divider></v-divider>
       -->
       <v-card-subtitle v-if="!selectHouseLength">해당 지역에 매물이 없습니다.<br>지도를 이동&축소해 주세요.</v-card-subtitle>
       
       <v-virtual-scroll :bench="10" :items="selectHouseList" :item-height="120" height="630">
         <template v-slot:default="{ item }">
-          <v-list-item three-line @click="viewInfo(item)"
+          <v-list-item three-line @click="viewInfo(item)" 
             @mouseover="openPosition(item.lat, item.lng)" @mouseout="closePosition">
             <img :src="imageList(item.image)" class="mr-3" width="40%">
             <v-list-item-content>
@@ -83,7 +83,6 @@ export default {
   },
   props: {
     houseList: {
-
     }
   },
   data() {
@@ -151,6 +150,7 @@ export default {
       this.zoomLevel = this.$refs.maps.map.getZoom()
 
       this.markersOnMap()
+
       this.stationName = null
       this.areaName = null
     },
@@ -163,7 +163,7 @@ export default {
 
       for (let i = 0; i < list.length; i++) {
         let coords = new window.naver.maps.LatLng(list[i].lat, list[i].lng)
-
+        
         if (map.getBounds().hasLatLng(coords)) {
           this.selectHouseList.push(list[i])
         }
@@ -215,7 +215,6 @@ export default {
 
       for (let i = 0; i < list.length; i++) {
         let coords = new window.naver.maps.LatLng(list[i].lat, list[i].lng)
-
         if (mapCircle.getBounds().hasLatLng(coords)) {
           this.selectHouseList.push(list[i])
         }
@@ -247,9 +246,9 @@ export default {
 
       for (let i = 0; i < list.length; i++) {
         let position = new window.naver.maps.LatLng(list[i].properties.lat, list[i].properties.lng)
-
+        
         let gu = list[i].properties.SGG_NM
-
+        
         let marker = new window.naver.maps.Marker({
           map: this.$refs.maps.map,
           position: position,
@@ -259,7 +258,7 @@ export default {
         
         let coords = list[i].geometry.coordinates[0]
         let coordList = []
-
+        
         for(let i = 0; i < coords.length; i++) {
           coordList.push(new window.naver.maps.LatLng(coords[i][1], coords[i][0]))
         }
@@ -280,7 +279,7 @@ export default {
       for (let i = 0; i < this.guMarkers.length; i++) {
         window.naver.maps.Event.addListener(this.guMarkers[i], 'mouseover', () => {
           let polygon = this.guPolygons[i]
-
+          
           polygon.setOptions({
             visible: true
           })
@@ -288,7 +287,7 @@ export default {
 
         window.naver.maps.Event.addListener(this.guMarkers[i], 'mouseout', () => {
           let polygon = this.guPolygons[i]
-
+          
           polygon.setOptions({
             visible: false
           })
