@@ -2,9 +2,12 @@
 	<header>
 		<div class="inner">
 			<h1 class="logo">
-				
+
 				<img src="@/assets/img/mybang.png" @click="Gomain" height="80px" style="margin-top:-6px" >
-				
+				<!--<router-link to="/">
+                    <img src="@/assets/img/mybang.png" height="80px" style="margin-top:-6px" >
+                </router-link>
+                -->
 			</h1>
 
 			<ul class="navbar">
@@ -16,34 +19,35 @@
 					<nav class></nav>
 				</li>
 				<li>
-					<a href="">
+					<a href="/villa">
 						<span>빌라, 투룸+</span>
 						<span>신축분양/매매/전월세</span>
 					</a>
 				</li>
 				<li>
-					<a href="">
+					<a href="/oneroom">
 						<span>원룸</span>
 						<span>전월세</span>
 					</a>
 				</li>
 				<li>
-					<a href="">
+					<a href="/officetel">
 						<span>오피스텔</span>
 						<span>도시형생활주택/전월세</span>
 					</a>
 				</li>
 				<li>
 					<a href="">
-						<span>셰어하우스</span>
+						<span><router-link to="/roommate">셰어하우스</router-link></span>
 						<span>함께 사는 주거공간</span>
 					</a>
 				</li>
 			</ul>
 		</div>
-		<div class="right-header">	
+		<div class="right-header">
 			<v-container>
 				<div v-if="isLogin">
+					<div class="loginUser"><span>{{this.$store.state.userInfo.userId}}</span>님</div>
 					<v-btn @click="gotoMypage" text>마이페이지</v-btn>|
 					<v-btn @click="logout" text>로그아웃</v-btn>
 					<!--<v-btn text><a href="registerInfo">중개사무소<br>가입안내</a></v-btn>-->
@@ -63,7 +67,7 @@ import { mapActions, mapState } from 'vuex'
     name: 'Header',
     data() {
       return {
- 
+        userId: null,
     }
   },
   computed: {
@@ -73,7 +77,7 @@ import { mapActions, mapState } from 'vuex'
     this.fetchSession(this.$cookies.get('session'))
 		if (this.session != null) {
 			this.$store.state.isLogin = true
-			this.$store.state.userInfo = this.fetchUserInfo(this.$cookies.get('session')) 
+			this.$store.state.userInfo = this.fetchUserInfo(this.$cookies.get('session'))
 		}
   },
   methods: {
@@ -94,9 +98,9 @@ import { mapActions, mapState } from 'vuex'
     gotoMypage () {
       this.$router.push({ name: 'Mypage' })
     },
-	Gomain () {
-		this.$router.push({ name: 'Home' })
-	}
+		Gomain () {
+			this.$router.push({ name: 'Home' })
+		}
   }
 
   
@@ -110,7 +114,6 @@ import { mapActions, mapState } from 'vuex'
 	* {
 		font-family: 'Noto Sans KR', sans-serif;
 		margin: 0 auto;
-		
 	}
 
 	ol, ul {
@@ -129,9 +132,10 @@ import { mapActions, mapState } from 'vuex'
 
 	header {
 		max-height:100px;
-		/*max-width:112px;*/
-		padding: 15px 20px;
-		
+		width: 1400px;
+		padding: 15px 0px;
+		/*margin: auto;*/
+
 	}
 
 	header:after {
@@ -149,6 +153,11 @@ import { mapActions, mapState } from 'vuex'
 		width: 100px;
 	}
 
+	ul.navbar {
+		float: left;
+		margin-left: 10px;
+	}
+
 	ul.navbar li {
 		float: left;
 		margin-right: 50px;
@@ -156,6 +165,11 @@ import { mapActions, mapState } from 'vuex'
 	}
 
 	ul.navbar li span {
+		display: block;
+		color: black;
+	}
+
+	ul.navbar li span a{
 		display: block;
 		color: black;
 	}
@@ -174,5 +188,13 @@ import { mapActions, mapState } from 'vuex'
 	.navbar > li > a >span:hover{
 		background:white; color: blue;
 	}
-	
+
+	.right-header .loginUser {
+		font-size: 13px;
+	}
+
+	.right-header .loginUser > span {
+		background: linear-gradient(to top, #a3f5a8 50%, transparent 50%);
+	}
+
 </style>

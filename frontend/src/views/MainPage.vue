@@ -1,116 +1,143 @@
 <template>
-	<div>
-		<div id=background-box :style="{backgroundImage: 'url('+item+')'}">
-			<div id=main_text>어떤 집을 찾고 있나요?</div>
+	<div class="main_wrap">
+		<div class="banner">
+			<swiper class="swiper" :options="swiperOption">
+				<swiper-slide><img src="../assets/img/banner4.jpg"></swiper-slide>
+				<swiper-slide><img src="../assets/img/banner3.png"></swiper-slide>
+				<swiper-slide><img src="../assets/img/banner5.jpg"></swiper-slide>
+				<div class="swiper-pagination" slot="pagination"></div>
+				<div class="swiper-button-prev" slot="button-prev"></div>
+				<div class="swiper-button-next" slot="button-next"></div>
+
+			</swiper>
 			<div id=tabHouse>
+				<h1 class="main_text">어떤 집을 찾고 있나요?</h1>
 				<v-tabs center-active>
 					<v-tab>아파트</v-tab>
 					<v-tab>빌라, 투룸+</v-tab>
 					<v-tab>원룸</v-tab>
 					<v-tab>오피스텔</v-tab>
 					<v-tab>셰어하우스</v-tab>
-				</v-tabs><br>
+				</v-tabs>
+				<br>
 				<div id=search>
 					<input type="text" class="form_control" placeholder="검색 키워드를 입력하세요!" flat none>
 					<div id=search-icon>
-						<v-btn class="ma-2" color="white"><v-icon>mdi-magnify</v-icon></v-btn>
+						<v-btn class="ma-2" color="white">
+							<v-icon>mdi-magnify</v-icon>
+						</v-btn>
 					</div>
 				</div>
 			</div>
 		</div>
-			<!--   소개할게요, 뉴스, 공지사항 영역 시작   -->
-    <div class="board_content">
-         <article>
-            <h2>소개할게요</h2>
-            <hr>
-            <ul>
-               <li>리스트1</li>
-               <li>리스트2</li>
-               <li>리스트3</li>
-               <li>리스트4</li>
-               <li>리스트5</li>
-            </ul>
-         </article>
+		<!--   소개할게요, 뉴스, 공지사항 영역 시작   -->
+		<div class="board_content">
+			<article>
+				<h2>소개할게요</h2>
+				<hr>
+				<ul>
+					<li>리스트1</li>
+					<li>리스트2</li>
+					<li>리스트3</li>
+					<li>리스트4</li>
+					<li>리스트5</li>
+				</ul>
+			</article>
 
-         <article>
-            <div class="more_btn">
-               <h2>뉴스</h2>
-               <v-btn depressed>
-                  더보기
-               </v-btn>
-			   
-            </div>
-            <hr>
-            <div class="tablemargin">
-                 <v-card elevation="0">
-                     <ul>
-						 <li>
-							 <v-simple-table>
-                                    <tbody>
-                                        <tr v-for="(list,idx) in lists" :key="idx" width="50px">
-                                            <div v-show="(idx<5)">
-                                                <td style="color: gray" class="tdmargin">{{ list.newsNo }}</td>
-                                                <td @click="clickNews(list.address)">{{ list.title }}</td>
-                                            </div>
-                                        </tr> 
-                                    </tbody>
-                             </v-simple-table>
-						 </li>
-                     </ul>  
-                 </v-card>
-            </div>
-         </article>
+			<article>
+				<div class="more_btn">
+					<h2>뉴스</h2>
+					<v-btn depressed>
+						더보기
+					</v-btn>
 
-         <article>
-            <div class="more_btn">
-               <h2>공지사항</h2>
-               <v-btn depressed>
-                  더보기
-               </v-btn>
-            </div>
-            <hr>
-            <ul>
-               <li>리스트1</li>
-               <li>리스트2</li>
-               <li>리스트3</li>
-               <li>리스트4</li>
-               <li>리스트5</li>
-            </ul>
-         	</article>
-      	</div>
-      <!--   소개할게요, 뉴스, 공지사항 영역 끝   -->
+				</div>
+				<hr>
+				<div class="tablemargin">
+					<v-card elevation="0">
+						<ul>
+							<li>
+								<div class="tablemargin">
+									<v-card elevation="0">
+										<v-simple-table elevation="0">
+											<tbody class="table">
+											<tr v-for="(list,idx) in lists.slice(0,5)" :key="idx" width="50px">
+												<div v-show="(idx<5)">
+													<td style="color: gray" width="40px">{{ list.newsNo }}</td>
+													<td @click="clickNews(list.address)" class="maxlength">{{ list.title }}</td>
+												</div>
+											</tr>
+											</tbody>
+										</v-simple-table>
+									</v-card>
+								</div>
+
+							</li>
+						</ul>
+					</v-card>
+				</div>
+			</article>
+
+			<article>
+				<div class="more_btn">
+					<h2>공지사항</h2>
+					<v-btn depressed>
+						더보기
+					</v-btn>
+				</div>
+				<hr>
+				<ul>
+					<li>리스트1</li>
+					<li>리스트2</li>
+					<li>리스트3</li>
+					<li>리스트4</li>
+					<li>리스트5</li>
+				</ul>
+			</article>
+		</div>
+		<!--   소개할게요, 뉴스, 공지사항 영역 끝   -->
 	</div>
 </template>
 
 <script>
-import { mapState } from 'vuex'
+  import {mapState} from 'vuex'
+  import { Swiper, SwiperSlide } from 'vue-awesome-swiper'
+  import 'swiper/css/swiper.css'
 
-export default {
-    
+  export default {
+
     name: 'MainPage',
+	  components: {Swiper, SwiperSlide},
     data() {
       return {
+        swiperOption: {
+          slidesPerView: 1,
+          spaceBetween: 30,
+          loop: true,
+          pagination: {el: '.swiper-pagination', clickable: true},
+          navigation: {nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev'},
+          autoplay: {delay: 4000, disableOnInteraction: false}
+        },
         item: [
-           require('@/assets/img/Interior.jpg'),
         ],
       }
     },
-    mounted () {
+    mounted() {
     },
     computed: {
-        ...mapState ({
-            lists: state => state.lists
-        })
+      ...mapState({
+        lists: state => state.lists
+      })
     },
     methods: {
-		clickNews(address){
-            window.open(address, 'newslink', 'width: 200px, height: 200px')
-        },
-        newsLink(){
-            this.$router.push({name:'InfoNews'})    
-        }
+      clickNews(address) {
+        window.open(address, 'newslink', 'width: 200px, height: 200px')
+      },
+      newsLink() {
+        this.$router.push({name: 'InfoNews'})
+      }
     },
-	
+
   }
 </script>
 
@@ -118,22 +145,39 @@ export default {
 	@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
 
 	* {
+		/*width: 100%;*/
 		font-family: 'Noto Sans KR', sans-serif;
 	}
 
+	/*.main_wrap {*/
+	/*	width: 1200px;*/
+	/*	margin: 0 auto;*/
+	/*}*/
 
-
-	#background-box{
-		/*width: 1900px;*/
-		height: 450px;
-		background-size: contain;
-		background-repeat: no-repeat;
-		background-color:#ffffff;
-		border: 0px solid #000000;
-
+	/*이미지 슬라이드*/
+	.swiper-container {
+		--swiper-theme-color: #fff;
+		--swiper-pagination-color: #ffffff;
 	}
 
-	#crawl-box{
+	.swiper {
+		height: 500px;
+		position: relative;
+	}
+
+	.swiper-slide {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		text-align: center;
+		font-weight: bold;
+	}
+
+	.swiper-slide img {
+		width: 100%;
+	}
+
+	#crawl-box {
 		/*width: 1900px;*/
 		height: 270px;
 		border: 0px solid #000000;
@@ -141,12 +185,14 @@ export default {
 		display: block;
 	}
 
-	.pages{
+	.pages {
 		text-align: center;
 		display: block;
 	}
 
-	#search-icon{
+	.banner {position: relative;}
+
+	#search-icon {
 		/* Box */
 		height: 60px;
 		width: 66px;
@@ -165,24 +211,36 @@ export default {
 		clear: none;
 	}
 
-	#tabHouse{
+	#tabHouse::after {
+		display: block;
+		content: "";
+		position: absolute;
+		z-index: -1;
+		top: 80%;
+		left: 50%;
+		transform: translate( -50%, 0% );
+		min-width: 700px;
+		height: 300px;
+		background: #fff;
+		opacity: 0.6;
+	}
+
+	#tabHouse {
 		align-content: center;
-		background: 0% 0%;
-		background-color: #ffffff;
 		height: 174px;
 		width: 484px;
 		font-size: 16px;
 		line-height: 16px;
 		display: block;
-		background-color: rgba(0, 0, 0, 0);
-		background-image: none;
-		background-position: 0% 0%;
-		background-repeat: repeat;
 		margin: 0 auto;
-
+		position: absolute;
+		z-index: 100000;
+		top: 10%;
+		left: 50%;
+		transform: translate( -50%, -50% );
 	}
 
-	#search{
+	#search {
 		/* Font & Text */
 		font-size: 16px;
 		font-style: normal;
@@ -229,7 +287,7 @@ export default {
 		border-bottom-right-radius: 8px;
 	}
 
-	#main_text{
+	.main_text {
 		text-align: center;
 		line-height: 426px;
 		font-size: 40px;
@@ -238,67 +296,69 @@ export default {
 		white-space: pre-wrap;
 		text-decoration: none solid rgb(0, 0, 0);
 		display: block;
-		margin: 0 129px 0 129px;
+		/*margin: 0 129px 0 129px;*/
 		height: 276px;
+		color: #000;
 	}
 
-/* 소개할게요, 뉴스, 공지사항 영역 시작 */
-    .board_content {
-      padding: 15px 0;
-      width: 1200px;
-      margin: 0 auto;
-   }
+	/* 소개할게요, 뉴스, 공지사항 영역 시작 */
+	.board_content {
+		padding: 15px 0;
+		width: 1200px;
+		margin: 0 auto;
+	}
 
-    .board_content:after, .board_content .more_btn:after{
-      display: block;
-      content: '';
-      clear: both;
-   }
+	.board_content:after, .board_content .more_btn:after {
+		display: block;
+		content: '';
+		clear: both;
+	}
 
-    .board_content article{
-      float: left;
-      width: calc(92%/3);
-      margin-right: 4%;
-   }
+	.board_content article {
+		float: left;
+		width: calc(92% / 3);
+		margin-right: 4%;
+	}
 
-    .board_content article:nth-child(3) {
-      margin-right: 0;
-   }
+	.board_content article:nth-child(3) {
+		margin-right: 0;
+	}
 
-    .board_content article h2 {
-      font-size: 19px;
-      padding-bottom: 14px;
-   }
+	.board_content article h2 {
+		font-size: 19px;
+		padding-bottom: 14px;
+	}
 
-    .board_content article .more_btn > h2 {
-      float: left;
-   }
+	.board_content article .more_btn > h2 {
+		float: left;
+	}
 
-    .board_content article .more_btn .v-btn {
-      float: right;
-      font-size: 12px;
-      padding: 0;
-   }
+	.board_content article .more_btn .v-btn {
+		float: right;
+		font-size: 12px;
+		padding: 0;
+	}
 
-    .board_content hr {
-      height: 1px;
-      border: none;
-      background-color: #ccc;
-   }
+	.board_content hr {
+		height: 1px;
+		border: none;
+		background-color: #ccc;
+	}
 
-    .board_content article ul {
-      margin-top: 14px;
-   }
+	.board_content article ul {
+		margin-top: 14px;
+	}
 
-    .board_content article ul li {
-      padding: 3px 0;
-   }
-   /* 소개할게요, 뉴스, 공지사항 영역 끝 */
+	.board_content article ul li {
+		padding: 3px 0;
+	}
 
-   .form_control{
-	   width: 500px;
-	   text-decoration:  none;
-   }
-   
+	/* 소개할게요, 뉴스, 공지사항 영역 끝 */
+
+	.form_control {
+		width: 500px;
+		text-decoration: none;
+	}
+
 
 </style>

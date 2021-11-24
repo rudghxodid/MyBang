@@ -10,8 +10,9 @@ import FindUserPw from '@/components/member/FindUserPw'
 import ModifyPassword from '@/components/member/ModifyPassword'
 import BrokerRegister from '@/views/BrokerRegister'
 import HostPage from '@/views/HostPage'
-
-
+import RoomMateList from '../views/roommate/List'
+import RoomMateModify from '../views/roommate/Modify'
+import RoomMateDetail from '../views/roommate/Detail'
 import ProductRegisterPage from '@/views/product/ProductRegisterPage'
 import ProductListPage from '@/views/product/ProductListPage'
 import ProductReadPage from '@/views/product/ProductReadPage'
@@ -33,7 +34,6 @@ import Villa from '@/views/map/Villa'
 import Oneroom from '@/views/map/Oneroom'
 import Officetel from '@/views/map/Officetel'
 
-
 import GongziListPage from '@/views/GongziListPage.vue'
 import GongziRegisterPage from '@/views/GongziRegisterPage.vue'
 import GongziReadPage from '@/views/GongziReadPage.vue'
@@ -41,11 +41,7 @@ import GongziReadPage from '@/views/GongziReadPage.vue'
 // 부동산 뉴스
 import News from '@/views/News'
 
-
-
 import BrokerHouseListPage from '@/views/broker/BrokerHouseListPage'
-
-
 
 Vue.use(VueRouter)
 
@@ -53,222 +49,233 @@ const routes = [
   {
     path: '/',
     name: 'Home',
-    component: Home
+    component: Home,
   },
   {
     path: '/main',
     name: 'MainPage',
-    component: MainPage
+    component: MainPage,
   },
   {
     path: '/mypage',
     name: 'Mypage',
-    component: Mypage
+    component: Mypage,
   },
   {
     path: '/member/create',
     name: 'MemberRegisterPage',
     components: {
-      default: MemberRegisterPage
+      default: MemberRegisterPage,
     },
     props: {
-      default: true
-    }
+      default: true,
+    },
   },
   {
     path: '/login',
     name: 'MemberLoginPage',
     components: {
-      default: MemberLoginPage
-    }
+      default: MemberLoginPage,
+    },
   },
   {
     path: '/findUserId',
     name: 'FindUserId',
-    component: FindUserId
+    component: FindUserId,
   },
   {
     path: '/findUserPw',
     name: 'FindUserPw',
-    component: FindUserPw
+    component: FindUserPw,
   },
   {
     path: '/modifyPassword',
     name: 'ModifyPassword',
-    component: ModifyPassword
+    component: ModifyPassword,
   },
   {
     path: '/registerInfo',
     name: 'BrokerRegister',
-    component: BrokerRegister
+    component: BrokerRegister,
   },
   {
     path: '/HostPage',
     name: 'HostPage',
-    component: HostPage
+    component: HostPage,
+  },
+  {
+    path: '/roommate',
+    name: 'RoomMateList',
+    component: RoomMateList,
+  },
+  {
+    path: '/roommate/create',
+    name: 'RoomMateCreate',
+    component: RoomMateModify,
+  },
+  {
+    path: '/roommate/modify/:id',
+    name: 'RoomMateModify',
+    component: RoomMateModify,
+  },
+  {
+    path: '/roommate/detail/:id',
+    name: 'RoomMateDetail',
+    component: RoomMateDetail,
   },
   {
     path: '/product/register',
     name: 'ProductRegisterPage',
     components: {
-      default: ProductRegisterPage
-    }
+      default: ProductRegisterPage,
+    },
   },
   {
     path: '/product/list',
     name: 'ProductListPage',
-    component: ProductListPage
+    component: ProductListPage,
   },
   {
     path: '/product/:productNo',
     name: 'ProductReadPage',
     components: {
-      default: ProductReadPage
+      default: ProductReadPage,
     },
     props: {
-      default: true
-    }
+      default: true,
+    },
   },
   {
     path: '/product/:productNo/edit',
     name: 'ProductModifyPage',
     components: {
-      default: ProductModifyPage
+      default: ProductModifyPage,
     },
     props: {
-      default: true
+      default: true,
     },
   },
-  
+
   {
     path: '/villa',
     name: 'Villa',
-    component: Villa
+    component: Villa,
   },
   {
     path: '/oneroom',
     name: 'Oneroom',
-    component: Oneroom
+    component: Oneroom,
   },
   {
     path: '/officetel',
     name: 'Officetel',
-    component: Officetel
+    component: Officetel,
   },
 
   {
     path: '/gongzi/create',
     name: 'GongziRegisterPage',
     components: {
-      default: GongziRegisterPage
-    }
+      default: GongziRegisterPage,
+    },
   },
   {
     path: '/gongzi/:gongziNo',
     name: 'GongziReadPage',
     components: {
-      default: GongziReadPage
-    }
+      default: GongziReadPage,
+    },
   },
   {
-      path: '/gongzi',
-      name: 'GongziListPage',
-      components: {
-        default: GongziListPage
-      }
+    path: '/gongzi',
+    name: 'GongziListPage',
+    components: {
+      default: GongziListPage,
     },
-
-
+  },
 
   {
     path: '/villa/register',
     name: 'VillaRegisterPage',
     components: {
-      default: VillaRegisterPage
-    }
+      default: VillaRegisterPage,
+    },
   },
   {
     path: '/villa/:villaNo',
     name: 'VillaReadPage',
     components: {
-      default: VillaReadPage
+      default: VillaReadPage,
     },
     props: {
-      default: true
-    }
+      default: true,
+    },
   },
   {
     path: '/villa/:villaNo/edit',
     name: 'VillaModifyPage',
     components: {
-      default: VillaModifyPage
+      default: VillaModifyPage,
     },
     props: {
-      default: true
+      default: true,
     },
   },
   {
     path: '/broker/list',
     name: 'BrokerHouseListPage',
-    component: BrokerHouseListPage
+    component: BrokerHouseListPage,
   },
   {
     path: '/officetel/register',
     name: 'OfficetelRegisterPage',
-    component: OfficetelRegisterPage
+    component: OfficetelRegisterPage,
   },
   {
     path: '/officetel/:officetelNo',
     name: 'OfficetelReadPage',
     components: {
-      default: OfficetelReadPage
+      default: OfficetelReadPage,
     },
     props: {
-      default: true
-    }
+      default: true,
+    },
   },
   {
     path: '/oneroom/register',
     name: 'OneroomRegisterPage',
     components: {
-      default: OneroomRegisterPage
-    }
+      default: OneroomRegisterPage,
+    },
   },
   {
     path: '/oneroom/list',
     name: 'OneroomListPage',
-    component: OneroomListPage
+    component: OneroomListPage,
   },
   {
     path: '/oneroom/:oneroomNo',
     name: 'OneroomReadPage',
     components: {
-      default: OneroomReadPage
+      default: OneroomReadPage,
     },
     props: {
-      default: true
-    }
+      default: true,
+    },
   },
-
 
   // 부동산 뉴스
   {
     path: '/news',
     name: 'News',
-    component: News
+    component: News,
   },
-
-
-
-
-
-
 ]
 
 const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
-  routes
+  routes,
 })
 
 export default router

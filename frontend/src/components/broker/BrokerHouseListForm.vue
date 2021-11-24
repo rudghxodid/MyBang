@@ -12,7 +12,7 @@
               <th align="center" width="650">매물 주소</th>
               <th align="center" width="240">작성자</th>
           </tr>
-          
+
           <tr v-for="villa in agentVilla" :key="villa.villaNo">
               <td align="center">{{ villa.serviceType }}</td>
               <td align="center">{{ villa.title }}</td>
@@ -51,7 +51,7 @@ export default {
         return {
             // 페이지 구분
             //pageNum: 0,
-            
+
         }
     },
     props: {
@@ -76,7 +76,7 @@ export default {
     computed: {
     },
     mounted() {
-      
+
     },
     methods: {
         villaDetailPage(villaNo) {
