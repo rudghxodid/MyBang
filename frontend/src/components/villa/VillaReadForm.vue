@@ -152,6 +152,8 @@
 
 import { Swiper, SwiperSlide } from 'vue-awesome-swiper'
 import 'swiper/css/swiper.css'
+//import { mapState } from 'vuex'
+import axios from 'axios'
 
 export default {
     name: 'VillaReadForm',
@@ -160,34 +162,45 @@ export default {
         SwiperSlide
     },
     props: {
-        villa: {
-            type: Object,
-            required: true
+        villaNo: {
+            // type: Object,
+            // required: true
         }
     },
     data() {
         return {
-        show: false,  
-        swiperOption: {
-                loop: true,
-                slidesPerView: 1,
-                spaceBetween: 30,
-                pagination: {
-                    el: '.swiper-pagination',
-                    clickable: true
+            villa: null,
+            show: false,  
+            swiperOption: {
+                    loop: true,
+                    slidesPerView: 1,
+                    spaceBetween: 30,
+                    pagination: {
+                        el: '.swiper-pagination',
+                        clickable: true
+                    },
+                    navigation: {
+                        nextEl: '.swiper-button-next',
+                        prevEl: '.swiper-button-prev',
+                    }
                 },
-                navigation: {
-                    nextEl: '.swiper-button-next',
-                    prevEl: '.swiper-button-prev',
-                }
-            },
         }
     },
     computed: {
+        //...mapState(['villa']),
+        
         imageList () {
             return this.villa.image.split(',')
         },
     },
+    created() {
+    },
+    mounted () {
+        axios.get(`http://localhost:7777/villa/${this.villaNo}`).then((res) => {
+            res.data = this.villa
+            console.log(res.data)
+        })
+    }
 }
 </script>
 
