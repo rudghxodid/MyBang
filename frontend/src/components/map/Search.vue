@@ -1,6 +1,6 @@
 <template>
   <v-card max-width="450" class="pa-2">
-    <v-row class="mb-n10">
+    <v-row class="mb-n10 mt-n3">
       <v-col>
         <v-autocomplete :items="guList" label="구" item-text="gu" solo>
           <template v-slot:item="{ item }">
