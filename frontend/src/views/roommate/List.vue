@@ -100,6 +100,7 @@
 		/*justify-content: space-evenly;*/
 		align-items: center;
 		margin: 0 auto;
+		/*border: 1px solid red;*/
 
 		font-family: 'Gowun Dodum', sans-serif;
 	}

@@ -51,7 +51,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 	@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
 
 	* {
@@ -98,7 +98,7 @@ export default {
 		height: 92px;
 		border-radius: 20px/20px;
 		margin-top: 50px;
-		
+
 	}
 
 	.i_call_info {
@@ -109,16 +109,16 @@ export default {
 		letter-spacing: 0.3px;
 		margin-top: -20px;
 	}
-	
-	
+
+
 
 /* ---------------- 2번째 구역 시작 ---------------*/
 	.second_area{
 		text-align: center;
 		height: 900px;
 		margin: 0 0px 0px 477px;
-		
-		
+
+
 	}
 
 /* ---------------- 2번째 구역 끝 ---------------*/
@@ -146,7 +146,7 @@ export default {
 		margin: 0 auto;
 		line-height: 1;
 	}
-	
+
 	.bmj_ct01 .readme {
 		display: flex;
 		justify-content: space-between;
