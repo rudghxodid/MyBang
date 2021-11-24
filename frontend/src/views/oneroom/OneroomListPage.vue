@@ -27,7 +27,7 @@ export default {
         this.fetchOneroomList()
     },
     methods: {
-        ...mapActions(['fetchOneroomList'])   
+        ...mapActions(['fetchOneroomList'])
     },
 }
 
