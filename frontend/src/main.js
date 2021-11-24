@@ -28,7 +28,7 @@ Vue.use(VueNaverMap, {
 
   
 
-  key: '',
+  key: 'xtjq4cd4a5',
 
   libraries: ['geocoder']
 })

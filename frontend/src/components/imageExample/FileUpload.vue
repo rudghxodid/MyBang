@@ -53,7 +53,7 @@ export default {
       const formData = new FormData()
 
       // 아래 빈칸에 key 입력
-      formData.set('key', '')
+      formData.set('key', 'ca442ada99076d1fda16e811a57f9d6d')
       
       for (let i = 0; i < this.files.length; i++) {
         formData.append('image', this.files[i])

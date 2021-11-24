@@ -52,7 +52,7 @@
                 <v-card v-for="villa in paginatedData" :key="villa.villaNo" class="list-card"> 
                     <figure class="snip1477">
                         <router-link  :to="{ name: 'VillaReadPage', 
-                            params: { villaNo: villa.villaNo.toString() } }">
+                            query: { villaNo: villa.villaNo } }">
                             <v-img><img height="500px" :src="require()" aspect-ratio="1"></v-img>
                         </router-link>
                         <div class="title">
@@ -159,7 +159,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .search-btn{
   position: absolute;
   top:11em;

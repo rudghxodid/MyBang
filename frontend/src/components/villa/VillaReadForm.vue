@@ -4,7 +4,19 @@
                 <v-icon color="black" size="30px">home</v-icon>
                 사진
                 <div class="mx-1">
-                   <img height="300px" width="500px" :src="require()" aspect-ratio="1">
+
+                    <v-container>
+                        <swiper class="swiper" :options="swiperOption">
+                        <swiper-slide v-for="list in imageList" :key="list.image">
+                            <img :src="villa.image">
+                        </swiper-slide>
+                            <div class="swiper-pagination" slot="pagination"></div>
+                            <div class="swiper-button-prev" slot="button-prev"></div>
+                            <div class="swiper-button-next" slot="button-next"></div>
+                        </swiper>
+                    </v-container>
+
+                    <!--<img :src="villa.image" :value="villa.image">-->
                 </div>
             </div>
 
@@ -20,7 +32,7 @@
                 <v-icon color="black" size="30px">label</v-icon>
                 방구조
                 <div class="mx-1">
-                    <v-text-field placeholder="방구조"  :value="villa.roomType" required disabled></v-text-field>
+                    <v-text-field placeholder="방구조"  :value="villa.salesType" required disabled></v-text-field>
                 </div> 
             </div>
 
@@ -138,13 +150,79 @@
 
 <script>
 
+import { Swiper, SwiperSlide } from 'vue-awesome-swiper'
+import 'swiper/css/swiper.css'
+
 export default {
     name: 'VillaReadForm',
+    components: {
+        Swiper,
+        SwiperSlide
+    },
     props: {
         villa: {
             type: Object,
             required: true
+        }
+    },
+    data() {
+        return {
+        show: false,  
+        swiperOption: {
+                loop: true,
+                slidesPerView: 1,
+                spaceBetween: 30,
+                pagination: {
+                    el: '.swiper-pagination',
+                    clickable: true
+                },
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                }
+            },
+        }
+    },
+    computed: {
+        imageList () {
+            return this.villa.image.split(',')
         },
     },
 }
 </script>
+
+<style class="scss" scoped>
+.swiper-3d {
+  width: 400px;
+  height: 300px;
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+.swiper {
+  height: 100%;
+  width: 100%;
+}
+.swiper-slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 300px;
+  height: 300px;
+  font-weight: bold;
+  color: black;
+}
+.swiper-pagination >>> .swiper-pagination-bullet {
+  opacity: 1;
+  border: black solid 1px;
+  background-color: transparent;
+}
+.swiper-pagination >>> .swiper-pagination-bullet-active {
+  background-color: black;
+}
+.swiper-button-next {
+  color: black;
+}
+.swiper-button-prev {
+  color: black;
+}
+</style>

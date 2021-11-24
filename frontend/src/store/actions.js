@@ -148,9 +148,6 @@ export default {
               commit(FETCH_AGENT_ONEROOM, res.data);
           })
   },
-},
-    },
-
   fetchGongziList ({ commit }) {
       return axios.get('http://localhost:7777/gongzi/list')
               .then((res) => {
@@ -163,7 +160,7 @@ export default {
                   commit(FETCH_GONGZI, res.data)
               })
 
-            },
+    },
 
 
 

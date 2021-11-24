@@ -1,5 +1,10 @@
 <template>
     <v-container>
+      <tr>
+        <th align="left" width="118"><a @click="villaRegisterPage()">빌라 등록하기</a></th>
+        <th align="left" width="118"><a @click="oneroomRegisterPage()">원룸 등록하기</a></th><br>
+        <th><a @click="officetelRegisterPage()">오피스텔 등록하기</a></th>
+      </tr>
       <table border="1">
           <tr>
               <th align="center" width="100">건물 유형</th>
@@ -11,11 +16,12 @@
           <tr v-for="villa in agentVilla" :key="villa.villaNo">
               <td align="center">{{ villa.serviceType }}</td>
               <td align="center">{{ villa.title }}</td>
-              <a @click="villaDetailPage(villa.villaNo)">
+              <a class=addressName @click="villaDetailPage(villa.villaNo)">
               <td align="center">{{ villa.address }}</td>
               </a>
               <td align="center">{{ villa.agentId }}</td>
           </tr>
+
           <tr v-for="oneroom in agentOneroom" :key="oneroom.oneroomNo">
               <td align="center">{{ oneroom.serviceType }}</td>
               <td align="center">{{ oneroom.title }}</td>
@@ -74,28 +80,44 @@ export default {
     },
     methods: {
         villaDetailPage(villaNo) {
-        this.$router.push({
-            name: 'VillaReadPage',
-            params: { "villaNo": villaNo }
-        })
+          this.$router.push({
+              name: 'VillaReadPage',
+              query: { "villaNo": villaNo }
+          })
         },
         oneroomDetailPage(oneroomNo) {
-        this.$router.push({
-            name: 'OneroomReadPage',
-            params: { "oneroomNo": oneroomNo }
-        })
+          this.$router.push({
+              name: 'OneroomReadPage',
+              params: { "oneroomNo": oneroomNo }
+          })
+          oneroomNo.$router.go()
         },
         officetelDetailPage(officetelNo) {
-        this.$router.push({
-            name: 'OfficetelReadPage',
-            params: { "officetelNo": officetelNo }
+          this.$router.push({
+              name: 'OfficetelReadPage',
+              params: { "officetelNo": officetelNo }
+          })
+        },
+        villaRegisterPage() {
+            this.$router.push({
+            name: 'VillaRegisterPage',
+        })
+        },
+        oneroomRegisterPage() {
+            this.$router.push({
+            name: 'OneroomRegisterPage',
+        })
+        },
+        officetelRegisterPage() {
+            this.$router.push({
+            name: 'OfficetelRegisterPage',
         })
         },
     },
 }
 </script>
 
-<style lang="scss">
+<style scoped>
 .search-btn{
   position: absolute;
   top:11em;
@@ -104,6 +126,8 @@ export default {
 table {
   width: 100%;
   border-collapse: collapse;
+  border-left: none;
+  border-right: none;
 }
 table th {
   font-size: 1.2rem;
@@ -133,6 +157,15 @@ table tr td {
 .btn-cover .page-count {
   padding: 0 1rem;
 }
+.a .addressName{
+  border-left: none;
+  border-right: none;
+  border-top: none;
+  border-bottom: none;
+  text-align: center;
+  color: black;
+}
+a:visited { text-decoration: none; }
 
 </style>
 

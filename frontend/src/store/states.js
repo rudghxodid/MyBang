@@ -56,11 +56,9 @@ export default {
     gongzis: [],
     gongzi: null,
     lists: [],
-
-
-
+    
     // Villa
-    villaList: []
+    villaList: [],
 
     // 회원 매물등록 구분
     agentVilla: [],

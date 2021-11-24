@@ -87,8 +87,26 @@
                 <v-icon color="black" size="30px">home</v-icon>
                     건물사진 등록
                 <div class="mx-1">
-                    <input type="file" id="files" ref="files" height="100%" width="100%" multiple v-on:change="handleFileUpload()">
-                    <!--<input type="file" ref="serveyImage" height="100%" width="100%" @change="handleFileUpload()">-->
+                    <v-card width="400" flat>
+                        <!-- 사진선택 -->
+                        <v-file-input class="mx-10" v-model="files" @change="selectImg" label="사진 선택"
+                        prepend-icon="insert_photo" chips multiple ></v-file-input>
+
+                        <!-- 선택한 사진 미리보기 -->
+                        <v-card class="mx-10" flat>
+                        <v-img v-for="url in urls" :key="url.index" class="ml-10" :src="url" width="80%"/>
+                        </v-card>
+
+                        <!-- imgBB에 이미지 전송 -->
+                        <v-btn @click="sendImg">전송</v-btn>
+                        <!-- 전송된 사진 url 확인 -->
+                        <v-btn @click="checkImage">확인</v-btn>
+
+                        <!-- 저장된 첫번째 사진 미리보기 -->
+                        <div v-if="viewImage">
+                        <v-img :src="viewImage"></v-img>
+                        </div>
+                    </v-card>
                 </div>
             </div>  
 
@@ -104,7 +122,7 @@
                 <v-icon color="black" size="30px">label</v-icon>
                 방구조
                 <div class="mx-1">
-                    <v-text-field placeholder="방구조"  v-model="roomType" required></v-text-field>
+                    <v-select :items='roomTypes' placeholder="방구조"  v-model="roomType" required></v-select>
                 </div> 
             </div>
 
@@ -120,7 +138,7 @@
                 <v-icon color="black" size="30px">label</v-icon>
                 서비스 유형
                 <div class="mx-1">
-                    <v-select :items='serviceTypes' placeholder="" v-model="serviceType" required></v-select>
+                    <v-select :items='serviceTypecheck' placeholder="" v-model="serviceType" required></v-select>
                 </div> 
             </div> 
 
@@ -128,11 +146,11 @@
                 <v-icon color="black" size="30px">label</v-icon>
                 관리비
                 <div class="mx-1">
-                    <v-text-field placeholder="관리비" v-model="manageCost" required></v-text-field>
+                    <v-text-field input type="number" placeholder="관리비" v-model="manageCost" required></v-text-field>
                      관리비 포함 항목
-                <div class="mx-1">
-                    <v-select :items='managements' placeholder="관리비 포함 항목" v-model="manageCostInc" required></v-select>
-                </div> 
+                    <div class="mx-1">
+                        <v-text-field placeholder="" v-model="manageCostInc" required></v-text-field>
+                    </div> 
                 </div> 
             </div> 
 
@@ -167,7 +185,7 @@
                 <v-icon color="black" size="30px">label</v-icon>
                 옵션
                 <div class="mx-1">
-                    <v-select :items='option' placeholder="옵션" v-model="options" required></v-select>
+                    <v-text-field placeholder="옵션" v-model="options" required></v-text-field>
                 </div> 
             </div>
            
@@ -263,40 +281,16 @@
                     <v-text-field placeholder="" v-model="agentId" required readonly></v-text-field>
                 </div> 
             </div>
-            <!--
-             <div class="mx-3"> 
-                <v-icon color="black" size="30px">label</v-icon>
-                옵션
-                <div class="mx-1">
-                    <v-select :items='option' placeholder="옵션의 여부를 입력해주세요." v-model="manage_cost_inc" required>
-                        <template >
-                            <v-list-item  @click="toggle">
-                                <v-list-item-action>
-                                    <v-icon :color="manage_cost_inc.length > 0 ? 'indigo darken-4' : ''">
-                                        {{ icon }}
-                                    </v-icon>
-                                </v-list-item-action>
-
-                                <v-list-item-content>
-                                    <v-list-item-title>
-                                    모두 선택
-                                    </v-list-item-title>
-                                </v-list-item-content>
-                            </v-list-item>
-                        </template>  
-                    </v-select>
-                </div> 
-            </div>
-             -->
 
             <div class="mt-3">
-                <v-btn color="white" tile large button type="submit" v-on:click="submitFiles()">방 등록하기</v-btn>
+                <v-btn color="white" tile large button type="submit">방 등록하기</v-btn>
             </div>
         </form>
     </v-container>
 </template>
 
 <script>
+
 import axios from 'axios'
 import { mapState } from 'vuex'
 
@@ -304,11 +298,11 @@ export default {
     name: 'VillaRegisterForm',
     data () {
       return {
-            image: '',
+            image: null,
             deposit: '',
-            roomType: '빌라',
+            roomType: '',
             manageCost: '',
-            manageCostInc: '',
+            manageCostInc: [],  //'전기세', '가스', '수도', '인터넷', 'TV'
             sizeM2: '',
             size: '',
             floorAll: '',
@@ -343,18 +337,20 @@ export default {
             url: '',
             updatedAt: '',
             agentId: '',
+            viewImage: null,
+            files: [],
+            urls: [],
+            imageStr: '',
+            serviceTypecheck: ['원룸', '빌라', '오피스텔'],
             floorCheck:['1층', '2층', '3층', '4층', '5층', '6층','7층', '8층', '9층', '10층', '11층','12층','13층','14층','15층','16층','17층','18층','19층','20층',
                         '21층','22층','23층','24층','25층','26층','27층','28층','29층','30층','31층','32층','33층','34층','35층','36층','37층','38층','39층','40층',
                         '50층','51층','52층','53층','54층','55층','56층','57층','58층','59층','60층'],
-            serviceTypes: ['오픈형 원룸(방1)','분리형 원룸(방1 거실1)','복층형 원룸', '투룸(방2, 거실1)', '쓰리룸+'],
+            roomTypes: ['오픈형 원룸(방1)','분리형 원룸(방1 거실1)','복층형 원룸', '투룸(방2, 거실1)', '쓰리룸+'],
             salesTypes: ['월세','전세','매매'],
-            managements: ['전기세', '가스', '수도', '인터넷', 'TV'],
             exist: ['있음', '없음'],
             parkings: ['가능', '없음'],
             roomDirections: ['북향', '남향', '동향', '서향', '남동향', '남서향', '북동향', '북서향', '확인필요'],
             petcheck: ['가능', '불가능', '고양이만', '확인필요'],
-            roomTypes: [ '오픈형 원룸(방1)', '분리형 원룸(방1 거실1)', '복층형 원룸', '투룸(방2 거실1)', '쓰리룸+'],
-            option: ['에어컨', '냉장고', '세탁기', '가스레인지', '전자레인지', '옷장', '신발장', '싱크대', '인터넷', '인덕션', '책상', '침대'],
         }
     },
     computed: {
@@ -367,6 +363,46 @@ export default {
         }
     },
     methods: {
+        selectImg () {
+            try {
+                this.urls = []
+                this.imageStr = ''
+
+                for (let i = 0; i < this.files.length; i++) {
+                this.urls.push(URL.createObjectURL(this.files[i]))
+                }
+            }catch(e) {
+                this.urls = []
+                this.imageStr = ''
+            }
+        },
+        sendImg() {
+            const formData = new FormData()
+
+            // 아래 빈칸에 key 입력
+            formData.set('key', 'ca442ada99076d1fda16e811a57f9d6d')
+            
+            for (let i = 0; i < this.files.length; i++) {
+                formData.append('image', this.files[i])
+
+                axios.post(`https://api.imgbb.com/1/upload`, formData).then(res => {
+                console.log(res.data.data.display_url)
+                this.imageStr += res.data.data.display_url + ','
+                })
+            }
+        },
+        checkImage () {
+            // imageStr의 마지막 ',' 제거
+            this.image = this.imageStr.slice(0, -1)
+            console.log(this.image)
+
+            // 불러온 imageStr을 img로 표시하려면 ',' 기준으로 잘라서 배열로 저장 후 사용
+            let imageList = this.image.split(',')
+            console.log(imageList)
+
+            // 배열에 저장된 첫번째 사진 url
+            this.viewImage = imageList[0]
+        },
         onSubmit () {
             const { image, deposit, roomType, manageCost, manageCostInc, sizeM2, size, floorAll, floor, roomDirection, options, pets, parking, elevator, moveinDate, title, 
             description, nearSubways, address, salesType, agentAddress, agentEmail, agentLat, agentLng, agentMobile, agentName, agentPhone, buildingType,
@@ -375,61 +411,6 @@ export default {
             this.$emit('submit', { image, deposit, roomType, manageCost, manageCostInc, sizeM2, size, floorAll, floor, roomDirection, options, pets, parking, elevator, moveinDate, title, 
             description, nearSubways, address, salesType, agentAddress, agentEmail, agentLat, agentLng, agentMobile, agentName, agentPhone, buildingType,
             lat, lng, local1, local2, local3, serviceType, userIntro, userName, url, updatedAt, agentId})
-        },
-        /*
-        handleFileUpload () {
-            this.files = this.$refs.files.files
-            const info = this.files
-            this.image = info[0].name
-        },
-        submitFiles () {
-            let formData = new FormData()
-            for (var idx = 0; idx < this.files.length; idx++) {
-                formData.append('villaList', this.files[idx])
-            }
-            axios.post('http://localhost:7777/file/uploadVillaImg', formData, {
-                headers: {
-                    'Content-Type': 'multipart/form-data'
-                }
-            })
-            .then (res => {
-                this.response = res.data
-            })
-            .catch (res => {
-                this.response = res.message
-            }) 
-        },
-        */
-        handleFileUpload () {
-            this.files = this.$refs.files.files
-            const info = this.files
-            this.image = info[0].name
-        },
-        submitFiles () {
-            let payload = this.image()
-            payload.append('image', File)
-
-            axios.post('https://api.imgbb.com/1/upload?expiration=600&key=ca442ada99076d1fda16e811a57f9d6d', payload)
-                .then(response => {
-                    alert("이미지 입력도 성공")
-                    console.log(response)
-                    console.log('이미지 url',response.data.data.image.url)
-                    console.log('success')
-            })
-            .catch((error) => {
-                console.log('error', error)
-                alert('try agian')
-            })
-       },
-
-        toggle () {
-            this.$nextTick(() => {
-            if (this.likesAllOption) {
-                this.manage_cost_inc = []
-            } else {
-                this.manage_cost_inc = this.option.slice()
-            }
-            })
         },
         onApiAddress () {
             axios.get(`https://dapi.kakao.com/v2/local/search/address.json?query=${this.address}`,

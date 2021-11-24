@@ -51,7 +51,6 @@
             <v-row>
                 <v-card v-for="product in products" :key="product.productNo" class="list-card"> 
                     <figure class="snip1477">
-                            <v-img><img height="500px" :src="require()" aspect-ratio="1"></v-img>
                         <figcaption>
                             <h1>{{ product.title }}<br/><br/></h1>
                             <h1>위치 : {{product.address}}<br/></h1>
@@ -268,7 +267,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .search-btn{
   position: absolute;
   top:11em;

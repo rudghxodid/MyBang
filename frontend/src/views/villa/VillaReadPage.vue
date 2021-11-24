@@ -1,6 +1,6 @@
 <template>
     <div>
-        <villa-read-form :villa="villa"/>
+        <villa-read-form :villa="villaRead"/>
         <v-btn color="white" :to="{ name: 'VillaModifyPage', params: { villaNo } }">
             내용 수정
         </v-btn>
@@ -18,29 +18,29 @@
 <script>
 
 import VillaReadForm from '@/components/villa/VillaReadForm.vue'
-import { mapState, mapActions } from 'vuex'
-
+//import { mapState, mapActions } from 'vuex'
+import axios from 'axios'
 export default {
     name: 'VillaReadPage',
+    /*
     props: {
         villaNo: {
-            type: String,
             required: true
         }
     },
+    */
     data () {
         return {
-            //isLogin: false,
+            villaNo: null,
+            villaRead: null
         }
     },
     components: {
         VillaReadForm
     },
     computed: {
-        ...mapState(['villa']),
     },
     methods: {
-        ...mapActions(['fetchVilla']),
         /*
         villaModifyFail() {
             this.isLogin = false
@@ -50,20 +50,12 @@ export default {
         */
     },
     created () {
-        this.fetchVilla(this.villaNo)
-        .catch(err => {
-            alert(err.response.data.message)
-            this.$router.push()
-        })
+        this.villaNo = this.$route.query.villaNo
     },
-    mounted() {
-        console.log(JSON.stringify(this.villa))
-        /*
-        this.$store.state.session = this.$cookies.get("user")
-        if (this.$store.state.session != null) {
-            this.isLogin = true
+    mounted() { 
+            axios.get(`http://localhost:7777/villa/${this.villaNo}`).then(
+                res => { res.data = this.villaRead})    
         }
-        */
-    },
 }
 </script>
+
