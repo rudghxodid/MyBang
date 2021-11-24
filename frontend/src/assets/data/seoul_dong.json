@@ -2239,7 +2239,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1101067",
-        "adm_nm": "서울특별시 종로구 창신1동"
+        "adm_nm": "서울특별시 종로구 창신제1동"
       },
       "geometry": {
         "type": "Polygon",
@@ -2361,7 +2361,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1101068",
-        "adm_nm": "서울특별시 종로구 창신2동"
+        "adm_nm": "서울특별시 종로구 창신제2동"
       },
       "geometry": {
         "type": "Polygon",
@@ -2447,7 +2447,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1101069",
-        "adm_nm": "서울특별시 종로구 창신3동"
+        "adm_nm": "서울특별시 종로구 창신제3동"
       },
       "geometry": {
         "type": "Polygon",
@@ -2513,7 +2513,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1101070",
-        "adm_nm": "서울특별시 종로구 숭인1동"
+        "adm_nm": "서울특별시 종로구 숭인제1동"
       },
       "geometry": {
         "type": "Polygon",
@@ -2603,7 +2603,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1101071",
-        "adm_nm": "서울특별시 종로구 숭인2동"
+        "adm_nm": "서울특별시 종로구 숭인제2동"
       },
       "geometry": {
         "type": "Polygon",
@@ -4863,7 +4863,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1102065",
-        "adm_nm": "서울특별시 중구 신당5동"
+        "adm_nm": "서울특별시 중구 신당제5동"
       },
       "geometry": {
         "type": "Polygon",
@@ -6693,7 +6693,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1103057",
-        "adm_nm": "서울특별시 용산구 원효로2동"
+        "adm_nm": "서울특별시 용산구 원효로제2동"
       },
       "geometry": {
         "type": "Polygon",
@@ -7151,7 +7151,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1103063",
-        "adm_nm": "서울특별시 용산구 이촌1동"
+        "adm_nm": "서울특별시 용산구 이촌제1동"
       },
       "geometry": {
         "type": "Polygon",
@@ -7389,7 +7389,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1103064",
-        "adm_nm": "서울특별시 용산구 이촌2동"
+        "adm_nm": "서울특별시 용산구 이촌제2동"
       },
       "geometry": {
         "type": "Polygon",
@@ -7547,7 +7547,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1103065",
-        "adm_nm": "서울특별시 용산구 이태원1동"
+        "adm_nm": "서울특별시 용산구 이태원제1동"
       },
       "geometry": {
         "type": "Polygon",
@@ -7697,7 +7697,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1103066",
-        "adm_nm": "서울특별시 용산구 이태원2동"
+        "adm_nm": "서울특별시 용산구 이태원제2동"
       },
       "geometry": {
         "type": "Polygon",
@@ -8377,7 +8377,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1103072",
-        "adm_nm": "서울특별시 용산구 원효로1동"
+        "adm_nm": "서울특별시 용산구 원효로제1동"
       },
       "geometry": {
         "type": "Polygon",
@@ -9295,7 +9295,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1104052",
-        "adm_nm": "서울특별시 성동구 왕십리2동"
+        "adm_nm": "서울특별시 성동구 왕십리제2동"
       },
       "geometry": {
         "type": "Polygon",
@@ -9829,7 +9829,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1104056",
-        "adm_nm": "서울특별시 성동구 행당1동"
+        "adm_nm": "서울특별시 성동구 행당제1동"
       },
       "geometry": {
         "type": "Polygon",
@@ -10003,7 +10003,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1104057",
-        "adm_nm": "서울특별시 성동구 행당2동"
+        "adm_nm": "서울특별시 성동구 행당제2동"
       },
       "geometry": {
         "type": "Polygon",
@@ -10523,7 +10523,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1104065",
-        "adm_nm": "서울특별시 성동구 성수1가1동"
+        "adm_nm": "서울특별시 성동구 성수1가제1동"
       },
       "geometry": {
         "type": "Polygon",
@@ -10737,7 +10737,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1104066",
-        "adm_nm": "서울특별시 성동구 성수1가2동"
+        "adm_nm": "서울특별시 성동구 성수1가제2동"
       },
       "geometry": {
         "type": "Polygon",
@@ -10899,7 +10899,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1104067",
-        "adm_nm": "서울특별시 성동구 성수2가1동"
+        "adm_nm": "서울특별시 성동구 성수2가제1동"
       },
       "geometry": {
         "type": "Polygon",
@@ -10993,7 +10993,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1104068",
-        "adm_nm": "서울특별시 성동구 성수2가3동"
+        "adm_nm": "서울특별시 성동구 성수2가제3동"
       },
       "geometry": {
         "type": "Polygon",
@@ -12297,7 +12297,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1105055",
-        "adm_nm": "서울특별시 광진구 중곡1동"
+        "adm_nm": "서울특별시 광진구 중곡제1동"
       },
       "geometry": {
         "type": "Polygon",
@@ -12347,7 +12347,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1105056",
-        "adm_nm": "서울특별시 광진구 중곡2동"
+        "adm_nm": "서울특별시 광진구 중곡제2동"
       },
       "geometry": {
         "type": "Polygon",
@@ -12421,7 +12421,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1105057",
-        "adm_nm": "서울특별시 광진구 중곡3동"
+        "adm_nm": "서울특별시 광진구 중곡제3동"
       },
       "geometry": {
         "type": "Polygon",
@@ -12511,7 +12511,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1105058",
-        "adm_nm": "서울특별시 광진구 중곡4동"
+        "adm_nm": "서울특별시 광진구 중곡제4동"
       },
       "geometry": {
         "type": "Polygon",
@@ -13215,7 +13215,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1105060",
-        "adm_nm": "서울특별시 광진구 구의1동"
+        "adm_nm": "서울특별시 광진구 구의제1동"
       },
       "geometry": {
         "type": "Polygon",
@@ -13317,7 +13317,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1105061",
-        "adm_nm": "서울특별시 광진구 구의2동"
+        "adm_nm": "서울특별시 광진구 구의제2동"
       },
       "geometry": {
         "type": "Polygon",
@@ -13483,7 +13483,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1105062",
-        "adm_nm": "서울특별시 광진구 구의3동"
+        "adm_nm": "서울특별시 광진구 구의제3동"
       },
       "geometry": {
         "type": "Polygon",
@@ -13779,7 +13779,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1105064",
-        "adm_nm": "서울특별시 광진구 자양1동"
+        "adm_nm": "서울특별시 광진구 자양제1동"
       },
       "geometry": {
         "type": "Polygon",
@@ -13941,7 +13941,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1105065",
-        "adm_nm": "서울특별시 광진구 자양2동"
+        "adm_nm": "서울특별시 광진구 자양제2동"
       },
       "geometry": {
         "type": "Polygon",
@@ -14143,7 +14143,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1105066",
-        "adm_nm": "서울특별시 광진구 자양3동"
+        "adm_nm": "서울특별시 광진구 자양제3동"
       },
       "geometry": {
         "type": "Polygon",
@@ -14237,7 +14237,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1105067",
-        "adm_nm": "서울특별시 광진구 자양4동"
+        "adm_nm": "서울특별시 광진구 자양제4동"
       },
       "geometry": {
         "type": "Polygon",
@@ -14389,7 +14389,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1106072",
-        "adm_nm": "서울특별시 동대문구 휘경1동"
+        "adm_nm": "서울특별시 동대문구 휘경제1동"
       },
       "geometry": {
         "type": "Polygon",
@@ -14511,7 +14511,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1106073",
-        "adm_nm": "서울특별시 동대문구 휘경2동"
+        "adm_nm": "서울특별시 동대문구 휘경제2동"
       },
       "geometry": {
         "type": "Polygon",
@@ -15259,7 +15259,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1106083",
-        "adm_nm": "서울특별시 동대문구 전농1동"
+        "adm_nm": "서울특별시 동대문구 전농제1동"
       },
       "geometry": {
         "type": "Polygon",
@@ -15437,7 +15437,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1106084",
-        "adm_nm": "서울특별시 동대문구 전농2동"
+        "adm_nm": "서울특별시 동대문구 전농제2동"
       },
       "geometry": {
         "type": "Polygon",
@@ -15667,7 +15667,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1106086",
-        "adm_nm": "서울특별시 동대문구 답십리2동"
+        "adm_nm": "서울특별시 동대문구 답십리제2동"
       },
       "geometry": {
         "type": "Polygon",
@@ -15765,7 +15765,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1106087",
-        "adm_nm": "서울특별시 동대문구 장안1동"
+        "adm_nm": "서울특별시 동대문구 장안제1동"
       },
       "geometry": {
         "type": "Polygon",
@@ -15947,7 +15947,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1106088",
-        "adm_nm": "서울특별시 동대문구 장안2동"
+        "adm_nm": "서울특별시 동대문구 장안제2동"
       },
       "geometry": {
         "type": "Polygon",
@@ -16093,7 +16093,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1106089",
-        "adm_nm": "서울특별시 동대문구 이문1동"
+        "adm_nm": "서울특별시 동대문구 이문제1동"
       },
       "geometry": {
         "type": "Polygon",
@@ -16215,7 +16215,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1106090",
-        "adm_nm": "서울특별시 동대문구 이문2동"
+        "adm_nm": "서울특별시 동대문구 이문제2동"
       },
       "geometry": {
         "type": "Polygon",
@@ -16349,7 +16349,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1106091",
-        "adm_nm": "서울특별시 동대문구 답십리1동"
+        "adm_nm": "서울특별시 동대문구 답십리제1동"
       },
       "geometry": {
         "type": "Polygon",
@@ -16427,7 +16427,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1107052",
-        "adm_nm": "서울특별시 중랑구 면목2동"
+        "adm_nm": "서울특별시 중랑구 면목제2동"
       },
       "geometry": {
         "type": "Polygon",
@@ -16481,7 +16481,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1107054",
-        "adm_nm": "서울특별시 중랑구 면목4동"
+        "adm_nm": "서울특별시 중랑구 면목제4동"
       },
       "geometry": {
         "type": "Polygon",
@@ -16863,7 +16863,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1107055",
-        "adm_nm": "서울특별시 중랑구 면목5동"
+        "adm_nm": "서울특별시 중랑구 면목제5동"
       },
       "geometry": {
         "type": "Polygon",
@@ -16913,7 +16913,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1107057",
-        "adm_nm": "서울특별시 중랑구 면목7동"
+        "adm_nm": "서울특별시 중랑구 면목제7동"
       },
       "geometry": {
         "type": "Polygon",
@@ -17019,7 +17019,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1107059",
-        "adm_nm": "서울특별시 중랑구 상봉1동"
+        "adm_nm": "서울특별시 중랑구 상봉제1동"
       },
       "geometry": {
         "type": "Polygon",
@@ -17173,7 +17173,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1107060",
-        "adm_nm": "서울특별시 중랑구 상봉2동"
+        "adm_nm": "서울특별시 중랑구 상봉제2동"
       },
       "geometry": {
         "type": "Polygon",
@@ -17263,7 +17263,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1107061",
-        "adm_nm": "서울특별시 중랑구 중화1동"
+        "adm_nm": "서울특별시 중랑구 중화제1동"
       },
       "geometry": {
         "type": "Polygon",
@@ -17413,7 +17413,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1107062",
-        "adm_nm": "서울특별시 중랑구 중화2동"
+        "adm_nm": "서울특별시 중랑구 중화제2동"
       },
       "geometry": {
         "type": "Polygon",
@@ -17531,7 +17531,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1107064",
-        "adm_nm": "서울특별시 중랑구 묵1동"
+        "adm_nm": "서울특별시 중랑구 묵제1동"
       },
       "geometry": {
         "type": "Polygon",
@@ -17685,7 +17685,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1107065",
-        "adm_nm": "서울특별시 중랑구 묵2동"
+        "adm_nm": "서울특별시 중랑구 묵제2동"
       },
       "geometry": {
         "type": "Polygon",
@@ -17739,7 +17739,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1107068",
-        "adm_nm": "서울특별시 중랑구 망우3동"
+        "adm_nm": "서울특별시 중랑구 망우제3동"
       },
       "geometry": {
         "type": "Polygon",
@@ -18599,7 +18599,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1107072",
-        "adm_nm": "서울특별시 중랑구 면목3·8동"
+        "adm_nm": "서울특별시 중랑구 면목제3·8동"
       },
       "geometry": {
         "type": "Polygon",
@@ -19063,7 +19063,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1108058",
-        "adm_nm": "서울특별시 성북구 돈암1동"
+        "adm_nm": "서울특별시 성북구 돈암제1동"
       },
       "geometry": {
         "type": "Polygon",
@@ -19169,7 +19169,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1108059",
-        "adm_nm": "서울특별시 성북구 돈암2동"
+        "adm_nm": "서울특별시 성북구 돈암제2동"
       },
       "geometry": {
         "type": "Polygon",
@@ -19779,7 +19779,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1108062",
-        "adm_nm": "서울특별시 성북구 정릉1동"
+        "adm_nm": "서울특별시 성북구 정릉제1동"
       },
       "geometry": {
         "type": "Polygon",
@@ -19893,7 +19893,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1108063",
-        "adm_nm": "서울특별시 성북구 정릉2동"
+        "adm_nm": "서울특별시 성북구 정릉제2동"
       },
       "geometry": {
         "type": "Polygon",
@@ -20227,7 +20227,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1108064",
-        "adm_nm": "서울특별시 성북구 정릉3동"
+        "adm_nm": "서울특별시 성북구 정릉제3동"
       },
       "geometry": {
         "type": "Polygon",
@@ -20625,7 +20625,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1108065",
-        "adm_nm": "서울특별시 성북구 정릉4동"
+        "adm_nm": "서울특별시 성북구 정릉제4동"
       },
       "geometry": {
         "type": "Polygon",
@@ -20991,7 +20991,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1108066",
-        "adm_nm": "서울특별시 성북구 길음1동"
+        "adm_nm": "서울특별시 성북구 길음제1동"
       },
       "geometry": {
         "type": "Polygon",
@@ -21133,7 +21133,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1108068",
-        "adm_nm": "서울특별시 성북구 길음2동"
+        "adm_nm": "서울특별시 성북구 길음제2동"
       },
       "geometry": {
         "type": "Polygon",
@@ -21227,7 +21227,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1108071",
-        "adm_nm": "서울특별시 성북구 월곡1동"
+        "adm_nm": "서울특별시 성북구 월곡제1동"
       },
       "geometry": {
         "type": "Polygon",
@@ -21349,7 +21349,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1108072",
-        "adm_nm": "서울특별시 성북구 월곡2동"
+        "adm_nm": "서울특별시 성북구 월곡제2동"
       },
       "geometry": {
         "type": "Polygon",
@@ -21675,7 +21675,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1108076",
-        "adm_nm": "서울특별시 성북구 장위1동"
+        "adm_nm": "서울특별시 성북구 장위제1동"
       },
       "geometry": {
         "type": "Polygon",
@@ -21957,7 +21957,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1108077",
-        "adm_nm": "서울특별시 성북구 장위2동"
+        "adm_nm": "서울특별시 성북구 장위제2동"
       },
       "geometry": {
         "type": "Polygon",
@@ -22231,7 +22231,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1108078",
-        "adm_nm": "서울특별시 성북구 장위3동"
+        "adm_nm": "서울특별시 성북구 장위제3동"
       },
       "geometry": {
         "type": "Polygon",
@@ -23695,7 +23695,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1109060",
-        "adm_nm": "서울특별시 강북구 번1동"
+        "adm_nm": "서울특별시 강북구 번제1동"
       },
       "geometry": {
         "type": "Polygon",
@@ -23945,7 +23945,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1109061",
-        "adm_nm": "서울특별시 강북구 번2동"
+        "adm_nm": "서울특별시 강북구 번제2동"
       },
       "geometry": {
         "type": "Polygon",
@@ -24235,7 +24235,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1109062",
-        "adm_nm": "서울특별시 강북구 번3동"
+        "adm_nm": "서울특별시 강북구 번제3동"
       },
       "geometry": {
         "type": "Polygon",
@@ -24477,7 +24477,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1109063",
-        "adm_nm": "서울특별시 강북구 수유1동"
+        "adm_nm": "서울특별시 강북구 수유제1동"
       },
       "geometry": {
         "type": "Polygon",
@@ -24675,7 +24675,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1109064",
-        "adm_nm": "서울특별시 강북구 수유2동"
+        "adm_nm": "서울특별시 강북구 수유제2동"
       },
       "geometry": {
         "type": "Polygon",
@@ -24849,7 +24849,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1109065",
-        "adm_nm": "서울특별시 강북구 수유3동"
+        "adm_nm": "서울특별시 강북구 수유제3동"
       },
       "geometry": {
         "type": "Polygon",
@@ -26793,7 +26793,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1110051",
-        "adm_nm": "서울특별시 도봉구 쌍문1동"
+        "adm_nm": "서울특별시 도봉구 쌍문제1동"
       },
       "geometry": {
         "type": "Polygon",
@@ -27079,7 +27079,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1110052",
-        "adm_nm": "서울특별시 도봉구 쌍문2동"
+        "adm_nm": "서울특별시 도봉구 쌍문제2동"
       },
       "geometry": {
         "type": "Polygon",
@@ -27189,7 +27189,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1110053",
-        "adm_nm": "서울특별시 도봉구 쌍문3동"
+        "adm_nm": "서울특별시 도봉구 쌍문제3동"
       },
       "geometry": {
         "type": "Polygon",
@@ -27299,7 +27299,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1110054",
-        "adm_nm": "서울특별시 도봉구 쌍문4동"
+        "adm_nm": "서울특별시 도봉구 쌍문제4동"
       },
       "geometry": {
         "type": "Polygon",
@@ -27441,7 +27441,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1110055",
-        "adm_nm": "서울특별시 도봉구 방학1동"
+        "adm_nm": "서울특별시 도봉구 방학제1동"
       },
       "geometry": {
         "type": "Polygon",
@@ -27647,7 +27647,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1110056",
-        "adm_nm": "서울특별시 도봉구 방학2동"
+        "adm_nm": "서울특별시 도봉구 방학제2동"
       },
       "geometry": {
         "type": "Polygon",
@@ -27925,7 +27925,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1110057",
-        "adm_nm": "서울특별시 도봉구 방학3동"
+        "adm_nm": "서울특별시 도봉구 방학제3동"
       },
       "geometry": {
         "type": "Polygon",
@@ -28259,7 +28259,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1110059",
-        "adm_nm": "서울특별시 도봉구 창1동"
+        "adm_nm": "서울특별시 도봉구 창제1동"
       },
       "geometry": {
         "type": "Polygon",
@@ -28373,7 +28373,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1110060",
-        "adm_nm": "서울특별시 도봉구 창2동"
+        "adm_nm": "서울특별시 도봉구 창제2동"
       },
       "geometry": {
         "type": "Polygon",
@@ -28551,7 +28551,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1110061",
-        "adm_nm": "서울특별시 도봉구 창3동"
+        "adm_nm": "서울특별시 도봉구 창제3동"
       },
       "geometry": {
         "type": "Polygon",
@@ -28661,7 +28661,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1110062",
-        "adm_nm": "서울특별시 도봉구 창4동"
+        "adm_nm": "서울특별시 도봉구 창제4동"
       },
       "geometry": {
         "type": "Polygon",
@@ -28887,7 +28887,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1110063",
-        "adm_nm": "서울특별시 도봉구 창5동"
+        "adm_nm": "서울특별시 도봉구 창제5동"
       },
       "geometry": {
         "type": "Polygon",
@@ -29037,7 +29037,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1110064",
-        "adm_nm": "서울특별시 도봉구 도봉1동"
+        "adm_nm": "서울특별시 도봉구 도봉제1동"
       },
       "geometry": {
         "type": "Polygon",
@@ -29891,7 +29891,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1110065",
-        "adm_nm": "서울특별시 도봉구 도봉2동"
+        "adm_nm": "서울특별시 도봉구 도봉제2동"
       },
       "geometry": {
         "type": "Polygon",
@@ -34937,7 +34937,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1112052",
-        "adm_nm": "서울특별시 은평구 불광1동"
+        "adm_nm": "서울특별시 은평구 불광제1동"
       },
       "geometry": {
         "type": "Polygon",
@@ -35267,7 +35267,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1112055",
-        "adm_nm": "서울특별시 은평구 갈현1동"
+        "adm_nm": "서울특별시 은평구 갈현제1동"
       },
       "geometry": {
         "type": "Polygon",
@@ -35449,7 +35449,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1112056",
-        "adm_nm": "서울특별시 은평구 갈현2동"
+        "adm_nm": "서울특별시 은평구 갈현제2동"
       },
       "geometry": {
         "type": "Polygon",
@@ -36007,7 +36007,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1112059",
-        "adm_nm": "서울특별시 은평구 응암1동"
+        "adm_nm": "서울특별시 은평구 응암제1동"
       },
       "geometry": {
         "type": "Polygon",
@@ -36177,7 +36177,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1112060",
-        "adm_nm": "서울특별시 은평구 응암2동"
+        "adm_nm": "서울특별시 은평구 응암제2동"
       },
       "geometry": {
         "type": "Polygon",
@@ -36355,7 +36355,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1112065",
-        "adm_nm": "서울특별시 은평구 신사1동"
+        "adm_nm": "서울특별시 은평구 신사제1동"
       },
       "geometry": {
         "type": "Polygon",
@@ -36473,7 +36473,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1112066",
-        "adm_nm": "서울특별시 은평구 신사2동"
+        "adm_nm": "서울특별시 은평구 신사제2동"
       },
       "geometry": {
         "type": "Polygon",
@@ -37545,7 +37545,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1112072",
-        "adm_nm": "서울특별시 은평구 불광2동"
+        "adm_nm": "서울특별시 은평구 불광제2동"
       },
       "geometry": {
         "type": "Polygon",
@@ -37811,7 +37811,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1112073",
-        "adm_nm": "서울특별시 은평구 응암3동"
+        "adm_nm": "서울특별시 은평구 응암제3동"
       },
       "geometry": {
         "type": "Polygon",
@@ -38209,7 +38209,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1113062",
-        "adm_nm": "서울특별시 서대문구 홍제1동"
+        "adm_nm": "서울특별시 서대문구 홍제제1동"
       },
       "geometry": {
         "type": "Polygon",
@@ -38707,7 +38707,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1113064",
-        "adm_nm": "서울특별시 서대문구 홍제3동"
+        "adm_nm": "서울특별시 서대문구 홍제제3동"
       },
       "geometry": {
         "type": "Polygon",
@@ -39005,7 +39005,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1113065",
-        "adm_nm": "서울특별시 서대문구 홍제2동"
+        "adm_nm": "서울특별시 서대문구 홍제제2동"
       },
       "geometry": {
         "type": "Polygon",
@@ -39167,7 +39167,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1113066",
-        "adm_nm": "서울특별시 서대문구 홍은1동"
+        "adm_nm": "서울특별시 서대문구 홍은제1동"
       },
       "geometry": {
         "type": "Polygon",
@@ -39825,7 +39825,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1113068",
-        "adm_nm": "서울특별시 서대문구 홍은2동"
+        "adm_nm": "서울특별시 서대문구 홍은제2동"
       },
       "geometry": {
         "type": "Polygon",
@@ -40419,7 +40419,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1113069",
-        "adm_nm": "서울특별시 서대문구 남가좌1동"
+        "adm_nm": "서울특별시 서대문구 남가좌제1동"
       },
       "geometry": {
         "type": "Polygon",
@@ -40473,7 +40473,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1113070",
-        "adm_nm": "서울특별시 서대문구 남가좌2동"
+        "adm_nm": "서울특별시 서대문구 남가좌제2동"
       },
       "geometry": {
         "type": "Polygon",
@@ -40611,7 +40611,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1113071",
-        "adm_nm": "서울특별시 서대문구 북가좌1동"
+        "adm_nm": "서울특별시 서대문구 북가좌제1동"
       },
       "geometry": {
         "type": "Polygon",
@@ -40705,7 +40705,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1113072",
-        "adm_nm": "서울특별시 서대문구 북가좌2동"
+        "adm_nm": "서울특별시 서대문구 북가좌제2동"
       },
       "geometry": {
         "type": "Polygon",
@@ -43013,7 +43013,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1114069",
-        "adm_nm": "서울특별시 마포구 망원1동"
+        "adm_nm": "서울특별시 마포구 망원제1동"
       },
       "geometry": {
         "type": "Polygon",
@@ -43079,7 +43079,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1114070",
-        "adm_nm": "서울특별시 마포구 망원2동"
+        "adm_nm": "서울특별시 마포구 망원제2동"
       },
       "geometry": {
         "type": "Polygon",
@@ -43307,7 +43307,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1114072",
-        "adm_nm": "서울특별시 마포구 성산1동"
+        "adm_nm": "서울특별시 마포구 성산제1동"
       },
       "geometry": {
         "type": "Polygon",
@@ -43461,7 +43461,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1114073",
-        "adm_nm": "서울특별시 마포구 성산2동"
+        "adm_nm": "서울특별시 마포구 성산제2동"
       },
       "geometry": {
         "type": "Polygon",
@@ -47555,7 +47555,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1116052",
-        "adm_nm": "서울특별시 강서구 등촌1동"
+        "adm_nm": "서울특별시 강서구 등촌제1동"
       },
       "geometry": {
         "type": "Polygon",
@@ -47629,7 +47629,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1116053",
-        "adm_nm": "서울특별시 강서구 등촌2동"
+        "adm_nm": "서울특별시 강서구 등촌제2동"
       },
       "geometry": {
         "type": "Polygon",
@@ -47839,7 +47839,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1116054",
-        "adm_nm": "서울특별시 강서구 등촌3동"
+        "adm_nm": "서울특별시 강서구 등촌제3동"
       },
       "geometry": {
         "type": "Polygon",
@@ -48175,7 +48175,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1116057",
-        "adm_nm": "서울특별시 강서구 화곡2동"
+        "adm_nm": "서울특별시 강서구 화곡제2동"
       },
       "geometry": {
         "type": "Polygon",
@@ -48249,7 +48249,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1116058",
-        "adm_nm": "서울특별시 강서구 화곡3동"
+        "adm_nm": "서울특별시 강서구 화곡제3동"
       },
       "geometry": {
         "type": "Polygon",
@@ -48379,7 +48379,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1116059",
-        "adm_nm": "서울특별시 강서구 화곡4동"
+        "adm_nm": "서울특별시 강서구 화곡제4동"
       },
       "geometry": {
         "type": "Polygon",
@@ -48525,7 +48525,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1116061",
-        "adm_nm": "서울특별시 강서구 화곡6동"
+        "adm_nm": "서울특별시 강서구 화곡제6동"
       },
       "geometry": {
         "type": "Polygon",
@@ -48667,7 +48667,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1116063",
-        "adm_nm": "서울특별시 강서구 화곡8동"
+        "adm_nm": "서울특별시 강서구 화곡제8동"
       },
       "geometry": {
         "type": "Polygon",
@@ -48797,7 +48797,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1116064",
-        "adm_nm": "서울특별시 강서구 가양1동"
+        "adm_nm": "서울특별시 강서구 가양제1동"
       },
       "geometry": {
         "type": "Polygon",
@@ -49019,7 +49019,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1116065",
-        "adm_nm": "서울특별시 강서구 가양2동"
+        "adm_nm": "서울특별시 강서구 가양제2동"
       },
       "geometry": {
         "type": "Polygon",
@@ -49121,7 +49121,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1116066",
-        "adm_nm": "서울특별시 강서구 가양3동"
+        "adm_nm": "서울특별시 강서구 가양제3동"
       },
       "geometry": {
         "type": "Polygon",
@@ -49211,7 +49211,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1116067",
-        "adm_nm": "서울특별시 강서구 발산1동"
+        "adm_nm": "서울특별시 강서구 발산제1동"
       },
       "geometry": {
         "type": "Polygon",
@@ -50051,7 +50051,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1116070",
-        "adm_nm": "서울특별시 강서구 방화1동"
+        "adm_nm": "서울특별시 강서구 방화제1동"
       },
       "geometry": {
         "type": "Polygon",
@@ -50433,7 +50433,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1116071",
-        "adm_nm": "서울특별시 강서구 방화2동"
+        "adm_nm": "서울특별시 강서구 방화제2동"
       },
       "geometry": {
         "type": "Polygon",
@@ -51011,7 +51011,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1116072",
-        "adm_nm": "서울특별시 강서구 방화3동"
+        "adm_nm": "서울특별시 강서구 방화제3동"
       },
       "geometry": {
         "type": "Polygon",
@@ -51301,7 +51301,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1116073",
-        "adm_nm": "서울특별시 강서구 화곡1동"
+        "adm_nm": "서울특별시 강서구 화곡제1동"
       },
       "geometry": {
         "type": "Polygon",
@@ -51723,7 +51723,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1117052",
-        "adm_nm": "서울특별시 구로구 구로1동"
+        "adm_nm": "서울특별시 구로구 구로제1동"
       },
       "geometry": {
         "type": "Polygon",
@@ -51953,7 +51953,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1117054",
-        "adm_nm": "서울특별시 구로구 구로3동"
+        "adm_nm": "서울특별시 구로구 구로제3동"
       },
       "geometry": {
         "type": "Polygon",
@@ -52123,7 +52123,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1117055",
-        "adm_nm": "서울특별시 구로구 구로4동"
+        "adm_nm": "서울특별시 구로구 구로제4동"
       },
       "geometry": {
         "type": "Polygon",
@@ -52249,7 +52249,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1117056",
-        "adm_nm": "서울특별시 구로구 구로5동"
+        "adm_nm": "서울특별시 구로구 구로제5동"
       },
       "geometry": {
         "type": "Polygon",
@@ -52431,7 +52431,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1117061",
-        "adm_nm": "서울특별시 구로구 고척1동"
+        "adm_nm": "서울특별시 구로구 고척제1동"
       },
       "geometry": {
         "type": "Polygon",
@@ -52569,7 +52569,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1117062",
-        "adm_nm": "서울특별시 구로구 고척2동"
+        "adm_nm": "서울특별시 구로구 고척제2동"
       },
       "geometry": {
         "type": "Polygon",
@@ -52735,7 +52735,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1117064",
-        "adm_nm": "서울특별시 구로구 개봉2동"
+        "adm_nm": "서울특별시 구로구 개봉제2동"
       },
       "geometry": {
         "type": "Polygon",
@@ -52845,7 +52845,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1117065",
-        "adm_nm": "서울특별시 구로구 개봉3동"
+        "adm_nm": "서울특별시 구로구 개봉제3동"
       },
       "geometry": {
         "type": "Polygon",
@@ -53027,7 +53027,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1117067",
-        "adm_nm": "서울특별시 구로구 오류1동"
+        "adm_nm": "서울특별시 구로구 오류제1동"
       },
       "geometry": {
         "type": "Polygon",
@@ -53213,7 +53213,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1117068",
-        "adm_nm": "서울특별시 구로구 오류2동"
+        "adm_nm": "서울특별시 구로구 오류제2동"
       },
       "geometry": {
         "type": "Polygon",
@@ -54207,7 +54207,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1117071",
-        "adm_nm": "서울특별시 구로구 구로2동"
+        "adm_nm": "서울특별시 구로구 구로제2동"
       },
       "geometry": {
         "type": "Polygon",
@@ -54549,7 +54549,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1117072",
-        "adm_nm": "서울특별시 구로구 개봉1동"
+        "adm_nm": "서울특별시 구로구 개봉제1동"
       },
       "geometry": {
         "type": "Polygon",
@@ -55137,7 +55137,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1118052",
-        "adm_nm": "서울특별시 금천구 독산1동"
+        "adm_nm": "서울특별시 금천구 독산제1동"
       },
       "geometry": {
         "type": "Polygon",
@@ -55423,7 +55423,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1118053",
-        "adm_nm": "서울특별시 금천구 독산2동"
+        "adm_nm": "서울특별시 금천구 독산제2동"
       },
       "geometry": {
         "type": "Polygon",
@@ -55637,7 +55637,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1118054",
-        "adm_nm": "서울특별시 금천구 독산3동"
+        "adm_nm": "서울특별시 금천구 독산제3동"
       },
       "geometry": {
         "type": "Polygon",
@@ -55823,7 +55823,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1118055",
-        "adm_nm": "서울특별시 금천구 독산4동"
+        "adm_nm": "서울특별시 금천구 독산제4동"
       },
       "geometry": {
         "type": "Polygon",
@@ -55989,7 +55989,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1118057",
-        "adm_nm": "서울특별시 금천구 시흥1동"
+        "adm_nm": "서울특별시 금천구 시흥제1동"
       },
       "geometry": {
         "type": "Polygon",
@@ -56211,7 +56211,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1118058",
-        "adm_nm": "서울특별시 금천구 시흥2동"
+        "adm_nm": "서울특별시 금천구 시흥제2동"
       },
       "geometry": {
         "type": "Polygon",
@@ -56393,7 +56393,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1118059",
-        "adm_nm": "서울특별시 금천구 시흥3동"
+        "adm_nm": "서울특별시 금천구 시흥제3동"
       },
       "geometry": {
         "type": "Polygon",
@@ -56623,7 +56623,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1118060",
-        "adm_nm": "서울특별시 금천구 시흥4동"
+        "adm_nm": "서울특별시 금천구 시흥제4동"
       },
       "geometry": {
         "type": "Polygon",
@@ -56745,7 +56745,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1118061",
-        "adm_nm": "서울특별시 금천구 시흥5동"
+        "adm_nm": "서울특별시 금천구 시흥제5동"
       },
       "geometry": {
         "type": "Polygon",
@@ -57245,7 +57245,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1119055",
-        "adm_nm": "서울특별시 영등포구 당산1동"
+        "adm_nm": "서울특별시 영등포구 당산제1동"
       },
       "geometry": {
         "type": "Polygon",
@@ -57387,7 +57387,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1119056",
-        "adm_nm": "서울특별시 영등포구 당산2동"
+        "adm_nm": "서울특별시 영등포구 당산제2동"
       },
       "geometry": {
         "type": "Polygon",
@@ -57621,7 +57621,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1119061",
-        "adm_nm": "서울특별시 영등포구 양평1동"
+        "adm_nm": "서울특별시 영등포구 양평제1동"
       },
       "geometry": {
         "type": "Polygon",
@@ -57779,7 +57779,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1119062",
-        "adm_nm": "서울특별시 영등포구 양평2동"
+        "adm_nm": "서울특별시 영등포구 양평제2동"
       },
       "geometry": {
         "type": "Polygon",
@@ -57909,7 +57909,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1119063",
-        "adm_nm": "서울특별시 영등포구 신길1동"
+        "adm_nm": "서울특별시 영등포구 신길제1동"
       },
       "geometry": {
         "type": "Polygon",
@@ -58091,7 +58091,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1119065",
-        "adm_nm": "서울특별시 영등포구 신길3동"
+        "adm_nm": "서울특별시 영등포구 신길제3동"
       },
       "geometry": {
         "type": "Polygon",
@@ -58221,7 +58221,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1119066",
-        "adm_nm": "서울특별시 영등포구 신길4동"
+        "adm_nm": "서울특별시 영등포구 신길제4동"
       },
       "geometry": {
         "type": "Polygon",
@@ -58399,7 +58399,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1119067",
-        "adm_nm": "서울특별시 영등포구 신길5동"
+        "adm_nm": "서울특별시 영등포구 신길제5동"
       },
       "geometry": {
         "type": "Polygon",
@@ -58645,7 +58645,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1119068",
-        "adm_nm": "서울특별시 영등포구 신길6동"
+        "adm_nm": "서울특별시 영등포구 신길제6동"
       },
       "geometry": {
         "type": "Polygon",
@@ -59023,7 +59023,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1119069",
-        "adm_nm": "서울특별시 영등포구 신길7동"
+        "adm_nm": "서울특별시 영등포구 신길제7동"
       },
       "geometry": {
         "type": "Polygon",
@@ -59265,7 +59265,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1119070",
-        "adm_nm": "서울특별시 영등포구 대림1동"
+        "adm_nm": "서울특별시 영등포구 대림제1동"
       },
       "geometry": {
         "type": "Polygon",
@@ -59311,7 +59311,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1119071",
-        "adm_nm": "서울특별시 영등포구 대림2동"
+        "adm_nm": "서울특별시 영등포구 대림제2동"
       },
       "geometry": {
         "type": "Polygon",
@@ -59393,7 +59393,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1119072",
-        "adm_nm": "서울특별시 영등포구 대림3동"
+        "adm_nm": "서울특별시 영등포구 대림제3동"
       },
       "geometry": {
         "type": "Polygon",
@@ -60459,7 +60459,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1120052",
-        "adm_nm": "서울특별시 동작구 노량진2동"
+        "adm_nm": "서울특별시 동작구 노량진제2동"
       },
       "geometry": {
         "type": "Polygon",
@@ -60605,7 +60605,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1120053",
-        "adm_nm": "서울특별시 동작구 상도1동"
+        "adm_nm": "서울특별시 동작구 상도제1동"
       },
       "geometry": {
         "type": "Polygon",
@@ -60839,7 +60839,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1120054",
-        "adm_nm": "서울특별시 동작구 상도2동"
+        "adm_nm": "서울특별시 동작구 상도제2동"
       },
       "geometry": {
         "type": "Polygon",
@@ -61093,7 +61093,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1120055",
-        "adm_nm": "서울특별시 동작구 상도3동"
+        "adm_nm": "서울특별시 동작구 상도제3동"
       },
       "geometry": {
         "type": "Polygon",
@@ -61351,7 +61351,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1120056",
-        "adm_nm": "서울특별시 동작구 상도4동"
+        "adm_nm": "서울특별시 동작구 상도제4동"
       },
       "geometry": {
         "type": "Polygon",
@@ -61453,7 +61453,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1120063",
-        "adm_nm": "서울특별시 동작구 사당1동"
+        "adm_nm": "서울특별시 동작구 사당제1동"
       },
       "geometry": {
         "type": "Polygon",
@@ -61575,7 +61575,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1120065",
-        "adm_nm": "서울특별시 동작구 사당3동"
+        "adm_nm": "서울특별시 동작구 사당제3동"
       },
       "geometry": {
         "type": "Polygon",
@@ -61717,7 +61717,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1120066",
-        "adm_nm": "서울특별시 동작구 사당4동"
+        "adm_nm": "서울특별시 동작구 사당제4동"
       },
       "geometry": {
         "type": "Polygon",
@@ -61835,7 +61835,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1120067",
-        "adm_nm": "서울특별시 동작구 사당5동"
+        "adm_nm": "서울특별시 동작구 사당제5동"
       },
       "geometry": {
         "type": "Polygon",
@@ -62427,7 +62427,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1120069",
-        "adm_nm": "서울특별시 동작구 신대방1동"
+        "adm_nm": "서울특별시 동작구 신대방제1동"
       },
       "geometry": {
         "type": "Polygon",
@@ -62573,7 +62573,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1120070",
-        "adm_nm": "서울특별시 동작구 신대방2동"
+        "adm_nm": "서울특별시 동작구 신대방제2동"
       },
       "geometry": {
         "type": "Polygon",
@@ -63069,7 +63069,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1120072",
-        "adm_nm": "서울특별시 동작구 노량진1동"
+        "adm_nm": "서울특별시 동작구 노량진제1동"
       },
       "geometry": {
         "type": "Polygon",
@@ -63215,7 +63215,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1120073",
-        "adm_nm": "서울특별시 동작구 사당2동"
+        "adm_nm": "서울특별시 동작구 사당제2동"
       },
       "geometry": {
         "type": "Polygon",
@@ -79701,7 +79701,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1125053",
-        "adm_nm": "서울특별시 강동구 명일1동"
+        "adm_nm": "서울특별시 강동구 명일제1동"
       },
       "geometry": {
         "type": "Polygon",
@@ -79815,7 +79815,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1125054",
-        "adm_nm": "서울특별시 강동구 명일2동"
+        "adm_nm": "서울특별시 강동구 명일제2동"
       },
       "geometry": {
         "type": "Polygon",
@@ -79917,7 +79917,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1125055",
-        "adm_nm": "서울특별시 강동구 고덕1동"
+        "adm_nm": "서울특별시 강동구 고덕제1동"
       },
       "geometry": {
         "type": "Polygon",
@@ -80039,7 +80039,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1125056",
-        "adm_nm": "서울특별시 강동구 고덕2동"
+        "adm_nm": "서울특별시 강동구 고덕제2동"
       },
       "geometry": {
         "type": "Polygon",
@@ -80185,7 +80185,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1125058",
-        "adm_nm": "서울특별시 강동구 암사2동"
+        "adm_nm": "서울특별시 강동구 암사제2동"
       },
       "geometry": {
         "type": "Polygon",
@@ -80415,7 +80415,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1125059",
-        "adm_nm": "서울특별시 강동구 암사3동"
+        "adm_nm": "서울특별시 강동구 암사제3동"
       },
       "geometry": {
         "type": "Polygon",
@@ -80529,7 +80529,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1125061",
-        "adm_nm": "서울특별시 강동구 천호1동"
+        "adm_nm": "서울특별시 강동구 천호제1동"
       },
       "geometry": {
         "type": "Polygon",
@@ -80639,7 +80639,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1125063",
-        "adm_nm": "서울특별시 강동구 천호3동"
+        "adm_nm": "서울특별시 강동구 천호제3동"
       },
       "geometry": {
         "type": "Polygon",
@@ -80789,7 +80789,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1125065",
-        "adm_nm": "서울특별시 강동구 성내1동"
+        "adm_nm": "서울특별시 강동구 성내제1동"
       },
       "geometry": {
         "type": "Polygon",
@@ -80887,7 +80887,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1125066",
-        "adm_nm": "서울특별시 강동구 성내2동"
+        "adm_nm": "서울특별시 강동구 성내제2동"
       },
       "geometry": {
         "type": "Polygon",
@@ -81005,7 +81005,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1125067",
-        "adm_nm": "서울특별시 강동구 성내3동"
+        "adm_nm": "서울특별시 강동구 성내제3동"
       },
       "geometry": {
         "type": "Polygon",
@@ -81051,7 +81051,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1125070",
-        "adm_nm": "서울특별시 강동구 둔촌1동"
+        "adm_nm": "서울특별시 강동구 둔촌제1동"
       },
       "geometry": {
         "type": "Polygon",
@@ -81165,7 +81165,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1125071",
-        "adm_nm": "서울특별시 강동구 둔촌2동"
+        "adm_nm": "서울특별시 강동구 둔촌제2동"
       },
       "geometry": {
         "type": "Polygon",
@@ -81451,7 +81451,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1125072",
-        "adm_nm": "서울특별시 강동구 암사1동"
+        "adm_nm": "서울특별시 강동구 암사제1동"
       },
       "geometry": {
         "type": "Polygon",
@@ -81561,7 +81561,7 @@
       "type": "Feature",
       "properties": {
         "adm_cd": "1125073",
-        "adm_nm": "서울특별시 강동구 천호2동"
+        "adm_nm": "서울특별시 강동구 천호제2동"
       },
       "geometry": {
         "type": "Polygon",

@@ -1,6 +1,6 @@
 <template>
   <v-card max-width="450" class="pa-2">
-    <v-row class="mb-n10">
+    <v-row class="mb-n10 mt-n3">
       <v-col>
         <v-autocomplete :items="guList" label="구" item-text="gu" solo>
           <template v-slot:item="{ item }">
@@ -23,7 +23,7 @@
           </template>
           <template v-slot:item="{ item }">
             <v-list-item-content>
-              <v-list-item-subtitle @click="selectDong(item.dong, item.lat, item.lng)">
+              <v-list-item-subtitle @click="selectDong(item.dong)">
                 {{ item.dong }}
               </v-list-item-subtitle>
             </v-list-item-content>
@@ -73,6 +73,8 @@ export default {
       dongList: [],
       gu: null,
       dong: null,
+      guPolygon: [],
+      guMarker: [],
     }
   },
   mounted() {
@@ -81,6 +83,9 @@ export default {
         this.guList.push({ gu: res.data[i].gu, lat: res.data[i].lat, lng: res.data[i].lng })
       }
     })
+
+    this.guPolygon = this.guPolygons
+    this.guMarker = this.guMarkers
   },
   methods: {
     searchStation () {
@@ -105,13 +110,13 @@ export default {
       let num
       let coord
 
-      for (let i = 0; i < this.guMarkers.length; i++) {
-        if (this.gu == this.guMarkers[i].title) {
+      for (let i = 0; i < this.guMarker.length; i++) {
+        if (this.gu == this.guMarker[i].title) {
           num = i
-          coord = this.guMarkers[i].position
+          coord = this.guMarker[i].position
         }
       }
-      this.$emit('selectArea', coord, 14, this.guPolygons[num], this.guMarkers[num])
+      this.$emit('selectArea', coord, 14, this.guPolygon[num], this.guMarker[num])
 
       this.dong = null
       this.dongList = []
@@ -122,9 +127,19 @@ export default {
         }
       })
     },
-    selectDong (dong, lat, lng) {
+    selectDong (dong) {
       this.dong = dong
-      this.$emit('selectDong', lat, lng)
+      
+      let num
+      let coord
+
+      for (let i = 0; i < this.dongMarkers.length; i++) {
+        if (this.dong == this.dongMarkers[i].title) {
+          num = i
+          coord = this.dongMarkers[i].position
+        }
+      }
+      this.$emit('selectArea', coord, 16, this.dongPolygons[num], this.dongMarkers[num])
     }
   }
 }

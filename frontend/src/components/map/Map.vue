@@ -1,6 +1,6 @@
 <template>
   <v-sheet class="fill-height" max-height="700">
-    <Search @selectStation="selectStation" @selectArea="selectArea" @selectDong="selectDong"
+    <Search @selectStation="selectStation" @selectArea="selectArea"
       :guPolygons="guPolygons" :guMarkers="guMarkers" 
       :dongPolygons="dongPolygons" :dongMarkers="dongMarkers"
       style="position: fixed; z-index: 1;"></Search>
@@ -12,7 +12,7 @@
       style="width: 70%; height: 100%; float: left;"
       @idle="idle">
 
-      <div>
+      <div v-if="zoomLevel >=13">
         <naver-map-marker-cluster :options="cluster.options">
           <naver-map-marker v-for="list in houseList" :key="list.index"
             :options="{ position: { lat: list.lat, lng: list.lng },
@@ -41,7 +41,9 @@
         <span class="ml-2" v-if="stationName">({{ stationName }}역 5분 거리)</span>
         <span class="ml-2" v-if="areaName">({{ areaName }})</span>
       </v-card-title>
+      <!--
       <v-divider></v-divider>
+      -->
       <v-card-subtitle v-if="!selectHouseLength">해당 지역에 매물이 없습니다.<br>지도를 이동&축소해 주세요.</v-card-subtitle>
       
       <v-virtual-scroll :bench="10" :items="selectHouseList" :item-height="120" height="630">
@@ -81,13 +83,12 @@ export default {
   },
   props: {
     houseList: {
-
     }
   },
   data() {
     return {
       stationList: null,
-      center: { lat: 37.49664389, lng: 127.0629852 },
+      center: { lat: 37.5335, lng: 126.9896 },
       cluster: {
         options: {
           maxZoom: 17,
@@ -103,7 +104,7 @@ export default {
         }
       },
       houseInfo: null,
-      zoomLevel: 13,
+      zoomLevel: 12,
       infoWindow: null,
       dialog: false,
       selectHouseList: [],
@@ -124,14 +125,12 @@ export default {
           this.guMarkerEvent()
         }
         this.removeDongMarkerPolygon()
-      } else if (this.zoomLevel > 13 && this.zoomLevel <= 16) {
+      } else if (this.zoomLevel > 13) {
         this.removeGuMarkerPolygon()
         if (this.dongMarkers.length == 0) {
           this.addDongMarkerPolygon()
           this.dongMarkerEvent()
         }
-      } else {
-        this.removeDongMarkerPolygon()
       }
     }
   },
@@ -151,6 +150,7 @@ export default {
       this.zoomLevel = this.$refs.maps.map.getZoom()
 
       this.markersOnMap()
+
       this.stationName = null
       this.areaName = null
     },
@@ -163,7 +163,7 @@ export default {
 
       for (let i = 0; i < list.length; i++) {
         let coords = new window.naver.maps.LatLng(list[i].lat, list[i].lng)
-
+        
         if (map.getBounds().hasLatLng(coords)) {
           this.selectHouseList.push(list[i])
         }
@@ -215,7 +215,6 @@ export default {
 
       for (let i = 0; i < list.length; i++) {
         let coords = new window.naver.maps.LatLng(list[i].lat, list[i].lng)
-
         if (mapCircle.getBounds().hasLatLng(coords)) {
           this.selectHouseList.push(list[i])
         }
@@ -232,24 +231,24 @@ export default {
     imageList (imageList) {
       return imageList.split(',')[0]
     },
-    selectGu (lat, lng) {
-      const coords = new window.naver.maps.LatLng(lat, lng)
-      this.$refs.maps.map.setCenter(coords)
-      this.$refs.maps.map.setZoom(14)
-    },
-    selectDong (lat, lng) {
-      const coords = new window.naver.maps.LatLng(lat, lng)
-      this.$refs.maps.map.setCenter(coords)
-      this.$refs.maps.map.setZoom(16)
-    },
+    // selectGu (lat, lng) {
+    //   const coords = new window.naver.maps.LatLng(lat, lng)
+    //   this.$refs.maps.map.setCenter(coords)
+    //   this.$refs.maps.map.setZoom(14)
+    // },
+    // selectDong (lat, lng) {
+    //   const coords = new window.naver.maps.LatLng(lat, lng)
+    //   this.$refs.maps.map.setCenter(coords)
+    //   this.$refs.maps.map.setZoom(16)
+    // },
     addGuMarkerPolygon () {
       const list = seoulGu.features
 
       for (let i = 0; i < list.length; i++) {
         let position = new window.naver.maps.LatLng(list[i].properties.lat, list[i].properties.lng)
-
+        
         let gu = list[i].properties.SGG_NM
-
+        
         let marker = new window.naver.maps.Marker({
           map: this.$refs.maps.map,
           position: position,
@@ -259,7 +258,7 @@ export default {
         
         let coords = list[i].geometry.coordinates[0]
         let coordList = []
-
+        
         for(let i = 0; i < coords.length; i++) {
           coordList.push(new window.naver.maps.LatLng(coords[i][1], coords[i][0]))
         }
@@ -280,7 +279,7 @@ export default {
       for (let i = 0; i < this.guMarkers.length; i++) {
         window.naver.maps.Event.addListener(this.guMarkers[i], 'mouseover', () => {
           let polygon = this.guPolygons[i]
-
+          
           polygon.setOptions({
             visible: true
           })
@@ -288,7 +287,7 @@ export default {
 
         window.naver.maps.Event.addListener(this.guMarkers[i], 'mouseout', () => {
           let polygon = this.guPolygons[i]
-
+          
           polygon.setOptions({
             visible: false
           })
@@ -473,15 +472,15 @@ export default {
     background-color:#04009A;
   }
   .infoWindow {
-    background: #E26A2C;
+    background: #F3950D;
     width: 30px;
     height: 30px;
     border-radius: 50%;
     opacity: 0.6;
-    animation: scale 1s infinite alternate;
+    animation: scale 0.8s infinite alternate;
   }
   @keyframes scale {
-    0%  { transform: scale(1); }
+    0% { transform: scale(1); }
     100%  { transform: scale(2.5); opacity: 0.4; }
   }
 </style>

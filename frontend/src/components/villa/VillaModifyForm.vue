@@ -32,15 +32,7 @@
                 <v-list-item class="mx-1">
                     <v-text-field placeholder="" v-model="villa.agentPhone" required></v-text-field>
                 </v-list-item>
-            </div> 
-
-            <div class="mx-3">
-                <v-icon color="black" size="30px">label</v-icon>
-                    중개인 설명
-                <v-list-item class="mx-1">
-                    <v-text-field placeholder="" v-model="villa.userIntro" required></v-text-field>
-                </v-list-item>
-            </div> 
+            </div>  
 
             <div class="mx-3">
                 <v-icon color="black" size="30px">label</v-icon>
@@ -250,7 +242,7 @@
                 </div> 
             </div>
 
-            <div class="mx-3"> 
+            <div class="mx-3" hidden> 
                 <v-icon color="black" size="30px">label</v-icon>
                 중개사무소 좌표
                 <div class="mx-1">
@@ -258,7 +250,7 @@
                 </div> 
             </div>
 
-            <div class="mx-3"> 
+            <div class="mx-3" hidden> 
                 <v-icon color="black" size="30px">label</v-icon>
                 중개사무소 좌표
                 <div class="mx-1">
@@ -266,7 +258,7 @@
                 </div> 
             </div>
 
-            <div class="mx-3"> 
+            <div class="mx-3" hidden> 
                 <v-icon color="black" size="30px">label</v-icon>
                 좌표(lat)
                 <div class="mx-1">
@@ -274,7 +266,7 @@
                 </div> 
             </div>
 
-            <div class="mx-3"> 
+            <div class="mx-3" hidden> 
                 <v-icon color="black" size="30px">label</v-icon>
                 좌표(lng)
                 <div class="mx-1">
@@ -282,7 +274,7 @@
                 </div> 
             </div>
 
-            <div class="mx-3"> 
+            <div class="mx-3" hidden> 
                 <v-icon color="black" size="30px">label</v-icon>
                 회원구분
                 <div class="mx-1">
