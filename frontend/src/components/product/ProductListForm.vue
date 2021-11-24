@@ -48,199 +48,198 @@
 			</v-layout>
 		</div>
 
-		<!-- 게시판 리스트 나오는 부분 -->
-		<v-container style="width:100%;">
-			<v-row>
-				<v-card v-for="product in products" :key="product.productNo" class="list-card">
-					<figure class="snip1477">
-						<v-img><img height="500px" :src="require()" aspect-ratio="1"></v-img>
-						<figcaption>
-							<h1>{{ product.title }}<br/><br/></h1>
-							<h1>위치 : {{product.address}}<br/></h1>
-							<p>{{ product.room_type }}<br/></p>
-						</figcaption>
-					</figure>
-					<!--
-					<div style="float: right; margin-right: 30px; margin-bottom: 10px;">
+        <!-- 게시판 리스트 나오는 부분 -->
+        <v-container style="width:100%;">
+            <v-row>
+                <v-card v-for="product in products" :key="product.productNo" class="list-card">
+                    <figure class="snip1477">
+                        <figcaption>
+                            <h1>{{ product.title }}<br/><br/></h1>
+                            <h1>위치 : {{product.address}}<br/></h1>
+                            <p>{{ product.room_type }}<br/></p>
+                        </figcaption>
+                    </figure>
+                    <!--
+                    <div style="float: right; margin-right: 30px; margin-bottom: 10px;">
 
 					<v-tooltip bottom>
 
-							<template v-slot:activator="{ on, attrs }">
+                        <template v-slot:activator="{ on, attrs }">
 
-							<v-btn text v-on="on" v-bind="attrs" @click="toDetailPage(product.id)" style="margin-bottom: 5px; margin-right: 10px;">
+                        <v-btn text v-on="on" v-bind="attrs" @click="toDetailPage(product.id)" style="margin-bottom: 5px; margin-right: 10px;">
 
-							<v-icon color="#42b8d4">
-									assessment
-							</v-icon>
+                        <v-icon color="#42b8d4">
+                            assessment
+                        </v-icon>
 
-							</v-btn>
-							</template>
+                        </v-btn>
+                        </template>
 
-							<span>상세 정보 보기</span>
+                        <span>상세 정보 보기</span>
 
-					</v-tooltip>
+                    </v-tooltip>
+                    
+                    <v-tooltip bottom>
 
-					<v-tooltip bottom>
+                        <template v-slot:activator="{ on, attrs }">
+                    
+                        <font-awesome-icon v-show="chkLikedOrNot(product.id)" :icon="['fas','heart']" size="lg" :style="{ color: '#42b8d4' }" v-on="on" v-bind="attrs"
+                        @click="deleteLikedProduct(product.id)"/>
 
-							<template v-slot:activator="{ on, attrs }">
+                        <font-awesome-icon v-show="!chkLikedOrNot(product.id)" :icon="['far','heart']" size="lg" :style="{ color: '#42b8d4' }" v-on="on" v-bind="attrs"
+                        @click="addLikedProduct(product.id)"/>
 
-							<font-awesome-icon v-show="chkLikedOrNot(product.id)" :icon="['fas','heart']" size="lg" :style="{ color: '#42b8d4' }" v-on="on" v-bind="attrs"
-							@click="deleteLikedProduct(product.id)"/>
+                        </template>
 
-							<font-awesome-icon v-show="!chkLikedOrNot(product.id)" :icon="['far','heart']" size="lg" :style="{ color: '#42b8d4' }" v-on="on" v-bind="attrs"
-							@click="addLikedProduct(product.id)"/>
+                        <span v-show="chkLikedOrNot(product.id)">찜해제</span>
 
-							</template>
+                        <span v-show="!chkLikedOrNot(product.id)">찜하기</span>
 
-							<span v-show="chkLikedOrNot(product.id)">찜해제</span>
+                    </v-tooltip>
+                    </div>
+                    -->
 
-							<span v-show="!chkLikedOrNot(product.id)">찜하기</span>
+                </v-card>
+            </v-row>
+        </v-container>
 
-					</v-tooltip>
-					</div>
-					-->
-
-				</v-card>
-			</v-row>
-		</v-container>
-
-		<!-- 페이지네이션 -->
-		<v-container>
-			<div class="btn-cover">
-				<v-btn :disabled="pageNum === 0" @click="prevPage" icon text>
-					<v-icon>chevron_left</v-icon>
-				</v-btn>
-				<span class="page-count">{{ pageNum + 1 }} / {{ pageCount }} 페이지</span>
-				<v-btn :disabled="pageNum >= pageCount - 1" @click="nextPage" icon text>
-					<v-icon>chevron_right</v-icon>
-				</v-btn>
-			</div>
-		</v-container>
-	</div>
+        <!-- 페이지네이션 -->
+        <v-container>
+            <div class="btn-cover">
+                <v-btn :disabled="pageNum === 0" @click="prevPage" icon text>
+                    <v-icon>chevron_left</v-icon>
+                </v-btn>
+                <span class="page-count">{{ pageNum + 1 }} / {{ pageCount }} 페이지</span>
+                <v-btn  :disabled="pageNum >= pageCount - 1" @click="nextPage" icon text>
+                    <v-icon>chevron_right</v-icon>
+                </v-btn >
+            </div>
+        </v-container>
+    </div>
 </template>
 
 <script>
 
-  //import axios from 'axios'
-  //import { FETCH_PRODUCT_LIST } from '@/store/mutation-types'
-  //import { mapActions, mapState } from 'vuex';
+//import axios from 'axios'
+//import { FETCH_PRODUCT_LIST } from '@/store/mutation-types'
+//import { mapActions, mapState } from 'vuex';
 
-  export default {
+export default {
     name: 'ProductListForm',
-    data() {
-      return {
-        pageNum: 0,
-        searchDialog: false,
-        address: ['서울', '경기', '인천', '강원', '충북', '충남', '충북', '전북', '전남', '경북', '경남', '부산', '대구', '제주'],
-        selectAddress: [],
-        selectRoomType: [],
-        RoomType: ['아파트', '빌라', '원룸', '투룸', '셰어하우스'],
-      }
+    data () {
+        return {
+            pageNum: 0,
+            searchDialog: false,
+            address: [ '서울', '경기', '인천', '강원', '충북', '충남', '충북', '전북', '전남', '경북', '경남', '부산', '대구', '제주' ],
+            selectAddress: [],
+            selectRoomType: [],
+            RoomType: [ '아파트', '빌라', '원룸', '투룸', '셰어하우스' ],
+        }
     },
     props: {
-      products: {
-        type: Array,
-        required: true
-      },
-      pageSize: {
-        type: Number,
-        required: false,
-        default: 8
-      }
+        products: {
+            type: Array,
+            required: true
+        },
+        pageSize: {
+            type: Number,
+            required: false,
+            default: 8
+        }
     },
     methods: {
-      //...mapActions(['fetchLikedProductList']),
-      nextPage() {
+            //...mapActions(['fetchLikedProductList']),
+        nextPage () {
         this.pageNum += 1;
-      },
-      prevPage() {
+        },
+        prevPage () {
         this.pageNum -= 1;
-      },
-      cancle() {
+        },
+        cancle() {
         this.searchDialog = false
-      },
-      toDetailPage(productNo) {
+        },
+        toDetailPage(productNo) {
         this.$router.push({
-          name: 'ProductReadPage',
-          params: {"productNo": productNo}
+            name: 'ProductReadPage',
+            params: { "productNo": productNo }
         })
-      },
-      /*
-			selectSearch() {
-			const { selectAddress, selectRoomType } = this
-			return axios.get('http://localhost:8888/product/list')
-							.then((res) => {
-							var ani = []
-							if(selectAddress.length > 0 && selectRoomType.length > 0) {
-									var len = selectRoomType.length + selectAddress.length
-									for(var i=0; i<res.data.length; i++) {
-									for(var j=0; j< len; j++) {
-											for(var o=0; o< len; o++)
-											if((res.data[i].id.includes(selectAddress[j]) && res.data[i].kind.includes(selectRoomType[o]))) {
-											ani.push(res.data[i])
-											this.$store.commit(FETCH_PRODUCT_LIST, ani)
-											}
-									}
-									}
-							} else if(selectAddress.length > 0) {
-									for(var k=0; k<res.data.length; k++) {
-											for(var l=0; l< selectAddress.length; l++) {
-											if(res.data[k].id.includes(selectAddress[l])) {
-													ani.push(res.data[k])
-													this.$store.commit(FETCH_PRODUCT_LIST, ani)
-											}
-											}
-									}
-							} else if(selectRoomType.length > 0) {
-									for(var m=0; m<res.data.length; m++) {
-											for(var n=0; n< selectRoomType.length; n++) {
-											if(res.data[m].kind.includes(selectRoomType[n])) {
-													ani.push(res.data[m])
-													this.$store.commit(FETCH_PRODUCT_LIST, ani)
-											}
-											}
-									}
-							}
-							this.searchDialog = false
-					})
-			},
-			addLikedProduct(id) {
-
-			const memberNo = this.$store.state.session.memberNo
-			const noticeNo = id
-			axios.post('http://localhost:8888/member/addLikedProduct', { memberNo, noticeNo })
-					.then(() => {
-					this.$store.state.likedProductList.push({ 'memberNo': memberNo, 'noticeNo': noticeNo })
-					})
-					.catch(() => {
-					alert('잠시후에 다시 시도해주세요.')
-					})
-			},
-			chkLikedOrNot(id) {
-			for(var i=0; i<this.$store.state.likedProductList.length; i++) {
-					if(id == this.$store.state.likedProductList[i].noticeNo) {
-					return true
-					}
-			}
-			return false
-			},
-			deleteLikedProduct(id) {
-
-			const memberNo = this.$store.state.session.memberNo
-			const noticeNo = id
-			axios.put('http://localhost:8888/petto/member/deleteLikedProduct', { memberNo, noticeNo }, {
-					headers: {
-					'Content-Type': 'application/json'
-					}
-			})
-					.then(() => {
-					const targetIndex = this.$store.state.likedProductList.findIndex(v => v.noticeNo === id)
-					this.$store.state.likedProductList.splice(targetIndex, 1)
-					})
-					.catch(() => {
-					alert('잠시후에 다시 시도해주세요.')
-					})
-			}*/
+        },
+        /*
+        selectSearch() {
+        const { selectAddress, selectRoomType } = this
+        return axios.get('http://localhost:8888/product/list')
+                .then((res) => {
+                var ani = []
+                if(selectAddress.length > 0 && selectRoomType.length > 0) {
+                    var len = selectRoomType.length + selectAddress.length
+                    for(var i=0; i<res.data.length; i++) {
+                    for(var j=0; j< len; j++) {
+                        for(var o=0; o< len; o++)
+                        if((res.data[i].id.includes(selectAddress[j]) && res.data[i].kind.includes(selectRoomType[o]))) {
+                        ani.push(res.data[i])
+                        this.$store.commit(FETCH_PRODUCT_LIST, ani)
+                        }
+                    }
+                    }
+                } else if(selectAddress.length > 0) {
+                    for(var k=0; k<res.data.length; k++) {
+                        for(var l=0; l< selectAddress.length; l++) {
+                        if(res.data[k].id.includes(selectAddress[l])) {
+                            ani.push(res.data[k])
+                            this.$store.commit(FETCH_PRODUCT_LIST, ani)
+                        }
+                        }
+                    }
+                } else if(selectRoomType.length > 0) {
+                    for(var m=0; m<res.data.length; m++) {
+                        for(var n=0; n< selectRoomType.length; n++) {
+                        if(res.data[m].kind.includes(selectRoomType[n])) {
+                            ani.push(res.data[m])
+                            this.$store.commit(FETCH_PRODUCT_LIST, ani)
+                        }
+                        }
+                    }
+                }
+                this.searchDialog = false
+            })
+        },
+        addLikedProduct(id) {
+      
+        const memberNo = this.$store.state.session.memberNo
+        const noticeNo = id
+        axios.post('http://localhost:8888/member/addLikedProduct', { memberNo, noticeNo })
+            .then(() => {
+            this.$store.state.likedProductList.push({ 'memberNo': memberNo, 'noticeNo': noticeNo })
+            })
+            .catch(() => {
+            alert('잠시후에 다시 시도해주세요.')
+            })
+        },
+        chkLikedOrNot(id) {
+        for(var i=0; i<this.$store.state.likedProductList.length; i++) {
+            if(id == this.$store.state.likedProductList[i].noticeNo) {
+            return true
+            }
+        }
+        return false
+        },
+        deleteLikedProduct(id) {
+        
+        const memberNo = this.$store.state.session.memberNo
+        const noticeNo = id
+        axios.put('http://localhost:8888/petto/member/deleteLikedProduct', { memberNo, noticeNo }, {
+            headers: {
+            'Content-Type': 'application/json'
+            }
+        })
+            .then(() => {
+            const targetIndex = this.$store.state.likedProductList.findIndex(v => v.noticeNo === id)
+            this.$store.state.likedProductList.splice(targetIndex, 1)
+            })
+            .catch(() => {
+            alert('잠시후에 다시 시도해주세요.')
+            })
+        }*/
     },
     computed: {
       //...mapState(['session', 'likedProductList']),

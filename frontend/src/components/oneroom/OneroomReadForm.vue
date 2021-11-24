@@ -4,7 +4,14 @@
                 <v-icon color="black" size="30px">home</v-icon>
                 사진
                 <div class="mx-1">
-                   <img height="300px" width="500px" :src="require()" aspect-ratio="1">
+                   <swiper class="swiper" :options="swiperOption">
+                        <swiper-slide v-for="list in imageList" :key="list.index">
+                            <img :src="list">
+                        </swiper-slide>
+                        <div class="swiper-pagination" slot="pagination"></div>
+                        <div class="swiper-button-prev" slot="button-prev"></div>
+                        <div class="swiper-button-next" slot="button-next"></div>
+                    </swiper>
                 </div>
             </div>
 
@@ -145,7 +152,11 @@ export default {
             type: Object,
             required: true
         },
-        
     },
+    computed: {
+        imageList () {
+            return this.info.image.split(',')
+        },
+    }
 }
 </script>
