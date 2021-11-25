@@ -1,7 +1,7 @@
 <template>
   <div>
       <div>
-        <h2>매물 등록</h2>
+        <h2>빌라 등록</h2>
       </div>
         <villa-register-form @submit="onSubmit"/>
   </div>  
@@ -41,3 +41,17 @@ export default {
     }
 }
 </script>
+
+<style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
+
+* {
+  font-family: 'Noto Sans KR', sans-serif;
+  margin: 0 auto;
+}
+
+h2 {
+  text-align: center;
+  color: gray;
+}
+</style>
