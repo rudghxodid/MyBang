@@ -202,7 +202,7 @@ const routes = [
     },
   },
   {
-    path: '/villa/:villaNo',
+    path: '/villa/read',
     name: 'VillaReadPage',
     components: {
       default: VillaReadPage,
