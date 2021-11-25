@@ -82,7 +82,7 @@ export default {
         villaDetailPage(villaNo) {
           this.$router.push({
               name: 'VillaReadPage',
-              query: { "villaNo": villaNo }
+              query: { villaNo: villaNo }
           })
         },
         oneroomDetailPage(oneroomNo) {
