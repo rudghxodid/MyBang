@@ -28,9 +28,13 @@ public class RoomMateComment extends BaseTimeEntity{
     @Column(nullable = false)
     private String content;
 
-    @Column
+    @Column(name = "board_no")
     private Long boardNo;
 
     @Column
     private Long writer;
+
+//    @ManyToOne
+//    @JoinColumn(name = "board_no", insertable = false, updatable = false)
+//    private RoomMate roomMate;
 }
