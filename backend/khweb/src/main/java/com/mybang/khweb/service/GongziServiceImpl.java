@@ -16,12 +16,9 @@ import java.util.Optional;
 @Service
 @Lazy
 @Slf4j
-
-
 public class GongziServiceImpl implements GongziService{
     @Autowired
     private GongziRepository repository;
-
 
     @Override
     public void register(GongziRequest request) throws Exception {
@@ -29,7 +26,6 @@ public class GongziServiceImpl implements GongziService{
         Gongzi gongziEntity = new Gongzi(request.getTitle(), request.getWriter(), request.getDescription());
 
         repository.save(gongziEntity);
-
     }
 
     @Override
@@ -40,9 +36,9 @@ public class GongziServiceImpl implements GongziService{
     @Override
     public Gongzi read(Long gongziNo) throws Exception {
 
-        Optional<Gongzi> GongziRead = repository.findByGongzi(gongziNo);
+        Gongzi gongzi = repository.findByGongzi(gongziNo).orElse(null);
 
-        return GongziRead.get();
+        return gongzi;
     }
 
     @Override

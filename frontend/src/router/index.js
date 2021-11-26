@@ -34,9 +34,10 @@ import Villa from '@/views/map/Villa'
 import Oneroom from '@/views/map/Oneroom'
 import Officetel from '@/views/map/Officetel'
 
-import GongziListPage from '@/views/GongziListPage.vue'
-import GongziRegisterPage from '@/views/GongziRegisterPage.vue'
-import GongziReadPage from '@/views/GongziReadPage.vue'
+import GongziListPage from '@/views/gongzi/GongziListPage'
+import GongziRegisterPage from '@/views/gongzi/GongziRegisterPage.vue'
+import GongziReadPage from '@/views/gongzi/GongziReadPage.vue'
+import GongziModifyPage from '@/views/gongzi/GongziModifyPage'
 
 // 부동산 뉴스
 import News from '@/views/News'
@@ -101,7 +102,7 @@ const routes = [
     component: BrokerRegister,
   },
   {
-    path: '/HostPage',
+    path: '/hostPage',
     name: 'HostPage',
     component: HostPage,
   },
@@ -182,7 +183,7 @@ const routes = [
     },
   },
   {
-    path: '/gongzi/:gongziNo',
+    path: '/gongzi/read',
     name: 'GongziReadPage',
     components: {
       default: GongziReadPage,
@@ -193,6 +194,13 @@ const routes = [
     name: 'GongziListPage',
     components: {
       default: GongziListPage,
+    },
+  },
+  {
+    path: '/gongzi/modify',
+    name: 'GongziModifyPage',
+    components: {
+      default: GongziModifyPage,
     },
   },
 

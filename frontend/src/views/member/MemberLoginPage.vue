@@ -33,22 +33,20 @@ export default {
     }
   },
   mounted () {
-        this.fetchSession(this.$cookies.get('session'))
-        if (this.session != null) {
-            this.$store.state.isLogin = true
-            this.$store.state.userInfo = this.fetchUserInfo(this.$cookies.get('session'))
-        }
+        // this.fetchSession(this.$cookies.get('session'))
+        // if (this.session != null) {
+        //     this.$store.state.isLogin = true
+        //     this.$store.state.userInfo = this.fetchUserInfo(this.$cookies.get('session'))
+        // }
     },
     computed: {
         ...mapState(['session'])
     },
-
-
     methods: {
-        ...mapActions(['fetchSession', 'fetchUserInfo']),
+        ...mapActions(['fetchUserInfo']),
         onSubmit (payload) {
 
-            if (this.$store.state.session == null) {
+            if (this.session == null) {
                 const { id, pw } = payload
                 axios.post('http://localhost:7777/member/login', { userId: id, password: pw, auth: null })
                 .then(res => {

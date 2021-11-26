@@ -1,6 +1,5 @@
 package com.mybang.khweb.service;
 
-//import com.mybang.khweb.repository.MemberAuthRepository;
 import com.mybang.khweb.entity.Member;
 import com.mybang.khweb.entity.MemberAuth;
 import com.mybang.khweb.entity.memberRelated.LikedProduct;
