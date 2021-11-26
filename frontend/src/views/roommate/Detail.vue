@@ -39,27 +39,27 @@
 			<div v-for="(cl, index) in commentList" class="content-detail-comment" :key="index">
 				<div>
 					<!-- 닉네임 -->
-					<span class="commentNick">{{ cl[1].writerName }}</span>
+					<span class="commentNick">{{ cl.writerName }}</span>
 
 					<!-- 댓글 내용 -->
-					<div v-if="cl[0].edit === true" style="display: inline-block">
-						<input v-model="cl[0].editContent" style="border: 1px solid black" @keyup="onKeyupEditInput($event, cl[0].id, index)">
+					<div v-if="cl.edit === true" style="display: inline-block">
+						<input v-model="cl.editContent" style="border: 1px solid black" @keyup="onKeyupEditInput($event, cl.id, index)">
 					</div>
 					<div v-else>
-						<p class="commentContent">{{ cl[0].content }}</p>
+						<p class="commentContent">{{ cl.content }}</p>
 					</div>
 
 					<!-- 댓글 작성일 -->
-					<span class="commentTime">{{ cl[0].createdAt }}</span>
+					<span class="commentTime">{{ cl.createdAt }}</span>
 
 					<!-- 저장 및 수정 삭제 버튼 -->
-					<div v-if="cl[0].edit === true" style="display: inline-block">
-						<span @click="onClickCommentSave(cl[0].id, index)">저장</span>
-						<span @click="onClickCancleBtn(cl[0].id, index)">취소</span>
+					<div v-if="cl.edit === true" style="display: inline-block">
+						<span @click="onClickCommentSave(cl.id, index)">저장</span>
+						<span @click="onClickCancleBtn(cl.id, index)">취소</span>
 					</div>
-					<div v-else-if="!cl[0].edit && cl[1].id === userId">
-						<span @click="onClickCommentModify(cl[0].id, index)">수정</span>
-						<span @click="onClickCommentDelete(cl[0].id)">삭제</span>
+					<div v-else-if="!cl.edit && cl.id === userId">
+						<span @click="onClickCommentModify(cl.id, index)">수정</span>
+						<span @click="onClickCommentDelete(cl.id)">삭제</span>
 					</div>
 
 				</div>
@@ -161,8 +161,10 @@
       },
 
       async postComment() {
+			  console.log("=> userId", this.userId)
+			  console.log("=> commentInput", this.commentInput)
         await api.post(`/roomMateComment/create/${this.id}`, {
-          writer: this.userId,
+          writer: this.writer,
           content: this.commentInput,
         })
           .then((res) => {
