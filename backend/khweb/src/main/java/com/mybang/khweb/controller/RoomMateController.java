@@ -51,7 +51,8 @@ public class RoomMateController {
     @GetMapping("/{id}")
     public ResponseEntity<RoomMate> findById(@PathVariable("id") Long id) throws Exception {
         RoomMate roomMate = roomMateService.findById(id);
-        List<RoomMateComment> roomMateComments = roomMateCommentService.findAllRoomMateComment();
+
+//        List<RoomMateComment> roomMateComments = roomMateCommentService.findAllRoomMateComment();
         return new ResponseEntity<RoomMate>(roomMate, HttpStatus.OK);
     }
 
