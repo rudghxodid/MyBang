@@ -1,4 +1,4 @@
-package com.mybang.khweb.controller.session;
+package com.mybang.khweb.controller;
 
 import com.mybang.khweb.entity.RoomMate;
 import com.mybang.khweb.entity.RoomMateComment;

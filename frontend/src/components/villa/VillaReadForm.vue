@@ -3,20 +3,22 @@
             <div class="mx-3"> 
                 <v-icon color="black" size="30px">home</v-icon>
                 사진
-                <div class="mx-1">
-
-                    <v-container>
+                <div class="mx-1" v-if="imageList">
+                    <v-card width="400">
                         <swiper class="swiper" :options="swiperOption">
-                        <swiper-slide v-for="list in imageList" :key="list.image">
-                            <img :src="villa.image">
+                        <swiper-slide v-for="list in imageList" :key="list.index">
+                            <img :src="list">
                         </swiper-slide>
-                            <div class="swiper-pagination" slot="pagination"></div>
-                            <div class="swiper-button-prev" slot="button-prev"></div>
-                            <div class="swiper-button-next" slot="button-next"></div>
+                        <div class="swiper-pagination" slot="pagination"></div>
+                        <div class="swiper-button-prev" slot="button-prev"></div>
+                        <div class="swiper-button-next" slot="button-next"></div>
                         </swiper>
-                    </v-container>
+                    </v-card>
 
                     <!--<img :src="villa.image" :value="villa.image">-->
+                </div>
+                <div v-else>
+                    <img :src="require('@/assets/img/noImg.gif')">
                 </div>
             </div>
 
@@ -152,6 +154,8 @@
 
 import { Swiper, SwiperSlide } from 'vue-awesome-swiper'
 import 'swiper/css/swiper.css'
+import { mapState, mapActions } from 'vuex'
+//import axios from 'axios'
 
 export default {
     name: 'VillaReadForm',
@@ -160,34 +164,49 @@ export default {
         SwiperSlide
     },
     props: {
-        villa: {
-            type: Object,
-            required: true
+        villaNo: {
+
         }
     },
     data() {
         return {
-        show: false,  
-        swiperOption: {
-                loop: true,
-                slidesPerView: 1,
-                spaceBetween: 30,
-                pagination: {
-                    el: '.swiper-pagination',
-                    clickable: true
+            show: false,  
+            swiperOption: {
+                    loop: true,
+                    slidesPerView: 1,
+                    spaceBetween: 30,
+                    pagination: {
+                        el: '.swiper-pagination',
+                        clickable: true
+                    },
+                    navigation: {
+                        nextEl: '.swiper-button-next',
+                        prevEl: '.swiper-button-prev',
+                    }
                 },
-                navigation: {
-                    nextEl: '.swiper-button-next',
-                    prevEl: '.swiper-button-prev',
-                }
-            },
         }
     },
     computed: {
+        ...mapState(['villa']),
+        
         imageList () {
-            return this.villa.image.split(',')
+            if (this.villa.image) {
+                return this.villa.image.split(',')
+            } else {
+                return null
+            }
+            
         },
     },
+    created() {
+        console.log(this.villa)
+    },
+    mounted () {
+        this.fetchVilla(this.villaNo)
+    },
+    methods: {
+        ...mapActions(['fetchVilla'])
+    }
 }
 </script>
 
@@ -209,20 +228,20 @@ export default {
   width: 300px;
   height: 300px;
   font-weight: bold;
-  color: black;
+  color: white;
 }
 .swiper-pagination >>> .swiper-pagination-bullet {
   opacity: 1;
-  border: black solid 1px;
+  border: white solid 1px;
   background-color: transparent;
 }
 .swiper-pagination >>> .swiper-pagination-bullet-active {
-  background-color: black;
+  background-color: white;
 }
 .swiper-button-next {
-  color: black;
+  color: white;
 }
 .swiper-button-prev {
-  color: black;
+  color: white;
 }
 </style>
