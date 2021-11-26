@@ -44,7 +44,7 @@ import News from '@/views/News'
 
 import BrokerHouseListPage from '@/views/broker/BrokerHouseListPage'
 
-//import KakaoLoginPage from '@/views/KakaoLoginPage'
+import KakaoLoginPage from '@/views/KakaoLoginPage'
 
 Vue.use(VueRouter)
 
@@ -282,13 +282,13 @@ const routes = [
     name: 'News',
     component: News,
   },
-  // {
-  //   path: 'KakaoLogin',
-  //   name: 'KakaoLoginPage',
-  //   components: {
-  //     default: KakaoLoginPage
-  //   }
-  // },
+  {
+    path: 'KakaoLogin',
+    name: 'KakaoLoginPage',
+    components: {
+      default: KakaoLoginPage
+    }
+  },
  
 ]
 
