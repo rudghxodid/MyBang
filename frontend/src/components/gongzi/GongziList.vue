@@ -5,7 +5,7 @@
 			:items="gongzis"
 			:items-per-page="10"
 			class="elevation-1"
-			@click:row="readGongzi" >					
+			@click:row="readGongzi">					
 		</v-data-table>
 	</v-sheet>
 </template>
@@ -34,7 +34,8 @@ export default {
 		readGongzi(gongzi) {
 			console.log(gongzi)
 			this.$router.push(
-				{ name: 'GongziReadPage', query: { gongziNo: gongzi.gongziNo } } )
+				{ name: 'GongziReadPage', query: { gongziNo: gongzi.gongziNo } } 
+			)
 		}
 	}
 }

@@ -81,18 +81,12 @@
 			<article>
 				<div class="more_btn">
 					<h2>공지사항</h2>
-					<v-btn depressed>
+					<v-btn @click="gongziList" depressed>
 						더보기
 					</v-btn>
 				</div>
 				<hr>
-				<ul>
-					<li>리스트1</li>
-					<li>리스트2</li>
-					<li>리스트3</li>
-					<li>리스트4</li>
-					<li>리스트5</li>
-				</ul>
+				<gongzi-preview></gongzi-preview>
 			</article>
 		</div>
 		<!--   소개할게요, 뉴스, 공지사항 영역 끝   -->
@@ -100,14 +94,18 @@
 </template>
 
 <script>
-  import {mapState} from 'vuex'
-  import { Swiper, SwiperSlide } from 'vue-awesome-swiper'
-  import 'swiper/css/swiper.css'
+import {mapState} from 'vuex'
+import { Swiper, SwiperSlide } from 'vue-awesome-swiper'
+import 'swiper/css/swiper.css'
+import GongziPreview from '../components/gongzi/GongziPreview.vue'
 
   export default {
-
-    name: 'MainPage',
-	  components: {Swiper, SwiperSlide},
+		name: 'MainPage',
+	  components: {
+			Swiper, 
+			SwiperSlide,
+			GongziPreview
+		},
     data() {
       return {
         swiperOption: {
@@ -135,7 +133,10 @@
       },
       newsLink() {
         this.$router.push({name: 'InfoNews'})
-      }
+      },
+			gongziList () {
+				this.$router.push({ name: 'GongziListPage' })
+			}
     },
 
   }
@@ -347,6 +348,7 @@
 
 	.board_content article ul {
 		margin-top: 14px;
+		padding-left: 0;
 	}
 
 	.board_content article ul li {
