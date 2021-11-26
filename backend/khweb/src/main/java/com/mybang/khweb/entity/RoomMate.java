@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Data
@@ -33,4 +35,8 @@ public class RoomMate extends BaseTimeEntity {
 
     @Column
     private String writerName;
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "board_no", insertable = false, updatable = false)
+    private List<RoomMateComment> comments = new ArrayList<>();
 }

@@ -5,6 +5,8 @@
         </div>
         <member-login-form @submit="onSubmit"/>
         <v-spacer></v-spacer>
+       
+    
         <v-btn @click="findUserId" text>아이디 찾기</v-btn>
         <v-btn @click="findUserPw" text>비밀번호 찾기</v-btn>
     </div>
@@ -78,7 +80,8 @@ export default {
         },
         findUserPw () {
             this.$router.push({ name: 'FindUserPw' })
-        }
+        },
+        
     }
 }
 </script>

@@ -36,7 +36,8 @@ public class RoomMateService {
 
     // 게시글 목록
     public List<RoomMate> findAllRoomMate() {
-        return roomMateRepository.findAll();
+        List<RoomMate> list = roomMateRepository.findAll();
+        return list;
     }
 
     // 게시글 읽기

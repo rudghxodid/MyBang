@@ -24,11 +24,14 @@ Vue.component('font-awesome-icon', FontAwesomeIcon)
 
 Vue.config.productionTip = false
 
+
 Vue.use(cooikes)
 Vue.$cookies.config('1h')
 Vue.use(BootstrapVue)
 Vue.use(IconsPlugin)
 Vue.use(Dayjs)
+
+
 
 // key에 발급받은 clientID 넣으시면 됩니다(https://www.ncloud.com/)
 Vue.use(VueNaverMap, {
