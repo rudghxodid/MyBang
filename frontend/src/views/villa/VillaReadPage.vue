@@ -1,6 +1,6 @@
 <template>
     <div>
-        <villa-read-form :villa="villaRead"/>
+        <villa-read-form :villaNo="villaNo"/>
         <v-btn color="white" :to="{ name: 'VillaModifyPage', params: { villaNo } }">
             내용 수정
         </v-btn>
@@ -18,8 +18,8 @@
 <script>
 
 import VillaReadForm from '@/components/villa/VillaReadForm.vue'
-//import { mapState, mapActions } from 'vuex'
-import axios from 'axios'
+import { mapActions } from 'vuex'
+
 export default {
     name: 'VillaReadPage',
     /*
@@ -41,6 +41,7 @@ export default {
     computed: {
     },
     methods: {
+        ...mapActions(['fetchVilla'])
         /*
         villaModifyFail() {
             this.isLogin = false
@@ -51,11 +52,11 @@ export default {
     },
     created () {
         this.villaNo = this.$route.query.villaNo
+        console.log(this.villaNo)
     },
     mounted() { 
-            axios.get(`http://localhost:7777/villa/${this.villaNo}`).then(
-                res => { res.data = this.villaRead})    
-        }
+        
+    }
 }
 </script>
 
