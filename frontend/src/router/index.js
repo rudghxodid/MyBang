@@ -37,13 +37,14 @@ import Officetel from '@/views/map/Officetel'
 import GongziListPage from '@/views/gongzi/GongziListPage'
 import GongziRegisterPage from '@/views/gongzi/GongziRegisterPage.vue'
 import GongziReadPage from '@/views/gongzi/GongziReadPage.vue'
+import GongziModifyPage from '@/views/gongzi/GongziModifyPage'
 
 // 부동산 뉴스
 import News from '@/views/News'
 
 import BrokerHouseListPage from '@/views/broker/BrokerHouseListPage'
 
-import KakaoLoginPage from '@/views/KakaoLoginPage'
+//import KakaoLoginPage from '@/views/KakaoLoginPage'
 
 Vue.use(VueRouter)
 
@@ -182,7 +183,7 @@ const routes = [
     },
   },
   {
-    path: '/gongzi/:gongziNo',
+    path: '/gongzi/read',
     name: 'GongziReadPage',
     components: {
       default: GongziReadPage,
@@ -193,6 +194,13 @@ const routes = [
     name: 'GongziListPage',
     components: {
       default: GongziListPage,
+    },
+  },
+  {
+    path: '/gongzi/modify',
+    name: 'GongziModifyPage',
+    components: {
+      default: GongziModifyPage,
     },
   },
 
@@ -274,13 +282,13 @@ const routes = [
     name: 'News',
     component: News,
   },
-  {
-    path: 'KakaoLogin',
-    name: 'KakaoLoginPage',
-    components: {
-      default: KakaoLoginPage
-    }
-  },
+  // {
+  //   path: 'KakaoLogin',
+  //   name: 'KakaoLoginPage',
+  //   components: {
+  //     default: KakaoLoginPage
+  //   }
+  // },
  
 ]
 
