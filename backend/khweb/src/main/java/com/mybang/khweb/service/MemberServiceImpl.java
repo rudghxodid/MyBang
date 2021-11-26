@@ -53,9 +53,9 @@ public class MemberServiceImpl implements MemberService{
     }
 
     @Override
-    public void pause(String userId) throws Exception {
-        String pause = "pause";
-        repository.pause(userId,pause);
+    public void pause(Member member, String userId) throws Exception {
+        member.setPause(1);
+        repository.save(member);
     }
 
     @Override
