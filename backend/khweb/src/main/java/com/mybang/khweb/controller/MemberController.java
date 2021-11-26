@@ -223,7 +223,7 @@ public class MemberController {
     public ResponseEntity<Void> pauseMember(@PathVariable("selected") String userId) throws Exception {
         Member member = service.findById(userId);
 
-        service.pause(userId);
+        service.pause(member,userId);
 
         return new ResponseEntity<>(HttpStatus.OK);
     }

@@ -64,7 +64,7 @@
                     <v-card-actions>
                         <v-btn @click="cancel">취소</v-btn>
                         <v-spacer></v-spacer>
-                        <v-btn @click="paseUser">확인</v-btn>
+                        <v-btn @click="pauseUser">확인</v-btn>
                     </v-card-actions>
                     </v-card>
                 </v-dialog>
@@ -104,6 +104,7 @@ export default {
             selected: [],
             userId: null,
             dialog: false,
+            pausedialog: false
             
             
         }
@@ -121,6 +122,7 @@ export default {
         ...mapActions(['fetchSession']),
     cancel () {
       this.dialog = false
+      this.pausedialog = false
     },
       deleteUser () {
       if(this.selected.length == 1){
@@ -154,6 +156,11 @@ export default {
           axios.post(`http://localhost:7777/member/pause/${this.selected}`)
           .then( () =>{
               alert("해당아이디는 정지 하였습니다.")
+              this.pausedialog = false
+            this.$store.commit('USER_LOGIN', false)
+        
+            this.fetchSession(this.$cookies.remove('session'))
+            this.$store.commit('FETCH_USER_INFO', [])
               this.$router.go()
           })
       },

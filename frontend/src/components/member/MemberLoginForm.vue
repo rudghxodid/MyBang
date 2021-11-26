@@ -29,14 +29,21 @@
                 </v-card>
             </v-flex>
         </v-layout>
+        <router-link :to="{ name: 'KakaoLoginPage' }"
+                    class="nav-link"
+                    active-class="active">
+                Kakao Login
+            </router-link>
+        
     </v-container>
+    
 
 </template>
 
 <script>
 import { mapState } from 'vuex'
 export default {
-    name: 'VuetifyMemberLoginForm',
+    name: 'MemberLoginForm',
     data () {
         return {
             id: '',
@@ -56,7 +63,8 @@ export default {
                             name: 'Home'
 
                         })
-        }
+        },
+        
 
     }
 }
