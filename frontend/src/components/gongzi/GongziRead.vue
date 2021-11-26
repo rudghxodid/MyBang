@@ -68,8 +68,10 @@ export default {
 		...mapState(['gongzi'])
 	},
 	mounted () {
-		this.title = this.gongzi.title
-		this.description = this.gongzi.description
+		setTimeout(()=> {
+			this.title = this.gongzi.title
+			this.description = this.gongzi.description
+		},50)
 	},
 	methods: {
 		modifyGongzi () {
