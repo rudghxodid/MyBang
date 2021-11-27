@@ -31,8 +31,12 @@ export default {
             description, nearSubways, address, salesType, agentAddress, agentEmail, agentLat, agentLng, agentMobile, agentName, agentPhone, buildingType,
             lat, lng, local1, local2, local3, serviceType, userIntro, userName, url, updatedAt, agentId })
                     .then(res => {
-                         alert('저장 성공! - ' + res)
-                         //this.$router.push("list");
+                        console.log(res)
+                        alert('저장 성공! ')
+                        this.$router.push({
+                            name: 'BrokerHouseListPage',
+                        })
+                        this.$router.go()
                     })
                     .catch(res => {
                         alert(res.response.data.message)
@@ -52,6 +56,6 @@ export default {
 
 h2 {
   text-align: center;
-  color: gray;
+  
 }
 </style>
