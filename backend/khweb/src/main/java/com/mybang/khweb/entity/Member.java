@@ -44,12 +44,12 @@ public class Member extends BaseTimeEntity {
     private String phone;
 
     @Column(nullable = true)
-    private String pause;
+    private int pause = 0;
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "member_no")
     private List<MemberAuth> authList = new ArrayList<MemberAuth>();
 
-    public Member(String userId, String password, String email, String name, String birth, String sex, String phone, String pause) {
+    public Member(String userId, String password, String email, String name, String birth, String sex, String phone, int pause) {
         this.userId = userId;
         this.password = password;
         this.email = email;

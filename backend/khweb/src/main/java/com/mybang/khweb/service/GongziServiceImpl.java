@@ -4,8 +4,10 @@ import com.mybang.khweb.entity.Gongzi;
 import com.mybang.khweb.repository.GongziRepository;
 import com.mybang.khweb.request.GongziRequest;
 import lombok.extern.slf4j.Slf4j;
+import net.bytebuddy.TypeCache;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 
@@ -16,12 +18,9 @@ import java.util.Optional;
 @Service
 @Lazy
 @Slf4j
-
-
 public class GongziServiceImpl implements GongziService{
     @Autowired
     private GongziRepository repository;
-
 
     @Override
     public void register(GongziRequest request) throws Exception {
@@ -29,20 +28,19 @@ public class GongziServiceImpl implements GongziService{
         Gongzi gongziEntity = new Gongzi(request.getTitle(), request.getWriter(), request.getDescription());
 
         repository.save(gongziEntity);
-
     }
 
     @Override
     public List<Gongzi> list() throws Exception {
-        return repository.findAll();
+        return repository.findAll(Sort.by(Sort.Direction.DESC, "gongziNo"));
     }
 
     @Override
     public Gongzi read(Long gongziNo) throws Exception {
 
-        Optional<Gongzi> GongziRead = repository.findByGongzi(gongziNo);
+        Gongzi gongzi = repository.findByGongzi(gongziNo).orElse(null);
 
-        return GongziRead.get();
+        return gongzi;
     }
 
     @Override

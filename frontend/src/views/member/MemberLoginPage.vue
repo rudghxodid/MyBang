@@ -5,6 +5,8 @@
         </div>
         <member-login-form @submit="onSubmit"/>
         <v-spacer></v-spacer>
+       
+    
         <v-btn @click="findUserId" text>아이디 찾기</v-btn>
         <v-btn @click="findUserPw" text>비밀번호 찾기</v-btn>
     </div>
@@ -31,22 +33,20 @@ export default {
     }
   },
   mounted () {
-        this.fetchSession(this.$cookies.get('session'))
-        if (this.session != null) {
-            this.$store.state.isLogin = true
-            this.$store.state.userInfo = this.fetchUserInfo(this.$cookies.get('session'))
-        }
+        // this.fetchSession(this.$cookies.get('session'))
+        // if (this.session != null) {
+        //     this.$store.state.isLogin = true
+        //     this.$store.state.userInfo = this.fetchUserInfo(this.$cookies.get('session'))
+        // }
     },
     computed: {
         ...mapState(['session'])
     },
-
-
     methods: {
-        ...mapActions(['fetchSession', 'fetchUserInfo']),
+        ...mapActions(['fetchUserInfo']),
         onSubmit (payload) {
 
-            if (this.$store.state.session == null) {
+            if (this.session == null) {
                 const { id, pw } = payload
                 axios.post('http://localhost:7777/member/login', { userId: id, password: pw, auth: null })
                 .then(res => {
@@ -80,7 +80,8 @@ export default {
         },
         findUserPw () {
             this.$router.push({ name: 'FindUserPw' })
-        }
+        },
+        
     }
 }
 </script>

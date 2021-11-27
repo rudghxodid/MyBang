@@ -10,9 +10,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Entity
 @Table(name="gongzi")
-
-
-public class Gongzi {
+public class Gongzi extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "gongzi_no", nullable = false)
@@ -37,8 +35,6 @@ public class Gongzi {
 
     public void updateGongzi(GongziRequest request) {
         this.title = request.getTitle();
-        this.writer = request.getWriter();
         this.description = request.getDescription();
-
     }
 }
