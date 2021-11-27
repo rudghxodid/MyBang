@@ -46,7 +46,7 @@
                 <v-icon color="black" size="30px">label</v-icon>
                     중개인 연락처
                 <div class="mx-1">
-                    <v-text-field placeholder="상세설명" v-model="agentMobile" required></v-text-field>
+                    <v-text-field placeholder="" v-model="agentMobile" required></v-text-field>
                 </div> 
             </div>
 
@@ -143,7 +143,10 @@
 
             <div class="mx-3"> 
                 <v-icon color="black" size="30px">label</v-icon>
-                크기 
+                크기
+                <div class="mx-1">
+                    <v-text-field placeholder="제곱미터단위로 입력해주세요" v-model="sizeM2" required></v-text-field>
+                </div>  
                 <div class="mx-1">
                     <v-text-field placeholder="방의 평수를 입력해주세요." v-model="size" required></v-text-field>
                 </div> 
@@ -153,10 +156,10 @@
                 <v-icon color="black" size="30px">label</v-icon>
                 층수
                 <div class="mx-1">
-                    <v-select :items='floorCheck' input type="number" placeholder="건물 총 층수" v-model="floorAll" required></v-select>
+                    <v-select :items='floorCheck' placeholder="건물 총 층수" v-model="floorAll" required></v-select>
                 </div>
                 <div class="mx-1">
-                    <v-select :items='floorCheck' input type="number" placeholder="해당 층" v-model="floor" required></v-select>
+                    <v-select :items='floorCheck' placeholder="해당 층" v-model="floor" required></v-select>
                 </div>  
             </div>
 

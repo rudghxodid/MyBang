@@ -25,7 +25,7 @@
           <tr v-for="oneroom in agentOneroom" :key="oneroom.oneroomNo">
               <td align="center">{{ oneroom.serviceType }}</td>
               <td align="center">{{ oneroom.title }}</td>
-              <a @click="oneroomDetailPage(oneroom.oneroomNo)">
+              <a class=addressName @click="oneroomDetailPage(oneroom.oneroomNo)">
               <td align="center">{{ oneroom.address }}</td>
               </a>
               <td align="center">{{ oneroom.agentId }}</td>
@@ -33,7 +33,7 @@
           <tr v-for="officetel in agentOfficetel" :key="officetel.officetelNo">
               <td align="center">{{ officetel.serviceType }}</td>
               <td align="center">{{ officetel.title }}</td>
-              <a @click="officetelDetailPage(officetel.officetelNo)">
+              <a class=addressName @click="officetelDetailPage(officetel.officetelNo)">
               <td align="center">{{ officetel.address }}</td>
               </a>
               <td align="center">{{ officetel.agentId }}</td>
@@ -88,14 +88,13 @@ export default {
         oneroomDetailPage(oneroomNo) {
           this.$router.push({
               name: 'OneroomReadPage',
-              params: { "oneroomNo": oneroomNo }
+              query: { "oneroomNo": oneroomNo }
           })
-          oneroomNo.$router.go()
         },
         officetelDetailPage(officetelNo) {
           this.$router.push({
               name: 'OfficetelReadPage',
-              params: { "officetelNo": officetelNo }
+              query: { "officetelNo": officetelNo }
           })
         },
         villaRegisterPage() {

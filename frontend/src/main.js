@@ -32,7 +32,7 @@ Vue.use(Dayjs)
 
 // key에 발급받은 clientID 넣으시면 됩니다(https://www.ncloud.com/)
 Vue.use(VueNaverMap, {
-  key: '0fac6v6wdo',
+  key: '',
   libraries: ['geocoder'],
 })
 
