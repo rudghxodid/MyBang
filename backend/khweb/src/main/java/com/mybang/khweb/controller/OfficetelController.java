@@ -68,7 +68,7 @@ public class OfficetelController {
     }
 
     @PutMapping("/{officetelNo}")
-    public ResponseEntity<Void> update(@PathVariable("villaNo") Long officetelNo,
+    public ResponseEntity<Void> update(@PathVariable("officetelNo") Long officetelNo,
                                        @RequestBody OfficetelRequest request) throws Exception {
 
         Optional<Officetel> officetel = repository.findByOfficetelNo(officetelNo);

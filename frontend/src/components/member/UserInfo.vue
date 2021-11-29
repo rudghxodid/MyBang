@@ -54,7 +54,7 @@
         <v-spacer></v-spacer>
         <v-btn @click="modifyUserInfo" @keydown.enter="modifyUserInfo">수정</v-btn>
         <v-spacer></v-spacer>
-        <v-btn @click="brokerHouseList">매물 확인</v-btn>
+        <v-btn @click="brokerHouseList">매물 등록 및 확인</v-btn>
       </v-card-actions>
     </v-card>
 
