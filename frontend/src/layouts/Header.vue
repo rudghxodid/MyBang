@@ -98,6 +98,7 @@ import { mapActions, mapState } from 'vuex'
       this.$store.commit('FETCH_USER_INFO', [])
       alert("로그아웃 되었습니다!")
       this.$router.push({ name: 'Home' })
+			this.$router.go()
     },
     gotoMypage () {
       this.$router.push({ name: 'Mypage' })

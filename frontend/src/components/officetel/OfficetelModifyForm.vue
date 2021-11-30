@@ -137,8 +137,21 @@
                 <v-icon color="black" size="30px">label</v-icon>
                 관리비 포함 항목
                 <div class="mx-1" >
-                    <v-text-field placeholder="" v-model="manageCostInc" required></v-text-field>
-                </div> 
+                    <input type="checkbox" value="전기세" v-model="manageCostIncChk">
+                        <label for="전기세">전기세</label>
+                    <input type="checkbox" value="수도" v-model="manageCostIncChk">
+                        <label for="수도">수도</label>
+                    <input type="checkbox" value="가스" v-model="manageCostIncChk">
+                        <label for="가스">가스</label>
+                    <input type="checkbox" value="인터넷" v-model="manageCostIncChk">
+                        <label for="인터넷">인터넷</label>
+                    <input type="checkbox" value="TV" v-model="manageCostIncChk">
+                        <label for="TV">TV</label>
+                </div><br>
+                관리비
+                <div class="mx-1">
+                    <v-text-field placeholder="" v-model="manageCost" required></v-text-field>
+                </div>
             </div> 
 
             <div class="mx-3"> 
@@ -175,7 +188,32 @@
                 <v-icon color="black" size="30px">label</v-icon>
                 옵션
                 <div class="mx-1">
-                    <v-text-field placeholder="옵션" v-model="options" required></v-text-field>
+                    <input type="checkbox" value="에어컨" v-model="optionsChk">
+                        <label for="에어컨">에어컨</label>
+                    <input type="checkbox" value="냉장고" v-model="optionsChk">
+                        <label for="냉장고">냉장고</label>
+                    <input type="checkbox" value="세탁기" v-model="optionsChk">
+                        <label for="세탁기">세탁기</label>
+                    <input type="checkbox" value="가스레인지" v-model="optionsChk">
+                        <label for="가스레인지">가스레인지</label>
+                    <input type="checkbox" value="전자레인지" v-model="optionsChk">
+                        <label for="전자레인지">전자레인지</label>
+                </div>
+                <div class="mx-1">
+                    <input type="checkbox" value="인덕션" v-model="optionsChk">
+                        <label for="인덕션">인덕션</label>
+                    <input type="checkbox" value="싱크대" v-model="optionsChk">
+                        <label for="싱크대">싱크대</label>
+                    <input type="checkbox" value="책상" v-model="optionsChk">
+                        <label for="책상">책상</label>
+                    <input type="checkbox" value="책장" v-model="optionsChk">
+                        <label for="책장">책장</label>
+                    <input type="checkbox" value="침대" v-model="optionsChk">
+                        <label for="침대">침대</label>
+                    <input type="checkbox" value="옷장" v-model="optionsChk">
+                        <label for="옷장">옷장</label>
+                    <input type="checkbox" value="신발장" v-model="optionsChk">
+                        <label for="신발장">신발장</label>
                 </div> 
             </div>
            
@@ -346,7 +384,7 @@ export default {
             local1: '',
             local2: '',
             local3: '',
-            serviceType: '빌라',
+            serviceType: '오피스텔',
             userIntro: '',
             userName: '',
             url: '',
@@ -354,6 +392,8 @@ export default {
             agentId: '',
             menu: false,
             date: null,
+            manageCostIncChk: [],
+            optionsChk: [],
             viewImage: null,
             files: [],
             urls: [],
@@ -424,11 +464,11 @@ export default {
         },
         onSubmit () {
             this.agentId = this.userInfo.userId 
-            const { image, deposit, roomType, manageCost, manageCostInc, sizeM2, size, floorAll, floor, roomDirection, options, pets, parking, elevator, moveinDate, title, 
+            const { image, deposit, roomType, manageCost, manageCostIncChk, sizeM2, size, floorAll, floor, roomDirection, optionsChk, pets, parking, elevator, moveinDate, title, 
             description, nearSubways, address, salesType, agentAddress, agentEmail, agentLat, agentLng, agentMobile, agentName, agentPhone, buildingType,
             lat, lng, local1, local2, local3, serviceType, userIntro, userName, url, updatedAt, agentId} = this
 
-            this.$emit('submit', { image, deposit, roomType, manageCost, manageCostInc, sizeM2, size, floorAll, floor, roomDirection, options, pets, parking, elevator, moveinDate, title, 
+            this.$emit('submit', { image, deposit, roomType, manageCost, manageCostIncChk, sizeM2, size, floorAll, floor, roomDirection, optionsChk, pets, parking, elevator, moveinDate, title, 
             description, nearSubways, address, salesType, agentAddress, agentEmail, agentLat, agentLng, agentMobile, agentName, agentPhone, buildingType,
             lat, lng, local1, local2, local3, serviceType, userIntro, userName, url, updatedAt, agentId})
         },

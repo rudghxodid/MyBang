@@ -5,23 +5,6 @@
         {{info.local1}}
         {{info.local2}}
         {{info.local3}}
-        <v-tooltip bottom>
-
-            <template v-slot:activator="{ on, attrs }">
-          
-            <font-awesome-icon v-show="chkLikedOrNot()" :icon="['fas','heart']" size="lg" :style="{ color: '#42b8d4' }" v-on="on" v-bind="attrs"
-            @click="deleteLikedAnimal()"/>
-
-            <font-awesome-icon v-show="!chkLikedOrNot(a)" :icon="['far','heart']" size="lg" :style="{ color: '#42b8d4' }" v-on="on" v-bind="attrs"
-            @click="addLikedAnimal()"/>
-
-            </template>
-
-            <span v-show="chkLikedOrNot()">찜해제</span>
-
-            <span v-show="!chkLikedOrNot()">찜하기</span>
-
-          </v-tooltip>
       </v-card-title>
       <v-divider class="my-n1"/>
       <v-container>
