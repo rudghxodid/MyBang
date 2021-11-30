@@ -3,7 +3,7 @@
         <div align="center">
             <h2>회원 가입</h2>
         </div>
-        <member-join-column-form @submit="onSubmit"/>
+        <member-join-column-form v-bind:kakao_account="kakao_account" @submit="onSubmit"/>
         
         <v-spacer></v-spacer>
        
@@ -19,6 +19,12 @@ export default {
     name: 'MemberRegisterPage',
     components: {
         MemberJoinColumnForm
+    },
+    props: {
+        kakao_account: {
+            type: Object,
+            require: true
+        }
     },
     methods: {
         onSubmit (payload) {

@@ -9,6 +9,7 @@ import com.mybang.khweb.request.MemberDto;
 import com.mybang.khweb.request.MemberRequest;
 import com.mybang.khweb.utility.PythonRequest;
 import lombok.extern.slf4j.Slf4j;
+import org.graalvm.compiler.nodes.calc.IntegerDivRemNode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -22,6 +23,7 @@ import java.util.Random;
 @Lazy
 @Slf4j
 public class MemberServiceImpl implements MemberService{
+
 
 
     @Autowired
@@ -52,7 +54,12 @@ public class MemberServiceImpl implements MemberService{
 
     @Override
     public void pause(Member member, String userId) throws Exception {
-        member.setPause(1);
+        if(member.getPause()==0) {
+            member.setPause(1);
+        }
+        else{
+            member.setPause(0);
+        }
         repository.save(member);
     }
 
@@ -261,6 +268,18 @@ public class MemberServiceImpl implements MemberService{
         member.modifyPassword(memberDto);
 
         repository.save(member);
+    }
+
+    // 관리자 권한주기
+    @Override
+    public void host(String userId) throws Exception {
+        Member member = repository.findByUserId(userId).orElse(null);
+
+        MemberAuth memberAuth = authRepository.findByMemberNo(member.getMemberNo()).orElse(null);
+
+        memberAuth.setAuth("관리자");
+
+        authRepository.save(memberAuth);
     }
 
     @Override

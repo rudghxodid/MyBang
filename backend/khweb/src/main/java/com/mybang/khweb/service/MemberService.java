@@ -16,6 +16,7 @@ public interface MemberService {
     public Optional<Member> findByAuth(Long memberNo);
     public void pause (Member member, String userId) throws Exception;
 
+
     // -- 회원정보 확인, 수정, 탈퇴, 아이디찾기, 비밀번호찾기(변경), 이메일 인증 --
     String checkEmail(String email) throws Exception;
     Boolean checkPassword(MemberDto memberDto) throws Exception;
@@ -28,6 +29,7 @@ public interface MemberService {
     String findingUser(MemberDto memberDto) throws Exception;
     void modifyPw(Member member, MemberDto memberDto) throws Exception;
     List<Member> list() throws Exception;
+    public void host(String userId) throws Exception;
 
     // 찜하기 기능들
     /*

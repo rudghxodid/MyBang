@@ -20,7 +20,7 @@
 				<tr v-for="(b, index) in boardList" :key="index">
 					<td>{{b.id}}</td>
 					<td>
-						<router-link :to="`/roommate/detail/${b.id}`">{{b.title}}</router-link>
+						<router-link :to="`/roommate/detail/${b.id}`">{{b.title}} <span>{{[b.comments.length]}}</span></router-link>
 					</td>
 					<td>{{b.writerName}}</td>
 					<td>{{b.createdDate}}</td>

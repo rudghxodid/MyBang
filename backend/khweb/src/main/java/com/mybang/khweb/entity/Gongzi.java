@@ -25,12 +25,13 @@ public class Gongzi extends BaseTimeEntity {
     @Column(length = 1000, nullable = false)
     private String description;
 
+    @Column
+    private Integer view = 0;
 
     public Gongzi(String title, String writer, String description) {
         this.title = title;
         this.writer = writer;
         this.description = description;
-
     }
 
     public void updateGongzi(GongziRequest request) {

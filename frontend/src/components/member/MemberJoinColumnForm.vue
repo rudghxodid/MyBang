@@ -4,7 +4,7 @@
             <h3>회원 가입</h3>
             <div class="row">
                 <v-radio-group v-model="radioGroup" row>
-                    <v-radio v-for="kinds in kindsOfMember" :key="kinds" :label="`${kinds}`"> 
+                    <v-radio v-for="kinds in kindsOfMember" :key="kinds" :label="`${kinds}`">
                     </v-radio>
                 </v-radio-group>
             </div>
@@ -12,47 +12,48 @@
             <div class="mx-3">
                 <v-icon color="black" size="30px">person</v-icon>
                     ID
+                <v-spacer></v-spacer>
                 <v-list-item class="mx-1">
-                    <v-text-field placeholder="아이디" v-model="userId" :rules="idRules" required></v-text-field>
-                    <v-btn @click="checkId">아이디 확인</v-btn>
+                    <v-text-field outlined color="green" placeholder="아이디" v-model="userId" :rules="idRules" required></v-text-field>
+                    <v-btn @click="checkId" OU>아이디 확인</v-btn>
                 </v-list-item>
-            </div> 
+            </div>
 
 
-            <div class="mx-3"> 
+            <div class="mx-3">
                 <v-icon color="black" size="30px">lock</v-icon>
                     Password
                 <div class="mx-1">
-                    <v-text-field placeholder="비밀번호" type="password" v-model="password" 
+                    <v-text-field placeholder="비밀번호" type="password" v-model="password"
                         :rules="pwRules" required ></v-text-field>
                     <v-text-field placeholder="비밀번호 확인" type="password" v-model="checkPassword"
                         :rules="matchPwRules" required ></v-text-field>
-                </div> 
+                </div>
             </div>
 
-            <div class="mx-3"> 
+            <div class="mx-3">
                 <v-icon color="black" size="30px">mail</v-icon>
                  E-mail
                 <v-list-item class="mx-1">
-                    <v-text-field placeholder="e-mail" v-model="email" :rules="emailRules" required></v-text-field>
+                    <v-text-field  v-model="email" :rules="emailRules" required></v-text-field>
                     <v-btn @click="checkEmail">이메일 인증</v-btn>
-                </v-list-item> 
-            </div> 
+                </v-list-item>
+            </div>
 
 
 
-            <div class="mx-3"> 
+            <div class="mx-3">
                 <v-icon color="black" size="30px">label</v-icon>
                  Name
                 <div class="mx-1">
                     <v-text-field placeholder="name" v-model="name" :rules="nameRules" required></v-text-field>
-                </div> 
-            </div> 
+                </div>
+            </div>
 
 
-            
 
-            <div class="mx-3"> 
+
+            <div class="mx-3">
                 <v-icon color="black" size="30px">hourglass_empty</v-icon>
                  Birth
                 <div class="mx-1">
@@ -63,7 +64,7 @@
                             v-on="on" append-icon="mdi-calendar" required></v-text-field>
                         </template>
                         <v-date-picker color="secondary" v-model="birth" no-title scrollable>
-                        
+
                         <v-btn text @click="menu = false">
                             Cancel
                         </v-btn>
@@ -73,23 +74,23 @@
                         </v-btn>
                         </v-date-picker>
                     </v-menu>
-                 
-                </div> 
+
+                </div>
             </div>
 
-            <div class="row"> 
+            <div class="row">
                 <v-radio-group v-model="radioGroup2" row>
                     <v-radio v-for="gender in kindsOfGender" :key="gender" :label="`${gender}`"></v-radio>
                 </v-radio-group>
-            </div>  
+            </div>
 
-            <div class="mx-3"> 
+            <div class="mx-3">
                 <v-icon color="black" size="30px">phone</v-icon>
                  Phone
                 <div class="mx-1">
                     <v-text-field placeholder="phone" v-model="phone" :rules="phoneRules" required></v-text-field>
-                </div> 
-            </div>   
+                </div>
+            </div>
 
             <div>
                 <button type="submit" @keydown.enter="onSubmit">등록</button>
@@ -108,8 +109,8 @@
                     <v-spacer></v-spacer>
                     <v-btn @click="checkId">아이디 확인</v-btn>
                 </v-card-actions>
-                
-                
+
+
             </v-card>
 
             <v-card v-else class="pa-3">
@@ -139,8 +140,16 @@
 import { mapState } from 'vuex'
 import axios from 'axios'
 
+
+
 export default {
     name: 'MemberJoinColumnForm',
+    props: {
+        kakao_account: {
+            type: Object,
+            require: true
+        }
+    },
     data () {
         return {
             radioGroup: null,
@@ -174,9 +183,17 @@ export default {
             randomCode: null,
             completeId: false,
             completeEmail: false
-            
+
         }
     },
+    
+    
+    mounted() {
+        console.log(this.kakao_account)
+        this.email = this.kakao_account.email
+        this.birth = this.kakao_account.birthday
+    },
+    
     computed: {
         ...mapState(['idRules', 'pwRules', 'emailRules', 'nameRules', 'birthRules', 'phoneRules'])
     },
@@ -185,14 +202,14 @@ export default {
             const { userId, password, email, name, birth, radioGroup2, phone, radioGroup } = this
             const auth = radioGroup == 0 ? '개인' : '사업자'
             const sex = radioGroup2 == 0 ? '남자' : '여자'
-        
+
          /*   if (this.completeId && this.completeEmail) { */
                 this.$emit('submit', { userId, password, email, name, birth, sex, phone, auth })
            /*} else {
                 alert("아이디 또는 이메일 인증을 완료해주세요.")
             }*/
-            
-            
+
+
         },
         checkId () {
             const userId = this.userId
@@ -206,7 +223,7 @@ export default {
             } else {
                 alert('아이디를 입력해주세요.')
             }
-            
+
         },
         closeDialog () {
             this.idDialog = false
@@ -226,7 +243,7 @@ export default {
             } else {
                 alert('이메일을 입력해주세요.')
             }
-            
+
         },
         ckeckCode () {
             if (this.code == this.randomCode) {
@@ -239,7 +256,7 @@ export default {
                 alert('인증번호가 일치하지 않습니다.')
             }
         }
-        
+
     }
 }
 </script>
