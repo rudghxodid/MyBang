@@ -110,15 +110,14 @@ export default {
 			hostDialog: false
 		}
 	},
-	props: {
-		members: {
-			type: Array,
-			require: true
-		}
+	computed: {
+		...mapState(['members']),
+	},
+	mounted() {
+		this.fetchMemberList()
 	},
 	methods: {
-		...mapActions(['fetchMember']),
-		...mapActions(['fetchSession']),
+		...mapActions(['fetchMemberList']),
 		cancel () {
 			this.dialog = false
 			this.pausedialog = false
@@ -126,59 +125,40 @@ export default {
 		},
 		deleteUser () {
 			if(this.selected.length == 1){
-			axios.delete(`http://localhost:7777/member/remove/${this.selected}`).then(() => {
-				this.dialog = false
-				this.$store.commit('USER_LOGIN', false)
-				
-				this.fetchSession(this.$cookies.remove('session'))
-				this.$store.commit('FETCH_USER_INFO', [])
-				alert('탈퇴가 완료되었습니다.')
-				this.$router.go();
-			})
+				axios.delete(`http://localhost:7777/member/remove/${this.selected}`).then(() => {
+					this.dialog = false
+					this.fetchMemberList()
+					alert('탈퇴가 완료되었습니다.')
+				})
 			}
 			if(this.selected.length > 1){
 				for(let i = 0; i < this.selected.length; i++){
 					axios.delete(`http://localhost:7777/member/remove/${this.selected[i]}`).then(() => {
 						this.dialog = false
-						
-						this.$store.commit('USER_LOGIN', false)
-						
-						this.fetchSession(this.$cookies.remove('session'))
-						this.$store.commit('FETCH_USER_INFO', [])
-						
-						this.$router.go();
+						this.fetchMemberList()
+						alert('탈퇴가 완료되었습니다.')
 					})
 				}
-			alert('탈퇴가 완료되었습니다.')
 			}
 		},
 		pauseUser() {
 			axios.post(`http://localhost:7777/member/pause/${this.selected}`)
 			.then(() =>{
-				alert("해당아이디는 정지 하였습니다.")
 				this.pausedialog = false
-				this.$store.commit('USER_LOGIN', false)
-		
-				this.fetchSession(this.$cookies.remove('session'))
-				this.$store.commit('FETCH_USER_INFO', [])
-				this.$router.go()
+				this.fetchMemberList()
+				alert("해당아이디는 정지 하였습니다.")
 			})
 		},
 		hostUser () {
 			axios.post(`http://localhost:7777/member/host/${this.selected}`).then(()=> {
-				alert('해당 아이디에 관리자 권한을 부여하였습니다.')
 				this.hostDialog = false
+				this.fetchMemberList()
+				alert('해당 아이디에 관리자 권한을 부여하였습니다.')
 			})
 		}
 			
 	},
-	computed: {
-		...mapState(['member']),
-		...mapState(['userInfo'])
-	},
-	mounted() {
-		this.userId = this.userInfo.userId
-	},
+
     
     
 }

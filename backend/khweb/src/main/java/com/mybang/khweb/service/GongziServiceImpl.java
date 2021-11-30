@@ -4,7 +4,6 @@ import com.mybang.khweb.entity.Gongzi;
 import com.mybang.khweb.repository.GongziRepository;
 import com.mybang.khweb.request.GongziRequest;
 import lombok.extern.slf4j.Slf4j;
-import net.bytebuddy.TypeCache;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.data.domain.Sort;
