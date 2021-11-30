@@ -46,7 +46,7 @@
                 <v-icon color="black" size="30px">label</v-icon>
                     중개인 연락처
                 <div class="mx-1">
-                    <v-text-field placeholder="상세설명" v-model="agentMobile" required></v-text-field>
+                    <v-text-field placeholder="" v-model="agentMobile" required></v-text-field>
                 </div> 
             </div>
 
@@ -132,31 +132,21 @@
                 <div class="mx-1">
                     <v-select :items='salesTypes' placeholder="" v-model="salesType" required></v-select>
                 </div> 
-            </div>
-
+            </div>  
             <div class="mx-3"> 
                 <v-icon color="black" size="30px">label</v-icon>
-                서비스 유형
-                <div class="mx-1">
-                    <v-select :items='serviceTypecheck' placeholder="" v-model="serviceType" required></v-select>
+                관리비 포함 항목
+                <div class="mx-1" >
+                    <v-text-field placeholder="" v-model="manageCostInc" required></v-text-field>
                 </div> 
             </div> 
 
             <div class="mx-3"> 
                 <v-icon color="black" size="30px">label</v-icon>
-                관리비
+                크기
                 <div class="mx-1">
-                    <v-text-field input type="number" placeholder="관리비" v-model="manageCost" required></v-text-field>
-                     관리비 포함 항목
-                    <div class="mx-1">
-                        <v-text-field placeholder="" v-model="manageCostInc" required></v-text-field>
-                    </div> 
-                </div> 
-            </div> 
-
-            <div class="mx-3"> 
-                <v-icon color="black" size="30px">label</v-icon>
-                크기 
+                    <v-text-field placeholder="제곱미터단위로 입력해주세요" v-model="sizeM2" required></v-text-field>
+                </div>  
                 <div class="mx-1">
                     <v-text-field placeholder="방의 평수를 입력해주세요." v-model="size" required></v-text-field>
                 </div> 
@@ -166,10 +156,10 @@
                 <v-icon color="black" size="30px">label</v-icon>
                 층수
                 <div class="mx-1">
-                    <v-select :items='floorCheck' input type="number" placeholder="건물 총 층수" v-model="floorAll" required></v-select>
+                    <v-select :items='floorCheck' placeholder="건물 총 층수" v-model="floorAll" required></v-select>
                 </div>
                 <div class="mx-1">
-                    <v-select :items='floorCheck' input type="number" placeholder="해당 층" v-model="floor" required></v-select>
+                    <v-select :items='floorCheck' placeholder="해당 층" v-model="floor" required></v-select>
                 </div>  
             </div>
 
@@ -246,6 +236,9 @@
             </div>
 
             <!-- 자동으로 입력되는 부분 -->
+            <div class="mx-1" hidden>
+                <v-text-field placeholder="" v-model="serviceType" required></v-text-field>
+            </div> 
             <div class="mx-3" hidden> 
                 <v-icon color="black" size="30px">label</v-icon>
                 중개사무소 좌표
@@ -302,7 +295,7 @@ export default {
             deposit: '',
             roomType: '',
             manageCost: '',
-            manageCostInc: [],  //'전기세', '가스', '수도', '인터넷', 'TV'
+            manageCostInc: '',
             sizeM2: '',
             size: '',
             floorAll: '',
@@ -331,7 +324,7 @@ export default {
             local1: '',
             local2: '',
             local3: '',
-            serviceType: '',
+            serviceType: '빌라',
             userIntro: '',
             userName: '',
             url: '',
@@ -341,10 +334,9 @@ export default {
             files: [],
             urls: [],
             imageStr: '',
-            serviceTypecheck: ['원룸', '빌라', '오피스텔'],
             floorCheck:['1층', '2층', '3층', '4층', '5층', '6층','7층', '8층', '9층', '10층', '11층','12층','13층','14층','15층','16층','17층','18층','19층','20층',
                         '21층','22층','23층','24층','25층','26층','27층','28층','29층','30층','31층','32층','33층','34층','35층','36층','37층','38층','39층','40층',
-                        '50층','51층','52층','53층','54층','55층','56층','57층','58층','59층','60층'],
+                        '50층'],
             roomTypes: ['오픈형 원룸(방1)','분리형 원룸(방1 거실1)','복층형 원룸', '투룸(방2, 거실1)', '쓰리룸+'],
             salesTypes: ['월세','전세','매매'],
             exist: ['있음', '없음'],
