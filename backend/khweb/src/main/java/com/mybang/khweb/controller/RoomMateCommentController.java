@@ -29,13 +29,13 @@ public class RoomMateCommentController {
         RoomMateComment roomMateComment = roomMateCommentService.create(id, roomMateCommentDto);
         return new ResponseEntity<RoomMateComment>(roomMateComment, HttpStatus.OK);
     }
-
-    // 댓글 목록 (test)
-    @GetMapping("/list")
-    public ResponseEntity<List<RoomMateComment>> findAllRoomMateComment() throws Exception {
-        List<RoomMateComment> roomMateCommentList = roomMateCommentService.findAllRoomMateComment();
-        return new ResponseEntity<List<RoomMateComment>>(roomMateCommentList,HttpStatus.OK);
-    }
+//
+//    // 댓글 목록 (test)
+//    @GetMapping("/list")
+//    public ResponseEntity<List<RoomMateComment>> findAllRoomMateComment() throws Exception {
+//        List<RoomMateComment> roomMateCommentList = roomMateCommentService.findAllRoomMateComment();
+//        return new ResponseEntity<List<RoomMateComment>>(roomMateCommentList,HttpStatus.OK);
+//    }
 
     // 댓글 수정
     @PostMapping("/update/{commentId}")
