@@ -7,7 +7,7 @@
 					
 					<div class="detail_menu">
 						<h1>{{ title }}</h1>
-						<v-menu offset-y>
+						<v-menu v-if="auth" offset-y>
 							<template v-slot:activator="{ on, attrs }">
 								<v-btn class="mt-1" v-on="on" v-bind="attrs" icon>
 									<v-icon>mdi-dots-vertical</v-icon>
@@ -107,11 +107,12 @@ export default {
 			description: null,
 			writer: null,
 			createdDate: null,
-			view: null
+			view: null,
+			auth: null
 		}
 	},
 	computed: {
-		...mapState(['gongzi'])
+		...mapState(['gongzi', 'userInfo'])
 	},
 	mounted () {
 		setTimeout(()=> {
@@ -125,6 +126,12 @@ export default {
 				console.log('view +1')
 			})
 		},50)
+
+		if (this.userInfo.authList) {
+			if (this.userInfo.authList[0].auth == '관리자') {
+				this.auth = 1
+			}
+		}
 	},
 	methods: {
 		modifyGongzi () {
