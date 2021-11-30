@@ -14,7 +14,7 @@ import axios from 'axios'
 import { mapState, mapActions } from 'vuex'
 
 export default {
-  name: 'VillaModifyPage',
+    name: 'VillaModifyPage',
     components: {
         VillaModifyForm
     },
@@ -33,20 +33,20 @@ export default {
             const { image, deposit, roomType, manageCost, manageCostInc, sizeM2, size, floorAll, floor, roomDirection, options, pets, parking, elevator, moveinDate, title, 
             description, nearSubways, address, salesType, agentAddress, agentEmail, agentLat, agentLng, agentMobile, agentName, agentPhone, buildingType,
             lat, lng, local1, local2, local3, serviceType, userIntro, userName, url, updatedAt, agentId } = payload
-
             axios.put(`http://localhost:7777/villa/${this.villaNo}`, { image, deposit, roomType, manageCost, manageCostInc, sizeM2, size, floorAll, floor, roomDirection, options, pets, parking, elevator, moveinDate, title, 
             description, nearSubways, address, salesType, agentAddress, agentEmail, agentLat, agentLng, agentMobile, agentName, agentPhone, buildingType,
             lat, lng, local1, local2, local3, serviceType, userIntro, userName, url, updatedAt, agentId })
                 .then(res => {
+                    console.log(res)
                     alert('수정 성공')
                 this.$router.push({
                     name: 'VillaReadPage',
-                    params: { villaNo: res.data.villaNo.toString() }
+                    query: { villaNo: this.villaNo }
                 })
             })
-                .catch(err => {
-                    alert(err.response.data.message)
-                })
+            .catch(err => {
+                alert(err.response.data.message)
+            })
         }
     },
     created () {
@@ -58,3 +58,4 @@ export default {
     }
 }
 </script>
+

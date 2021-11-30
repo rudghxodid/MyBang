@@ -1,48 +1,43 @@
 <template>
-    <form @submit.prevent="onSubmit">
-    <h3>공지사항 작성</h3>
- <table>
-        <tr>
-            <td>제목</td>
-            <td><input type="text" v-model="title"></td>
-        </tr>
-        <tr>
-            <td>작성자</td>
-            <td><input type="text" v-model="writer"></td>
-        </tr>
-        <tr>
-            <td>본문</td>
-            <td><textarea cols="50" rows="20" v-model="description"></textarea></td>
-        </tr>
-         
-    </table>
-    <div>
-        <button type="submit">등록</button>
-        <router-link :to="{ name: 'GongziListPage'}">
-            취소
-        </router-link>
-    </div>
-    </form>
-    
+  <v-sheet>
+		<v-card class="pa-5 my-5" color="grey lighten-4">
+			<v-text-field v-model="title" label="제목" solo></v-text-field>
+			<v-textarea v-model="description" label="내용" height="400" solo></v-textarea>
+			<v-card-actions>
+				<v-btn @click="goBack" class="white">취소</v-btn>
+				<v-spacer></v-spacer>
+				<v-btn @click="register" class="white">등록</v-btn>
+			</v-card-actions>
+		</v-card>
+	</v-sheet>
 </template>
 
 <script>
-export default {
-    name: 'GongziRegisterForm',
-    data() {
-        return {
-            title: '제목을 작성하세요',
-            writer : '',
-            description: '본문을 작성하면 됩니다.'
-            
+import { mapState } from 'vuex'
 
-        }
-    },
-    methods: {
-        onSubmit() {
-            const { title, writer, description } =this
-            this.$emit('submit', { title, writer, description })
-        }
+export default {
+	name: 'GongziRegisterForm',
+	data() {
+		return {
+			title: null,
+			writer : null,
+			description: null
+		}
+	},
+	computed: {
+		...mapState(['userInfo'])
+	},
+	mounted () {
+		this.writer = this.userInfo.userId
+	},
+	methods: {
+		register () {
+			const { title, writer, description } = this
+			this.$emit('submit', { title, writer, description })
+		},
+		goBack () {
+      this.$router.go(-1)
     }
+	}
 }
 </script>

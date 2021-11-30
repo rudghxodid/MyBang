@@ -46,7 +46,7 @@
                 <v-icon color="black" size="30px">label</v-icon>
                     중개인 연락처
                 <div class="mx-1">
-                    <v-text-field placeholder="상세설명" v-model="agentMobile" required></v-text-field>
+                    <v-text-field placeholder="" v-model="agentMobile" required></v-text-field>
                 </div> 
             </div>
 
@@ -132,37 +132,24 @@
                 <div class="mx-1">
                     <v-select :items='salesTypes' placeholder="" v-model="salesType" required></v-select>
                 </div> 
-            </div>
-
+            </div>  
             <div class="mx-3"> 
                 <v-icon color="black" size="30px">label</v-icon>
-                서비스 유형
-                <div class="mx-1">
-                    <v-select :items='serviceTypecheck' placeholder="" v-model="serviceType" required></v-select>
+                관리비 포함 항목
+                <div class="mx-1" >
+                    <v-text-field placeholder="" v-model="manageCostInc" required></v-text-field>
                 </div> 
             </div> 
 
             <div class="mx-3"> 
                 <v-icon color="black" size="30px">label</v-icon>
-                관리비
+                크기
                 <div class="mx-1">
-                    <v-text-field placeholder="관리비" v-model="manageCost" required></v-text-field>
-                     관리비 포함 항목
-                <div class="mx-1">
-                    <v-select :items='managements' placeholder="관리비 포함 항목" v-model="manageCostInc" required></v-select>
-                </div> 
-                </div> 
-            </div> 
-
-            <div class="mx-3"> 
-                <v-icon color="black" size="30px">label</v-icon>
-                크기 
+                    <v-text-field placeholder="제곱미터단위로 입력해주세요." v-model="sizeM2" required></v-text-field>
+                </div>  
                 <div class="mx-1">
                     <v-text-field placeholder="방의 평수를 입력해주세요." v-model="size" required></v-text-field>
-                </div>
-                <div class="mx-1">
-                    <v-text-field placeholder="방의 면적를 입력해주세요." v-model="sizeM2" required></v-text-field>
-                </div>  
+                </div> 
             </div>
 
             <div class="mx-3"> 
@@ -188,7 +175,7 @@
                 <v-icon color="black" size="30px">label</v-icon>
                 옵션
                 <div class="mx-1">
-                    <v-select :items='option' placeholder="옵션" v-model="options" required></v-select>
+                    <v-text-field placeholder="옵션" v-model="options" required></v-text-field>
                 </div> 
             </div>
            
@@ -249,6 +236,9 @@
             </div>
 
             <!-- 자동으로 입력되는 부분 -->
+            <div class="mx-1" hidden>
+                <v-text-field placeholder="" v-model="serviceType" required></v-text-field>
+            </div> 
             <div class="mx-3" hidden> 
                 <v-icon color="black" size="30px">label</v-icon>
                 중개사무소 좌표
@@ -284,31 +274,6 @@
                     <v-text-field placeholder="" v-model="agentId" required readonly></v-text-field>
                 </div> 
             </div>
-            <!--
-             <div class="mx-3"> 
-                <v-icon color="black" size="30px">label</v-icon>
-                옵션
-                <div class="mx-1">
-                    <v-select :items='option' placeholder="옵션의 여부를 입력해주세요." v-model="manage_cost_inc" required>
-                        <template >
-                            <v-list-item  @click="toggle">
-                                <v-list-item-action>
-                                    <v-icon :color="manage_cost_inc.length > 0 ? 'indigo darken-4' : ''">
-                                        {{ icon }}
-                                    </v-icon>
-                                </v-list-item-action>
-
-                                <v-list-item-content>
-                                    <v-list-item-title>
-                                    모두 선택
-                                    </v-list-item-title>
-                                </v-list-item-content>
-                            </v-list-item>
-                        </template>  
-                    </v-select>
-                </div> 
-            </div>
-             -->
 
             <div class="mt-3">
                 <v-btn color="white" tile large button type="submit">방 등록하기</v-btn>
@@ -328,7 +293,7 @@ export default {
       return {
             image: null,
             deposit: '',
-            roomType: '빌라',
+            roomType: '',
             manageCost: '',
             manageCostInc: '',
             sizeM2: '',
@@ -359,7 +324,7 @@ export default {
             local1: '',
             local2: '',
             local3: '',
-            serviceType: '',
+            serviceType: '원룸',
             userIntro: '',
             userName: '',
             url: '',
@@ -369,18 +334,15 @@ export default {
             files: [],
             urls: [],
             imageStr: '',
-            serviceTypecheck: ['원룸', '빌라', '오피스텔'],
             floorCheck:['1층', '2층', '3층', '4층', '5층', '6층','7층', '8층', '9층', '10층', '11층','12층','13층','14층','15층','16층','17층','18층','19층','20층',
                         '21층','22층','23층','24층','25층','26층','27층','28층','29층','30층','31층','32층','33층','34층','35층','36층','37층','38층','39층','40층',
-                        '50층','51층','52층','53층','54층','55층','56층','57층','58층','59층','60층'],
+                        '50층'],
             roomTypes: ['오픈형 원룸(방1)','분리형 원룸(방1 거실1)','복층형 원룸', '투룸(방2, 거실1)', '쓰리룸+'],
             salesTypes: ['월세','전세','매매'],
-            managements: ['전기세', '가스', '수도', '인터넷', 'TV'],
             exist: ['있음', '없음'],
             parkings: ['가능', '없음'],
             roomDirections: ['북향', '남향', '동향', '서향', '남동향', '남서향', '북동향', '북서향', '확인필요'],
             petcheck: ['가능', '불가능', '고양이만', '확인필요'],
-            option: ['에어컨', '냉장고', '세탁기', '가스레인지', '전자레인지', '옷장', '신발장', '싱크대', '인터넷', '인덕션', '책상', '침대'],
         }
     },
     computed: {

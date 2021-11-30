@@ -93,7 +93,7 @@ import { mapActions, mapState } from 'vuex'
       this.fetchSession(this.$cookies.remove('session'))
       this.$store.commit('FETCH_USER_INFO', [])
       alert("로그아웃 되었습니다!")
-      this.$router.go()
+      this.$router.push({ name: 'Home' })
     },
     gotoMypage () {
       this.$router.push({ name: 'Mypage' })

@@ -1,64 +1,42 @@
 <template>
-    <div>
-        <v-data-table
-                    :headers="headerTitle"
-                    :items="gongzis"
-                    :items-per-page="10"
-                    class="elevation-1"
-                      @click:row="readItem" >
-                    
-            </v-data-table>
-            
-
-
-    </div>
+	<v-sheet>
+		<v-data-table
+			:headers="headerTitle"
+			:items="gongzis"
+			:items-per-page="10"
+			class="elevation-1"
+			@click:row="readGongzi">					
+		</v-data-table>
+	</v-sheet>
 </template>
 
 
 <script>
 
-
-import { mapState, mapActions } from 'vuex'
-
 export default {
-    
-    name: 'GongziList',
-    data() {
-        return {
-             headerTitle: [
-                { text: '번호', value: 'gongziNo', width: "70px" },
-                { text: '제목', value: 'title', width: "200px" },
-                { text: '작성자', value: 'writer', width: "100px" },
-                { text: '내용', value: 'description', width: "100px" }
-                
-                
-            ],
-            
-            
-        }
-    },
-    props: {
-        gongzis: {
-            type: Array,
-            require: true
-        }
-    },
- 
- 
-    methods: {
-        ...mapActions(['fetchGongzi']),
-        readItem(gongzi) {
-            
-            
-            
-            this.$router.push({ name: 'GongziReadPage',
-                                    params: { gongziNo: gongzi.gongziNo} } )
-        }
-    },
-    computed: {
-         ...mapState(['gongzi'])
-    }
-    
-    
+  name: 'GongziList',
+	data() {
+		return {
+			headerTitle: [
+				{ text: '번호', value: 'gongziNo', width: "30px" },
+				{ text: '제목', value: 'title', width: "300px" },
+				{ text: '작성자', value: 'writer', width: "70px" },
+				{ text: '작성일자', value: 'createdDate', width: "70px" },
+			],	
+		}
+	},
+	props: {
+		gongzis: {
+
+		}
+	},
+	methods: {
+		readGongzi(gongzi) {
+			console.log(gongzi)
+			this.$router.push(
+				{ name: 'GongziReadPage', query: { gongziNo: gongzi.gongziNo } } 
+			)
+		}
+	}
 }
 </script>
