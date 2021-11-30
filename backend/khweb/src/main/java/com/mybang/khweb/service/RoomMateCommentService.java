@@ -25,7 +25,7 @@ public class RoomMateCommentService {
         RoomMateComment roomMateComment = RoomMateComment.builder()
                 .boardNo(boardNo)
                 .content(roomMateCommentDto.content)
-                .writer(roomMateCommentDto.writer)
+                .member(member)
                 .build();
         roomMateCommentRepository.save(roomMateComment);
         return roomMateComment;

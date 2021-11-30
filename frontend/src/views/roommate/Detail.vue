@@ -17,10 +17,10 @@
 
 
 			<div class="detail-button">
-<!--				<b-button @click="onClickModifyBtn" v-if="userId === board.writerName" class="btn_modify">수정</b-button>-->
-<!--				<b-button @click="onClickDeleteBtn" v-if="userId === board.writerName" class="btn_delete">삭제</b-button>-->
-				<b-button @click="onClickModifyBtn" class="btn_modify">수정</b-button>
-				<b-button @click="onClickDeleteBtn" class="btn_delete">삭제</b-button>
+				<b-button @click="onClickModifyBtn" v-if="userId === board.writerName" class="btn_modify">수정</b-button>
+				<b-button @click="onClickDeleteBtn" v-if="userId === board.writerName" class="btn_delete">삭제</b-button>
+<!--				<b-button @click="onClickModifyBtn" class="btn_modify">수정</b-button>-->
+<!--				<b-button @click="onClickDeleteBtn" class="btn_delete">삭제</b-button>-->
 				<b-button @click="onClickListBtn" class="btn_list">목록</b-button>
 			</div>
 
@@ -39,28 +39,31 @@
 			<div v-for="(cl, index) in commentList" class="content-detail-comment" :key="index">
 				<div>
 					<!-- 닉네임 -->
-					<span class="commentNick">{{ cl.writerName }}</span>
+					<span class="commentNick">{{ cl.member.userId }}</span>
 
 					<!-- 댓글 내용 -->
 					<div v-if="cl.edit === true" style="display: inline-block">
-						<input v-model="cl.editContent" style="border: 1px solid black" @keyup="onKeyupEditInput($event, cl.id, index)">
+						<input v-model="cl.editContent" style="border: 1px solid black" @keyup="onKeyupEditInput($event, cl.id, index)" ref="modifyFocus">
 					</div>
 					<div v-else>
 						<p class="commentContent">{{ cl.content }}</p>
 					</div>
 
 					<!-- 댓글 작성일 -->
-					<span class="commentTime">{{ cl.createdAt }}</span>
+					<span class="commentTime">{{ cl.createdDate }}</span>
 
 					<!-- 저장 및 수정 삭제 버튼 -->
 					<div v-if="cl.edit === true" style="display: inline-block">
 						<span @click="onClickCommentSave(cl.id, index)">저장</span>
 						<span @click="onClickCancleBtn(cl.id, index)">취소</span>
 					</div>
-					<div v-else-if="!cl.edit && cl.id === userId">
+					<div v-else-if="!cl.edit && cl.member.userId === userId">
 						<span @click="onClickCommentModify(cl.id, index)">수정</span>
 						<span @click="onClickCommentDelete(cl.id)">삭제</span>
 					</div>
+
+<!--					<b-button @click="onClickModifyBtn" v-if="userId === board.writerName" class="btn_modify">수정</b-button>-->
+<!--					<b-button @click="onClickDeleteBtn" v-if="userId === board.writerName" class="btn_delete">삭제</b-button>-->
 
 				</div>
 			</div>
@@ -115,7 +118,7 @@
             this.board.writerName = res.data.writerName;
             this.board.count = res.data.count;
             this.board.createdAt = dayjs(res.data.createdAt).format("YYYY-MM-DD HH:mm");
-            this.commentList = res.data.comment ? res.data.comment : [];
+            this.commentList = res.data.comments ? res.data.comments : [];
           })
           .catch((err) => {
             console.log(err);
@@ -164,7 +167,7 @@
 			  console.log("=> userId", this.userId)
 			  console.log("=> commentInput", this.commentInput)
         await api.post(`/roomMateComment/create/${this.id}`, {
-          writer: this.writer,
+          writer: this.$store.state.userInfo.memberNo,
           content: this.commentInput,
         })
           .then((res) => {
@@ -190,26 +193,28 @@
       },
 
       onClickCommentModify(commentId, index) {
-        this.commentList[index][0].edit = true;
-        this.commentList[index][0].editContent = this.commentList[index][0].content;
+        this.commentList[index].edit = true;
+        this.commentList[index].editContent = this.commentList[index].content;
         this.$forceUpdate();
+        this.$refs.modifyFocus[0].focus();
       },
 
       onClickCancleBtn(commentId, index) {
-        delete this.commentList[index][0].edit;
-        delete this.commentList[index][0].editContent;
+        delete this.commentList[index].edit;
+        delete this.commentList[index].editContent;
         this.$forceUpdate();
       },
 
       async onClickCommentSave(commentId, index) {
         try {
           if (this.validationEditComment(index)) {
-            const {data} = await this.postSaveComment(commentId, this.commentList[index][0].editContent);
+            const {data} = await this.postSaveComment(commentId, this.commentList[index].editContent);
+            console.log("====> d ata : ", data);
             if (data) {
               alert('수정 되었습니다.');
-              delete this.commentList[index][0].edit;
-              delete this.commentList[index][0].editContent;
-              await this.fetchBoardDetail();
+              delete this.commentList[index].edit;
+              delete this.commentList[index].editContent;
+              await this.fetchRoomMateDetail();
             }
           }
         } catch (e) {
@@ -219,12 +224,11 @@
       },
 
       async onClickCommentDelete(commentId) {
+			  console.log(commentId);
         try {
-          const {data} = await this.deleteComment(commentId);
-          if (data) {
-            alert('삭제 되었습니다.');
-            await this.fetchBoardDetail();
-          }
+          await this.deleteComment(commentId);
+          alert('삭제 되었습니다.');
+          await this.fetchRoomMateDetail();
         } catch (e) {
           console.log(e);
           alert('삭제 실패');
@@ -232,11 +236,11 @@
       },
 
       deleteComment(commentId) {
-        return api.delete(`/comment/delete/${commentId}`);
+        return api.delete(`/roomMateComment/delete/${commentId}`);
       },
 
       postSaveComment(commentId, editContent) {
-        return api.post(`/comment/modify/${commentId}`, {
+        return api.post(`/roomMateComment/update/${commentId}`, {
           content: editContent
         })
       },
@@ -248,7 +252,7 @@
       },
 
       validationEditComment(index) {
-        const target = this.commentList[index][0].editContent;
+        const target = this.commentList[index].editContent;
         if (!target && target.length < 1) {
           alert('댓글 내용을 입력해주세요.');
           return false;
