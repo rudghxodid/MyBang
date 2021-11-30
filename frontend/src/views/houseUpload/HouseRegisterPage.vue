@@ -41,14 +41,17 @@ export default {
                 serviceTypeKor = '오피스텔'
                 break
             }
-
+     
             let manageCostStr = ''
-            for (let i = 0; i < manageCostIncChk; i++) {
-              manageCostStr += manageCostIncChk[i] 
-            }
-            console.log(manageCostStr)
-            let manageCostInc = manageCostStr.slice(0, -1)
+            let manageCostInc = ''
 
+            if (manageCostIncChk.length != 0) {
+              for (let i = 0; i < manageCostIncChk.length; i++) {
+                manageCostStr += manageCostIncChk[i] + ', '
+              }
+              manageCostInc = manageCostStr.slice(0, -2)
+            }
+        
             axios.post(`http://localhost:7777/${serviceType}/register`, { image, deposit, roomType, manageCost, manageCostInc, sizeM2, size, floorAll, floor, roomDirection, options, pets, parking, elevator, moveinDate, title, 
             description, nearSubways, address, salesType, agentAddress, agentEmail, agentLat, agentLng, agentMobile, agentName, agentPhone, buildingType,
             lat, lng, local1, local2, local3, serviceType:serviceTypeKor, userIntro, userName, url, updatedAt, agentId })
