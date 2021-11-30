@@ -67,6 +67,7 @@ export default {
 
                         alert('로그인 실패! - ' + res.data)
                     }
+                    this.$router.go()
                 })
                 .catch(res => {
                     alert(res.response.data.message)
