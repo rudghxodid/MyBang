@@ -19,4 +19,6 @@ public interface GongziService {
 
     public void modify(Gongzi gongzi, GongziRequest request) throws Exception;
 
+    public void view(Long gongziNo, Integer view) throws Exception;
+
 }

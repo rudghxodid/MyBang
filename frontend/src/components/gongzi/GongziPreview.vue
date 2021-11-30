@@ -1,7 +1,7 @@
 <template>
   <div>
     <ul>
-			<li v-for="list in recentGongzis" :key="list.index" class="ml-n5"
+			<li v-for="list in recentGongzis" :key="list.index"
         @click="gongziRead(list.gongziNo)">{{list.title}}</li>
     </ul>
   </div>
@@ -44,6 +44,7 @@ export default {
 ul {
   list-style: none;
   cursor: pointer;
+  padding-left: 0;
 }
 li {
   padding: 10px;
