@@ -22,6 +22,8 @@ export default {
 				{ text: '제목', value: 'title', width: "300px" },
 				{ text: '작성자', value: 'writer', width: "70px" },
 				{ text: '작성일자', value: 'createdDate', width: "70px" },
+				{ text: '조회수', value: 'view', width: "70px" },
+
 			],	
 		}
 	},

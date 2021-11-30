@@ -227,5 +227,12 @@ public class MemberController {
 
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
+    @PostMapping("/host/{selected}")
+    public ResponseEntity<Void> hostMember(@PathVariable("selected") String userId) throws Exception {
+        service.host(userId);
+
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 }
 

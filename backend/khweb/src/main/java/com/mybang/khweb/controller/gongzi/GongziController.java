@@ -18,7 +18,6 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @Controller
 @RequestMapping("/gongzi")
@@ -65,5 +64,13 @@ public class GongziController {
         service.modify(gongzi, request);
 
         return new ResponseEntity<Void>(HttpStatus.OK);
+    }
+
+    @PostMapping("/{gongziNo}/{view}")
+    public ResponseEntity<Integer> viewCount(@PathVariable("gongziNo") Long gongziNo,
+                                             @PathVariable("view") Integer view) throws Exception {
+        service.view(gongziNo, view);
+
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }
