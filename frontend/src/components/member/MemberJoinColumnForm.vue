@@ -12,9 +12,10 @@
             <div class="mx-3">
                 <v-icon color="black" size="30px">person</v-icon>
                     ID
+                <v-spacer></v-spacer>
                 <v-list-item class="mx-1">
-                    <v-text-field placeholder="아이디" v-model="userId" :rules="idRules" required></v-text-field>
-                    <v-btn @click="checkId">아이디 확인</v-btn>
+                    <v-text-field outlined color="green" placeholder="아이디" v-model="userId" :rules="idRules" required></v-text-field>
+                    <v-btn @click="checkId" OU>아이디 확인</v-btn>
                 </v-list-item>
             </div> 
 
@@ -34,7 +35,7 @@
                 <v-icon color="black" size="30px">mail</v-icon>
                  E-mail
                 <v-list-item class="mx-1">
-                    <v-text-field placeholder="e-mail" v-model="email" :rules="emailRules" required></v-text-field>
+                    <v-text-field  v-model="email" :rules="emailRules" required></v-text-field>
                     <v-btn @click="checkEmail">이메일 인증</v-btn>
                 </v-list-item> 
             </div> 
@@ -139,8 +140,16 @@
 import { mapState } from 'vuex'
 import axios from 'axios'
 
+
+
 export default {
     name: 'MemberJoinColumnForm',
+    props: {
+        kakao_account: {
+            type: Object,
+            require: true
+        }
+    },
     data () {
         return {
             radioGroup: null,
@@ -177,6 +186,14 @@ export default {
             
         }
     },
+    
+    
+    mounted() {
+        console.log(this.kakao_account)
+        this.email = this.kakao_account.email
+        this.birth = this.kakao_account.birthday
+    },
+    
     computed: {
         ...mapState(['idRules', 'pwRules', 'emailRules', 'nameRules', 'birthRules', 'phoneRules'])
     },

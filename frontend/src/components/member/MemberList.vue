@@ -39,6 +39,7 @@
 
                         </tr>
                     </tbody>
+                    <div>
                     <v-dialog v-model="dialog" max-width="400">
                     <template v-slot:activator="{ on }">
                     <v-btn v-on="on">삭제</v-btn>
@@ -56,10 +57,10 @@
 
                 <v-dialog v-model="pausedialog" max-width="400">
                     <template v-slot:activator="{ on }">
-                    <v-btn v-on="on">정지</v-btn>
+                    <v-btn v-on="on">정지/해제</v-btn>
                     </template>
                     <v-card class="pa-2">
-                    <v-card-title>정말 회원을 정지시키겠습니까??</v-card-title>
+                    <v-card-title>정말 회원을 정지/해제 시키겠습니까??</v-card-title>
                     
                     <v-card-actions>
                         <v-btn @click="cancel">취소</v-btn>
@@ -68,6 +69,22 @@
                     </v-card-actions>
                     </v-card>
                 </v-dialog>
+
+                <v-dialog v-model="hostdialog" max-width="400">
+                    <template v-slot:activator="{ on }">
+                    <v-btn v-on="on">관리자부여</v-btn>
+                    </template>
+                    <v-card class="pa-2">
+                    <v-card-title>관리자 직급을 부여하시겠습니까?</v-card-title>
+                    
+                    <v-card-actions>
+                        <v-btn @click="cancel">취소</v-btn>
+                        <v-spacer></v-spacer>
+                        <v-btn @click="hostUser">확인</v-btn>
+                    </v-card-actions>
+                    </v-card>
+                </v-dialog>
+                    </div>
 
                 
             
@@ -104,7 +121,8 @@ export default {
             selected: [],
             userId: null,
             dialog: false,
-            pausedialog: false
+            pausedialog: false,
+            unpauseddialog: false,
             
             
         }
@@ -123,6 +141,7 @@ export default {
     cancel () {
       this.dialog = false
       this.pausedialog = false
+      
     },
       deleteUser () {
       if(this.selected.length == 1){
@@ -153,9 +172,10 @@ export default {
       }
     },
     pauseUser() {
+        if(this.selected.length == 1){
           axios.post(`http://localhost:7777/member/pause/${this.selected}`)
           .then( () =>{
-              alert("해당아이디는 정지 하였습니다.")
+              alert("해당아이디를 정지/해제 하였습니다.")
               this.pausedialog = false
             this.$store.commit('USER_LOGIN', false)
         
@@ -163,7 +183,53 @@ export default {
             this.$store.commit('FETCH_USER_INFO', [])
               this.$router.go()
           })
+        }
+        if(this.selected.length > 1){
+        for(let i = 0; i < this.selected.length; i++){
+      axios.post(`http://localhost:7777/member/pause/${this.selected[i]}`).then(() => {
+        this.pausedialog = false
+        
+        this.$store.commit('USER_LOGIN', false)
+        
+        this.fetchSession(this.$cookies.remove('session'))
+        this.$store.commit('FETCH_USER_INFO', [])
+        
+        this.$router.go();
+      })
+      }
+      alert('정지/해제 완료되었습니다.')
+      }
       },
+    hostUser() {
+        if(this.selected.length == 1){
+          axios.post(`http://localhost:7777/member/host/${this.selected}`)
+          .then( () =>{
+              alert("해당아이디를 정지/해제 하였습니다.")
+              this.pausedialog = false
+            this.$store.commit('USER_LOGIN', false)
+        
+            this.fetchSession(this.$cookies.remove('session'))
+            this.$store.commit('FETCH_USER_INFO', [])
+              this.$router.go()
+          })
+        }
+        if(this.selected.length > 1){
+        for(let i = 0; i < this.selected.length; i++){
+      axios.post(`http://localhost:7777/member/host/${this.selected[i]}`).then(() => {
+        this.pausedialog = false
+        
+        this.$store.commit('USER_LOGIN', false)
+        
+        this.fetchSession(this.$cookies.remove('session'))
+        this.$store.commit('FETCH_USER_INFO', [])
+        
+        this.$router.go();
+      })
+      }
+      alert('관리자로 승급 완료되었습니다.')
+      }
+      },
+      
        
     },
     computed: {
