@@ -32,6 +32,9 @@ export default {
     methods: {
       ...mapActions(['fetchAgentVilla', 'fetchAgentOneroom', 'fetchAgentOfficetel' ]) 
     },
+    created () {
+        
+    }
 }
 </script>
 

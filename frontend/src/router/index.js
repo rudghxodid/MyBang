@@ -24,10 +24,13 @@ import VillaModifyPage from '@/views/villa/VillaModifyPage'
 
 import OfficetelRegisterPage from '@/views/officetel/OfficetelRegisterPage'
 import OfficetelReadPage from '@/views/officetel/OfficetelReadPage'
+import OfficetelModifyPage from '@/views/officetel/OfficetelModifyPage'
+
 
 import OneroomRegisterPage from '@/views/oneroom/OneroomRegisterPage'
 import OneroomListPage from '@/views/oneroom/OneroomListPage'
 import OneroomReadPage from '@/views/oneroom/OneroomReadPage'
+import OneroomModifyPage from '@/views/oneroom/OneroomModifyPage'
 
 // Map
 import Villa from '@/views/map/Villa'
@@ -232,7 +235,7 @@ const routes = [
     },
   },
   {
-    path: '/broker/list',
+    path: '/seller/list',
     name: 'BrokerHouseListPage',
     component: BrokerHouseListPage,
   },
@@ -242,10 +245,20 @@ const routes = [
     component: OfficetelRegisterPage,
   },
   {
-    path: '/officetel/:officetelNo',
+    path: '/officetel/read',
     name: 'OfficetelReadPage',
     components: {
       default: OfficetelReadPage,
+    },
+    props: {
+      default: true,
+    },
+  },
+  {
+    path: '/officetel/:officetelNo/edit',
+    name: 'OfficetelModifyPage',
+    components: {
+      default: OfficetelModifyPage,
     },
     props: {
       default: true,
@@ -264,7 +277,7 @@ const routes = [
     component: OneroomListPage,
   },
   {
-    path: '/oneroom/:oneroomNo',
+    path: '/oneroom/read',
     name: 'OneroomReadPage',
     components: {
       default: OneroomReadPage,
@@ -274,6 +287,16 @@ const routes = [
     },
     
     
+  },
+  {
+    path: '/oneroom/:oneroomNo/edit',
+    name: 'OneroomModifyPage',
+    components: {
+      default: OneroomModifyPage,
+    },
+    props: {
+      default: true,
+    },
   },
 
   // 부동산 뉴스

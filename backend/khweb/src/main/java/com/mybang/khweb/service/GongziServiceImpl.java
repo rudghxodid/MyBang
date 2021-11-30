@@ -6,6 +6,7 @@ import com.mybang.khweb.request.GongziRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 
@@ -30,13 +31,13 @@ public class GongziServiceImpl implements GongziService{
 
     @Override
     public List<Gongzi> list() throws Exception {
-        return repository.findAll();
+        return repository.findAll(Sort.by(Sort.Direction.DESC, "gongziNo"));
     }
 
     @Override
     public Gongzi read(Long gongziNo) throws Exception {
 
-        Gongzi gongzi = repository.findByGongzi(gongziNo).orElse(null);
+        Gongzi gongzi = repository.findByGongziNo(gongziNo).orElse(null);
 
         return gongzi;
     }
@@ -53,5 +54,12 @@ public class GongziServiceImpl implements GongziService{
         repository.save(gongzi);
     }
 
+    @Override
+    public void view(Long gongziNo, Integer view) throws Exception {
+        Gongzi gongzi = repository.findByGongziNo(gongziNo).orElse(null);
 
+        gongzi.setView(view);
+
+        repository.save(gongzi);
+    }
 }

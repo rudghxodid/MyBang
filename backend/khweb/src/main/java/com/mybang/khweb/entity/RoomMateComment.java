@@ -12,6 +12,8 @@ import javax.persistence.Table;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Data
@@ -31,10 +33,10 @@ public class RoomMateComment extends BaseTimeEntity{
     @Column(name = "board_no")
     private Long boardNo;
 
-    @Column
-    private Long writer;
+//    @Column
+//    private Long writer;
 
-//    @ManyToOne
-//    @JoinColumn(name = "board_no", insertable = false, updatable = false)
-//    private RoomMate roomMate;
+    @OneToOne
+    @JoinColumn(name = "member_no")
+    private Member member;
 }

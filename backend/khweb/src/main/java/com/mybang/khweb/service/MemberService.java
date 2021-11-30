@@ -29,6 +29,7 @@ public interface MemberService {
     String findingUser(MemberDto memberDto) throws Exception;
     void modifyPw(Member member, MemberDto memberDto) throws Exception;
     List<Member> list() throws Exception;
+    public void host(String userId) throws Exception;
 
     // 찜하기 기능들
     public void addLikedProduct(LikedProduct likedProduct);

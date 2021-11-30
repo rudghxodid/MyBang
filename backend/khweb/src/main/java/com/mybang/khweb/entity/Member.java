@@ -88,4 +88,6 @@ public class Member extends BaseTimeEntity {
     private Set<LikedProduct> memberIdentityList = new HashSet<LikedProduct>();
 
      */
+
+
 }

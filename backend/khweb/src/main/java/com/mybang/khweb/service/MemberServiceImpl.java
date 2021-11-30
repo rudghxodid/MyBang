@@ -271,6 +271,18 @@ public class MemberServiceImpl implements MemberService{
         repository.save(member);
     }
 
+    // 관리자 권한주기
+    @Override
+    public void host(String userId) throws Exception {
+        Member member = repository.findByUserId(userId).orElse(null);
+
+        MemberAuth memberAuth = authRepository.findByMemberNo(member.getMemberNo()).orElse(null);
+
+        memberAuth.setAuth("관리자");
+
+        authRepository.save(memberAuth);
+    }
+
     @Override
     public List<Member> list() throws Exception {
         List<Member> members = repository.findAll();

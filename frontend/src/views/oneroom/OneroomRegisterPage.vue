@@ -32,7 +32,7 @@ export default {
             lat, lng, local1, local2, local3, serviceType, userIntro, userName, url, updatedAt, agentId })
                     .then(res => {
                          alert('저장 성공! - ' + res)
-                         //this.$router.push("list");
+                         this.$router.go()
                     })
                     .catch(res => {
                         alert(res.response.data.message)
@@ -41,3 +41,16 @@ export default {
     }
 }
 </script>
+
+<style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
+
+* {
+  font-family: 'Noto Sans KR', sans-serif;
+  margin: 0 auto;
+}
+
+h2 {
+  text-align: center;
+}
+</style>
