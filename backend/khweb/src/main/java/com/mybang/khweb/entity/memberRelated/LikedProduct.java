@@ -19,6 +19,6 @@ public class LikedProduct {   //매물게시판에서 찜한 상품들을 저장
     @Column(name = "member_no", nullable = false)
     private Long memberNo;
 
-    @Column(length = 20, nullable = false)
-    private Long noticeNo;
+    @Column(nullable = false)
+    private Long villaNo;
 }

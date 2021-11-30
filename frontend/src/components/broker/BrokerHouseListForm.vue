@@ -1,11 +1,9 @@
 <template>
     <v-container>
       <tr>
-        <th align="left" width="118"><a @click="villaRegisterPage()">빌라 등록하기</a></th>
-        <th align="left" width="118"><a @click="oneroomRegisterPage()">원룸 등록하기</a></th><br>
-        <th><a @click="officetelRegisterPage()">오피스텔 등록하기</a></th>
+        <th align="left" width="118"><a @click="houseRegisterPage()">매물 등록하기</a></th>
       </tr>
-      <table border="1">
+      <table >
           <tr>
               <th align="center" width="100">건물 유형</th>
               <th align="center" width="350">매물 이름</th>
@@ -97,21 +95,11 @@ export default {
               query: { "officetelNo": officetelNo }
           })
         },
-        villaRegisterPage() {
+        houseRegisterPage() {
             this.$router.push({
-            name: 'VillaRegisterPage',
+            name: 'HouseRegisterPage',
         })
-        },
-        oneroomRegisterPage() {
-            this.$router.push({
-            name: 'OneroomRegisterPage',
-        })
-        },
-        officetelRegisterPage() {
-            this.$router.push({
-            name: 'OfficetelRegisterPage',
-        })
-        },
+        }
     },
 }
 </script>

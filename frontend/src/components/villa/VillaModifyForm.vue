@@ -145,10 +145,10 @@
                 <v-icon color="black" size="30px">label</v-icon>
                 크기
                 <div class="mx-1">
-                    <v-text-field placeholder="제곱미터단위로 입력해주세요" v-model="sizeM2" required></v-text-field>
-                </div>  
+                    <v-text-field placeholder="방의 평수를 입력해주세요." v-model="size" required ></v-text-field>
+                </div> 
                 <div class="mx-1">
-                    <v-text-field placeholder="방의 평수를 입력해주세요." v-model="size" required></v-text-field>
+                    <v-text-field placeholder="m2" v-model="sizeM2" required readonly></v-text-field>
                 </div> 
             </div>
 
@@ -212,10 +212,26 @@
             </div>
 
             <div class="mx-3"> 
-                <v-icon color="black" size="30px">label</v-icon>
-                입주가능일
+                <v-icon color="black" size="30px">hourglass_empty</v-icon>
+                 입주가능일
                 <div class="mx-1">
-                    <v-text-field  placeholder="입주가능일" v-model="moveinDate" required></v-text-field>
+                    <v-menu ref="menu" v-model="menu" :close-on-content-click="false"
+                        :return-value.sync="date" transition="scale-transition" offset-y min-width="auto">
+                        <template v-slot:activator="{ on }">
+                        <v-text-field placeholder="입주가능일을 선택해주세요." v-model="moveinDate" 
+                            v-on="on" append-icon="mdi-calendar" required></v-text-field>
+                        </template>
+                        <v-date-picker color="secondary" v-model="moveinDate" no-title scrollable>
+                        
+                        <v-btn text @click="menu = false">
+                            Cancel
+                        </v-btn>
+                        <v-spacer></v-spacer>
+                        <v-btn text @click="$refs.menu.save(date)">
+                            OK
+                        </v-btn>
+                        </v-date-picker>
+                    </v-menu>
                 </div> 
             </div>
 
@@ -231,7 +247,7 @@
                 <v-icon color="black" size="30px">label</v-icon>
                 매물 상세설명
                 <div class="mx-1">
-                    <v-text-field placeholder="매물에 관한 내용을 상세히 적어주세요" v-model="description" required></v-text-field>
+                    <v-textarea placeholder="매물에 관한 내용을 상세히 적어주세요" v-model="description" required></v-textarea>
                 </div> 
             </div>
 
@@ -303,7 +319,6 @@ export default {
             roomType: '',
             manageCost: '',
             manageCostInc: '',
-            sizeM2: '',
             size: '',
             floorAll: '',
             floor: '',
@@ -337,6 +352,8 @@ export default {
             url: '',
             updatedAt: '',
             agentId: '',
+            menu: false,
+            date: null,
             viewImage: null,
             files: [],
             urls: [],
@@ -354,6 +371,9 @@ export default {
     },
     computed: {
         ...mapState(['userInfo']),
+        sizeM2 () {
+            return this.size * 3.305785
+        }
     },
     mounted() {
         this.agentId = this.userInfo.userId

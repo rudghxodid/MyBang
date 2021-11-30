@@ -6,8 +6,6 @@ import {
   FETCH_MEMBER,
 
   // 매물 게시판
-  FETCH_PRODUCT_LIST,
-  FETCH_PRODUCT,
   FETCH_VILLA_LIST,
   FETCH_VILLA,
   FETCH_OFFICETEL_LIST,
@@ -55,19 +53,6 @@ export default {
     return axios.get(`http://localhost:7777/member/${memberNo}`).then((res) => {
       commit(FETCH_MEMBER, res.data);
     });
-  },
-  // 매물 게시판
-  fetchProductList({ commit }) {
-    return axios.get("http://localhost:7777/product/list").then((res) => {
-      commit(FETCH_PRODUCT_LIST, res.data);
-    });
-  },
-  fetchProduct({ commit }, productNo) {
-    return axios
-      .get(`http://localhost:7777/product/${productNo}`)
-      .then((res) => {
-        commit(FETCH_PRODUCT, res.data);
-      });
   },
   fetchVillaList({ commit }) {
     return axios.get("http://localhost:7777/villa/lists").then((res) => {
