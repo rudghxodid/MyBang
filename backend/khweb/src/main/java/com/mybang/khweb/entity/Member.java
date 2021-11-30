@@ -1,5 +1,6 @@
 package com.mybang.khweb.entity;
 
+import com.mybang.khweb.entity.memberRelated.LikedProduct;
 import com.mybang.khweb.request.MemberDto;
 import lombok.*;
 
@@ -80,12 +81,15 @@ public class Member extends BaseTimeEntity {
         this.password = memberDto.getPassword();
     }
 
+    // 찜하기
     /*
-    짬하기 기능을 추가하기 위한 코드였는데 위에 있는 onetomany로 인해 오류나지만 실행은 됨
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
     @JoinColumn(name = "member_no")
-    @Builder.Default
-    private Set<LikedProduct> memberIdentityList = new HashSet<LikedProduct>();
+    private List<LikedProduct> likedProducts = new ArrayList<LikedProduct>();
+
+    public void removeLikedList(List<LikedProduct> list) {
+        this.likedProducts.remove(list);
+    }
 
      */
 }

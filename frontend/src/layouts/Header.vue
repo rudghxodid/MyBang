@@ -2,22 +2,10 @@
 	<header>
 		<div class="inner">
 			<h1 class="logo">
-
 				<img src="@/assets/img/mybang.png" @click="Gomain" height="80px" style="margin-top:-6px" >
-				<!--<router-link to="/">
-                    <img src="@/assets/img/mybang.png" height="80px" style="margin-top:-6px" >
-                </router-link>
-                -->
 			</h1>
 
 			<ul class="navbar">
-				<li>
-					<a href="">
-						<span>아파트<br></span>
-						<span>매매/전월세/신축분양</span>
-					</a>
-					<nav class></nav>
-				</li>
 				<li>
 					<a href="/villa">
 						<span>빌라, 투룸+</span>
@@ -40,6 +28,12 @@
 					<a href="">
 						<span><router-link to="/roommate">셰어하우스</router-link></span>
 						<span>함께 사는 주거공간</span>
+					</a>
+				</li>
+				<li v-if="auth == '사업자'">
+					<a @click="goSellerList">
+						<span>사업자</span>
+						<span>매물 등록 및 확인</span>
 					</a>
 				</li>
 			</ul>
@@ -68,10 +62,11 @@ import { mapActions, mapState } from 'vuex'
     data() {
       return {
         userId: null,
+		auth: null
     }
   },
   computed: {
-    ...mapState(['session', 'isLogin'])
+    ...mapState(['session', 'isLogin', 'userInfo'])
   },
   mounted() {
     this.fetchSession(this.$cookies.get('session'))
@@ -79,6 +74,15 @@ import { mapActions, mapState } from 'vuex'
 			this.$store.state.isLogin = true
 			this.$store.state.userInfo = this.fetchUserInfo(this.$cookies.get('session'))
 		}
+		setTimeout(() => {
+			if (this.userInfo.authList.length != 0) {
+				this.auth = this.userInfo.authList[0].auth
+				console.log(this.auth)
+			} else {
+				this.auth = null
+			}
+			
+		}, 500)
   },
   methods: {
     ...mapActions(['fetchSession', 'fetchUserInfo']),
@@ -98,14 +102,14 @@ import { mapActions, mapState } from 'vuex'
     gotoMypage () {
       this.$router.push({ name: 'Mypage' })
     },
-		Gomain () {
-			this.$router.push({ name: 'Home' })
-		}
+	Gomain () {
+		this.$router.push({ name: 'Home' })
+	},
+	goSellerList () {
+		this.$router.push({ name: 'BrokerHouseListPage' })
+	}
   }
-
-  
-  
-  }
+}
 </script>
 
 <style scoped>

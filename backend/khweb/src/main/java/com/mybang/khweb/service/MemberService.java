@@ -30,9 +30,12 @@ public interface MemberService {
     List<Member> list() throws Exception;
 
     // 찜하기 기능들
+    /*
     public void addLikedProduct(LikedProduct likedProduct);
     public List<LikedProduct> getLikedProductList(Integer memberNo);
     public void deleteLikedProduct(LikedProduct likedProduct);
+
+     */
 
 
 }

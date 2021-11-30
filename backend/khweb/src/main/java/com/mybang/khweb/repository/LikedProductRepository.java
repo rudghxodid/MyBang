@@ -14,6 +14,6 @@ public interface LikedProductRepository extends JpaRepository<LikedProduct, Long
 
     @Transactional
     @Modifying
-    @Query("delete LikedProduct la where la.noticeNo = :noticeNo and la.memberNo = :memberNo")
-    void delete(Long noticeNo, Long memberNo);
+    @Query("delete LikedProduct la where la.villaNo = :villaNo and la.memberNo = :memberNo")
+    void delete(Long villaNo, Long memberNo);
 }

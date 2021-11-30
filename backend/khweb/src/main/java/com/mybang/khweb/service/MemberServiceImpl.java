@@ -2,7 +2,6 @@ package com.mybang.khweb.service;
 
 import com.mybang.khweb.entity.Member;
 import com.mybang.khweb.entity.MemberAuth;
-import com.mybang.khweb.entity.memberRelated.LikedProduct;
 import com.mybang.khweb.repository.LikedProductRepository;
 import com.mybang.khweb.repository.MemberAuthRepository;
 import com.mybang.khweb.repository.MemberRepository;
@@ -271,6 +270,7 @@ public class MemberServiceImpl implements MemberService{
     }
 
     //찜하기
+    /*
     @Override
     public void addLikedProduct(LikedProduct likedProduct) {
         likedProductRepository.save(likedProduct);
@@ -286,4 +286,6 @@ public class MemberServiceImpl implements MemberService{
     public void deleteLikedProduct(LikedProduct likedProduct) {
         likedProductRepository.delete(new Long(likedProduct.getNoticeNo()), new Long(likedProduct.getMemberNo()));
     }
+
+     */
 }
