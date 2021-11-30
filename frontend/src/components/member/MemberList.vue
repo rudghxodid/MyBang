@@ -52,12 +52,13 @@
 			</v-card>
 		</v-dialog>
 
+
 		<v-dialog v-model="pausedialog" max-width="400">
 			<template v-slot:activator="{ on }">
-				<v-btn v-on="on">정지</v-btn>
+				<v-btn v-on="on">정지/해제</v-btn>
 			</template>
 			<v-card class="pa-2">
-				<v-card-title>정말 회원을 정지시키겠습니까??</v-card-title>
+				<v-card-title>정말 회원을 정지/해제시키겠습니까??</v-card-title>
 				
 				<v-card-actions>
 					<v-btn @click="cancel">취소</v-btn>
@@ -90,6 +91,7 @@ import axios from 'axios'
 import { mapState, mapActions } from 'vuex'
 
 export default {
+
   name: 'MemberList',
 	data() {
 		return {
@@ -158,6 +160,7 @@ export default {
 		}
 			
 	},
+
 
     
     
