@@ -1,205 +1,337 @@
 <template>
     <v-container>
-            <div class="mx-3"> 
-                <v-icon color="black" size="30px">home</v-icon>
-                사진
-                <div class="mx-1" v-if="imageList">
-                    <v-card width="400">
-                        <swiper class="swiper" :options="swiperOption">
-                        <swiper-slide v-for="list in imageList" :key="list.index">
-                            <img :src="list">
-                        </swiper-slide>
-                        <div class="swiper-pagination" slot="pagination"></div>
-                        <div class="swiper-button-prev" slot="button-prev"></div>
-                        <div class="swiper-button-next" slot="button-next"></div>
-                        </swiper>
-                    </v-card>
-                </div>
-                <div v-else>
-                    <img :src="require('@/assets/img/noImg.gif')">
-                </div>
-            </div>
+        <v-stepper :value="e1">
+                <form @submit.prevent="onSubmit">
+                    <v-stepper-header>
+                    <v-stepper-step :complete="e1 > 1" step="1">매물 종류 선택</v-stepper-step>
+                    <v-divider></v-divider>
+                    <v-stepper-step :complete="e1 > 2" step="2">중개사무소 정보</v-stepper-step>
+                    <v-divider></v-divider>
+                    <v-stepper-step :complete="e1 > 3" step="3">매물 입력사항(1)</v-stepper-step>
+                    <v-divider></v-divider>
+                    <v-stepper-step :complete="e1 > 4" step="4">매물 입력사항(2)</v-stepper-step>
+                    <v-divider></v-divider>
+                    <v-stepper-step :complete="e1 > 4" step="5">매물 입력사항(3)</v-stepper-step>
+                     <v-divider></v-divider>
+                    <v-stepper-step step="6">매물 입력사항(4)</v-stepper-step>
+                    </v-stepper-header>
+                    <v-stepper-items>
 
-            <div class="mx-3">
-                <v-icon color="black" size="30px">label</v-icon>
-                    중개사 주소
-                <v-list-item class="mx-1">
-                    <v-text-field placeholder="" :value="oneroom.agentAddress" required disabled></v-text-field>
-                </v-list-item>
-            </div> 
+                        <v-stepper-content step="1">
+                            <v-card class="mb-12" color="" max-height="500px">
+                                <div class="mx-3">
+                                    <v-text-field placeholder="" :value="oneroom.serviceType" required readonly></v-text-field>
+                                </div>
+                            </v-card>
+                                
+                            <v-btn color="primary" @click="e1 = 2">다음</v-btn>
 
-            <div class="mx-3">
-                <v-icon color="black" size="30px">label</v-icon>
-                    중개사 이메일
-                <v-list-item class="mx-1">
-                    <v-text-field placeholder="" :value="oneroom.agentEmail" required disabled></v-text-field>
-                </v-list-item>
-            </div> 
-            
-            <div class="mx-3">
-                <v-icon color="black" size="30px">label</v-icon>
-                    중개사 이름
-                <v-list-item class="mx-1">
-                    <v-text-field placeholder="" :value="oneroom.agentName" required disabled></v-text-field>
-                </v-list-item>
-            </div>  
+                            <v-btn text>취소</v-btn>
+                        </v-stepper-content>
 
-            <div class="mx-3">
-                <v-icon color="black" size="30px">label</v-icon>
-                    중개사 연락처
-                <v-list-item class="mx-1">
-                    <v-text-field placeholder="" :value="oneroom.agentPhone" required disabled></v-text-field>
-                </v-list-item>
-            </div> 
+                        <v-stepper-content step="2">
+                            <v-card class="mb-12" color="" max-height="3000px">
+                                <div class="mx-3">
+                                    <v-icon color="black" size="30px">label</v-icon>
+                                        중개사 주소
+                                    <v-list-item class="mx-1">
+                                        <v-text-field placeholder="" :value="oneroom.agentAddress" required readonly></v-text-field>
+                                    </v-list-item>
+                                </div> 
 
-            <div class="mx-3">
-                <v-icon color="black" size="30px">label</v-icon>
-                    중개인 이름
-                <v-list-item class="mx-1">
-                    <v-text-field placeholder="" :value="oneroom.userName" required disabled></v-text-field>
-                </v-list-item>
-            </div> 
+                                <div class="mx-3">
+                                    <v-icon color="black" size="30px">label</v-icon>
+                                        중개사 이메일
+                                    <v-list-item class="mx-1">
+                                        <v-text-field placeholder="" :value="oneroom.agentEmail" required readonly></v-text-field>
+                                    </v-list-item>
+                                </div> 
+                                
+                                <div class="mx-3">
+                                    <v-icon color="black" size="30px">label</v-icon>
+                                        중개사 이름
+                                    <v-list-item class="mx-1">
+                                        <v-text-field placeholder="" :value="oneroom.agentName" required readonly></v-text-field>
+                                    </v-list-item>
+                                </div>  
 
-            <div class="mx-3"> 
-                <v-icon color="black" size="30px">label</v-icon>
-                    중개인 연락처
-                <div class="mx-1">
-                    <v-text-field placeholder="" :value="oneroom.agentMobile" required disabled></v-text-field>
-                </div> 
-            </div>
+                                <div class="mx-3">
+                                    <v-icon color="black" size="30px">label</v-icon>
+                                        중개사 연락처
+                                    <v-list-item class="mx-1">
+                                        <v-text-field placeholder="" :value="oneroom.agentPhone" required readonly></v-text-field>
+                                    </v-list-item>
+                                </div> 
 
-            <div class="mx-3">
-                <v-icon color="black" size="30px">label</v-icon>
-                    매물의 주소를 입력하세요
-                <v-list-item class="mx-1">
-                    <v-text-field placeholder="" :value="oneroom.address" required disabled></v-text-field>
-                </v-list-item>
-            </div>
+                                <div class="mx-3">
+                                    <v-icon color="black" size="30px">label</v-icon>
+                                        중개인 이름
+                                    <v-list-item class="mx-1">
+                                        <v-text-field placeholder="" :value="oneroom.userName" required readonly></v-text-field>
+                                    </v-list-item>
+                                </div> 
 
-            <div class="mx-3">
-                <v-icon color="black" size="30px">label</v-icon>
-                    보증금
-                <v-list-item class="mx-1">
-                    <v-text-field input type="number" placeholder="" :value="oneroom.deposit" required disabled></v-text-field>
-                </v-list-item>
-            </div> 
+                                <div class="mx-3"> 
+                                    <v-icon color="black" size="30px">label</v-icon>
+                                        중개인 연락처
+                                    <div class="mx-1">
+                                        <v-text-field placeholder="" :value="oneroom.agentMobile" required readonly></v-text-field>
+                                    </div> 
+                                </div>
+                            </v-card>
 
-            <div class="mx-3"> 
-                <v-icon color="black" size="30px">label</v-icon>
-                방구조
-                <div class="mx-1">
-                    <v-text-field  placeholder="방구조"  :value="oneroom.roomType" required disabled></v-text-field>
-                </div> 
-            </div>
+                            <v-btn color="primary" @click="e1 = 3">다음</v-btn>
 
-            <div class="mx-3"> 
-                <v-icon color="black" size="30px">label</v-icon>
-                판매유형
-                <div class="mx-1">
-                    <v-text-field  placeholder="" :value="oneroom.salesType" required disabled></v-text-field>
-                </div> 
-            </div>  
-            <div class="mx-3"> 
-                <v-icon color="black" size="30px">label</v-icon>
-                관리비 포함 항목
-                <div class="mx-1" >
-                    <v-text-field placeholder="" :value="oneroom.manageCostInc" required disabled></v-text-field>
-                </div> 
-            </div> 
+                            <v-btn text @click="e1 = 1">취소</v-btn>
+                        </v-stepper-content>
 
-            <div class="mx-3"> 
-                <v-icon color="black" size="30px">label</v-icon>
-                크기
-                <div class="mx-1">
-                    <v-text-field placeholder="제곱미터단위로 입력해주세요" :value="oneroom.sizeM2" required disabled></v-text-field>
-                </div>  
-                <div class="mx-1">
-                    <v-text-field placeholder="방의 평수를 입력해주세요." :value="oneroom.size" required disabled></v-text-field>
-                </div> 
-            </div>
+                        <v-stepper-content step="3">
+                            <v-card class="mb-12" color="" max-height="3000px">
+                                <div class="mx-3">
+                                    <v-icon color="black" size="30px">label</v-icon>
+                                        매물의 주소를 입력하세요
+                                    <v-list-item class="mx-1">
+                                        <v-text-field placeholder="" :value="oneroom.address" required readonly></v-text-field>
+                                    </v-list-item>
+                                </div>
 
-            <div class="mx-3"> 
-                <v-icon color="black" size="30px">label</v-icon>
-                층수
-                <div class="mx-1">
-                    <v-text-field  placeholder="건물 총 층수" :value="oneroom.floorAll" required disabled></v-text-field>
-                </div>
-                <div class="mx-1">
-                    <v-text-field  placeholder="해당 층" :value="oneroom.floor" required disabled></v-text-field>
-                </div>  
-            </div>
+                                <div class="mx-3">
+                                    <v-icon color="black" size="30px">label</v-icon>
+                                        주소
+                                    <v-list-item class="mx-1">
+                                        <v-text-field placeholder="주소 입력시 자동으로 입력됩니다" :value="oneroom.local1" required readonly ></v-text-field>
+                                        <v-text-field placeholder="주소 입력시 자동으로 입력됩니다" :value="oneroom.local2" required readonly ></v-text-field>
+                                        <v-text-field placeholder="주소 입력시 자동으로 입력됩니다" :value="oneroom.local3" required readonly ></v-text-field>
+                                    </v-list-item>
+                                </div>
 
-            <div class="mx-3"> 
-                <v-icon color="black" size="30px">label</v-icon>
-                방향
-                <div class="mx-1">
-                    <v-text-field placeholder="" :value="oneroom.roomDirection" required disabled></v-text-field>
-                </div> 
-            </div>
+                                <div class="mx-3"> 
+                                    <v-icon color="black" size="30px">home</v-icon>
+                                    사진
+                                    <div class="mx-1" v-if="imageList">
+                                        <v-card width="400">
+                                            <swiper class="swiper" :options="swiperOption">
+                                            <swiper-slide v-for="list in imageList" :key="list.index">
+                                                <img :src="list">
+                                            </swiper-slide>
+                                            <div class="swiper-pagination" slot="pagination"></div>
+                                            <div class="swiper-button-prev" slot="button-prev"></div>
+                                            <div class="swiper-button-next" slot="button-next"></div>
+                                            </swiper>
+                                        </v-card>
+                                    </div>
+                                    <div v-else>
+                                        <img :src="require('@/assets/img/noImg.gif')">
+                                    </div>
+                                </div>
 
-            <div class="mx-3"> 
-                <v-icon color="black" size="30px">label</v-icon>
-                옵션
-                <div class="mx-1">
-                    <v-text-field placeholder="옵션" :value="oneroom.options" required disabled></v-text-field>
-                </div> 
-            </div>
-           
-            <div class="mx-3"> 
-                <v-icon color="black" size="30px">label</v-icon>
-                반려동물
-                <div class="mx-1">
-                    <v-text-field placeholder="반려동물" :value="oneroom.pets" required disabled></v-text-field>
-                </div> 
-            </div> 
+                                <div class="mx-3"> 
+                                    <v-icon color="black" size="30px">label</v-icon>
+                                    입주가능일
+                                    <div class="mx-1">
+                                        <v-text-field placeholder="방구조"  :value="oneroom.moveinDate" required readonly></v-text-field>
+                                    </div> 
+                                </div>
 
-            <div class="mx-3"> 
-                <v-icon color="black" size="30px">label</v-icon>
-                주차
-                <div class="mx-1">
-                    <v-text-field placeholder="주차" :value="oneroom.parking" required disabled></v-text-field>
-                </div> 
-            </div>
+                                <div class="mx-3"> 
+                                    <v-icon color="black" size="30px">label</v-icon>
+                                    방구조
+                                    <div class="mx-1">
+                                        <v-text-field placeholder="방구조"  :value="oneroom.roomType" required readonly></v-text-field>
+                                    </div> 
+                                </div>
 
-            <div class="mx-3"> 
-                <v-icon color="black" size="30px">label</v-icon>
-                인근 지하철
-                <div class="mx-1">
-                    <v-text-field placeholder="인근 지하철" :value="oneroom.nearSubways" required disabled></v-text-field>
-                </div> 
-            </div>
-            
-            <div class="mx-3"> 
-                <v-icon color="black" size="30px">label</v-icon>
-                엘리베이터
-                <div class="mx-1">
-                    <v-text-field placeholder="엘리베이터" :value="oneroom.elevator" required disabled></v-text-field>
-                </div> 
-            </div>
+                                <div class="mx-3"> 
+                                    <v-icon color="black" size="30px">label</v-icon>
+                                    판매유형
+                                    <div class="mx-1">
+                                        <v-text-field placeholder="판매유형을 선택해주세요" :value="oneroom.salesType" required readonly></v-text-field>
+                                    </div> 
+                                </div>
+                                <div class="mx-3">
+                                    <v-icon color="black" size="30px">label</v-icon>
+                                        보증금
+                                    <div class="mx-1">
+                                        <v-text-field placeholder="보증금" :value="oneroom.deposit" required readonly></v-text-field>
+                                    </div>
+                                </div>
+                                <div class="mx-3">
+                                    <v-icon color="black" size="30px">label</v-icon>
+                                        월세
+                                    <div class="mx-1">
+                                        <v-text-field placeholder="전세일 경우 0을 입력해주세요" :value="oneroom.rent" required readonly></v-text-field>
+                                    </div>
+                                </div>
+                            </v-card>
+                                
+                            <v-btn color="primary" @click="e1 = 4">다음</v-btn>
 
-            <div class="mx-3"> 
-                <v-icon color="black" size="30px">label</v-icon>
-                입주가능일
-                <div class="mx-1">
-                    <v-text-field  placeholder="입주가능일" :value="oneroom.moveinDate" required disabled></v-text-field>
-                </div> 
-            </div>
+                            <v-btn text @click="e1 = 2">취소</v-btn>
+                        </v-stepper-content>
 
-            <div class="mx-3"> 
-                <v-icon color="black" size="30px">label</v-icon>
-                소개글
-                <div class="mx-1">
-                    <v-text-field placeholder="매물에 관한 내용을 100자 이내로 적어주세요" :value="oneroom.title" required disabled></v-text-field>
-                </div> 
-            </div>
+                        <v-stepper-content step="4">
+                            <v-card class="mb-12" color="" max-height="3000px">
+                                <div class="mx-3"> 
+                                    <v-icon color="black" size="30px">label</v-icon>
+                                    크기
+                                    <div class="mx-1">
+                                        <v-text-field placeholder="방의 평수를 입력해주세요." :value="oneroom.size" required readonly ></v-text-field>
+                                    </div> 
+                                    <div class="mx-1">
+                                        <v-text-field placeholder="m2" :value="oneroom.sizeM2" required readonly ></v-text-field>
+                                    </div> 
+                                </div>
 
-            <div class="mx-3"> 
-                <v-icon color="black" size="30px">label</v-icon>
-                매물 상세설명
-                <div class="mx-1">
-                    <v-text-field placeholder="매물에 관한 내용을 상세히 적어주세요" :value="oneroom.description" required disabled></v-text-field>
-                </div> 
-            </div>
+                                <div class="mx-3"> 
+                                    <v-icon color="black" size="30px">label</v-icon>
+                                        관리비 포함 항목
+                                        <div class="mx-1" >
+                                            <v-text-field placeholder="" :value="oneroom.manageCostInc" required readonly ></v-text-field>
+                                        </div> 
+                                    </div><br>
+                                    관리비
+                                    <div class="mx-1">
+                                        <v-text-field placeholder="관리비를 입력해주세요" :value="oneroom.manageCost" required readonly></v-text-field>
+                                    </div> 
+
+                                    <div class="mx-3"> 
+                                        <v-icon color="black" size="30px">label</v-icon>
+                                        옵션
+                                        <div class="mx-1">
+                                            <v-text-field placeholder="옵션" :value="oneroom.options" required readonly ></v-text-field>
+                                        </div> 
+                                    </div>
+                                
+                                    <div class="mx-3"> 
+                                        <v-icon color="black" size="30px">label</v-icon>
+                                        반려동물
+                                        <div class="mx-1">
+                                            <v-text-field placeholder="반려동물" :value="oneroom.pets" required readonly></v-text-field>
+                                        </div> 
+                                    </div> 
+
+                                    <div class="mx-3"> 
+                                        <v-icon color="black" size="30px">label</v-icon>
+                                        주차
+                                        <div class="mx-1">
+                                            <v-text-field placeholder="주차" :value="oneroom.parking" required readonly></v-text-field>
+                                        </div> 
+                                    </div> 
+                            </v-card>
+                                
+                            <v-btn color="primary" @click="e1 = 5">다음</v-btn>
+
+                            <v-btn text @click="e1 = 3">취소</v-btn>
+                        </v-stepper-content>
+
+                        <v-stepper-content step="5">
+                            <v-card class="mb-12" color="" max-height="2000px">
+
+                                <div class="mx-3"> 
+                                    <v-icon color="black" size="30px">label</v-icon>
+                                    인근 지하철
+                                    <div class="mx-1">
+                                        <v-text-field placeholder="인근 지하철" :value="oneroom.nearSubways" required readonly></v-text-field>
+                                    </div> 
+                                </div>
+                                
+                                <div class="mx-3"> 
+                                    <v-icon color="black" size="30px">label</v-icon>
+                                    엘리베이터
+                                    <div class="mx-1">
+                                        <v-text-field  placeholder="엘리베이터" :value="oneroom.elevator" required readonly></v-text-field>
+                                    </div> 
+                                </div>
+
+                                <div class="mx-3"> 
+                                        <v-icon color="black" size="30px">label</v-icon>
+                                        층수
+                                    <div class="mx-1">
+                                        <v-text-field placeholder="건물 총 층수" :value="oneroom.floorAll" required readonly></v-text-field>
+                                    </div>
+                                    <div class="mx-1">
+                                        <v-text-field placeholder="해당 층" :value="oneroom.floor" required readonly></v-text-field>
+                                    </div>  
+                                </div>
+
+                                <div class="mx-3"> 
+                                    <v-icon color="black" size="30px">label</v-icon>
+                                    방향
+                                    <div class="mx-1">
+                                        <v-text-field placeholder="" :value="oneroom.roomDirection" required readonly></v-text-field>
+                                    </div> 
+                                </div>
+                            </v-card>
+
+                            <v-btn color="primary" @click="e1 = 6">다음</v-btn>
+
+                            <v-btn text @click="e1 = 4">취소</v-btn>
+                        </v-stepper-content>
+
+                        <v-stepper-content step="6">
+                            <v-card class="mb-12" color="" max-height="3000px"> 
+
+                                <div class="mx-3"> 
+                                    <v-icon color="black" size="30px">label</v-icon>
+                                    소개글
+                                    <div class="mx-1">
+                                        <v-text-field placeholder="매물에 관한 내용을 100자 이내로 적어주세요" :value="oneroom.title" required readonly></v-text-field>
+                                    </div> 
+                                </div>
+
+                                <div class="mx-3"> 
+                                    <v-icon color="black" size="30px">label</v-icon>
+                                    매물 상세설명
+                                    <div class="mx-1">
+                                        <v-textarea placeholder="매물에 관한 내용을 상세히 적어주세요" :value="oneroom.description" required readonly></v-textarea>
+                                    </div> 
+                                </div>
+                            </v-card>
+
+                            <v-btn color="primary">다음</v-btn>
+
+                            <v-btn text @click="e1 = 5">취소</v-btn>
+                        </v-stepper-content>
+                    
+                    <!-- 자동으로 입력되는 부분 --> 
+                    <div class="mx-3" hidden> 
+                        <v-icon color="black" size="30px">label</v-icon>
+                        중개사무소 좌표
+                        <div class="mx-1">
+                            <v-text-field placeholder="" :value="oneroom.agentLat" required readonly></v-text-field>
+                        </div> 
+                    </div>
+                    <div class="mx-3" hidden> 
+                        <v-icon color="black" size="30px">label</v-icon>
+                        중개사무소 좌표
+                        <div class="mx-1">
+                            <v-text-field placeholder="" :value="oneroom.agentLng" required readonly></v-text-field>
+                        </div> 
+                    </div>
+                    <div class="mx-3" hidden> 
+                        <v-icon color="black" size="30px">label</v-icon>
+                        좌표(lat)
+                        <div class="mx-1">
+                            <v-text-field placeholder="좌표(lat)" :value="oneroom.lat" required readonly></v-text-field>
+                        </div> 
+                    </div>
+                    <div class="mx-3" hidden> 
+                        <v-icon color="black" size="30px">label</v-icon>
+                        좌표(lng)
+                        <div class="mx-1">
+                            <v-text-field placeholder="좌표(lng)" :value="oneroom.lng" required readonly ></v-text-field>
+                        </div> 
+                    </div>
+                    <div class="mx-3" hidden> 
+                        <v-icon color="black" size="30px">label</v-icon>
+                        작성자
+                        <div class="mx-1">
+                            <v-text-field placeholder="" :value="oneroom.agentId" required readonly ></v-text-field>
+                        </div> 
+                    </div>
+                </v-stepper-items>
+            </form>
+        </v-stepper>
     </v-container>
 </template>
 
@@ -223,6 +355,7 @@ export default {
     },
     data() {
         return {
+            e1: 1,
             show: false,  
             swiperOption: {
                     loop: true,

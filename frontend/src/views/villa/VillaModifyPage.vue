@@ -1,8 +1,5 @@
 <template>
   <div>
-      <div>
-        <h2>빌라 정보수정</h2>
-      </div>
         <villa-modify-form :villa="villa" @submit="onSubmit"/>
   </div>  
 </template>
@@ -30,7 +27,7 @@ export default {
     methods: {
         ...mapActions(['fetchVilla']),
         onSubmit (payload) {
-            const { image, deposit, roomType, manageCost, manageCostIncChk, sizeM2, size, floorAll, floor, roomDirection, optionsChk, pets, parking, elevator, moveinDate, title, 
+            const { image, rent, deposit, roomType, manageCost, manageCostIncChk, sizeM2, size, floorAll, floor, roomDirection, optionsChk, pets, parking, elevator, moveinDate, title, 
             description, nearSubways, address, salesType, agentAddress, agentEmail, agentLat, agentLng, agentMobile, agentName, agentPhone, buildingType,
             lat, lng, local1, local2, local3, serviceType, userIntro, userName, url, updatedAt, agentId } = payload
 
@@ -54,7 +51,7 @@ export default {
               options = optionsStr.slice(0, -2)
             }
         
-            axios.put(`http://localhost:7777/villa/${this.villaNo}`, { image, deposit, roomType, manageCost, manageCostInc, sizeM2, size, floorAll, floor, roomDirection, options, pets, parking, elevator, moveinDate, title, 
+            axios.put(`http://localhost:7777/villa/${this.villaNo}`, { image, rent, deposit, roomType, manageCost, manageCostInc, sizeM2, size, floorAll, floor, roomDirection, options, pets, parking, elevator, moveinDate, title, 
             description, nearSubways, address, salesType, agentAddress, agentEmail, agentLat, agentLng, agentMobile, agentName, agentPhone, buildingType,
             lat, lng, local1, local2, local3, serviceType, userIntro, userName, url, updatedAt, agentId })
                 .then(res => {
@@ -79,4 +76,5 @@ export default {
     }
 }
 </script>
+
 
