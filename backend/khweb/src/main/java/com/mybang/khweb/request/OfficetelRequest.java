@@ -17,6 +17,7 @@ public class OfficetelRequest {
     private String agentPhone;
     private String buildingType;
     private Long deposit;
+    private Long rent;
     private String description;
     private String elevator;
     private String floor;
@@ -50,6 +51,7 @@ public class OfficetelRequest {
     public Officetel toEntity() {
         return Officetel.builder()
                 .address(address)
+                .rent(rent)
                 .agentAddress(agentAddress)
                 .agentEmail(agentEmail)
                 .agentLat(agentLat)

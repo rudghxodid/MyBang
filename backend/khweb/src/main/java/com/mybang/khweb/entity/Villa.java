@@ -136,8 +136,12 @@ public class Villa {
     // 회원 매물등록 구분
     @Column
     private String agentId;
+    /*
+    @Column(columnDefinition = "integer default 0")
+    private Integer numberOfLiked;
+    */
 
-    public Villa(String address, String agentAddress, String agentEmail, double agentLat, double agentLng,
+    public Villa(String address, String agentAddress, String agentEmail, double agentLat, double agentLng, Long rent,
                    String agentMobile, String agentName,  String agentPhone, String buildingType, Long deposit,
                    String description, String elevator, String floor, String floorAll, String image, double lat,
                    double lng, String local1, String local2, String local3, String manageCost, String manageCostInc,
@@ -145,6 +149,7 @@ public class Villa {
                    String roomType, String salesType, String serviceType, String size, String sizeM2,
                    String title, String updatedAt, String userIntro, String userName, String url, String agentId) {
         this.address = address;
+        this.rent = rent;
         this.agentAddress = agentAddress;
         this.agentEmail = agentEmail;
         this.agentLat = agentLat;
@@ -187,6 +192,7 @@ public class Villa {
 
     public void updateVilla(VillaRequest request) {
         this.address = request.getAddress();
+        this.rent = request.getRent();
         this.agentAddress = request.getAgentAddress();
         this.agentEmail = request.getAgentEmail();
         this.agentLat = request.getAgentLat();
