@@ -19,6 +19,8 @@ public interface MemberRepository extends JpaRepository<Member, Long> {
     @Query("UPDATE Member b set b.pause = :pause where b.userId = :userId")
     void pause(String userId, String pause);
 
+
+
     List<Member> findAll();
 
 

@@ -1,7 +1,7 @@
 <template>
   <div>
     <ul>
-			<li v-for="list in recentGongzis" :key="list.index" class="ml-n5"
+			<li v-for="list in recentGongzis" :key="list.index"
         @click="gongziRead(list.gongziNo)">{{list.title}}</li>
     </ul>
   </div>

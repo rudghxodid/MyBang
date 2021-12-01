@@ -1,6 +1,12 @@
 <template>
     <v-container>
         <form @submit.prevent="onSubmit">
+            <input type="radio" value="villa" v-model="serviceType">
+                <label for="빌라">빌라</label>
+            <input type="radio" value="oneroom" v-model="serviceType">
+                <label for="원룸">원룸</label>
+            <input type="radio" value="officetel" v-model="serviceType">
+                <label for="오피스텔">오피스텔</label>
             <div class="mx-3">
                 <v-icon color="black" size="30px">label</v-icon>
                     중개사 주소
@@ -133,22 +139,34 @@
                     <v-select :items='salesTypes' placeholder="" v-model="salesType" required></v-select>
                 </div> 
             </div>  
-            <div class="mx-3"> 
+            <div class="mx-3">
                 <v-icon color="black" size="30px">label</v-icon>
                 관리비 포함 항목
                 <div class="mx-1" >
-                    <v-text-field placeholder="" v-model="manageCostInc" required></v-text-field>
-                </div> 
+                    <!--<v-text-field placeholder="" v-model="manageCostInc" required></v-text-field>-->
+                    <input type="checkbox" value="전기세" v-model="manageCostIncChk">
+                        <label for="전기세">전기세</label>
+                    <input type="checkbox" value="수도" v-model="manageCostIncChk">
+                        <label for="수도">수도</label>
+                    <input type="checkbox" value="가스비" v-model="manageCostIncChk">
+                        <label for="가스비">가스비</label>
+                        <br>
+                    <span>체크한 이름: {{ manageCostIncChk }}</span>
+                </div>
+                관리비
+                <div class="mx-1">
+                    <v-text-field placeholder="" v-model="manageCost" required></v-text-field>
+                </div>  
             </div> 
 
             <div class="mx-3"> 
                 <v-icon color="black" size="30px">label</v-icon>
                 크기
                 <div class="mx-1">
-                    <v-text-field placeholder="제곱미터단위로 입력해주세요" v-model="sizeM2" required></v-text-field>
-                </div>  
+                    <v-text-field placeholder="방의 평수를 입력해주세요." v-model="size" required ></v-text-field>
+                </div> 
                 <div class="mx-1">
-                    <v-text-field placeholder="방의 평수를 입력해주세요." v-model="size" required></v-text-field>
+                    <v-text-field placeholder="m2" v-model="sizeM2" required readonly></v-text-field>
                 </div> 
             </div>
 
@@ -212,10 +230,26 @@
             </div>
 
             <div class="mx-3"> 
-                <v-icon color="black" size="30px">label</v-icon>
-                입주가능일
+                <v-icon color="black" size="30px">hourglass_empty</v-icon>
+                 입주가능일
                 <div class="mx-1">
-                    <v-text-field  placeholder="입주가능일" v-model="moveinDate" required></v-text-field>
+                    <v-menu ref="menu" v-model="menu" :close-on-content-click="false"
+                        :return-value.sync="date" transition="scale-transition" offset-y min-width="auto">
+                        <template v-slot:activator="{ on }">
+                        <v-text-field placeholder="입주가능일을 선택해주세요." v-model="moveinDate" 
+                            v-on="on" append-icon="mdi-calendar" required></v-text-field>
+                        </template>
+                        <v-date-picker color="secondary" v-model="moveinDate" no-title scrollable>
+                        
+                        <v-btn text @click="menu = false">
+                            Cancel
+                        </v-btn>
+                        <v-spacer></v-spacer>
+                        <v-btn text @click="$refs.menu.save(date)">
+                            OK
+                        </v-btn>
+                        </v-date-picker>
+                    </v-menu>
                 </div> 
             </div>
 
@@ -231,14 +265,11 @@
                 <v-icon color="black" size="30px">label</v-icon>
                 매물 상세설명
                 <div class="mx-1">
-                    <v-text-field placeholder="매물에 관한 내용을 상세히 적어주세요" v-model="description" required></v-text-field>
+                    <v-textarea placeholder="매물에 관한 내용을 상세히 적어주세요" v-model="description" required></v-textarea>
                 </div> 
             </div>
 
-            <!-- 자동으로 입력되는 부분 -->
-            <div class="mx-1" hidden>
-                <v-text-field placeholder="" v-model="serviceType" required></v-text-field>
-            </div> 
+            <!-- 자동으로 입력되는 부분 --> 
             <div class="mx-3" hidden> 
                 <v-icon color="black" size="30px">label</v-icon>
                 중개사무소 좌표
@@ -288,7 +319,7 @@ import axios from 'axios'
 import { mapState } from 'vuex'
 
 export default {
-    name: 'VillaRegisterForm',
+    name: 'HouseRegisterForm',
     data () {
       return {
             image: null,
@@ -296,7 +327,6 @@ export default {
             roomType: '',
             manageCost: '',
             manageCostInc: '',
-            sizeM2: '',
             size: '',
             floorAll: '',
             floor: '',
@@ -324,12 +354,15 @@ export default {
             local1: '',
             local2: '',
             local3: '',
-            serviceType: '빌라',
+            serviceType: '',
             userIntro: '',
             userName: '',
             url: '',
             updatedAt: '',
             agentId: '',
+            menu: false,
+            date: null,
+            manageCostIncChk: [],
             viewImage: null,
             files: [],
             urls: [],
@@ -347,6 +380,10 @@ export default {
     },
     computed: {
         ...mapState(['userInfo']),
+        sizeM2 () {
+            return this.size * 3.305785
+        },
+        
     },
     mounted() {
         this.agentId = this.userInfo.userId
@@ -396,11 +433,11 @@ export default {
             this.viewImage = imageList[0]
         },
         onSubmit () {
-            const { image, deposit, roomType, manageCost, manageCostInc, sizeM2, size, floorAll, floor, roomDirection, options, pets, parking, elevator, moveinDate, title, 
+            const { image, deposit, roomType, manageCost, manageCostIncChk, sizeM2, size, floorAll, floor, roomDirection, options, pets, parking, elevator, moveinDate, title, 
             description, nearSubways, address, salesType, agentAddress, agentEmail, agentLat, agentLng, agentMobile, agentName, agentPhone, buildingType,
             lat, lng, local1, local2, local3, serviceType, userIntro, userName, url, updatedAt, agentId} = this
 
-            this.$emit('submit', { image, deposit, roomType, manageCost, manageCostInc, sizeM2, size, floorAll, floor, roomDirection, options, pets, parking, elevator, moveinDate, title, 
+            this.$emit('submit', { image, deposit, roomType, manageCost, manageCostIncChk, sizeM2, size, floorAll, floor, roomDirection, options, pets, parking, elevator, moveinDate, title, 
             description, nearSubways, address, salesType, agentAddress, agentEmail, agentLat, agentLng, agentMobile, agentName, agentPhone, buildingType,
             lat, lng, local1, local2, local3, serviceType, userIntro, userName, url, updatedAt, agentId})
         },

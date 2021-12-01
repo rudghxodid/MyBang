@@ -2,7 +2,6 @@ package com.mybang.khweb.service;
 
 import com.mybang.khweb.entity.Member;
 import com.mybang.khweb.entity.MemberAuth;
-import com.mybang.khweb.entity.memberRelated.LikedProduct;
 import com.mybang.khweb.repository.LikedProductRepository;
 import com.mybang.khweb.repository.MemberAuthRepository;
 import com.mybang.khweb.repository.MemberRepository;
@@ -10,6 +9,7 @@ import com.mybang.khweb.request.MemberDto;
 import com.mybang.khweb.request.MemberRequest;
 import com.mybang.khweb.utility.PythonRequest;
 import lombok.extern.slf4j.Slf4j;
+import org.graalvm.compiler.nodes.calc.IntegerDivRemNode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -23,6 +23,7 @@ import java.util.Random;
 @Lazy
 @Slf4j
 public class MemberServiceImpl implements MemberService{
+
 
 
     @Autowired
@@ -53,7 +54,12 @@ public class MemberServiceImpl implements MemberService{
 
     @Override
     public void pause(Member member, String userId) throws Exception {
-        member.setPause(1);
+        if(member.getPause()==0) {
+            member.setPause(1);
+        }
+        else{
+            member.setPause(0);
+        }
         repository.save(member);
     }
 
@@ -264,6 +270,18 @@ public class MemberServiceImpl implements MemberService{
         repository.save(member);
     }
 
+    // 관리자 권한주기
+    @Override
+    public void host(String userId) throws Exception {
+        Member member = repository.findByUserId(userId).orElse(null);
+
+        MemberAuth memberAuth = authRepository.findByMemberNo(member.getMemberNo()).orElse(null);
+
+        memberAuth.setAuth("관리자");
+
+        authRepository.save(memberAuth);
+    }
+
     @Override
     public List<Member> list() throws Exception {
         List<Member> members = repository.findAll();
@@ -271,6 +289,7 @@ public class MemberServiceImpl implements MemberService{
     }
 
     //찜하기
+    /*
     @Override
     public void addLikedProduct(LikedProduct likedProduct) {
         likedProductRepository.save(likedProduct);
@@ -286,4 +305,6 @@ public class MemberServiceImpl implements MemberService{
     public void deleteLikedProduct(LikedProduct likedProduct) {
         likedProductRepository.delete(new Long(likedProduct.getNoticeNo()), new Long(likedProduct.getMemberNo()));
     }
+
+     */
 }

@@ -190,6 +190,7 @@ public class MemberController {
     }
 
     // 찜하기
+    /*
     @PostMapping("/addLikedProduct")
     public ResponseEntity<Void> addLikedProduct(@Validated @RequestBody LikedProduct likedProduct) {
         log.info("addLikedProduct(): " + likedProduct);
@@ -219,6 +220,8 @@ public class MemberController {
         return new ResponseEntity<Void>(HttpStatus.OK);
     }
 
+     */
+
     @PostMapping("/pause/{selected}")
     public ResponseEntity<Void> pauseMember(@PathVariable("selected") String userId) throws Exception {
         Member member = service.findById(userId);
@@ -227,5 +230,14 @@ public class MemberController {
 
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
+
+    @PostMapping("/host/{selected}")
+    public ResponseEntity<Void> hostMember(@PathVariable("selected") String userId) throws Exception {
+        service.host(userId);
+
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
 }
 

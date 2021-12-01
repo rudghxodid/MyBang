@@ -10,6 +10,5 @@ import java.util.Optional;
 
 public interface GongziRepository extends JpaRepository<Gongzi, Long> {
 
-    @Query("select m from Gongzi m where m.gongziNo = :gongziNo")
-    Optional<Gongzi> findByGongzi(Long gongziNo);
+    Optional<Gongzi> findByGongziNo(Long gongziNo);
 }

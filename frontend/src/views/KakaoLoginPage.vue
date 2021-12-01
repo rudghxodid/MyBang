@@ -20,6 +20,7 @@
 
 <script>
 import axios from 'axios'
+
 // import '@/kakao/kakao.js'
 
 
@@ -28,9 +29,18 @@ export default {
     data () {
         return {
             id: '',
-            pw: ''
+            pw: '',
+        }
+        
+    },
+    props: {
+        kakao_account: {
+            type: Object,
+            require: true
         }
     },
+    
+
     
     methods: {
         onSubmit () {
@@ -63,6 +73,8 @@ export default {
                          const kakao_account = res.kakao_account
                          console.log(kakao_account)
                          console.log(res)
+                         this.$router.push({name: 'MemberRegisterPage' 
+                            , params: {kakao_account: kakao_account} })
                          
                      },
                      fail: (err) => {
@@ -70,6 +82,7 @@ export default {
                      }
                  })
                 console.log(res)  
+                
              },
              fail: (err) => {
                  console.log(err)

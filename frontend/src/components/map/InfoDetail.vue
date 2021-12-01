@@ -5,6 +5,23 @@
         {{info.local1}}
         {{info.local2}}
         {{info.local3}}
+        <v-tooltip bottom>
+
+            <template v-slot:activator="{ on, attrs }">
+          
+            <font-awesome-icon v-show="chkLikedOrNot()" :icon="['fas','heart']" size="lg" :style="{ color: '#42b8d4' }" v-on="on" v-bind="attrs"
+            @click="deleteLikedAnimal()"/>
+
+            <font-awesome-icon v-show="!chkLikedOrNot(a)" :icon="['far','heart']" size="lg" :style="{ color: '#42b8d4' }" v-on="on" v-bind="attrs"
+            @click="addLikedAnimal()"/>
+
+            </template>
+
+            <span v-show="chkLikedOrNot()">찜해제</span>
+
+            <span v-show="!chkLikedOrNot()">찜하기</span>
+
+          </v-tooltip>
       </v-card-title>
       <v-divider class="my-n1"/>
       <v-container>
@@ -203,6 +220,7 @@
 <script>
 import { Swiper, SwiperSlide } from 'vue-awesome-swiper'
 import 'swiper/css/swiper.css'
+import axios from 'axios'
 
 export default {
   components: {
@@ -246,7 +264,53 @@ export default {
     }
   },
   methods: {
-
+    addLikedAnimal(notice_no) {
+      if(this.$store.state.session) {
+      
+        const memberNo = this.$store.state.session.memberNo
+        const noticeNo = notice_no
+        axios.post('http://localhost:8888/petto/member/addLikedAnimal', { memberNo, noticeNo })
+          .then(() => {
+            this.$store.state.likedAnimalList.push({ 'memberNo': memberNo, 'noticeNo': noticeNo })
+            const targetIndex = this.$store.state.animals.findIndex(v => v.notice_no === notice_no)
+            this.$store.state.animals[targetIndex].numberOfLiked ++
+          })
+          
+          .catch(() => {
+            alert('잠시후에 다시 시도해주세요.')
+          })
+      } else alert('로그인이 필요한 서비스입니다.')
+      
+    },
+    chkLikedOrNot(notice_no) {
+      if(this.$store.state.session) {
+        for(var i=0; i<this.$store.state.likedAnimalList.length; i++) {
+          if(notice_no == this.$store.state.likedAnimalList[i].noticeNo) {
+            return true
+          }
+        }
+        return false
+      } else return false
+    },
+    deleteLikedAnimal(notice_no) {
+      if(this.$store.state.session) {
+      
+        const memberNo = this.$store.state.session.memberNo
+        const noticeNo = notice_no
+        
+        axios.put('http://localhost:8888/petto/member/deleteLikedAnimal', { memberNo, noticeNo })
+          .then(() => {
+            const targetIndex2 = this.$store.state.animals.findIndex(v => v.notice_no == notice_no)
+            this.$store.state.animals[targetIndex2].numberOfLiked --
+            const targetIndex = this.$store.state.likedAnimalList.findIndex(v => v.noticeNo == notice_no) //*** likedAnimalList에는 noticeNo ***
+            this.$store.state.likedAnimalList.splice(targetIndex, 1)
+          })
+          
+          .catch(() => {
+            alert('잠시후에 다시 시도해주세요.')
+          })
+      } else alert('로그인이 필요한 서비스입니다.')
+    }
   }
 }
 </script>
