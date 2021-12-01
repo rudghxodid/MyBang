@@ -30,20 +30,8 @@
 				</div>
 			</div>
 		</div>
-		<!--   소개할게요, 뉴스, 공지사항 영역 시작   -->
+		<!--   뉴스, 공지사항 영역 시작   -->
 		<div class="board_content">
-			<article>
-				<h2>소개할게요</h2>
-				<hr>
-				<ul>
-					<li>리스트1</li>
-					<li>리스트2</li>
-					<li>리스트3</li>
-					<li>리스트4</li>
-					<li>리스트5</li>
-				</ul>
-			</article>
-
 			<article>
 				<div class="more_btn">
 					<h2>뉴스</h2>
@@ -85,7 +73,6 @@
 						더보기
 					</v-btn>
 				</div>
-				<hr>
 				<gongzi-preview></gongzi-preview>
 			</article>
 		</div>
@@ -102,7 +89,7 @@ import GongziPreview from '../components/gongzi/GongziPreview.vue'
   export default {
 		name: 'MainPage',
 	  components: {
-			Swiper, 
+			Swiper,
 			SwiperSlide,
 			GongziPreview
 		},
@@ -162,7 +149,7 @@ import GongziPreview from '../components/gongzi/GongziPreview.vue'
 	}
 
 	.swiper {
-		height: 500px;
+		height: 700px;
 		position: relative;
 	}
 
@@ -235,8 +222,8 @@ import GongziPreview from '../components/gongzi/GongziPreview.vue'
 		display: block;
 		margin: 0 auto;
 		position: absolute;
-		z-index: 100000;
-		top: 10%;
+		z-index: 1;
+		top: 20%;
 		left: 50%;
 		transform: translate( -50%, -50% );
 	}
@@ -302,11 +289,12 @@ import GongziPreview from '../components/gongzi/GongziPreview.vue'
 		color: #000;
 	}
 
-	/* 소개할게요, 뉴스, 공지사항 영역 시작 */
+	/* 뉴스, 공지사항 영역 시작 */
 	.board_content {
 		padding: 15px 0;
-		width: 1200px;
+		width: 1400px;
 		margin: 0 auto;
+		margin-top: 100px;
 	}
 
 	.board_content:after, .board_content .more_btn:after {
@@ -317,11 +305,11 @@ import GongziPreview from '../components/gongzi/GongziPreview.vue'
 
 	.board_content article {
 		float: left;
-		width: calc(92% / 3);
-		margin-right: 4%;
+		width: calc(80% / 2);
+		margin-right: 20%;
 	}
 
-	.board_content article:nth-child(3) {
+	.board_content article:nth-child(2) {
 		margin-right: 0;
 	}
 
@@ -332,6 +320,8 @@ import GongziPreview from '../components/gongzi/GongziPreview.vue'
 
 	.board_content article .more_btn > h2 {
 		float: left;
+		padding-left: 2px;
+		font-size: 22px;
 	}
 
 	.board_content article .more_btn .v-btn {

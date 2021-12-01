@@ -78,12 +78,17 @@
   export default {
     name: "RoomMateDetail",
     async mounted() {
-      if (!this.userId) {
-        alert("권한이 없습니다. 로그인 화면으로 이동합니다.");
-        this.$router.push({name: "MemberLoginPage"});
-      } else {
-        await this.fetchRoomMateDetail();
-      }
+      // if (!this.userId) {
+      //   alert("권한이 없습니다. 로그인 화면으로 이동합니다.");
+        // this.$router.push({name: "MemberLoginPage"});
+      // } else {
+      //   await this.fetchRoomMateDetail();
+      // }
+
+      await this.fetchRoomMateDetail();
+    },
+	  created() {
+      console.log("===> this.userId : ", this.userId);
     },
     data() {
       return {
