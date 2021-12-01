@@ -1,14 +1,17 @@
 <template>
   <v-container>
-    <v-card v-if="!successPw" class="pa-5">
+    <v-card v-if="!successPw" class="pa-10 mx-auto grey lighten-4" width="500">
       <v-card-title>
-        회원정보를 변경하려면 비밀번호를 입력해주세요.
+        회원정보를 확인하려면 비밀번호를 입력해주세요.
       </v-card-title>
-      <v-text-field label="pw" v-model="password" type="password" :rules="pwRules"></v-text-field>
+
+      <span>비밀번호</span>
+      <v-text-field v-model="password" type="password" :rules="pwRules" 
+        solo class="mt-3"></v-text-field>
+
       <v-card-actions>
-        <v-spacer>
-          <v-btn @click="checkPw" @keydown.enter="checkPw">확인</v-btn>
-        </v-spacer>
+        <v-spacer></v-spacer>
+        <v-btn @click="checkPw" @keydown.enter="checkPw">확인</v-btn>
       </v-card-actions>
     </v-card>
     <user-info v-else></user-info>

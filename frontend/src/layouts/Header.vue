@@ -87,7 +87,7 @@ import { mapActions, mapState } from 'vuex'
   methods: {
     ...mapActions(['fetchSession', 'fetchUserInfo']),
     gotoJoin() {
-      this.$router.push('/member/create')
+      this.$router.push({name: 'MemberJoinPage'})
     },
     gotoLogin() {
       this.$router.push('/login')

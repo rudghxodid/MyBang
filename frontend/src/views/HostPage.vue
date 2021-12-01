@@ -1,9 +1,9 @@
 <template>
 	<v-container id="member">
-		<h3>관리자 페이지</h3>
+		<div align="center">
+			<h3>관리자 페이지</h3>
+		</div>
 		<member-list/>  
-		<v-btn @click="GongziRegister">공지작성</v-btn>
-		<v-btn @click="GongziList">공지목록</v-btn>
 	</v-container>
 </template>
 
@@ -22,12 +22,7 @@ export default {
 		}
 	},
 	methods: {
-		GongziRegister() {
-			this.$router.push({ name: 'GongziRegisterPage' })
-		},
-		GongziList() {
-			this.$router.push({ name: 'GongziListPage' })
-		}
+		
 	}
 }
 </script>
