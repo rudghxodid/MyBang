@@ -192,7 +192,7 @@ import { mapActions, mapState } from 'vuex'
 	}
 
 	.navbar > li > a >span:hover{
-		background:white; color: blue;
+		background:white; color: #98BAE7;
 	}
 
 	.right-header .loginUser {

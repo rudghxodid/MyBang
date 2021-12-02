@@ -1,7 +1,7 @@
 <template>
     <div>
         <oneroom-read-form :oneroomNo="oneroomNo"/><br/>
-        <v-btn class="button_place" color="white" v-if="isLogin" :to="{ name: 'OneroomModifyPage', params: { oneroomNo: this.oneroomNo } }">
+        <v-btn class="button_place" color="secondary" v-if="isLogin" :to="{ name: 'OneroomModifyPage', params: { oneroomNo: this.oneroomNo } }">
             내용 수정
         </v-btn>
         <v-btn class="button_place" color="white" v-else  @click="oneroomModifyFail">
