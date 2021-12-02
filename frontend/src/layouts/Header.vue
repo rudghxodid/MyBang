@@ -36,6 +36,56 @@
 						<span>매물 등록 및 확인</span>
 					</a>
 				</li>
+<!--				<li class="business_maenu">-->
+<!--						<v-menu-->
+<!--										offset-y-->
+<!--										open-on-hover-->
+<!--						>-->
+<!--							<template v-slot:activator="{ on, attrs }">-->
+<!--								<v-btn-->
+<!--												outlined-->
+<!--												v-bind="attrs"-->
+<!--												v-on="on"-->
+<!--								>-->
+<!--									사업자 메뉴-->
+<!--								</v-btn>-->
+<!--							</template>-->
+<!--							<v-list>-->
+<!--								<v-list-item link>-->
+<!--									<v-list-item-title>-->
+<!--										<router-link :to="{ name: 'VillaRegisterPage' }"-->
+<!--										             class="nav-link"-->
+<!--										             active-class="active">Villa매물등록-->
+<!--										</router-link>-->
+<!--									</v-list-item-title>-->
+<!--								</v-list-item>-->
+<!--								<v-list-item link>-->
+<!--									<v-list-item-title>-->
+<!--										<router-link :to="{ name: 'OneroomRegisterPage' }"-->
+<!--										             class="nav-link"-->
+<!--										             active-class="active">원룸매물등록-->
+<!--										</router-link>-->
+<!--									</v-list-item-title>-->
+<!--								</v-list-item>-->
+<!--								<v-list-item link>-->
+<!--									<v-list-item-title>-->
+<!--										<router-link :to="{ name: 'OfficetelRegisterPage' }"-->
+<!--										             class="nav-link"-->
+<!--										             active-class="active">오피스텔매물등록-->
+<!--										</router-link>-->
+<!--									</v-list-item-title>-->
+<!--								</v-list-item>-->
+<!--								<v-list-item link>-->
+<!--									<v-list-item-title>-->
+<!--										<router-link :to="{ name: 'BrokerHouseListPage' }"-->
+<!--										             class="nav-link"-->
+<!--										             active-class="active">사업자 등록한거 확인-->
+<!--										</router-link>-->
+<!--									</v-list-item-title>-->
+<!--								</v-list-item>-->
+<!--							</v-list>-->
+<!--						</v-menu>-->
+<!--				</li>-->
 			</ul>
 		</div>
 		<div class="right-header">
@@ -98,7 +148,7 @@ import { mapActions, mapState } from 'vuex'
 			} else {
 				this.auth = null
 			}
-			
+
 		}, 500)
   },
   methods: {
@@ -209,6 +259,13 @@ import { mapActions, mapState } from 'vuex'
 	.navbar > li > a >span:hover{
 		background:white; color: blue;
 	}
+
+	/*.navbar .business_maenu a {*/
+	/*	float: left;*/
+	/*}*/
+
+	/*.business_maenu .v-menu {*/
+	/*}*/
 
 	.right-header .loginUser {
 		font-size: 13px;
