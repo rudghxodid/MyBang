@@ -42,10 +42,6 @@ export default {
   oneroomList: [],
   oneroom: null,
 
-  // 찜하기
-  likedProductList: [],
-  myLikedProducts: [],
-
   gongzis: [],
   gongzi: null,
   lists: [],

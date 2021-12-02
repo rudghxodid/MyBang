@@ -1,9 +1,7 @@
 package com.mybang.khweb.service;
 
-import com.mybang.khweb.entity.Product;
 import com.mybang.khweb.entity.Villa;
 import com.mybang.khweb.repository.VillaRepository;
-import com.mybang.khweb.request.ProductRequest;
 import com.mybang.khweb.request.VillaRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

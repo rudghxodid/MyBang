@@ -1,7 +1,7 @@
 <template>
   <div>
       <div>
-        <h2>빌라 등록</h2>
+        <h2>매물 등록</h2>
       </div>
         <house-register-form @submit="onSubmit"/>
   </div>  
@@ -24,7 +24,7 @@ export default {
   },
   methods: {
         onSubmit (payload) {
-            const { image, deposit, roomType, manageCost, manageCostIncChk, sizeM2, size, floorAll, floor, roomDirection, options, pets, parking, elevator, moveinDate, title, 
+            const { image, rent, deposit, roomType, manageCost, manageCostIncChk, sizeM2, size, floorAll, floor, roomDirection, optionsChk, pets, parking, elevator, moveinDate, title, 
             description, nearSubways, address, salesType, agentAddress, agentEmail, agentLat, agentLng, agentMobile, agentName, agentPhone, buildingType,
             lat, lng, local1, local2, local3, serviceType, userIntro, userName, url, updatedAt, agentId } = payload
 
@@ -51,8 +51,18 @@ export default {
               }
               manageCostInc = manageCostStr.slice(0, -2)
             }
+
+            let optionsStr = ''
+            let options = ''
+
+            if (optionsChk.length != 0) {
+              for (let i = 0; i < optionsChk.length; i++) {
+                optionsStr += optionsChk[i] + ', '
+              }
+              options = optionsStr.slice(0, -2)
+            }
         
-            axios.post(`http://localhost:7777/${serviceType}/register`, { image, deposit, roomType, manageCost, manageCostInc, sizeM2, size, floorAll, floor, roomDirection, options, pets, parking, elevator, moveinDate, title, 
+            axios.post(`http://localhost:7777/${serviceType}/register`, { image, rent, deposit, roomType, manageCost, manageCostInc, sizeM2, size, floorAll, floor, roomDirection, options, pets, parking, elevator, moveinDate, title, 
             description, nearSubways, address, salesType, agentAddress, agentEmail, agentLat, agentLng, agentMobile, agentName, agentPhone, buildingType,
             lat, lng, local1, local2, local3, serviceType:serviceTypeKor, userIntro, userName, url, updatedAt, agentId })
                     .then(res => {
@@ -61,7 +71,6 @@ export default {
                         this.$router.push({
                             name: 'BrokerHouseListPage',
                         })
-                        this.$router.go()
                     })
                     .catch(res => {
                         alert(res.response.data.message)

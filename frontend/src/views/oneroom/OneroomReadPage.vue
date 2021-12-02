@@ -7,7 +7,7 @@
         <v-btn class="button_place" color="white" v-else  @click="oneroomModifyFail">
             내용 수정
         </v-btn>
-        <v-btn  color="white" :to="{ name: 'BrokerHouseListPage' }">
+        <v-btn class="button_place" color="white" :to="{ name: 'BrokerHouseListPage' }">
             목록으로 돌아가기
         </v-btn>
     </div>
@@ -73,7 +73,10 @@ export default {
 }
 
 .button_place {
-    margin-left: 1325px;
-    margin-right: 15px;
+    left: 59.3%;
+    margin-right: 1%;
+    margin-top: 1%;
+    /*margin-left: 135px;*/
+    
 }
 </style>

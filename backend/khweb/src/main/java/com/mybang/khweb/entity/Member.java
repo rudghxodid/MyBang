@@ -1,6 +1,5 @@
 package com.mybang.khweb.entity;
 
-import com.mybang.khweb.entity.memberRelated.LikedProduct;
 import com.mybang.khweb.request.MemberDto;
 import lombok.*;
 
@@ -15,7 +14,6 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-//@EqualsAndHashCode(callSuper = true) 찜하기 기능때문에 적어놓음
 public class Member extends BaseTimeEntity {
 
     @Id
@@ -80,18 +78,4 @@ public class Member extends BaseTimeEntity {
     public void modifyPassword(MemberDto memberDto) {
         this.password = memberDto.getPassword();
     }
-
-    // 찜하기
-    /*
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
-    @JoinColumn(name = "member_no")
-    private List<LikedProduct> likedProducts = new ArrayList<LikedProduct>();
-
-    public void removeLikedList(List<LikedProduct> list) {
-        this.likedProducts.remove(list);
-    }
-
-     */
-
-
 }

@@ -13,10 +13,6 @@ import {
   FETCH_ONEROOM_LIST,
   FETCH_ONEROOM,
 
-  // 찜하기
-  FETCH_LIKED_PRODUCT_LIST,
-  FETCH_PRODUCT_INFO,
-
   // 사업자별 매물등록구분
   FETCH_AGENT_VILLA,
   FETCH_AGENT_OFFICETEL,
@@ -86,22 +82,6 @@ export default {
       .get(`http://localhost:7777/officetel/${officetelNo}`)
       .then((res) => {
         commit(FETCH_OFFICETEL, res.data);
-      });
-  },
-  // 찜하기
-  fetchLikedProductList({ commit }, payload) {
-    return axios
-      .get(`http://localhost:7777/product/likedProductList/${payload}`)
-      .then((res) => {
-        //alert(JSON.stringify(res.data))
-        commit(FETCH_LIKED_PRODUCT_LIST, res.data);
-      });
-  },
-  fetchProductInfo({ commit }, payload) {
-    return axios
-      .get(`http://localhost:7777/product/getProductInfo/${payload}`)
-      .then((res) => {
-        commit(FETCH_PRODUCT_INFO, res.data);
       });
   },
   // 사업자별 매물등록구분
