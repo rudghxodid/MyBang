@@ -50,4 +50,12 @@ public class RoomMateCommentController {
         Boolean boo = roomMateCommentService.delete(commentId);
         return new ResponseEntity<RoomMateComment>(HttpStatus.OK);
     }
+
+    // 마이페이지 - 내가 쓴 댓글 목록 불러오기
+    @GetMapping("/list/{memberNo}")
+    public ResponseEntity<List<RoomMateComment>> userCommentList(@PathVariable Long memberNo) throws Exception {
+        List<RoomMateComment> comments = roomMateCommentService.userCommentList(memberNo);
+
+        return new ResponseEntity<>(comments, HttpStatus.OK);
+    }
 }

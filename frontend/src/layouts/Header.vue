@@ -36,14 +36,80 @@
 						<span>매물 등록 및 확인</span>
 					</a>
 				</li>
+<!--				<li class="business_maenu">-->
+<!--						<v-menu-->
+<!--										offset-y-->
+<!--										open-on-hover-->
+<!--						>-->
+<!--							<template v-slot:activator="{ on, attrs }">-->
+<!--								<v-btn-->
+<!--												outlined-->
+<!--												v-bind="attrs"-->
+<!--												v-on="on"-->
+<!--								>-->
+<!--									사업자 메뉴-->
+<!--								</v-btn>-->
+<!--							</template>-->
+<!--							<v-list>-->
+<!--								<v-list-item link>-->
+<!--									<v-list-item-title>-->
+<!--										<router-link :to="{ name: 'VillaRegisterPage' }"-->
+<!--										             class="nav-link"-->
+<!--										             active-class="active">Villa매물등록-->
+<!--										</router-link>-->
+<!--									</v-list-item-title>-->
+<!--								</v-list-item>-->
+<!--								<v-list-item link>-->
+<!--									<v-list-item-title>-->
+<!--										<router-link :to="{ name: 'OneroomRegisterPage' }"-->
+<!--										             class="nav-link"-->
+<!--										             active-class="active">원룸매물등록-->
+<!--										</router-link>-->
+<!--									</v-list-item-title>-->
+<!--								</v-list-item>-->
+<!--								<v-list-item link>-->
+<!--									<v-list-item-title>-->
+<!--										<router-link :to="{ name: 'OfficetelRegisterPage' }"-->
+<!--										             class="nav-link"-->
+<!--										             active-class="active">오피스텔매물등록-->
+<!--										</router-link>-->
+<!--									</v-list-item-title>-->
+<!--								</v-list-item>-->
+<!--								<v-list-item link>-->
+<!--									<v-list-item-title>-->
+<!--										<router-link :to="{ name: 'BrokerHouseListPage' }"-->
+<!--										             class="nav-link"-->
+<!--										             active-class="active">사업자 등록한거 확인-->
+<!--										</router-link>-->
+<!--									</v-list-item-title>-->
+<!--								</v-list-item>-->
+<!--							</v-list>-->
+<!--						</v-menu>-->
+<!--				</li>-->
 			</ul>
 		</div>
 		<div class="right-header">
 			<v-container>
 				<div v-if="isLogin">
-					<div class="loginUser"><span>{{this.$store.state.userInfo.userId}}</span>님</div>
-					<v-btn @click="gotoMypage" text>마이페이지</v-btn>|
-					<v-btn @click="logout" text>로그아웃</v-btn>
+					<div class="loginUser">
+						<v-menu offset-y open-on-hover>
+							<template v-slot:activator="{ on }">
+								<span v-on="on">
+									{{ userInfo.userId }}
+								</span>님
+							</template>
+							<v-list>
+								<v-list-item>
+									<v-list-item-title @click="gotoMypage">마이페이지</v-list-item-title>
+								</v-list-item>
+								<v-list-item>
+									<v-list-item-title @click="logout">로그아웃</v-list-item-title>
+								</v-list-item>
+							</v-list>
+						</v-menu>
+					</div>
+					
+					
 					<!--<v-btn text><a href="registerInfo">중개사무소<br>가입안내</a></v-btn>-->
 				</div>
 				<div style="float:left" v-else>
@@ -62,7 +128,8 @@ import { mapActions, mapState } from 'vuex'
     data() {
       return {
         userId: null,
-		auth: null
+				auth: null,
+				menu: false
     }
   },
   computed: {
@@ -81,16 +148,16 @@ import { mapActions, mapState } from 'vuex'
 			} else {
 				this.auth = null
 			}
-			
+
 		}, 500)
   },
   methods: {
     ...mapActions(['fetchSession', 'fetchUserInfo']),
     gotoJoin() {
-      this.$router.push('/member/create')
+      this.$router.push({name: 'MemberJoinPage'})
     },
     gotoLogin() {
-      this.$router.push('/login')
+      this.$router.push({ name: 'MemberLoginPage' })
     },
     logout () {
       this.$store.commit('USER_LOGIN', false)
@@ -103,12 +170,12 @@ import { mapActions, mapState } from 'vuex'
     gotoMypage () {
       this.$router.push({ name: 'Mypage' })
     },
-	Gomain () {
-		this.$router.push({ name: 'Home' })
-	},
-	goSellerList () {
-		this.$router.push({ name: 'BrokerHouseListPage' })
-	}
+		Gomain () {
+			this.$router.push({ name: 'Home' })
+		},
+		goSellerList () {
+			this.$router.push({ name: 'BrokerHouseListPage' })
+		}
   }
 }
 </script>
@@ -194,6 +261,13 @@ import { mapActions, mapState } from 'vuex'
 		background:white; color: blue;
 	}
 
+	/*.navbar .business_maenu a {*/
+	/*	float: left;*/
+	/*}*/
+
+	/*.business_maenu .v-menu {*/
+	/*}*/
+
 	.right-header .loginUser {
 		font-size: 13px;
 	}
@@ -201,5 +275,4 @@ import { mapActions, mapState } from 'vuex'
 	.right-header .loginUser > span {
 		background: linear-gradient(to top, #a3f5a8 50%, transparent 50%);
 	}
-
 </style>

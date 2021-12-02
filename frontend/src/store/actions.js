@@ -118,14 +118,14 @@ export default {
   },
 
   // 뉴스 크롤링
-  async crawlFind({ commit }, ) {
+  async crawlFind({ commit }, category) {
     commit(CRAWL_START, 'data')
-    // axios.get("http://localhost:7777/" + `${category}`).then(({ data }) => {
-    //   commit(CRAWL_START, data);
+    axios.get("http://localhost:7777/" + `${category}`).then(({ data }) => {
+      commit(CRAWL_START, data);
 
-    //   // if (window.location.pathname !== '/daumNewsCrawler') {
-    //   //     router.push('/daumNewsCrawler')
-    //   // }
-    // });
+      // if (window.location.pathname !== '/daumNewsCrawler') {
+      //     router.push('/daumNewsCrawler')
+      // }
+    });
   },
 };

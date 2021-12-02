@@ -3,7 +3,7 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import MainPage from '../views/MainPage.vue'
 import Mypage from '@/views/member/Mypage'
-import MemberRegisterPage from '@/views/member/MemberRegisterPage'
+import MemberJoinPage from '@/views/member/MemberJoinPage'
 import MemberLoginPage from '@/views/member/MemberLoginPage'
 import FindUserId from '@/components/member/FindUserId'
 import FindUserPw from '@/components/member/FindUserPw'
@@ -60,10 +60,10 @@ const routes = [
     component: Mypage,
   },
   {
-    path: '/member/create',
-    name: 'MemberRegisterPage',
+    path: '/member/join',
+    name: 'MemberJoinPage',
     components: {
-      default: MemberRegisterPage,
+      default: MemberJoinPage,
     },
     props: {
       default: true,

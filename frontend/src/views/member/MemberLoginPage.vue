@@ -52,7 +52,7 @@ export default {
                 .then(res => {
 
                     if (res.data != "") {
-                        alert('환영합니다! ' + res.data.auth)
+                        alert('환영합니다! ')
 
                         this.$store.commit('USER_LOGIN', true)
 
