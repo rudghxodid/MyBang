@@ -1,6 +1,6 @@
 <template>
 	<v-container >
-		<h2 align="center">공지사항</h2>
+		<h2>공지사항</h2>
 		<gongzi-read/>
 	</v-container>
 </template>
@@ -26,6 +26,26 @@ export default {
 	methods: {
 		...mapActions(['fetchGongzi']),
 	}
-    
+
 }
 </script>
+
+<style scoped>
+
+	* {
+		font-family: 'Noto Sans KR', sans-serif;
+	}
+
+	.container {
+		margin-top: 80px;
+	}
+
+	h2 {
+		font-size: 33px;
+		/*font-weight: bold;*/
+		width: 100%;
+		color: #000;
+	}
+
+</style>
+

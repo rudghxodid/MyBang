@@ -1,8 +1,7 @@
 <template>
 	<div class="modify_wrap">
-		<a href="/">간다 홈으로</a>
 		<div class="form_wrap">
-			<h2>쓴다 글</h2>
+			<h2>룸메 구하기</h2>
 			<b-input v-model="detail.title" placeholder="제목을 입력해주세요."></b-input>
 			<b-form-textarea
 							v-model="detail.content"
@@ -128,13 +127,13 @@
 		border: 1px solid rgba(0, 0, 0, 0.125);
 		border-radius: 5px;
 		padding: 30px 50px;
-		background: linear-gradient(to right, #0088ff, mediumpurple, pink 80%);
+		background: none;
 		margin-top: 45px;
 	}
 
 	h2 {
 		font-size: 25px;
-		color: #e74141;
+		color: #000;
 		font-weight: bold;
 	}
 
