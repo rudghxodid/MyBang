@@ -1,7 +1,7 @@
 <template>
     <div>
         <div align="center">
-            <h2>회원가입</h2>
+            <h1>회원가입</h1>
         </div>
         
         <member-join-form v-bind:kakao_account="kakao_account" @submit="onSubmit"/>
@@ -46,3 +46,14 @@ export default {
     }
 }
 </script>
+
+
+<style scoped>
+h1 {
+    font-size: 33px;
+    font-weight: bold;
+    width: 100%;
+    color: #000;
+    margin-top: 50px;
+}
+</style>
