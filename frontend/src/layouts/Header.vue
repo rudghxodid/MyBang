@@ -258,7 +258,7 @@ import { mapActions, mapState } from 'vuex'
 	}
 
 	.navbar > li > a >span:hover{
-		background:white; color: blue;
+		background:white; color: #98BAE7;
 	}
 
 	/*.navbar .business_maenu a {*/

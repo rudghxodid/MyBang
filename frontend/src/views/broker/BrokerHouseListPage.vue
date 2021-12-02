@@ -50,5 +50,6 @@ h1 {
     font-size: 30px;
     text-align: center;
     padding: 5% 0% 5% 0%;
+    color: #98BAE7;
 }
 </style>
