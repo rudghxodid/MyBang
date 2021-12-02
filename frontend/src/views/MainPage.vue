@@ -80,6 +80,7 @@
 		<!--   소개할게요, 뉴스, 공지사항 영역 끝   -->
 
 		<div class="store">
+			<div class="store_bg"></div>
 			<div class="title_bg">
 				<h1>방 구하셨나요?</h1>
 				<p>나에게 딱 맞는 가구 장만하러 GO!</p>
@@ -114,7 +115,7 @@
 					<div class="itemText">
 						<h2>
 							<span>두닷</span>
-							<span>콰트로 에어 데스크 16size 5colors (800~2000mm)</span>
+							<span>콰트로 에어 데스크 16size</span>
 						</h2>
 						<p>99,000원</p>
 						<strong>★4.7</strong> <span>리뷰 4375</span>
@@ -125,7 +126,7 @@
 					<div class="itemText">
 						<h2>
 							<span>보니애가구</span>
-							<span>프라제르 아쿠아텍스 4인용 소파 (스툴증정) 2colors</span>
+							<span>프라제르 아쿠아텍스 4인용 소파</span>
 						</h2>
 						<p>479,000원</p>
 						<strong>★4.6</strong> <span>리뷰 2924</span>
@@ -141,36 +142,45 @@
 		<section id="icon_wrap">
 			<div class="inner">
 <!--				<h1>빠른 메뉴</h1>-->
-
 				<div class="icon">
 					<article>
 						<div class="pic">
-							<v-icon>mdi-home-floor-2</v-icon>
-							<p>빌라,투룸</p>
+							<router-link to="/villa">
+								<v-icon>mdi-home-floor-2</v-icon>
+								<p>빌라,투룸</p>
+							</router-link>
 						</div>
 					</article>
 					<article>
 						<div class="pic">
-							<v-icon>mdi-home-floor-1</v-icon>
-							<p>원룸</p>
+							<router-link to="/oneroom">
+								<v-icon>mdi-home-floor-1</v-icon>
+								<p>원룸</p>
+							</router-link>
 						</div>
 					</article>
 					<article>
 						<div class="pic">
-							<v-icon>mdi-home-city</v-icon>
-							<p>오피스텔</p>
+							<router-link to="/officetel">
+								<v-icon>mdi-home-city</v-icon>
+								<p>오피스텔</p>
+							</router-link>
 						</div>
 					</article>
 					<article>
 						<div class="pic">
-							<v-icon>mdi-account-multiple</v-icon>
-							<p>룸메구하기</p>
+							<router-link to="/roommate">
+								<v-icon>mdi-account-multiple</v-icon>
+								<p>룸메구하기</p>
+							</router-link>
 						</div>
 					</article>
 					<article>
 						<div class="pic">
-							<v-icon>mdi-bullhorn</v-icon>
-							<p>공지사항</p>
+							<router-link to="/gongzi">
+								<v-icon>mdi-bullhorn</v-icon>
+								<p>공지사항</p>
+							</router-link>
 						</div>
 					</article>
 
@@ -229,12 +239,21 @@ import GongziPreview from '../components/gongzi/GongziPreview.vue'
   }
 </script>
 
+
+
+
+
 <style scoped>
-	@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
 
 	* {
-		/*width: 100%;*/
 		font-family: 'Noto Sans KR', sans-serif;
+	}
+
+	a, em, strong, b {
+		font-style: normal;
+		font-weight: normal;
+		text-decoration: none;
+		color: #000;
 	}
 
 	/*.main_wrap {*/
@@ -456,11 +475,26 @@ import GongziPreview from '../components/gongzi/GongziPreview.vue'
 	.store {
 		width: 1400px;
 		margin: 0 auto;
-		padding: 100px 0;
+		padding: 200px 0;
 		/*margin-bottom: 300px;*/
+		position: relative;
+		/*border: 1px solid red;*/
 	}
 
-	.store::after, .store .title_bg::after, .store .product::after {
+	.store_bg::after {
+		display: block;
+		content: '';
+		background: #adf5f6;
+		border-radius: 0 0 30px 0;
+		width: 64%;
+		height: 500px;
+		position: absolute;
+		top: 50%;
+		left: 0%;
+		transform: translate(-56%, -50%);
+	}
+
+	.store::after, .store .title_bg::after, .store .product::after, .store .product .itemImg::after {
 		display: block;
 		content: '';
 		clear: both;
@@ -469,9 +503,23 @@ import GongziPreview from '../components/gongzi/GongziPreview.vue'
 	.store .title_bg {
 		float: left;
 		width: 23%;
-		/*margin-right: 100px;*/
-		/*border: 1px solid red;*/
 		box-sizing: border-box;
+		position: relative;
+		z-index: 1;
+		margin-top: 80px;
+	}
+
+	.store .title_bg h1 {
+		font-weight: bold;
+	}
+
+	.store .title_bg p {
+
+	}
+
+	.store .title_bg .v-btn {
+		margin-top: 50px;
+		border-radius: 20px;
 	}
 
 	.store .product {
@@ -479,16 +527,68 @@ import GongziPreview from '../components/gongzi/GongziPreview.vue'
 		width: 77%;
 		/*border: 1px solid red;*/
 		box-sizing: border-box;
+		position: relative;
+		z-index: 1;
+		border-radius: 20px;
 	}
 
-	.store .product img {
-		/*width: 12%;*/
+	.store .product .itemImg {
+		float: left;
 		width: calc(94%/4);
 		margin-right: 2%;
+		box-shadow: 5px 5px 8px #ddd;
+		border-radius: 20px;
 	}
 
-	.store .product img:last-child {
+	.store .product .itemImg:last-child {
 		margin-right: 0;
+	}
+
+	.store .product .itemImg img {
+		width: 100%;
+		border-radius: 20px 20px 0 0;
+	}
+
+	.store .product .itemImg .itemText {
+		background: #fff;
+		padding: 15px 20px;
+		border-radius: 0 0 20px 20px;
+	}
+
+	.store .product .itemImg .itemText h2 {
+		line-height: 0.8;
+	}
+
+	.store .product .itemImg .itemText h2 span:first-child {
+		color: #aaa;
+		font-size: 13px;
+		display: block;
+		margin-top: 2px;
+	}
+
+	.store .product .itemImg .itemText h2 span:last-child {
+		/*border: 1px solid red;*/
+		color: #333;
+		font-size: 15px
+
+	}
+
+	.store .product .itemImg .itemText p {
+		color: #000;
+		font-size: 18px;
+		font-weight: bold;
+		margin-bottom: 3px;
+	}
+
+	.store .product .itemImg .itemText strong {
+		font-size: 13px;
+		color: #5a92db;
+	}
+
+	.store .product .itemImg .itemText > span {
+		color: #888;
+		font-size: 13px;
+		font-weight: bold;
 	}
 
 	/* 아이콘 */
@@ -499,7 +599,7 @@ import GongziPreview from '../components/gongzi/GongziPreview.vue'
 		box-sizing: border-box;
 		transition: 0.5s;
 		background-color: rgba(238, 238, 238, 0.45);
-		margin: 50px 0;
+		margin: 150px 0;
 		/*border: 1px solid red;*/
 	}
 
@@ -545,15 +645,16 @@ import GongziPreview from '../components/gongzi/GongziPreview.vue'
 		text-align: center;
 	}
 
-	#icon_wrap .inner .icon article .pic > i {
+	#icon_wrap .inner .icon article .pic i {
 		font-size: 40px;
 		color: #777;
 		transition: .3s;
 	}
 
-	#icon_wrap .inner .icon article .pic > p {
-		font-size: 12px;
+	#icon_wrap .inner .icon article .pic p {
+		font-size: 13px;
 		margin-top: 10px;
+		color: #000;
 	}
 
 	#icon_wrap .inner .icon article .pic:hover i {
