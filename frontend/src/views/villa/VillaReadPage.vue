@@ -1,6 +1,6 @@
 <template>
     <div>
-        <villa-read-form :villaNo="villaNo"/><br/>
+        <villa-read-form :villaNo="villaNo"/>
         <v-btn class="button_place" color="white" v-if="isLogin" :to="{ name: 'VillaModifyPage', params: { villaNo: this.villaNo } }">
             내용 수정
         </v-btn>
@@ -73,9 +73,9 @@ export default {
 }
 
 .button_place {
-    left: 68%;
+    left: 59.3%;
     margin-right: 1%;
-    margin-top: -9%;
+    margin-top: 1%;
     /*margin-left: 135px;*/
     
 }

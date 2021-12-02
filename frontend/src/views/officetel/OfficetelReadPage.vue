@@ -73,9 +73,9 @@ export default {
 }
 
 .button_place {
-    left: 68%;
+    left: 59.3%;
     margin-right: 1%;
-    margin-top: -9%;
+    margin-top: 1%;
     /*margin-left: 135px;*/
     
 }

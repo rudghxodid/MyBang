@@ -5,7 +5,7 @@
       </tr>
       <table >
           <tr>
-              <th align="center" width="100">건물 유형</th>
+              <th align="center" width="160">건물 유형</th>
               <th align="center" width="350">매물 이름</th>
               <th align="center" width="650">매물 주소</th>
               <th align="center" width="240">작성자</th>
@@ -64,11 +64,6 @@ export default {
         agentOfficetel: {
             type: Array,
             required: true
-        },
-        pageSize: {
-            type: Number,
-            required: false,
-            default: 8
         },
     },
     computed: {
