@@ -3,40 +3,30 @@
         <v-stepper v-model="e1">
                 <form @submit.prevent="onSubmit">
                     <v-stepper-header>
-                    <v-stepper-step :complete="e1 > 1" step="1">매물 종류 선택</v-stepper-step>
+                    <v-stepper-step color="secondary" :complete="e1 > 1" step="1">매물 종류 선택</v-stepper-step>
                     <v-divider></v-divider>
-                    <v-stepper-step :complete="e1 > 2" step="2">중개사무소 정보</v-stepper-step>
+                    <v-stepper-step color="secondary" :complete="e1 > 2" step="2">중개사무소 정보</v-stepper-step>
                     <v-divider></v-divider>
-                    <v-stepper-step :complete="e1 > 3" step="3">매물 입력사항(1)</v-stepper-step>
+                    <v-stepper-step color="secondary" :complete="e1 > 3" step="3">매물 입력사항(1)</v-stepper-step>
                     <v-divider></v-divider>
-                    <v-stepper-step :complete="e1 > 4" step="4">매물 입력사항(2)</v-stepper-step>
+                    <v-stepper-step color="secondary" :complete="e1 > 4" step="4">매물 입력사항(2)</v-stepper-step>
                     <v-divider></v-divider>
-                    <v-stepper-step :complete="e1 > 4" step="5">매물 입력사항(3)</v-stepper-step>
+                    <v-stepper-step color="secondary" :complete="e1 > 4" step="5">매물 입력사항(3)</v-stepper-step>
                      <v-divider></v-divider>
-                    <v-stepper-step step="6">매물 입력사항(4)</v-stepper-step>
+                    <v-stepper-step color="secondary" step="6">매물 입력사항(4)</v-stepper-step>
                     </v-stepper-header>
                     <v-stepper-items>
 
                         <v-stepper-content step="1">
-                            <v-card class="mb-12" color="" height="150px">
-                                    <!--
-                                    <input type="radio" value="villa" v-model="serviceType">
-                                        <label for="빌라">빌라</label>
-                                    <input type="radio" value="oneroom" v-model="serviceType">
-                                        <label for="원룸">원룸</label>
-                                    <input type="radio" value="officetel" v-model="serviceType">
-                                        <label for="오피스텔">오피스텔</label>
-                                        -->
-                                <v-col align="center">
-                                    <v-btn   value="villa" v-model="serviceType">빌라</v-btn>
-                                    <v-btn  value="officetel" v-model="serviceType">오피스텔</v-btn>
-                                    <v-btn  value="oneroom" v-model="serviceType">원룸</v-btn>
-                                    <span>{{serviceType}}</span>
-                                </v-col>
-                                    
+                            <v-card color="" height="100px" class="px-0" fluid>
+                                <v-radio-group v-model="serviceType">
+                                    <v-radio value="villa" label="villa"></v-radio>
+                                    <v-radio value="oneroom" label="oneroom"></v-radio>
+                                    <v-radio value="officetel" label="officetel"></v-radio>
+                                </v-radio-group>
                             </v-card>
                                 
-                            <v-btn color="primary" @click="e1 = 2">다음</v-btn>
+                            <v-btn class="mt-3 mb-2" color="secondary" @click="e1 = 2">다음</v-btn>
                         </v-stepper-content>
 
                         <v-stepper-content step="2">
@@ -64,9 +54,9 @@
                                 <v-text-field placeholder="" v-model="agentMobile" required solo class="mt-3"></v-text-field>
                             </v-card>
 
-                            <v-btn color="primary" @click="e1 = 3">다음</v-btn>
+                            <v-btn class="mb-5" color="secondary" @click="e1 = 3">다음</v-btn>
 
-                            <v-btn text @click="e1 = 1">이전</v-btn>
+                            <v-btn class="mb-5" text @click="e1 = 1">이전</v-btn>
                         </v-stepper-content>
 
                         <v-stepper-content step="3">
@@ -148,9 +138,9 @@
                                     </div>
                             </v-card>
                                 
-                            <v-btn color="primary" @click="e1 = 4">다음</v-btn>
+                            <v-btn class="mb-5" color="secondary" @click="e1 = 4">다음</v-btn>
 
-                            <v-btn text @click="e1 = 2">이전</v-btn>
+                            <v-btn class="mb-5" text @click="e1 = 2">이전</v-btn>
                         </v-stepper-content>
 
                         <v-stepper-content step="4">
@@ -166,13 +156,13 @@
                                 <span>관리비 포함 항목</span>
                                     <div class="mx-1" >
                                         <input type="checkbox" value="전기세" v-model="manageCostIncChk">
-                                            <label for="전기세">전기세</label>
+                                            <label for="전기세" class="check">전기세</label>
                                         <input type="checkbox" value="수도" v-model="manageCostIncChk">
-                                            <label for="수도">수도</label>
+                                            <label for="수도" class="check">수도</label>
                                         <input type="checkbox" value="가스" v-model="manageCostIncChk">
-                                            <label for="가스">가스</label>
+                                            <label for="가스" class="check">가스</label>
                                         <input type="checkbox" value="인터넷" v-model="manageCostIncChk">
-                                            <label for="인터넷">인터넷</label>
+                                            <label for="인터넷" class="check">인터넷</label>
                                         <input type="checkbox" value="TV" v-model="manageCostIncChk">
                                             <label for="TV">TV</label>
                                     </div><br>
@@ -184,31 +174,33 @@
                                     <span>옵션</span>
                                         <div class="mx-1">
                                             <input type="checkbox" value="에어컨" v-model="optionsChk">
-                                                <label for="에어컨">에어컨</label>
+                                                <label for="에어컨" class="check">에어컨</label>
                                             <input type="checkbox" value="냉장고" v-model="optionsChk">
-                                                <label for="냉장고">냉장고</label>
+                                                <label for="냉장고" class="check">냉장고</label>
                                             <input type="checkbox" value="세탁기" v-model="optionsChk">
-                                                <label for="세탁기">세탁기</label>
+                                                <label for="세탁기" class="check">세탁기</label>
                                             <input type="checkbox" value="가스레인지" v-model="optionsChk">
-                                                <label for="가스레인지">가스레인지</label>
-                                            <input type="checkbox" value="전자레인지" v-model="optionsChk">
-                                                <label for="전자레인지">전자레인지</label>
+                                                <label for="가스레인지" class="check">가스레인지</label>
+                                            <input type="checkbox" value="인덕션" v-model="optionsChk">
+                                                <label for="인덕션" class="check">인덕션</label>
                                         </div>
                                         <div class="mx-1">
-                                            <input type="checkbox" value="인덕션" v-model="optionsChk">
-                                                <label for="인덕션">인덕션</label>
-                                            <input type="checkbox" value="싱크대" v-model="optionsChk">
-                                                <label for="싱크대">싱크대</label>
-                                            <input type="checkbox" value="책상" v-model="optionsChk">
-                                                <label for="책상">책상</label>
-                                            <input type="checkbox" value="책장" v-model="optionsChk">
-                                                <label for="책장">책장</label>
-                                            <input type="checkbox" value="침대" v-model="optionsChk">
-                                                <label for="침대">침대</label>
+                                            <input type="checkbox" value="전자레인지" v-model="optionsChk">
+                                                <label for="전자레인지" class="check">전자레인지</label>
                                             <input type="checkbox" value="옷장" v-model="optionsChk">
-                                                <label for="옷장">옷장</label>
+                                                <label for="옷장" class="check">옷장</label>
+                                            <input type="checkbox" value="책상" v-model="optionsChk">
+                                                <label for="책상" class="check">책상</label>
+                                            <input type="checkbox" value="책장" v-model="optionsChk">
+                                                <label for="책장" class="check">책장</label>
+                                            <input type="checkbox" value="침대" v-model="optionsChk">
+                                                <label for="침대" class="check">침대</label>
+                                        </div>
+                                        <div class="mx-1">
+                                            <input type="checkbox" value="싱크대" v-model="optionsChk">
+                                                <label for="싱크대" class="check">싱크대</label>
                                             <input type="checkbox" value="신발장" v-model="optionsChk">
-                                                <label for="신발장">신발장</label>
+                                                <label for="신발장" >신발장</label>
                                         </div> 
                                 
                                     <span>반려동물</span>
@@ -222,9 +214,9 @@
                                         </div>  
                             </v-card>
                                 
-                            <v-btn color="primary" @click="e1 = 5">다음</v-btn>
+                            <v-btn class="mb-5" color="secondary" @click="e1 = 5">다음</v-btn>
 
-                            <v-btn text @click="e1 = 3">이전</v-btn>
+                            <v-btn class="mb-5" text @click="e1 = 3">이전</v-btn>
                         </v-stepper-content>
 
                         <v-stepper-content step="5">
@@ -254,9 +246,9 @@
                                     </div> 
                             </v-card>
 
-                            <v-btn color="primary" @click="e1 = 6">다음</v-btn>
+                            <v-btn class="mb-5" color="secondary" @click="e1 = 6">다음</v-btn>
 
-                            <v-btn text @click="e1 = 4">이전</v-btn>
+                            <v-btn class="mb-5" text @click="e1 = 4">이전</v-btn>
                         </v-stepper-content>
 
                         <v-stepper-content step="6">
@@ -272,7 +264,10 @@
                                         <v-textarea placeholder="매물에 관한 내용을 상세히 적어주세요" v-model="description" required solo class="mt-3"></v-textarea>
                                     </div> 
                             </v-card>
-                            <v-btn text @click="e1 = 5">이전</v-btn>
+                            <v-btn class="mb-5" text @click="e1 = 5">이전</v-btn>
+                            <div class="mt-3">
+                                <v-btn class="button_place" color="secondary" tile large button type="submit">방 등록하기</v-btn>
+                            </div>
                         </v-stepper-content>
                     
                     <!-- 자동으로 입력되는 부분 --> 
@@ -310,10 +305,6 @@
                         <div class="mx-1">
                             <v-text-field placeholder="" v-model="agentId" required solo class="mt-3" readonly></v-text-field>
                         </div> 
-                    </div>
-
-                    <div class="mt-3">
-                        <v-btn class="upload-button" color="white" tile large button type="submit">방 등록하기</v-btn>
                     </div>
                 </v-stepper-items>
             </form>
@@ -480,8 +471,15 @@ export default {
 </script>
 
 <style scoped>
-
-.upload-button {
-    right: 100px;
+.button_place {
+    left: 85%;
+    margin-right: 1%;
+    margin-top: -6%;
+    /*margin-left: 135px;*/ 
 }
+.check {
+    width: 93px;
+    margin-right: 20px;
+}
+
 </style>
