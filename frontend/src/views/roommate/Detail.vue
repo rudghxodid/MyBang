@@ -1,7 +1,7 @@
 <template>
 	<div class="detail_wrap">
 		<div class="detail_inner">
-			<h1>커뮤니티</h1>
+<!--			<h1>룸메 구하기</h1>-->
 			<div class="detail_title">
 				<h1>{{ this.board.title }}</h1>
 				<div class="detail_subtitle">
@@ -24,6 +24,8 @@
 				<b-button @click="onClickListBtn" class="btn_list">목록</b-button>
 			</div>
 
+			<div class="roommate_comment">
+			<h1>댓글</h1>
 			<div class="int-area">
 				<input
 								type="text"
@@ -41,23 +43,25 @@
 					<!-- 닉네임 -->
 					<span class="commentNick">{{ cl.member.userId }}</span>
 
+					<!-- 댓글 작성일 -->
+					<span class="commentTime">{{ cl.createdDate }}</span>
+
 					<!-- 댓글 내용 -->
-					<div v-if="cl.edit === true" style="display: inline-block">
-						<input v-model="cl.editContent" style="border: 1px solid black" @keyup="onKeyupEditInput($event, cl.id, index)" ref="modifyFocus">
+					<div v-if="cl.edit === true" class="comment_editInput">
+						<input v-model="cl.editContent" style="border: 1px solid #ccc;" @keyup="onKeyupEditInput($event, cl.id, index)" ref="modifyFocus">
 					</div>
 					<div v-else>
 						<p class="commentContent">{{ cl.content }}</p>
 					</div>
 
-					<!-- 댓글 작성일 -->
-					<span class="commentTime">{{ cl.createdDate }}</span>
+
 
 					<!-- 저장 및 수정 삭제 버튼 -->
-					<div v-if="cl.edit === true" style="display: inline-block">
+					<div v-if="cl.edit === true" style="display: inline-block" class="comment_btn comment_create">
 						<span @click="onClickCommentSave(cl.id, index)">저장</span>
 						<span @click="onClickCancleBtn(cl.id, index)">취소</span>
 					</div>
-					<div v-else-if="!cl.edit && cl.member.userId === userId">
+					<div v-else-if="!cl.edit && cl.member.userId === userId" class="comment_btn comment_edit">
 						<span @click="onClickCommentModify(cl.id, index)">수정</span>
 						<span @click="onClickCommentDelete(cl.id)">삭제</span>
 					</div>
@@ -66,6 +70,7 @@
 <!--					<b-button @click="onClickDeleteBtn" v-if="userId === board.writerName" class="btn_delete">삭제</b-button>-->
 
 				</div>
+			</div>
 			</div>
 		</div>
 	</div>
@@ -273,8 +278,8 @@
 
 	.detail_wrap {
 		width: 1200px;
-		margin-top: 100px;
 		margin: 0 auto;
+		padding: 100px 0;
 		font-family: 'Gowun Dodum', sans-serif;
 	}
 
@@ -372,9 +377,10 @@
 
 
 	.content-detail-comment {
-		border-top: 1px solid black;
+		border-bottom: 1px solid #ccc;
 		margin-top: 1rem;
-		padding: 10px;
+		padding: 3px;
+
 	}
 
 
@@ -382,45 +388,93 @@
 		font-size: 33px;
 		font-weight: bold;
 		width: 100%;
-		color: rgb(229, 119, 175);
+		color: #000;
 	}
 
 	.detail_inner > h1 {
 		font-size: 22px;
 	}
 
+	/* 댓글 */
+
+	.roommate_comment h1 {
+		font-size: 19px;
+		margin-top: 60px;
+	}
+
 	.int-area {
-		margin-top: 20px;
+		margin: 15px 0 40px 0;
 		width: 100%;
+		border: 1px solid #ddd;
 	}
 
 	.int-area input {
 		padding: 10px;
 		float: left;
-		width: 95%;
+		width: 94%;
 	}
 
 	.int-area > button {
+		width: 6%;
 		padding: 10px;
-		color: #fff;
-		background-color: rgb(229, 139, 185);
+		color: #91b8e0;
+		font-weight: bold;
+		/*background-color: #bbb;*/
 	}
 
+	.content-detail-comment::after {
+		display: block;
+		content: '';
+		clear: both;
+	}
 
 	.commentNick {
 		font-weight: bold;
-		margin-right: 20px;
-		margin-bottom: 5px;
-		display: block;
+		/*margin-right: 20px;*/
+		/*border: 1px solid red;*/
+		/*margin-bottom: 5px;*/
+		/*display: block;*/
+		background: linear-gradient(to top, #a3f5a8 50%, transparent 50%);
+	}
+
+	.commentTime {
+		float: right;
+		font-size: 14px;
+		/*border: 1px solid red;*/
+	}
+
+	.comment_editInput {
+		margin-top: 10px;
+		/*float: left;*/
+
+	}
+
+	.comment_editInput > input {
+		padding: 5px;
+		width: 100%;
 	}
 
 	.commentContent {
 		font-size: 18px;
-		width: 80%;
-		float: left;
+		margin: 10px 0;
+		/*float: left;*/
+		/*border: 1px solid red;*/
 	}
 
-	.commentTime {
-
+	.comment_btn {
+		float: right;
+		margin-top: 10px;
+		font-weight: bold;
+		font-size: 15px;
 	}
+
+	.comment_btn > span:first-child {
+		margin-right: 5px;
+	}
+
+	.comment_btn > span:last-child {
+		color: #dc6868;
+	}
+
+
 </style>

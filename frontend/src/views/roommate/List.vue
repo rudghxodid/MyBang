@@ -1,8 +1,7 @@
 <template>
 
 	<div class="list_wrap">
-		<a href="/">간다 홈으로</a>
-		<h1>구한다 룸메</h1>
+		<h1>룸메 구하기</h1>
 
 		<table class="table table-hover">
 
@@ -36,11 +35,11 @@
 		<div class="btn_wrap">
 			<b-button @click="onClickWriteBtn">글쓰기</b-button>
 		</div>
-		<b-pagination aria-controls="my-table" align="center" first-class="first" prev-class="prev" next-class="next"
-          last-class="last"
-          v-model="currentPage" :total-rows="totalItems" :per-page="perPage"
-          @change="handlerPagenation">
-		</b-pagination>
+<!--		<b-pagination aria-controls="my-table" align="center" first-class="first" prev-class="prev" next-class="next"-->
+<!--          last-class="last"-->
+<!--          v-model="currentPage" :total-rows="totalItems" :per-page="perPage"-->
+<!--          @change="handlerPagenation">-->
+<!--		</b-pagination>-->
 
 	</div>
 
@@ -95,6 +94,8 @@
 </script>
 
 <style scoped>
+
+
 	.list_wrap {
 		width: 1200px;
 		/*height: 100vh;*/
@@ -104,7 +105,8 @@
 		align-items: center;
 		margin: 0 auto;
 		/*border: 1px solid red;*/
-
+		margin-top: 80px;
+		padding-bottom: 80px;
 		font-family: 'Gowun Dodum', sans-serif;
 	}
 
@@ -118,7 +120,8 @@
 		font-size: 33px;
 		font-weight: bold;
 		width: 100%;
-		color: red;
+		color: #000;
+		font-family: 'Noto Sans KR', sans-serif;
 	}
 
 	/*테이블*/
@@ -127,10 +130,19 @@
 		width: 100%;
 		/*table-layout: fixed;*/
 		text-align: center;
+		border-top: 1px solid #555;
+		/*border-collapse: collapse;*/
+
 	}
 
 	table th, td {
-		padding: 10px;
+		padding: 20px;
+		/*border-bottom: 1px solid #444444;*/
+	}
+
+	table thead th {
+		border-bottom:none;
+		background-color: #f5f5f5;
 	}
 
 	table thead tr th:nth-child(1) {
@@ -153,6 +165,15 @@
 		width: 7%;
 	}
 
+	tbody td {
+		padding: 20px 0;
+	}
+
+	table tbody tr:last-child {
+		border-bottom: 1px solid #555;
+
+	}
+
 	table tbody tr td:nth-child(2) {
 		text-align: justify;
 
@@ -169,19 +190,22 @@
 		width: 100%;
 	}
 
-	b-button {
-		width: 90px;
-		height: 35px;
-		color: #555;
-		background-color: rgb(222, 221, 221);
-		border: none;
-		border-radius: 5px;
-		font-size: 18px;
-		line-height: 35px;
-		text-align: center;
+	.btn {
 		float: right;
-		font-family: 'Gowun Dodum', sans-serif;
 	}
+
+	/*b-button {*/
+	/*	width: 90px;*/
+	/*	height: 35px;*/
+	/*	color: #555;*/
+	/*	background-color: rgb(222, 221, 221);*/
+	/*	border: none;*/
+	/*	border-radius: 5px;*/
+	/*	font-size: 18px;*/
+	/*	line-height: 35px;*/
+	/*	text-align: center;*/
+	/*	font-family: 'Gowun Dodum', sans-serif;*/
+	/*}*/
 
 	.pagination {
 		margin-top: 50px;

@@ -44,6 +44,7 @@ export default {
 	ul {
 	  list-style: none;
 	  cursor: pointer;
+		padding-left: 0;
 	}
 
 	li {
