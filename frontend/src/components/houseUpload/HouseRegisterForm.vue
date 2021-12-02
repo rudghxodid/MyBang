@@ -91,10 +91,14 @@
 
 								<v-card-actions>
 									<v-spacer></v-spacer>
-									<v-btn v-if="!completeImage" @click="checkImage" class="mt-5 ml-3 secondary">확인</v-btn>
-									<v-btn v-else class="mt-5 ml-3 secondary--text" icon>
-										<v-icon>check</v-icon>
-									</v-btn>
+									<v-progress-circular v-if="delayImage" indeterminate color="secondary"></v-progress-circular>
+									<div v-else>
+										<v-btn v-if="!completeImage" @click="checkImage" class="mt-5 ml-3 secondary">확인</v-btn>
+										<v-btn v-else class="mt-5 ml-3 secondary--text" icon>
+											<v-icon>check</v-icon>
+										</v-btn>
+									</div>
+									
 								</v-card-actions>
 							
 							</v-card>
@@ -375,7 +379,8 @@ export default {
 			petcheck: ['가능', '불가능', '고양이만', '확인필요'],
 			completeAgentAddr: false,
 			completeAddr: false,
-			completeImage: false
+			completeImage: false,
+			delayImage: false
 		}
 	},
 	computed: {
@@ -400,29 +405,31 @@ export default {
 				for (let i = 0; i < this.files.length; i++) {
 					this.urls.push(URL.createObjectURL(this.files[i]))
 				}
-
+				
 				this.sendImg()
+
 			}catch(e) {
 				this.urls = []
 				this.imageStr = ''
 				this.completeImage = false
 			}
 		},
-		sendImg() {
+		async sendImg() {
 			const formData = new FormData()
 
 			formData.set('key', 'ca442ada99076d1fda16e811a57f9d6d')
 			
+			this.delayImage = true
+
 			for (let i = 0; i < this.files.length; i++) {
 				formData.append('image', this.files[i])
-
-				axios.post(`https://api.imgbb.com/1/upload`, formData).then(res => {
+				
+				await axios.post(`https://api.imgbb.com/1/upload`, formData).then(res => {
 					console.log(res.data.data.display_url)
 					this.imageStr += res.data.data.display_url + ','
-
-					alert('확인버튼을 눌러주세요.')
 				})
 			}
+			this.delayImage = false
 		},
 		checkImage () {
 			this.image = this.imageStr.slice(0, -1)
