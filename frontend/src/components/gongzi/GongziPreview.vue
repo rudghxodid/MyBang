@@ -9,27 +9,30 @@
 
 
 <script>
-import { mapActions, mapState } from 'vuex'
+import axios from 'axios'
 
 export default {
   data () {
     return {
+      gongzis: [],
       recentGongzis: []
     }
   },
   computed: {
-    ...mapState(['gongzis'])
+
   },
   mounted () {
-    if (this.gongzis.length > 5) {
-      this.recentGongzis = this.gongzis.slice(0, 5)
-    } else {
-      this.recentGongzis = this.gongzis
-    }
-    console.log(this.recentGongzis)
+    axios.get("http://localhost:7777/gongzi/list").then(res => {
+      this.gongzis = res.data
+
+      if (this.gongzis.length > 5) {
+        this.recentGongzis = this.gongzis.slice(0, 5)
+      } else {
+        this.recentGongzis = this.gongzis
+      }
+    })
   },
   methods: {
-    ...mapActions(['fetchGongziList']),
     gongziRead (gongziNo) {
       this.$router.push(
 				{ name: 'GongziReadPage', query: { gongziNo: gongziNo } }

@@ -1,69 +1,85 @@
 <template>
   <v-container>
-    <v-card class="pa-5">
-      <v-card-title>회원정보 변경</v-card-title>
-      <v-list-item two-line>
-          <v-list-item-content>
-            <v-list-item-title>아이디</v-list-item-title>
-            <v-list-item-subtitle>{{ userId }}</v-list-item-subtitle>
-          </v-list-item-content>
-        </v-list-item>
-        <v-list-item two-line>
-          <v-list-item-content>
-            <v-list-item-title>이름</v-list-item-title>
-            <v-list-item-subtitle>{{ userInfo.name }}</v-list-item-subtitle>
-          </v-list-item-content>
-        </v-list-item>
-        <v-list-item two-line>
-          <v-list-item-content>
-            <v-list-item-title>생일</v-list-item-title>
-            <v-list-item-subtitle>{{ userInfo.birth }}</v-list-item-subtitle>
-          </v-list-item-content>
-        </v-list-item>
-        <v-list-item two-line>
-          <v-list-item-content>
-            <v-list-item-title>성별</v-list-item-title>
-            <v-list-item-subtitle>{{ userInfo.sex }}</v-list-item-subtitle>
-          </v-list-item-content>
-        </v-list-item>
-        <v-list-item two-line>
-          <v-list-item-content>
-            <v-list-item-title>비밀번호</v-list-item-title>
-            <v-text-field v-model="password" type="password" :rules="pwRules" class="mr-3"></v-text-field>
-            <v-text-field v-model="checkPassword" type="password" :rules="matchPwRules" class="ml-3"></v-text-field>
-          </v-list-item-content>
-        </v-list-item>
-        <v-list-item two-line>
-          <v-list-item-content>
-            <v-list-item-title>전화번호</v-list-item-title>
-            <v-text-field v-model="userInfo.phone" :rules="phoneRules"></v-text-field>
-          </v-list-item-content>
-        </v-list-item>
-        <v-list-item two-line>
-          <v-list-item-content>
-            <v-list-item-title>이메일</v-list-item-title>
-            <v-text-field v-model="userInfo.email" :rules="emailRules"></v-text-field>
-            <v-btn @click="checkEmail">이메일 인증</v-btn>
-          </v-list-item-content>
-        </v-list-item>
-     
-      <v-card-actions>
-        <check-delete-user-info></check-delete-user-info>
+    <v-card class="pa-10">
+      <div class="d-flex mb-5">
+        <h1 v-if="!modify">회원정보 보기</h1>
+        <h1 v-else>회원정보 변경</h1>
         <v-spacer></v-spacer>
-        <v-btn @click="goHome">메인으로</v-btn>
-        <v-spacer></v-spacer>
-        <v-btn @click="modifyUserInfo" @keydown.enter="modifyUserInfo">수정</v-btn>
-      </v-card-actions>
-    </v-card>
+        <v-switch v-model="modify" label="회원정보 변경" hide-details
+          class="mt-n1" color="secondary"></v-switch>
+      </div>
+      
+      <v-card v-if="!modify" flat>
+        <span>아이디</span>
+        <v-text-field v-model="userId" solo class="mt-3" readonly></v-text-field>
 
+        <span>이름</span>
+        <v-text-field v-model="userInfo.name" solo class="mt-3" readonly></v-text-field>
+
+        <span>생일</span>
+        <v-text-field v-model="userInfo.birth" solo class="mt-3" readonly></v-text-field>
+
+        <span>성별</span>
+        <v-text-field v-model="userInfo.sex" solo class="mt-3" readonly></v-text-field>
+
+        <span>전화번호</span>
+        <v-text-field v-model="userInfo.phone" solo class="mt-3" readonly></v-text-field>
+
+        <span>이메일</span>
+        <v-text-field v-model="userInfo.email" solo class="mt-3" readonly></v-text-field>
+      </v-card>
+
+      <v-card v-else flat>
+        <span>아이디</span>
+        <v-text-field v-model="userId" solo class="mt-3" readonly></v-text-field>
+
+        <span>이름</span>
+        <v-text-field v-model="userInfo.name" solo class="mt-3" readonly></v-text-field>
+
+        <span>생일</span>
+        <v-text-field v-model="userInfo.birth" solo class="mt-3" readonly></v-text-field>
+
+        <span>성별</span>
+        <v-text-field v-model="userInfo.sex" solo class="mt-3" readonly></v-text-field>
+
+        <span>전화번호</span>
+        <v-text-field v-model="userInfo.phone" solo class="mt-3" required></v-text-field>
+
+        <span>이메일</span>
+				<div class="d-flex mt-3">
+					<v-text-field v-model="userInfo.email" :rules="emailRules" required
+						solo @change="changeEmail"></v-text-field>
+					<v-btn v-if="!completeEmail" @click="checkEmail" class="mt-1 ml-2 white--text secondary">인증</v-btn>
+					<v-btn v-else @click="checkEmail" class="mt-1 ml-2 secondary--text" icon>
+						<v-icon>check</v-icon>
+					</v-btn>
+				</div>
+
+        <span>비밀번호</span>
+        <v-text-field v-model="password" type="password" :rules="pwRules" required
+          solo class="mt-3"></v-text-field>
+
+        <span>비밀번호 확인</span>
+        <v-text-field v-model="checkPassword" type="password" :rules="matchPwRules" required
+          solo class="mt-3" ></v-text-field>
+        
+        <v-card-actions>
+          <check-delete-user-info></check-delete-user-info>
+          <v-spacer></v-spacer>
+          <v-btn @click="modifyUserInfo" @keydown.enter="modifyUserInfo" color="secondary">수정</v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-card>
+    
     <v-dialog v-model="emailDialog" max-width="400">
-      <v-card>
+      <v-card class="pa-3">
         <v-card-title>메일함을 확인해주세요.</v-card-title>
         <v-card-text>인증번호 6자리를 입력해주세요.</v-card-text>
-        <v-text-field v-model="code" class="mx-5" label="인증번호"></v-text-field>
+        <v-text-field v-model="code"
+          label="인증번호" class="mx-5" solo></v-text-field>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn @click="ckeckCode">확인</v-btn>
+          <v-btn @click="ckeckCode" class="secondary">확인</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -92,7 +108,8 @@ export default {
       emailDialog: false,
       code: null,
       randomCode: null,
-      completeEmail: false
+      completeEmail: true,
+      modify: false
     }
   },
   computed: {
@@ -113,14 +130,12 @@ export default {
           alert('회원정보가 수정되었습니다.')
 
           this.fetchUserInfo(this.userId)
+          this.modify = false
         })
       } else {
         alert('이메일 인증을 완료해주세요.')
       }
       
-    },
-    goHome () {
-      this.$router.push({ name: 'Home' })
     },
     checkEmail () {
       const email = this.userInfo.email
@@ -148,7 +163,18 @@ export default {
       } else {
         alert('인증번호가 일치하지 않습니다.')
       }
-    }
+    },
+    changeEmail () {
+			this.completeEmail = false
+		}
   }
 }
 </script>
+
+<style scoped>
+h1 {
+  font-size: 25px;
+  font-weight: bold;
+}
+</style>
+

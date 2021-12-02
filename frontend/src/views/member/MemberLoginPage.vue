@@ -1,7 +1,7 @@
 <template>
     <div>
         <div align="center">
-            <h2>로그인</h2>
+            <h1>로그인</h1>
         </div>
         <member-login-form @submit="onSubmit"/>
         <v-spacer></v-spacer>
@@ -86,3 +86,14 @@ export default {
     }
 }
 </script>
+
+
+<style scoped>
+h1 {
+    font-size: 33px;
+    font-weight: bold;
+    width: 100%;
+    color: #000;
+    margin-top: 50px;
+}
+</style>

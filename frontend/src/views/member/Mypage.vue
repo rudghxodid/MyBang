@@ -1,24 +1,27 @@
 <template>
   <v-container>
-    <v-row>
+    <v-row class="my-10">
       <v-col>
         <user-activity></user-activity>
       </v-col>
       <v-col>
-        <v-card v-if="!successPw" class="pa-10 grey lighten-4" width="500">
-          <v-card-title>
-            회원정보를 확인하려면 비밀번호를 입력해주세요.
-          </v-card-title>
-
-          <span>비밀번호</span>
+        <v-container v-if="!successPw" >
+          <v-card class="pa-10" width="500">
+          <h1>
+            회원정보 확인/변경
+          </h1>
+          <br>
+          <span>비밀번호를 입력해주세요.</span>
           <v-text-field v-model="password" type="password" :rules="pwRules" 
             solo class="mt-3"></v-text-field>
 
           <v-card-actions>
             <v-spacer></v-spacer>
-            <v-btn @click="checkPw" @keydown.enter="checkPw">확인</v-btn>
+            <v-btn @click="checkPw" color="secondary">확인</v-btn>
           </v-card-actions>
         </v-card>
+        </v-container>
+        
         <user-info v-else></user-info>
       </v-col>
       
@@ -67,3 +70,11 @@ export default {
   }
 }
 </script>
+
+
+<style scoped>
+h1 {
+  font-size: 25px;
+  font-weight: bold;
+}
+</style>

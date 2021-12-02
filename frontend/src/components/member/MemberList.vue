@@ -2,7 +2,7 @@
 	<v-card flat>
 		<v-card-actions>
 			<v-spacer></v-spacer>
-			<v-btn @click="GongziList" class="ma-3">공지목록</v-btn>
+			<v-btn @click="GongziList" class="ma-3" outlined>공지목록</v-btn>
 		</v-card-actions>
 		<v-simple-table>
 			<template v-slot:default>
@@ -44,13 +44,13 @@
 			<template v-slot:activator="{ on }">
 				<v-btn v-on="on" class="ma-2">삭제</v-btn>
 			</template>
-			<v-card class="pa-2 grey lighten-4">
+			<v-card class="pa-2">
 				<v-card-title class="mb-10">회원을 삭제하시겠습니까?</v-card-title>
 				
 				<v-card-actions>
-					<v-btn @click="cancel" class="font-weight-bold" text>취소</v-btn>
+					<v-btn @click="cancel" text>취소</v-btn>
 					<v-spacer></v-spacer>
-					<v-btn @click="deleteUser" class="font-weight-bold" text>확인</v-btn>
+					<v-btn @click="deleteUser" text>확인</v-btn>
 				</v-card-actions>
 			</v-card>
 		</v-dialog>
@@ -60,13 +60,13 @@
 			<template v-slot:activator="{ on }">
 				<v-btn v-on="on" class="ma-2">정지/해제</v-btn>
 			</template>
-			<v-card class="pa-2 grey lighten-4">
+			<v-card class="pa-2">
 				<v-card-title class="mb-10">회원을 정지/해제시키겠습니까?</v-card-title>
 				
 				<v-card-actions>
-					<v-btn @click="cancel">취소</v-btn>
+					<v-btn @click="cancel" text>취소</v-btn>
 					<v-spacer></v-spacer>
-					<v-btn @click="pauseUser">확인</v-btn>
+					<v-btn @click="pauseUser" text>확인</v-btn>
 				</v-card-actions>
 			</v-card>
 		</v-dialog>
@@ -75,13 +75,13 @@
 			<template v-slot:activator="{ on }">
 				<v-btn v-on="on" class="ma-2">관리자</v-btn>
 			</template>
-			<v-card class="pa-2 grey lighten-4">
+			<v-card class="pa-2">
 				<v-card-title class="mb-10">관리자 권한을 주시겠습니까?</v-card-title>
 				
 				<v-card-actions>
-					<v-btn @click="cancel">취소</v-btn>
+					<v-btn @click="cancel" text>취소</v-btn>
 					<v-spacer></v-spacer>
-					<v-btn @click="hostUser">확인</v-btn>
+					<v-btn @click="hostUser" text>확인</v-btn>
 				</v-card-actions>
 			</v-card>
 		</v-dialog>

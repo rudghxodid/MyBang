@@ -1,9 +1,7 @@
 package com.mybang.khweb.service;
 
 import com.mybang.khweb.entity.Gongzi;
-import com.mybang.khweb.entity.Product;
 import com.mybang.khweb.request.GongziRequest;
-import com.mybang.khweb.request.ProductRequest;
 
 import java.util.List;
 

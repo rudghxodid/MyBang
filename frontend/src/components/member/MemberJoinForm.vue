@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <form @submit.prevent="onSubmit">
-			<v-card class="pa-10 mx-auto grey lighten-4" width="500">
+			<v-card class="pa-10 mx-auto" width="500">
 				
 				<v-radio-group v-model="radioGroup" row class="mb-2">
           <v-radio  v-for="kinds in kindsOfMember" :key="kinds" :label="`${kinds}`"></v-radio>
@@ -64,16 +64,15 @@
 					solo class="mt-3"></v-text-field>
          
 				<v-card-actions>
-					<v-btn :to="{ name: 'Home' }">취소</v-btn>
+					<v-btn @click="goHome" outlined>취소</v-btn>
 					<v-spacer></v-spacer>
-					<v-btn @click="onSubmit" @keydown.enter="onSubmit"
-						>회원가입</v-btn>
+					<v-btn @click="onSubmit" class="secondary">회원가입</v-btn>
 				</v-card-actions>
 			</v-card>
     </form>
 
     <v-dialog v-model="idDialog" max-width="400">
-      <v-card v-if="!canUseId" class="pa-3 grey lighten-4">
+      <v-card v-if="!canUseId" class="pa-3">
         <v-card-title>사용할 수 없는 아이디입니다.</v-card-title>
         <v-card-text>다른 아이디를 사용해주세요.</v-card-text>
         <v-text-field v-model="userId" :rules="idRules" required
@@ -84,7 +83,7 @@
         </v-card-actions>
       </v-card>
 
-      <v-card v-else class="pa-3 grey lighten-4">
+      <v-card v-else class="pa-3">
         <v-card-title class="mb-10">사용 가능한 아이디입니다.</v-card-title>
         <v-card-actions>
           <v-spacer></v-spacer>
@@ -94,7 +93,7 @@
     </v-dialog>
 
     <v-dialog v-model="emailDialog" max-width="400">
-      <v-card class="pa-3 grey lighten-4">
+      <v-card class="pa-3">
         <v-card-title>메일함을 확인해주세요.</v-card-title>
         <v-card-text>인증번호 6자리를 입력해주세요.</v-card-text>
         <v-text-field v-model="code"
@@ -223,6 +222,9 @@ export default {
 		},
 		changeEmail () {
 			this.completeEmail = false
+		},
+		goHome () {
+			this.$router.push({ name: 'Home' })
 		}
 	}
 }
