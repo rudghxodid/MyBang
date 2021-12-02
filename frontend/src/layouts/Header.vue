@@ -91,9 +91,25 @@
 		<div class="right-header">
 			<v-container>
 				<div v-if="isLogin">
-					<div class="loginUser"><span>{{this.$store.state.userInfo.userId}}</span>님</div>
-					<v-btn @click="gotoMypage" text>마이페이지</v-btn>|
-					<v-btn @click="logout" text>로그아웃</v-btn>
+					<div class="loginUser">
+						<v-menu offset-y open-on-hover>
+							<template v-slot:activator="{ on }">
+								<span v-on="on">
+									{{ userInfo.userId }}
+								</span>님
+							</template>
+							<v-list>
+								<v-list-item>
+									<v-list-item-title @click="gotoMypage">마이페이지</v-list-item-title>
+								</v-list-item>
+								<v-list-item>
+									<v-list-item-title @click="logout">로그아웃</v-list-item-title>
+								</v-list-item>
+							</v-list>
+						</v-menu>
+					</div>
+					
+					
 					<!--<v-btn text><a href="registerInfo">중개사무소<br>가입안내</a></v-btn>-->
 				</div>
 				<div style="float:left" v-else>
@@ -112,7 +128,8 @@ import { mapActions, mapState } from 'vuex'
     data() {
       return {
         userId: null,
-		auth: null
+				auth: null,
+				menu: false
     }
   },
   computed: {
@@ -137,10 +154,10 @@ import { mapActions, mapState } from 'vuex'
   methods: {
     ...mapActions(['fetchSession', 'fetchUserInfo']),
     gotoJoin() {
-      this.$router.push('/member/create')
+      this.$router.push({name: 'MemberJoinPage'})
     },
     gotoLogin() {
-      this.$router.push('/login')
+      this.$router.push({ name: 'MemberLoginPage' })
     },
     logout () {
       this.$store.commit('USER_LOGIN', false)
@@ -152,12 +169,12 @@ import { mapActions, mapState } from 'vuex'
     gotoMypage () {
       this.$router.push({ name: 'Mypage' })
     },
-	Gomain () {
-		this.$router.push({ name: 'Home' })
-	},
-	goSellerList () {
-		this.$router.push({ name: 'BrokerHouseListPage' })
-	}
+		Gomain () {
+			this.$router.push({ name: 'Home' })
+		},
+		goSellerList () {
+			this.$router.push({ name: 'BrokerHouseListPage' })
+		}
   }
 }
 </script>
@@ -257,5 +274,4 @@ import { mapActions, mapState } from 'vuex'
 	.right-header .loginUser > span {
 		background: linear-gradient(to top, #a3f5a8 50%, transparent 50%);
 	}
-
 </style>

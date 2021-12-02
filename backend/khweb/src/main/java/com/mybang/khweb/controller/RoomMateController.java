@@ -78,4 +78,12 @@ public class RoomMateController {
         Boolean boo = roomMateService.delete(id);
         return new ResponseEntity<RoomMate>(HttpStatus.OK);
     }
+
+    // 마이페이지 - 내가 쓴 게시글 목록 불러오기
+    @GetMapping("/list/{writer}")
+    public ResponseEntity<List<RoomMate>> userBoardList(@PathVariable String writer) throws Exception {
+        List<RoomMate> roomMateList = roomMateService.userBoardList(writer);
+
+        return new ResponseEntity<>(roomMateList, HttpStatus.OK);
+    }
 }
