@@ -66,4 +66,9 @@ public class RoomMateService {
         return true;
     }
 
+    public List<RoomMate> userBoardList(String writer) {
+        List<RoomMate> roomMateList = roomMateRepository.findByWriterName(writer);
+
+        return roomMateList;
+    }
 }

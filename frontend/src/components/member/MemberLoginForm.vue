@@ -1,6 +1,6 @@
 <template>
 	<v-container>
-		<v-card class="pa-10 mx-auto" width="500"  color="grey lighten-4">
+		<v-card class="pa-10 mx-auto" width="500" color="grey lighten-4">
 			<span>아이디</span>
 			<v-text-field v-model="id" :rules="idRules" required 
 				solo class="mt-3"></v-text-field>

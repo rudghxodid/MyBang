@@ -50,4 +50,10 @@ public class RoomMateCommentService {
         roomMateCommentRepository.delete(roomMateComment);
         return true;
     }
+
+    public List<RoomMateComment> userCommentList(Long memberNo) {
+        List<RoomMateComment> comments = roomMateCommentRepository.findByMember_MemberNo(memberNo);
+
+        return comments;
+    }
 }
