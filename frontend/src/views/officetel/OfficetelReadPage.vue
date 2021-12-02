@@ -1,7 +1,7 @@
 <template>
     <div>
         <officetel-read-form :officetelNo="officetelNo"/><br/>
-        <v-btn class="button_place" color="white" v-if="isLogin" :to="{ name: 'OfficetelModifyPage', params: { officetelNo: this.officetelNo } }">
+        <v-btn class="button_place" color="secondary" v-if="isLogin" :to="{ name: 'OfficetelModifyPage', params: { officetelNo: this.officetelNo } }">
             내용 수정
         </v-btn>
         <v-btn class="button_place" color="white" v-else  @click="officetelModifyFail">
