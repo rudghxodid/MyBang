@@ -1,29 +1,46 @@
 <template>
   <v-container>
-    <v-card v-if="!successPw" class="pa-5">
-      <v-card-title>
-        회원정보를 변경하려면 비밀번호를 입력해주세요.
-      </v-card-title>
-      <v-text-field label="pw" v-model="password" type="password" :rules="pwRules"></v-text-field>
-      <v-card-actions>
-        <v-spacer>
-          <v-btn @click="checkPw" @keydown.enter="checkPw">확인</v-btn>
-        </v-spacer>
-      </v-card-actions>
-    </v-card>
-    <user-info v-else></user-info>
+    <v-row class="my-10">
+      <v-col>
+        <user-activity></user-activity>
+      </v-col>
+      <v-col>
+        <v-container v-if="!successPw" >
+          <v-card class="pa-10" width="500">
+          <h1>
+            회원정보 확인/변경
+          </h1>
+          <br>
+          <span>비밀번호를 입력해주세요.</span>
+          <v-text-field v-model="password" type="password" :rules="pwRules" 
+            solo class="mt-3"></v-text-field>
+
+          <v-card-actions>
+            <v-spacer></v-spacer>
+            <v-btn @click="checkPw" color="secondary">확인</v-btn>
+          </v-card-actions>
+        </v-card>
+        </v-container>
+        
+        <user-info v-else></user-info>
+      </v-col>
+      
+    </v-row>
+    
   </v-container>
 </template>
 
 
 <script>
 import UserInfo from '@/components/member/UserInfo'
+import UserActivity from '@/components/member/UserActivity'
 import axios from 'axios'
 import { mapState } from 'vuex'
 
 export default {
   components: {
-    UserInfo
+    UserInfo,
+    UserActivity
   },
   data () {
     return {
@@ -53,3 +70,11 @@ export default {
   }
 }
 </script>
+
+
+<style scoped>
+h1 {
+  font-size: 25px;
+  font-weight: bold;
+}
+</style>

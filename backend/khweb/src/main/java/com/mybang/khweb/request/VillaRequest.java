@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class VillaRequest {
     private String address;
+    private Long rent;
     private String agentAddress;
     private String agentEmail;
     private double agentLat;
@@ -50,6 +51,7 @@ public class VillaRequest {
     public Villa toEntity() {
         return Villa.builder()
                 .address(address)
+                .rent(rent)
                 .agentAddress(agentAddress)
                 .agentEmail(agentEmail)
                 .agentLat(agentLat)

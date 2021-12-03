@@ -3,7 +3,7 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import MainPage from '../views/MainPage.vue'
 import Mypage from '@/views/member/Mypage'
-import MemberRegisterPage from '@/views/member/MemberRegisterPage'
+import MemberJoinPage from '@/views/member/MemberJoinPage'
 import MemberLoginPage from '@/views/member/MemberLoginPage'
 import FindUserId from '@/components/member/FindUserId'
 import FindUserPw from '@/components/member/FindUserPw'
@@ -13,22 +13,14 @@ import HostPage from '@/views/HostPage'
 import RoomMateList from '../views/roommate/List'
 import RoomMateModify from '../views/roommate/Modify'
 import RoomMateDetail from '../views/roommate/Detail'
-import ProductRegisterPage from '@/views/product/ProductRegisterPage'
-import ProductListPage from '@/views/product/ProductListPage'
-import ProductReadPage from '@/views/product/ProductReadPage'
-import ProductModifyPage from '@/views/product/ProductModifyPage'
 
-import VillaRegisterPage from '@/views/villa/VillaRegisterPage'
+import HouseRegisterPage from '@/views/houseUpload/HouseRegisterPage'
 import VillaReadPage from '@/views/villa/VillaReadPage'
 import VillaModifyPage from '@/views/villa/VillaModifyPage'
 
-import OfficetelRegisterPage from '@/views/officetel/OfficetelRegisterPage'
 import OfficetelReadPage from '@/views/officetel/OfficetelReadPage'
 import OfficetelModifyPage from '@/views/officetel/OfficetelModifyPage'
 
-
-import OneroomRegisterPage from '@/views/oneroom/OneroomRegisterPage'
-import OneroomListPage from '@/views/oneroom/OneroomListPage'
 import OneroomReadPage from '@/views/oneroom/OneroomReadPage'
 import OneroomModifyPage from '@/views/oneroom/OneroomModifyPage'
 
@@ -68,10 +60,10 @@ const routes = [
     component: Mypage,
   },
   {
-    path: '/member/create',
-    name: 'MemberRegisterPage',
+    path: '/member/join',
+    name: 'MemberJoinPage',
     components: {
-      default: MemberRegisterPage,
+      default: MemberJoinPage,
     },
     props: {
       default: true,
@@ -130,39 +122,6 @@ const routes = [
     component: RoomMateDetail,
   },
   {
-    path: '/product/register',
-    name: 'ProductRegisterPage',
-    components: {
-      default: ProductRegisterPage,
-    },
-  },
-  {
-    path: '/product/list',
-    name: 'ProductListPage',
-    component: ProductListPage,
-  },
-  {
-    path: '/product/:productNo',
-    name: 'ProductReadPage',
-    components: {
-      default: ProductReadPage,
-    },
-    props: {
-      default: true,
-    },
-  },
-  {
-    path: '/product/:productNo/edit',
-    name: 'ProductModifyPage',
-    components: {
-      default: ProductModifyPage,
-    },
-    props: {
-      default: true,
-    },
-  },
-
-  {
     path: '/villa',
     name: 'Villa',
     component: Villa,
@@ -208,10 +167,10 @@ const routes = [
   },
 
   {
-    path: '/villa/register',
-    name: 'VillaRegisterPage',
+    path: '/house/register',
+    name: 'HouseRegisterPage',
     components: {
-      default: VillaRegisterPage,
+      default: HouseRegisterPage,
     },
   },
   {
@@ -240,11 +199,6 @@ const routes = [
     component: BrokerHouseListPage,
   },
   {
-    path: '/officetel/register',
-    name: 'OfficetelRegisterPage',
-    component: OfficetelRegisterPage,
-  },
-  {
     path: '/officetel/read',
     name: 'OfficetelReadPage',
     components: {
@@ -263,18 +217,6 @@ const routes = [
     props: {
       default: true,
     },
-  },
-  {
-    path: '/oneroom/register',
-    name: 'OneroomRegisterPage',
-    components: {
-      default: OneroomRegisterPage,
-    },
-  },
-  {
-    path: '/oneroom/list',
-    name: 'OneroomListPage',
-    component: OneroomListPage,
   },
   {
     path: '/oneroom/read',

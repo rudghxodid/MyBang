@@ -2,22 +2,10 @@
 	<header>
 		<div class="inner">
 			<h1 class="logo">
-
 				<img src="@/assets/img/mybang.png" @click="Gomain" height="80px" style="margin-top:-6px" >
-				<!--<router-link to="/">
-                    <img src="@/assets/img/mybang.png" height="80px" style="margin-top:-6px" >
-                </router-link>
-                -->
 			</h1>
 
 			<ul class="navbar">
-				<li>
-					<a href="">
-						<span>아파트<br></span>
-						<span>매매/전월세/신축분양</span>
-					</a>
-					<nav class></nav>
-				</li>
 				<li>
 					<a href="/villa">
 						<span>빌라, 투룸+</span>
@@ -42,14 +30,24 @@
 						<span>함께 사는 주거공간</span>
 					</a>
 				</li>
+				<li v-if="auth == '사업자'">
+					<a @click="goSellerList">
+						<span>사업자</span>
+						<span>매물 등록 및 확인</span>
+					</a>
+				</li>
 			</ul>
 		</div>
 		<div class="right-header">
 			<v-container>
 				<div v-if="isLogin">
-					<div class="loginUser"><span>{{this.$store.state.userInfo.userId}}</span>님</div>
-					<v-btn @click="gotoMypage" text>마이페이지</v-btn>|
-					<v-btn @click="logout" text>로그아웃</v-btn>
+					<div class="loginUser">
+						<span>
+							{{ userInfo.userId }}
+						</span>님
+						<v-btn @click="gotoMypage" text>마이페이지</v-btn>|
+						<v-btn @click="logout" text>로그아웃</v-btn>
+					</div>
 					<!--<v-btn text><a href="registerInfo">중개사무소<br>가입안내</a></v-btn>-->
 				</div>
 				<div style="float:left" v-else>
@@ -68,10 +66,11 @@ import { mapActions, mapState } from 'vuex'
     data() {
       return {
         userId: null,
+				auth: null,
     }
   },
   computed: {
-    ...mapState(['session', 'isLogin'])
+    ...mapState(['session', 'isLogin', 'userInfo'])
   },
   mounted() {
     this.fetchSession(this.$cookies.get('session'))
@@ -79,11 +78,18 @@ import { mapActions, mapState } from 'vuex'
 			this.$store.state.isLogin = true
 			this.$store.state.userInfo = this.fetchUserInfo(this.$cookies.get('session'))
 		}
+		setTimeout(() => {
+			if (this.userInfo.length != 0) {
+				this.auth = this.userInfo.authList[0].auth
+			} else {
+				this.auth = null
+			}
+		}, 500)
   },
   methods: {
     ...mapActions(['fetchSession', 'fetchUserInfo']),
     gotoJoin() {
-      this.$router.push('/member/create')
+      this.$router.push({name: 'MemberJoinPage'})
     },
     gotoLogin() {
       this.$router.push('/login')
@@ -100,12 +106,12 @@ import { mapActions, mapState } from 'vuex'
     },
 		Gomain () {
 			this.$router.push({ name: 'Home' })
+		},
+		goSellerList () {
+			this.$router.push({ name: 'BrokerHouseListPage' })
 		}
   }
-
-  
-  
-  }
+}
 </script>
 
 <style scoped>
@@ -186,7 +192,7 @@ import { mapActions, mapState } from 'vuex'
 	}
 
 	.navbar > li > a >span:hover{
-		background:white; color: blue;
+		background:white; color: #98BAE7;
 	}
 
 	.right-header .loginUser {
@@ -196,5 +202,9 @@ import { mapActions, mapState } from 'vuex'
 	.right-header .loginUser > span {
 		background: linear-gradient(to top, #a3f5a8 50%, transparent 50%);
 	}
+
+	
+
+
 
 </style>

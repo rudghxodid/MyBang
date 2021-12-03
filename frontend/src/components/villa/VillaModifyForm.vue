@@ -1,286 +1,303 @@
 <template>
     <v-container>
-        <form @submit.prevent="onSubmit">
-            <div class="mx-3">
-                <v-icon color="black" size="30px">label</v-icon>
-                    중개사 주소
-                <v-list-item class="mx-1">
-                    <v-text-field placeholder="" v-model="agentAddress" required></v-text-field>
-                    <button @click="onApiAgentAddress">입력</button>
-                </v-list-item>
-            </div> 
+        <v-stepper v-model="e1">
+                <form @submit.prevent="onSubmit">
+                    <v-stepper-header>
+                    <v-stepper-step color="secondary" :complete="e1 > 1" step="1">중개사무소 정보</v-stepper-step>
+                    <v-divider></v-divider>
+                    <v-stepper-step color="secondary" :complete="e1 > 2" step="2">매물 입력사항(1)</v-stepper-step>
+                    <v-divider></v-divider>
+                    <v-stepper-step color="secondary" :complete="e1 > 3" step="3">매물 입력사항(2)</v-stepper-step>
+                    <v-divider></v-divider>
+                    <v-stepper-step color="secondary" :complete="e1 > 4" step="4">매물 입력사항(3)</v-stepper-step>
+                     <v-divider></v-divider>
+                    <v-stepper-step color="secondary" step="5">매물 입력사항(4)</v-stepper-step>
+                    </v-stepper-header>
+                    <v-stepper-items>
 
-            <div class="mx-3">
-                <v-icon color="black" size="30px">label</v-icon>
-                    중개사 이메일
-                <v-list-item class="mx-1">
-                    <v-text-field placeholder="" v-model="agentEmail" required></v-text-field>
-                </v-list-item>
-            </div> 
-            
-            <div class="mx-3">
-                <v-icon color="black" size="30px">label</v-icon>
-                    중개사 이름
-                <v-list-item class="mx-1">
-                    <v-text-field placeholder="" v-model="agentName" required></v-text-field>
-                </v-list-item>
-            </div>  
+                        <v-stepper-content step="1">
+                            <v-card class="mb-12" color="" max-height="3000px">
 
-            <div class="mx-3">
-                <v-icon color="black" size="30px">label</v-icon>
-                    중개사 연락처
-                <v-list-item class="mx-1">
-                    <v-text-field placeholder="" v-model="agentPhone" required></v-text-field>
-                </v-list-item>
-            </div> 
+                                <span>중개사 주소</span>
+                                <v-list-item>
+                                <v-text-field placeholder="" v-model="agentAddress" required solo class="mt-3"></v-text-field>
+                                <button class="mb-5 ml-4" @click="onApiAgentAddress">확인하기</button>
+                                </v-list-item>
 
-            <div class="mx-3">
-                <v-icon color="black" size="30px">label</v-icon>
-                    중개인 이름
-                <v-list-item class="mx-1">
-                    <v-text-field placeholder="" v-model="userName" required></v-text-field>
-                </v-list-item>
-            </div> 
+                                <span>중개사 이메일</span>
+                                <v-text-field placeholder="" v-model="agentEmail" required solo class="mt-3"></v-text-field>
+                                
+                                <span>중개사 이름</span>
+                                <v-text-field placeholder="" v-model="agentName" required solo class="mt-3"></v-text-field>  
 
-            <div class="mx-3"> 
-                <v-icon color="black" size="30px">label</v-icon>
-                    중개인 연락처
-                <div class="mx-1">
-                    <v-text-field placeholder="" v-model="agentMobile" required></v-text-field>
-                </div> 
-            </div>
+                                <span>중개사 연락처</span>
+                                <v-text-field placeholder="" v-model="agentPhone" required solo class="mt-3"></v-text-field>
 
-            <div class="mx-3">
-                <v-icon color="black" size="30px">label</v-icon>
-                    매물의 주소를 입력하세요
-                <v-list-item class="mx-1">
-                    <v-text-field placeholder="" v-model="address" required></v-text-field>
-                    <button @click="onApiAddress">확인</button>
-                </v-list-item>
-            </div>
+                                <span>중개인 이름</span>
+                                <v-text-field placeholder="" v-model="userName" required solo class="mt-3"></v-text-field>
 
-            <div class="mx-3">
-                <v-icon color="black" size="30px">label</v-icon>
-                    주소(시)
-                <v-list-item class="mx-1">
-                    <v-text-field placeholder="주소 입력시 자동으로 입력됩니다" v-model="local1" required readonly></v-text-field>
-                </v-list-item>
-            </div>
+                                <span>중개인 연락처</span>
+                                <v-text-field placeholder="" v-model="agentMobile" required solo class="mt-3"></v-text-field>
+                            </v-card>
 
-            <div class="mx-3">
-                <v-icon color="black" size="30px">label</v-icon>
-                    주소(구)
-                <v-list-item class="mx-1">
-                    <v-text-field placeholder="주소 입력시 자동으로 입력됩니다" v-model="local2" required readonly></v-text-field>
-                </v-list-item>
-            </div>
+                            <v-btn color="secondary" @click="e1 = 2">다음</v-btn>
 
-            <div class="mx-3">
-                <v-icon color="black" size="30px">label</v-icon>
-                    주소(동)
-                <v-list-item class="mx-1">
-                    <v-text-field placeholder="주소 입력시 자동으로 입력됩니다" v-model="local3" required readonly></v-text-field>
-                </v-list-item>
-            </div>
+                        </v-stepper-content>
 
-            <div class="mx-3"> 
-                <v-icon color="black" size="30px">home</v-icon>
-                    건물사진 등록
-                <div class="mx-1">
-                    <v-card width="400" flat>
-                        <!-- 사진선택 -->
-                        <v-file-input class="mx-10" v-model="files" @change="selectImg" label="사진 선택"
-                        prepend-icon="insert_photo" chips multiple ></v-file-input>
+                        <v-stepper-content step="2">
+                            <v-card class="mb-12" color="" max-height="3000px">
 
-                        <!-- 선택한 사진 미리보기 -->
-                        <v-card class="mx-10" flat>
-                        <v-img v-for="url in urls" :key="url.index" class="ml-10" :src="url" width="80%"/>
-                        </v-card>
+                                <span>매물의 주소를 입력하세요</span>
+                                <v-list-item>
+                                <v-text-field placeholder="" v-model="address" required solo class="mt-3"></v-text-field>
+                                <button class="mb-5 ml-4" @click="onApiAddress">확인하기</button>
+                                </v-list-item>
 
-                        <!-- imgBB에 이미지 전송 -->
-                        <v-btn @click="sendImg">전송</v-btn>
-                        <!-- 전송된 사진 url 확인 -->
-                        <v-btn @click="checkImage">확인</v-btn>
+                                <span>주소</span>
+                                    <v-list-item class="mx-1">
+                                        <v-text-field placeholder="주소 입력시 자동으로 입력됩니다" v-model="local1" required solo class="mt-3" readonly></v-text-field>
+                                        <v-text-field placeholder="주소 입력시 자동으로 입력됩니다" v-model="local2" required solo class="mt-3" readonly></v-text-field>
+                                        <v-text-field placeholder="주소 입력시 자동으로 입력됩니다" v-model="local3" required solo class="mt-3" readonly></v-text-field>
+                                    </v-list-item>
 
-                        <!-- 저장된 첫번째 사진 미리보기 -->
-                        <div v-if="viewImage">
-                        <v-img :src="viewImage"></v-img>
-                        </div>
-                    </v-card>
-                </div>
-            </div>  
+                                <span>건물사진 등록</span>
+                                    <v-card width="400" flat>
+                                        <!-- 사진선택 -->
+                                        <v-file-input required solo class="mt-3" v-model="files" @change="selectImg" label="사진 선택"
+                                        prepend-icon="insert_photo" chips multiple ></v-file-input>
 
-            <div class="mx-3">
-                <v-icon color="black" size="30px">label</v-icon>
-                    보증금
-                <v-list-item class="mx-1">
-                    <v-text-field input type="number" placeholder="" v-model="deposit" required></v-text-field>
-                </v-list-item>
-            </div> 
+                                        <!-- 선택한 사진 미리보기 -->
+                                        <v-card class="mx-10" flat>
+                                        <v-img v-for="url in urls" :key="url.index" class="ml-10" :src="url" width="50%"/>
+                                        </v-card>
 
-            <div class="mx-3"> 
-                <v-icon color="black" size="30px">label</v-icon>
-                방구조
-                <div class="mx-1">
-                    <v-select :items='roomTypes' placeholder="방구조"  v-model="roomType" required></v-select>
-                </div> 
-            </div>
+                                        <!-- imgBB에 이미지 전송 -->
+                                        <v-btn @click="sendImg">전송</v-btn>
+                                        <!-- 전송된 사진 url 확인 -->
+                                        <v-btn @click="checkImage">확인</v-btn>
 
-            <div class="mx-3"> 
-                <v-icon color="black" size="30px">label</v-icon>
-                판매유형
-                <div class="mx-1">
-                    <v-select :items='salesTypes' placeholder="" v-model="salesType" required></v-select>
-                </div> 
-            </div>  
-            <div class="mx-3"> 
-                <v-icon color="black" size="30px">label</v-icon>
-                관리비 포함 항목
-                <div class="mx-1" >
-                    <v-text-field placeholder="" v-model="manageCostInc" required></v-text-field>
-                </div> 
-            </div> 
+                                        <!-- 저장된 첫번째 사진 미리보기 
+                                        <div v-if="viewImage">
+                                        <v-img :src="viewImage"></v-img>
+                                        </div>-->
+                                    </v-card>
+  
+                                <span>입주가능일</span>
+                                    <div class="mx-1">
+                                        <v-menu ref="menu" v-model="menu" :close-on-content-click="false"
+                                            :return-value.sync="date" transition="scale-transition" offset-y min-width="auto">
+                                            <template v-slot:activator="{ on }">
+                                            <v-text-field placeholder="입주가능일을 선택해주세요." v-model="moveinDate" 
+                                                v-on="on" append-icon="mdi-calendar" required solo class="mt-3"></v-text-field>
+                                            </template>
+                                            <v-date-picker color="secondary" v-model="moveinDate" no-title scrollable>
+                                            
+                                            <v-btn text @click="menu = false">
+                                                Cancel
+                                            </v-btn>
+                                            <v-spacer></v-spacer>
+                                            <v-btn text @click="$refs.menu.save(date)">
+                                                OK
+                                            </v-btn>
+                                            </v-date-picker>
+                                        </v-menu>
+                                    </div> 
 
-            <div class="mx-3"> 
-                <v-icon color="black" size="30px">label</v-icon>
-                크기
-                <div class="mx-1">
-                    <v-text-field placeholder="제곱미터단위로 입력해주세요" v-model="sizeM2" required></v-text-field>
-                </div>  
-                <div class="mx-1">
-                    <v-text-field placeholder="방의 평수를 입력해주세요." v-model="size" required></v-text-field>
-                </div> 
-            </div>
+                                <span>방구조</span>
+                                    <div class="mx-1">
+                                        <v-select :items='roomTypes' placeholder="방구조"  v-model="roomType" required solo class="mt-3" ></v-select>
+                                    </div> 
 
-            <div class="mx-3"> 
-                <v-icon color="black" size="30px">label</v-icon>
-                층수
-                <div class="mx-1">
-                    <v-select :items='floorCheck' placeholder="건물 총 층수" v-model="floorAll" required></v-select>
-                </div>
-                <div class="mx-1">
-                    <v-select :items='floorCheck' placeholder="해당 층" v-model="floor" required></v-select>
-                </div>  
-            </div>
+                                <span>판매유형</span>
+                                    <div class="mx-1">
+                                        <v-select :items='salesTypes' placeholder="판매유형을 선택해주세요" v-model="salesType" required solo class="mt-3" ></v-select>
+                                    </div> 
+                                <span>보증금</span>
+                                    <div class="mx-1">
+                                        <v-text-field input type="number" placeholder="보증금" v-model="deposit" required solo class="mt-3"></v-text-field>
+                                    </div>
 
-            <div class="mx-3"> 
-                <v-icon color="black" size="30px">label</v-icon>
-                방향
-                <div class="mx-1">
-                    <v-select :items='roomDirections' placeholder="" v-model="roomDirection" required></v-select>
-                </div> 
-            </div>
+                                <span>월세</span>
+                                    <div class="mx-1">
+                                        <v-text-field input type="number" placeholder="전세일 경우 0을 입력해주세요" v-model="rent" required solo class="mt-3"></v-text-field>
+                                    </div>
+                            </v-card>
+                                
+                            <v-btn color="secondary" @click="e1 = 3">다음</v-btn>
 
-            <div class="mx-3"> 
-                <v-icon color="black" size="30px">label</v-icon>
-                옵션
-                <div class="mx-1">
-                    <v-text-field placeholder="옵션" v-model="options" required></v-text-field>
-                </div> 
-            </div>
-           
-            <div class="mx-3"> 
-                <v-icon color="black" size="30px">label</v-icon>
-                반려동물
-                <div class="mx-1">
-                    <v-select :items='petcheck' placeholder="반려동물" v-model="pets" required></v-select>
-                </div> 
-            </div> 
+                            <v-btn text @click="e1 = 1">이전</v-btn>
+                        </v-stepper-content>
 
-            <div class="mx-3"> 
-                <v-icon color="black" size="30px">label</v-icon>
-                주차
-                <div class="mx-1">
-                    <v-select :items='parkings' placeholder="주차" v-model="parking" required></v-select>
-                </div> 
-            </div>
+                        <v-stepper-content step="3">
+                            <v-card class="mb-12" color="" max-height="3000px">
+                                <span>크기</span>
+                                    <div class="mx-1">
+                                        <v-text-field placeholder="방의 평수를 입력해주세요." v-model="size" required solo class="mt-3" ></v-text-field>
+                                    </div> 
+                                    <div class="mx-1">
+                                        <v-text-field placeholder="m2" v-model="sizeM2" required solo class="mt-3" readonly></v-text-field>
+                                    </div> 
 
-            <div class="mx-3"> 
-                <v-icon color="black" size="30px">label</v-icon>
-                인근 지하철
-                <div class="mx-1">
-                    <v-text-field placeholder="인근 지하철" v-model="nearSubways" required></v-text-field>
-                </div> 
-            </div>
-            
-            <div class="mx-3"> 
-                <v-icon color="black" size="30px">label</v-icon>
-                엘리베이터
-                <div class="mx-1">
-                    <v-select :items='exist' placeholder="엘리베이터" v-model="elevator" required></v-select>
-                </div> 
-            </div>
+                                <span>관리비 포함 항목</span>
+                                    <div class="mx-1" >
+                                        <input type="checkbox" value="전기세" v-model="manageCostIncChk">
+                                            <label for="전기세" class="check">전기세</label>
+                                        <input type="checkbox" value="수도" v-model="manageCostIncChk">
+                                            <label for="수도" class="check">수도</label>
+                                        <input type="checkbox" value="가스" v-model="manageCostIncChk">
+                                            <label for="가스" class="check">가스</label>
+                                        <input type="checkbox" value="인터넷" v-model="manageCostIncChk">
+                                            <label for="인터넷" class="check">인터넷</label>
+                                        <input type="checkbox" value="TV" v-model="manageCostIncChk">
+                                            <label for="TV">TV</label>
+                                    </div><br>
+                                    관리비
+                                    <div class="mx-1">
+                                        <v-text-field placeholder="관리비를 입력해주세요" v-model="manageCost" required solo class="mt-3"></v-text-field>
+                                    </div>  
 
-            <div class="mx-3"> 
-                <v-icon color="black" size="30px">label</v-icon>
-                입주가능일
-                <div class="mx-1">
-                    <v-text-field  placeholder="입주가능일" v-model="moveinDate" required></v-text-field>
-                </div> 
-            </div>
+                                    <span>옵션</span>
+                                        <div class="mx-1">
+                                            <input type="checkbox" value="에어컨" v-model="optionsChk">
+                                                <label for="에어컨" class="check">에어컨</label>
+                                            <input type="checkbox" value="냉장고" v-model="optionsChk">
+                                                <label for="냉장고" class="check">냉장고</label>
+                                            <input type="checkbox" value="세탁기" v-model="optionsChk">
+                                                <label for="세탁기" class="check">세탁기</label>
+                                            <input type="checkbox" value="가스레인지" v-model="optionsChk">
+                                                <label for="가스레인지" class="check">가스레인지</label>
+                                            <input type="checkbox" value="인덕션" v-model="optionsChk">
+                                                <label for="인덕션" class="check">인덕션</label>
+                                        </div>
+                                        <div class="mx-1">
+                                            <input type="checkbox" value="전자레인지" v-model="optionsChk">
+                                                <label for="전자레인지" class="check">전자레인지</label>
+                                            <input type="checkbox" value="옷장" v-model="optionsChk">
+                                                <label for="옷장" class="check">옷장</label>
+                                            <input type="checkbox" value="책상" v-model="optionsChk">
+                                                <label for="책상" class="check">책상</label>
+                                            <input type="checkbox" value="책장" v-model="optionsChk">
+                                                <label for="책장" class="check">책장</label>
+                                            <input type="checkbox" value="침대" v-model="optionsChk">
+                                                <label for="침대" class="check">침대</label>
+                                        </div>
+                                        <div class="mx-1">
+                                            <input type="checkbox" value="싱크대" v-model="optionsChk">
+                                                <label for="싱크대" class="check">싱크대</label>
+                                            <input type="checkbox" value="신발장" v-model="optionsChk">
+                                                <label for="신발장" >신발장</label>
+                                        </div> 
+                                
+                                    <span>반려동물</span>
+                                        <div class="mx-1">
+                                            <v-select :items='petcheck' placeholder="반려동물" v-model="pets" required solo class="mt-3"></v-select>
+                                        </div> 
 
-            <div class="mx-3"> 
-                <v-icon color="black" size="30px">label</v-icon>
-                소개글
-                <div class="mx-1">
-                    <v-text-field placeholder="매물에 관한 내용을 100자 이내로 적어주세요" v-model="title" required></v-text-field>
-                </div> 
-            </div>
+                                    <span>주차</span>
+                                        <div class="mx-1">
+                                            <v-select :items='parkings' placeholder="주차" v-model="parking" required solo class="mt-3"></v-select>
+                                        </div>  
+                            </v-card>
+                                
+                            <v-btn color="secondary" @click="e1 = 4">다음</v-btn>
 
-            <div class="mx-3"> 
-                <v-icon color="black" size="30px">label</v-icon>
-                매물 상세설명
-                <div class="mx-1">
-                    <v-text-field placeholder="매물에 관한 내용을 상세히 적어주세요" v-model="description" required></v-text-field>
-                </div> 
-            </div>
+                            <v-btn text @click="e1 = 2">이전</v-btn>
+                        </v-stepper-content>
 
-            <!-- 자동으로 입력되는 부분 -->
-            <div class="mx-1" hidden>
-                <v-text-field placeholder="" v-model="serviceType" required></v-text-field>
-            </div> 
-            <div class="mx-3" hidden> 
-                <v-icon color="black" size="30px">label</v-icon>
-                중개사무소 좌표
-                <div class="mx-1">
-                    <v-text-field placeholder="" v-model="agentLat" required readonly></v-text-field>
-                </div> 
-            </div>
-            <div class="mx-3" hidden> 
-                <v-icon color="black" size="30px">label</v-icon>
-                중개사무소 좌표
-                <div class="mx-1">
-                    <v-text-field placeholder="" v-model="agentLng" required readonly></v-text-field>
-                </div> 
-            </div>
-            <div class="mx-3" hidden> 
-                <v-icon color="black" size="30px">label</v-icon>
-                좌표(lat)
-                <div class="mx-1">
-                    <v-text-field placeholder="좌표(lat)" v-model="lat" required readonly></v-text-field>
-                </div> 
-            </div>
-            <div class="mx-3" hidden> 
-                <v-icon color="black" size="30px">label</v-icon>
-                좌표(lng)
-                <div class="mx-1">
-                    <v-text-field placeholder="좌표(lng)" v-model="lng" required readonly></v-text-field>
-                </div> 
-            </div>
-            <div class="mx-3" hidden> 
-                <v-icon color="black" size="30px">label</v-icon>
-                작성자
-                <div class="mx-1">
-                    <v-text-field placeholder="" v-model="agentId" required readonly></v-text-field>
-                </div> 
-            </div>
+                        <v-stepper-content step="4">
+                            <v-card class="mb-12" color="" max-height="2000px">
 
-            <div class="mt-3">
-                <v-btn color="white" tile large button type="submit">수정완료</v-btn>
-                <v-btn color="white" @click="onDelete">삭제</v-btn> 
-                <v-btn color="white" :to="{ name: 'BrokerHouseListPage' }">목록으로 돌아가기</v-btn>
-            </div>
-        </form>
+                                <span>인근 지하철</span>
+                                    <div class="mx-1">
+                                        <v-text-field placeholder="인근 지하철" v-model="nearSubways" required solo class="mt-3"></v-text-field>
+                                    </div> 
+                                
+                                <span>엘리베이터</span>
+                                    <div class="mx-1">
+                                        <v-select :items='exist' placeholder="엘리베이터" v-model="elevator" required solo class="mt-3"></v-select>
+                                    </div> 
+
+                                <span>층수</span>
+                                    <div class="mx-1">
+                                        <v-select :items='floorCheck' placeholder="건물 총 층수" v-model="floorAll" required solo class="mt-3"></v-select>
+                                    </div>
+                                    <div class="mx-1">
+                                        <v-select :items='floorCheck' placeholder="해당 층" v-model="floor" required solo class="mt-3"></v-select>
+                                    </div>  
+
+                                <span>방향</span>
+                                    <div class="mx-1">
+                                        <v-select :items='roomDirections' placeholder="" v-model="roomDirection" required solo class="mt-3"></v-select>
+                                    </div> 
+                            </v-card>
+
+                            <v-btn color="secondary" @click="e1 = 5">다음</v-btn>
+
+                            <v-btn text @click="e1 = 3">이전</v-btn>
+                        </v-stepper-content>
+
+                        <v-stepper-content step="5">
+                            <v-card class="mb-12" color="" max-height="3000px"> 
+
+                                <span>소개글</span>
+                                    <div class="mx-1">
+                                        <v-text-field placeholder="매물에 관한 내용을 100자 이내로 적어주세요" v-model="title" required solo class="mt-3"></v-text-field>
+                                    </div> 
+
+                                <span>매물 상세설명</span>
+                                    <div class="mx-1">
+                                        <v-textarea placeholder="매물에 관한 내용을 상세히 적어주세요" v-model="description" required solo class="mt-3"></v-textarea>
+                                    </div> 
+                            </v-card>
+                            <v-btn text @click="e1 = 4">이전</v-btn>
+                        </v-stepper-content>
+                    
+
+                    <!-- 자동으로 입력되는 부분 --> 
+                    <div class="mx-3" hidden> 
+                        <v-icon color="black" size="30px">label</v-icon>
+                        중개사무소 좌표
+                        <div class="mx-1">
+                            <v-text-field placeholder="" v-model="agentLat" required readonly></v-text-field>
+                        </div> 
+                    </div>
+                    <div class="mx-3" hidden> 
+                        <v-icon color="black" size="30px">label</v-icon>
+                        중개사무소 좌표
+                        <div class="mx-1">
+                            <v-text-field placeholder="" v-model="agentLng" required readonly></v-text-field>
+                        </div> 
+                    </div>
+                    <div class="mx-3" hidden> 
+                        <v-icon color="black" size="30px">label</v-icon>
+                        좌표(lat)
+                        <div class="mx-1">
+                            <v-text-field placeholder="좌표(lat)" v-model="lat" required readonly></v-text-field>
+                        </div> 
+                    </div>
+                    <div class="mx-3" hidden> 
+                        <v-icon color="black" size="30px">label</v-icon>
+                        좌표(lng)
+                        <div class="mx-1">
+                            <v-text-field placeholder="좌표(lng)" v-model="lng" required readonly></v-text-field>
+                        </div> 
+                    </div>
+                    <div class="mx-3" hidden> 
+                        <v-icon color="black" size="30px">label</v-icon>
+                        작성자
+                        <div class="mx-1">
+                            <v-text-field placeholder="" v-model="agentId" required readonly></v-text-field>
+                        </div> 
+                    </div>
+
+                    <div class="mt-3">
+                        <v-btn class="button_place" color="secondary" tile large button type="submit">수정완료</v-btn>
+                        <v-btn class="button_place" color="white" @click="onDelete">삭제</v-btn> 
+                        <v-btn class="button_place" color="white" :to="{ name: 'BrokerHouseListPage' }">목록으로 돌아가기</v-btn>
+                    </div>
+                </v-stepper-items>
+            </form>
+        </v-stepper>
     </v-container>
 </template>
 
@@ -298,12 +315,13 @@ export default {
     },
     data () {
       return {
+            e1: 1,
             image: null,
+            rent: '',
             deposit: '',
             roomType: '',
             manageCost: '',
             manageCostInc: '',
-            sizeM2: '',
             size: '',
             floorAll: '',
             floor: '',
@@ -337,6 +355,10 @@ export default {
             url: '',
             updatedAt: '',
             agentId: '',
+            menu: false,
+            date: null,
+            manageCostIncChk: [],
+            optionsChk: [],
             viewImage: null,
             files: [],
             urls: [],
@@ -354,6 +376,9 @@ export default {
     },
     computed: {
         ...mapState(['userInfo']),
+        sizeM2 () {
+            return this.size * 3.305785
+        }
     },
     mounted() {
         this.agentId = this.userInfo.userId
@@ -389,6 +414,7 @@ export default {
                 this.imageStr += res.data.data.display_url + ','
                 })
             }
+            alert('확인버튼을 눌러주세요')
         },
         checkImage () {
             // imageStr의 마지막 ',' 제거
@@ -401,14 +427,15 @@ export default {
 
             // 배열에 저장된 첫번째 사진 url
             this.viewImage = imageList[0]
+            alert('사진등록이 완료되었습니다')
         },
         onSubmit () {
             this.agentId = this.userInfo.userId 
-            const { image, deposit, roomType, manageCost, manageCostInc, sizeM2, size, floorAll, floor, roomDirection, options, pets, parking, elevator, moveinDate, title, 
+            const { image, rent, deposit, roomType, manageCost, manageCostIncChk, sizeM2, size, floorAll, floor, roomDirection, optionsChk, pets, parking, elevator, moveinDate, title, 
             description, nearSubways, address, salesType, agentAddress, agentEmail, agentLat, agentLng, agentMobile, agentName, agentPhone, buildingType,
             lat, lng, local1, local2, local3, serviceType, userIntro, userName, url, updatedAt, agentId} = this
 
-            this.$emit('submit', { image, deposit, roomType, manageCost, manageCostInc, sizeM2, size, floorAll, floor, roomDirection, options, pets, parking, elevator, moveinDate, title, 
+            this.$emit('submit', { image, rent, deposit, roomType, manageCost, manageCostIncChk, sizeM2, size, floorAll, floor, roomDirection, optionsChk, pets, parking, elevator, moveinDate, title, 
             description, nearSubways, address, salesType, agentAddress, agentEmail, agentLat, agentLng, agentMobile, agentName, agentPhone, buildingType,
             lat, lng, local1, local2, local3, serviceType, userIntro, userName, url, updatedAt, agentId})
         },
@@ -418,7 +445,6 @@ export default {
                 .then(() => {
                     alert("등록하신 매물이 삭제되었습니다")
                     this.$router.push({name: 'BrokerHouseListPage' })
-                    this.$router.go()
                 })
                 .catch(err => {
                     alert(err.response.data.message)
@@ -486,6 +512,21 @@ export default {
         this.userName = this.villa.userName
         this.url = this.villa.url
         this.agentId = this.villa.agentId
+        this.rent = this.villa.rent
     },
 }
 </script>
+
+<style scoped>
+
+.button_place {
+    left: 68%;
+    margin-right: 1%;
+    margin-top: -8%;
+    /*margin-left: 135px;*/ 
+}
+.check {
+    width: 93px;
+    margin-right: 20px;
+}
+</style>

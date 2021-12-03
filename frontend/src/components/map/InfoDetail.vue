@@ -246,7 +246,6 @@ export default {
     }
   },
   methods: {
-
   }
 }
 </script>

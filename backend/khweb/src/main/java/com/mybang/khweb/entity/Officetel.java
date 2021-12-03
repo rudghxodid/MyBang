@@ -100,7 +100,7 @@ public class Officetel {
     @Column
     private String agentId;
 
-    public Officetel(String address, String agentAddress, String agentEmail, double agentLat, double agentLng,
+    public Officetel(String address, String agentAddress, String agentEmail, double agentLat, double agentLng, Long rent,
                  String agentMobile, String agentName,  String agentPhone, String buildingType, Long deposit,
                  String description, String elevator, String floor, String floorAll, String image, double lat,
                  double lng, String local1, String local2, String local3, String manageCost, String manageCostInc,
@@ -108,6 +108,7 @@ public class Officetel {
                  String roomType, String salesType, String serviceType, String size, String sizeM2,
                  String title, String updatedAt, String userIntro, String userName, String url, String agentId) {
         this.address = address;
+        this.rent = rent;
         this.agentAddress = agentAddress;
         this.agentEmail = agentEmail;
         this.agentLat = agentLat;

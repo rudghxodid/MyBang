@@ -1,24 +1,22 @@
 <template>
     <div>
         <div align="center">
-            <h2>회원 가입</h2>
+            <h1>회원가입</h1>
         </div>
-        <member-join-column-form v-bind:kakao_account="kakao_account" @submit="onSubmit"/>
         
-        <v-spacer></v-spacer>
-       
-            
+        <member-join-form v-bind:kakao_account="kakao_account" @submit="onSubmit"/>
+   
      
     </div>
 </template>
 
 <script>
-import MemberJoinColumnForm from '@/components/member/MemberJoinColumnForm.vue'
+import MemberJoinForm from '@/components/member/MemberJoinForm'
 import axios from 'axios'
 export default {
     name: 'MemberRegisterPage',
     components: {
-        MemberJoinColumnForm
+        MemberJoinForm
     },
     props: {
         kakao_account: {
@@ -48,3 +46,14 @@ export default {
     }
 }
 </script>
+
+
+<style scoped>
+h1 {
+    font-size: 33px;
+    font-weight: bold;
+    width: 100%;
+    color: #000;
+    margin-top: 50px;
+}
+</style>

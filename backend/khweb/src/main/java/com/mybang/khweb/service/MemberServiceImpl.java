@@ -2,15 +2,12 @@ package com.mybang.khweb.service;
 
 import com.mybang.khweb.entity.Member;
 import com.mybang.khweb.entity.MemberAuth;
-import com.mybang.khweb.entity.memberRelated.LikedProduct;
-import com.mybang.khweb.repository.LikedProductRepository;
 import com.mybang.khweb.repository.MemberAuthRepository;
 import com.mybang.khweb.repository.MemberRepository;
 import com.mybang.khweb.request.MemberDto;
 import com.mybang.khweb.request.MemberRequest;
 import com.mybang.khweb.utility.PythonRequest;
 import lombok.extern.slf4j.Slf4j;
-import org.graalvm.compiler.nodes.calc.IntegerDivRemNode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -35,9 +32,6 @@ public class MemberServiceImpl implements MemberService{
 
     @Autowired
     private PasswordEncoder encoder;
-
-    @Autowired
-    private LikedProductRepository likedProductRepository;
 
 
     @Override
@@ -287,22 +281,5 @@ public class MemberServiceImpl implements MemberService{
     public List<Member> list() throws Exception {
         List<Member> members = repository.findAll();
         return members;
-    }
-
-    //찜하기
-    @Override
-    public void addLikedProduct(LikedProduct likedProduct) {
-        likedProductRepository.save(likedProduct);
-    }
-
-    @Override
-    public List<LikedProduct> getLikedProductList(Integer memberNo) {
-
-        return likedProductRepository.findByMemberNo(new Long(memberNo));
-    }
-
-    @Override
-    public void deleteLikedProduct(LikedProduct likedProduct) {
-        likedProductRepository.delete(new Long(likedProduct.getNoticeNo()), new Long(likedProduct.getMemberNo()));
     }
 }

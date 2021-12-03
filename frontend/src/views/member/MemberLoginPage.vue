@@ -1,7 +1,7 @@
 <template>
     <div>
         <div align="center">
-            <h2>로그인</h2>
+            <h1>로그인</h1>
         </div>
         <member-login-form @submit="onSubmit"/>
         <v-spacer></v-spacer>
@@ -52,7 +52,7 @@ export default {
                 .then(res => {
 
                     if (res.data != "") {
-                        alert('환영합니다! ' + res.data.auth)
+                        alert('환영합니다! ')
 
                         this.$store.commit('USER_LOGIN', true)
 
@@ -67,6 +67,7 @@ export default {
 
                         alert('로그인 실패! - ' + res.data)
                     }
+                    this.$router.go()
                 })
                 .catch(res => {
                     alert(res.response.data.message)
@@ -85,3 +86,14 @@ export default {
     }
 }
 </script>
+
+
+<style scoped>
+h1 {
+    font-size: 33px;
+    font-weight: bold;
+    width: 100%;
+    color: #000;
+    margin-top: 50px;
+}
+</style>

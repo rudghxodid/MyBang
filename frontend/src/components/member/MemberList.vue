@@ -1,5 +1,9 @@
 <template>
-	<div>
+	<v-card flat>
+		<v-card-actions>
+			<v-spacer></v-spacer>
+			<v-btn @click="GongziList" class="ma-3" outlined>공지목록</v-btn>
+		</v-card-actions>
 		<v-simple-table>
 			<template v-slot:default>
 				<thead>
@@ -38,16 +42,15 @@
 
 		<v-dialog v-model="dialog" max-width="400">
 			<template v-slot:activator="{ on }">
-				<v-btn v-on="on">삭제</v-btn>
+				<v-btn v-on="on" class="ma-2">삭제</v-btn>
 			</template>
 			<v-card class="pa-2">
-
-				<v-card-title>정말 회원을 삭제하시겠습니까??</v-card-title>
+				<v-card-title class="mb-10">회원을 삭제하시겠습니까?</v-card-title>
 				
 				<v-card-actions>
-					<v-btn @click="cancel">취소</v-btn>
+					<v-btn @click="cancel" text>취소</v-btn>
 					<v-spacer></v-spacer>
-					<v-btn @click="deleteUser">확인</v-btn>
+					<v-btn @click="deleteUser" text>확인</v-btn>
 				</v-card-actions>
 			</v-card>
 		</v-dialog>
@@ -55,34 +58,34 @@
 
 		<v-dialog v-model="pausedialog" max-width="400">
 			<template v-slot:activator="{ on }">
-				<v-btn v-on="on">정지/해제</v-btn>
+				<v-btn v-on="on" class="ma-2">정지/해제</v-btn>
 			</template>
 			<v-card class="pa-2">
-				<v-card-title>정말 회원을 정지/해제시키겠습니까??</v-card-title>
+				<v-card-title class="mb-10">회원을 정지/해제시키겠습니까?</v-card-title>
 				
 				<v-card-actions>
-					<v-btn @click="cancel">취소</v-btn>
+					<v-btn @click="cancel" text>취소</v-btn>
 					<v-spacer></v-spacer>
-					<v-btn @click="pauseUser">확인</v-btn>
+					<v-btn @click="pauseUser" text>확인</v-btn>
 				</v-card-actions>
 			</v-card>
 		</v-dialog>
 
 		<v-dialog v-model="hostDialog" max-width="400">
 			<template v-slot:activator="{ on }">
-				<v-btn v-on="on">관리자</v-btn>
+				<v-btn v-on="on" class="ma-2">관리자</v-btn>
 			</template>
 			<v-card class="pa-2">
-				<v-card-title>관리자 권한을 주시겠습니까?</v-card-title>
+				<v-card-title class="mb-10">관리자 권한을 주시겠습니까?</v-card-title>
 				
 				<v-card-actions>
-					<v-btn @click="cancel">취소</v-btn>
+					<v-btn @click="cancel" text>취소</v-btn>
 					<v-spacer></v-spacer>
-					<v-btn @click="hostUser">확인</v-btn>
+					<v-btn @click="hostUser" text>확인</v-btn>
 				</v-card-actions>
 			</v-card>
 		</v-dialog>
-	</div>
+	</v-card>
 </template>
 
 
@@ -168,12 +171,11 @@ export default {
 				this.fetchMemberList()
 				alert('해당 아이디에 관리자 권한을 부여하였습니다.')
 			})
+		},
+		GongziList() {
+			this.$router.push({ name: 'GongziListPage' })
 		}
 			
-	},
-
-
-    
-    
+	}
 }
 </script>

@@ -6,18 +6,12 @@ import {
   FETCH_MEMBER,
 
   // 매물 게시판
-  FETCH_PRODUCT_LIST,
-  FETCH_PRODUCT,
   FETCH_VILLA_LIST,
   FETCH_VILLA,
   FETCH_OFFICETEL_LIST,
   FETCH_OFFICETEL,
   FETCH_ONEROOM_LIST,
   FETCH_ONEROOM,
-
-  // 찜하기
-  FETCH_LIKED_PRODUCT_LIST,
-  FETCH_PRODUCT_INFO,
 
   // 사업자별 매물등록구분
   FETCH_AGENT_VILLA,
@@ -56,19 +50,6 @@ export default {
       commit(FETCH_MEMBER, res.data);
     });
   },
-  // 매물 게시판
-  fetchProductList({ commit }) {
-    return axios.get("http://localhost:7777/product/list").then((res) => {
-      commit(FETCH_PRODUCT_LIST, res.data);
-    });
-  },
-  fetchProduct({ commit }, productNo) {
-    return axios
-      .get(`http://localhost:7777/product/${productNo}`)
-      .then((res) => {
-        commit(FETCH_PRODUCT, res.data);
-      });
-  },
   fetchVillaList({ commit }) {
     return axios.get("http://localhost:7777/villa/lists").then((res) => {
       commit(FETCH_VILLA_LIST, res.data);
@@ -101,22 +82,6 @@ export default {
       .get(`http://localhost:7777/officetel/${officetelNo}`)
       .then((res) => {
         commit(FETCH_OFFICETEL, res.data);
-      });
-  },
-  // 찜하기
-  fetchLikedProductList({ commit }, payload) {
-    return axios
-      .get(`http://localhost:7777/product/likedProductList/${payload}`)
-      .then((res) => {
-        //alert(JSON.stringify(res.data))
-        commit(FETCH_LIKED_PRODUCT_LIST, res.data);
-      });
-  },
-  fetchProductInfo({ commit }, payload) {
-    return axios
-      .get(`http://localhost:7777/product/getProductInfo/${payload}`)
-      .then((res) => {
-        commit(FETCH_PRODUCT_INFO, res.data);
       });
   },
   // 사업자별 매물등록구분
@@ -153,14 +118,14 @@ export default {
   },
 
   // 뉴스 크롤링
-  async crawlFind({ commit }, ) {
+  async crawlFind({ commit }, category) {
     commit(CRAWL_START, 'data')
-    // axios.get("http://localhost:7777/" + `${category}`).then(({ data }) => {
-    //   commit(CRAWL_START, data);
+    axios.get("http://localhost:7777/" + `${category}`).then(({ data }) => {
+      commit(CRAWL_START, data);
 
-    //   // if (window.location.pathname !== '/daumNewsCrawler') {
-    //   //     router.push('/daumNewsCrawler')
-    //   // }
-    // });
+      // if (window.location.pathname !== '/daumNewsCrawler') {
+      //     router.push('/daumNewsCrawler')
+      // }
+    });
   },
 };

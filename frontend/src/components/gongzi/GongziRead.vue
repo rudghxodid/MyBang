@@ -82,11 +82,11 @@
 
 		<v-dialog v-model="dialog" width="400">
 			<v-card>
-				<v-card-title>정말 삭제하시겠습니까?</v-card-title>
+				<v-card-title class="mb-10">정말 삭제하시겠습니까?</v-card-title>
 				<v-card-actions>
-					<v-btn @click="dialog = false">취소</v-btn>
+					<v-btn @click="dialog = false" text>취소</v-btn>
 					<v-spacer></v-spacer>
-					<v-btn @click="deleteGongzi">확인</v-btn>
+					<v-btn @click="deleteGongzi" text>확인</v-btn>
 				</v-card-actions>
 			</v-card>
 		</v-dialog>
@@ -125,7 +125,7 @@ export default {
 			axios.post(`http://localhost:7777/gongzi/${this.gongzi.gongziNo}/${this.view}`).then(() => {
 				console.log('view +1')
 			})
-		},50)
+		},100)
 
 		if (this.userInfo.authList) {
 			if (this.userInfo.authList[0].auth == '관리자') {
