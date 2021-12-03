@@ -144,12 +144,23 @@ export default {
 			}
 		},
 		pauseUser() {
+		if(this.selected.length == 1){
 			axios.post(`http://localhost:7777/member/pause/${this.selected}`)
 			.then(() =>{
 				this.pausedialog = false
 				this.fetchMemberList()
 				alert("해당아이디는 정지 하였습니다.")
 			})
+		}
+		else if(this.selected.length > 1){
+				for(let i = 0; i < this.selected.length; i++){
+					axios.post(`http://localhost:7777/member/pause/${this.selected[i]}`).then(() => {
+						this.pausedialog = false
+						this.fetchMemberList()
+						alert('해당아이디는 정지 되었습니다.')
+					})
+				}
+			}
 		},
 		hostUser () {
 			axios.post(`http://localhost:7777/member/host/${this.selected}`).then(()=> {

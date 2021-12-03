@@ -7,19 +7,14 @@
 
              </a>
          </li>
-         <li v-on:click="kakaoLogout()">
-             <a href="javascript:void(0)">
-             <span>로그아웃</span>
-             
-             </a>
-         </li>
+         
      </ul>
      
     </v-container>
 </template>
 
 <script>
-import axios from 'axios'
+
 
 // import '@/kakao/kakao.js'
 
@@ -43,25 +38,7 @@ export default {
 
     
     methods: {
-        onSubmit () {
-        
-            const { id, pw } = this
-            axios.post('http://localhost:5000/login', { userId: id, password: pw })
-                    .then(res => {
-                        if (res.data != "") {
-                            alert('로그인 성공! - ' + JSON.stringify(res.data))
-                                
-                        } else {
-                            alert('로그인 실패! - ' + res.data)
-                       
-                        }
-                     
-                    })
-                    .catch(res => {
-                        alert(res.response.data.message)
-                    })
-        
-     },
+       
     kakaoLogin () {
          
          window.Kakao.Auth.login({

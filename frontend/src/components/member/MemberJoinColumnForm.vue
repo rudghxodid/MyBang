@@ -14,7 +14,7 @@
                     ID
                 <v-spacer></v-spacer>
                 <v-list-item class="mx-1">
-                    <v-text-field outlined color="green" placeholder="아이디" v-model="userId" :rules="idRules" required></v-text-field>
+                    <v-text-field color="green" placeholder="아이디" v-model="userId" :rules="idRules" required></v-text-field>
                     <v-btn @click="checkId" OU>아이디 확인</v-btn>
                 </v-list-item>
             </div>
@@ -192,6 +192,7 @@ export default {
         console.log(this.kakao_account)
         this.email = this.kakao_account.email
         this.birth = this.kakao_account.birthday
+        this.kindsOfGender = this.kakao_account.gender
     },
     
     computed: {
